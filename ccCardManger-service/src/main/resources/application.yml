@@ -1,0 +1,46 @@
+server: 
+  port: 8083
+#连接注册中心的配置
+eureka: 
+  client:
+    service-url: 
+      defaultZone: http://localhost:8081/eureka/
+#该服务在注册中心的名称
+spring:
+  application:
+    name: cardmanger-service
+  freemarker:
+    suffix: .html
+    cache: false
+  session:
+    store-type: redis
+  #数据库相关设置
+  datasource:
+    url: jdbc:mysql://localhost:3306/ccdata
+    driver-class-name:  com.mysql.jdbc.Driver
+    username: manager
+    password: root
+  #配置redis相关的连接信息
+  redis:
+    host: 127.0.0.1
+    port: 6379
+  #mybatis相关配置
+mybatis:
+  #指定映射文件的路径
+  mapper-locations: classpath:mapper/*.xml
+  #统一指定实体类的别名:默认是类名或类名首字母小写
+  type-aliases-package: com.zl.pojo
+#超时配置    
+ribbon: 
+  ReadTimeout: 4000
+  ConnectTimeout: 4000
+#熔断设置
+hystrix: 
+  command: 
+    default:
+      execution:
+        timeout: 
+          enabled: true
+        isolation: 
+          thread: 
+            timeoutInMilliseconds: 5000
