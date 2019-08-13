@@ -1,0 +1,15 @@
+#eureka服务器端口号
+server:
+  port: 8081
+#eureka相关的配置
+eureka:
+  instance:
+    #主机名称
+    hostname: localhost
+  client:
+#如果我的Server没有提供对外Http接口，那么这个参数可以设置为false
+    registerWithEureka: false
+#是否需要拉取服务信息
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://localhost:8081/eureka/
