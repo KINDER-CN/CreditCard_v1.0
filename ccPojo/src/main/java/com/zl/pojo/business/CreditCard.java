@@ -15,7 +15,7 @@ import com.zl.pojo.manger.CardType;
 public class CreditCard {
 	private int id;
 	private int cardNum;	//信用卡卡号	card_num
-	private CardType cardType;	//信用卡卡种id，外键，此处用对象	card_type_id
+	private int cardType;	//信用卡卡种id，外键，此处用对象	card_type_id
 	private String carPassword;	//信用卡支付密码	card_password
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date cardValidity;	//信用卡有效期	card_validity	
@@ -25,8 +25,8 @@ public class CreditCard {
 	private	BigDecimal cardCashLimit;	//取现额度		card_cash_limit
 	private String cardState;	//信用卡状态:未激活，激活。挂失。冻结，销卡	card_state
 	private	int cardBinding;	//信用卡绑定状态：是否绑定在系统上	card_binding
-	private RepayCard repayCard;	//信用卡绑定的还款卡id。此处用对象，方便级联查询	card_bankcard_id
-	private Client client;	//信用卡所属客户id。此处使用对象，方便级联查询	card_client_id
+	private int repayCard;	//信用卡绑定的还款卡id。此处用对象，方便级联查询	card_bankcard_id
+	private int client;	//信用卡所属客户id。此处使用对象，方便级联查询	card_client_id
 	private BigDecimal cardAnnual;	//信用卡年费	card_annual
 	private BigDecimal cardBalance;	//信用卡余额，还款时，金额大于需还款金额，则为余额	card_balance
 	@DateTimeFormat(pattern="yyyy-MM-dd")
@@ -47,12 +47,7 @@ public class CreditCard {
 	public void setCardNum(int cardNum) {
 		this.cardNum = cardNum;
 	}
-	public CardType getCardType() {
-		return cardType;
-	}
-	public void setCardType(CardType cardType) {
-		this.cardType = cardType;
-	}
+	
 	public String getCarPassword() {
 		return carPassword;
 	}
@@ -102,18 +97,6 @@ public class CreditCard {
 		this.cardBinding = cardBinding;
 	}
 	
-	public RepayCard getRepayCard() {
-		return repayCard;
-	}
-	public void setRepayCard(RepayCard repayCard) {
-		this.repayCard = repayCard;
-	}
-	public Client getClient() {
-		return client;
-	}
-	public void setClient(Client client) {
-		this.client = client;
-	}
 	public BigDecimal getCardAnnual() {
 		return cardAnnual;
 	}
@@ -150,6 +133,24 @@ public class CreditCard {
 	public void setStandby(String standby) {
 		this.standby = standby;
 	}
+	public int getCardType() {
+		return cardType;
+	}
+	public void setCardType(int cardType) {
+		this.cardType = cardType;
+	}
+	public int getRepayCard() {
+		return repayCard;
+	}
+	public void setRepayCard(int repayCard) {
+		this.repayCard = repayCard;
+	}
+	public int getClient() {
+		return client;
+	}
+	public void setClient(int client) {
+		this.client = client;
+	}
 	@Override
 	public String toString() {
 		return "CreditCard [id=" + id + ", cardNum=" + cardNum + ", cardType=" + cardType + ", carPassword="
@@ -160,5 +161,6 @@ public class CreditCard {
 				+ cardBillday + ", cardRefundDay=" + cardRefundDay + ", cardpoint=" + cardpoint + ", standby=" + standby
 				+ "]";
 	}
+	
 	
 }

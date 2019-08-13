@@ -3,6 +3,8 @@ package com.zl.pojo.business;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  *分期账单详情表
  */
@@ -11,14 +13,15 @@ public class AgingMonth {
 	private BigDecimal monthMoney;				//每月分期金额					month_money
 	private BigDecimal monthInterest;			//本月利息						month_interest
 	private BigDecimal notReturnMoney;			//本月未还分期金额				month_not_return_money
-	private AgingRate agingRate;				//分期利率表，外键关联分期利率表		aging_rate_id
+	private int agingRate;				//分期利率表，外键关联分期利率表		aging_rate_id
 	private String agingRefund;					//分期还款状态，已还完，未还完		month_aging_refund
 	private BigDecimal returnMoney;				//本月以还分期金额				month_return_money
-	private Aging aging;						//分期概况表id，外键，此处以对象的形式	aging_id
+	private int aging;						//分期概况表id，外键，此处以对象的形式	aging_id
 	private int monthNper;						//当前期数						month_nper
 	private BigDecimal agingPoundage;			//分期手续费					month_aging_poundage
 	private String installments;				//分期方式：按月分期				month_installments
 	private String agingType;					//分期类型：账单分期				aging_type
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date agingTime;						//申请时间						aging_time
 	public int getId() {
 		return id;
@@ -44,12 +47,6 @@ public class AgingMonth {
 	public void setNotReturnMoney(BigDecimal notReturnMoney) {
 		this.notReturnMoney = notReturnMoney;
 	}
-	public AgingRate getAgingRate() {
-		return agingRate;
-	}
-	public void setAgingRate(AgingRate agingRate) {
-		this.agingRate = agingRate;
-	}
 	public String getAgingRefund() {
 		return agingRefund;
 	}
@@ -61,12 +58,6 @@ public class AgingMonth {
 	}
 	public void setReturnMoney(BigDecimal returnMoney) {
 		this.returnMoney = returnMoney;
-	}
-	public Aging getAging() {
-		return aging;
-	}
-	public void setAging(Aging aging) {
-		this.aging = aging;
 	}
 	public int getMonthNper() {
 		return monthNper;
@@ -98,6 +89,18 @@ public class AgingMonth {
 	public void setAgingTime(Date agingTime) {
 		this.agingTime = agingTime;
 	}
+	public int getAgingRate() {
+		return agingRate;
+	}
+	public void setAgingRate(int agingRate) {
+		this.agingRate = agingRate;
+	}
+	public int getAging() {
+		return aging;
+	}
+	public void setAging(int aging) {
+		this.aging = aging;
+	}
 	@Override
 	public String toString() {
 		return "AgingMonth [id=" + id + ", monthMoney=" + monthMoney + ", monthInterest=" + monthInterest
@@ -106,5 +109,6 @@ public class AgingMonth {
 				+ agingPoundage + ", installments=" + installments + ", agingType=" + agingType + ", agingTime="
 				+ agingTime + "]";
 	}
+	
 	
 }

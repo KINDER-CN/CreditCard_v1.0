@@ -9,7 +9,7 @@ public class ClientLinkman {
 	private int linkPhone;		//联系人电话	client_link_phone
 	private String linkAddress;	//联系人地址	client_link_address
 	private String linkRelation;	//与联系人关系：父子，母子，同学，同事	client_link_relation
-	private Client client;	//外键客户id	clinent_link_client_id,此处为方便级联，写成外键对象
+	private int client;	//外键客户id	clinent_link_client_id,此处为方便级联，写成外键对象
 	private int binding;	//联系人与客户的绑定状态，0为未绑定，1为绑定状态
 	public int getId() {
 		return id;
@@ -41,13 +41,13 @@ public class ClientLinkman {
 	public void setLinkRelation(String linkRelation) {
 		this.linkRelation = linkRelation;
 	}
-	public Client getClient() {
+	
+	public int getClient() {
 		return client;
 	}
-	public void setClient(Client client) {
+	public void setClient(int client) {
 		this.client = client;
 	}
-	
 	public int getBinding() {
 		return binding;
 	}

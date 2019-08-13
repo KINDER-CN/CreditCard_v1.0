@@ -13,7 +13,7 @@ public class ClientCompany {
 	private String companyJob;	//职务：厅局级以上，处级，科级，一般干部，其他，总经理级，部门经理级，职员，其他	compant_job
 	private	String annualIncome;	//从事职称：高级职称及以上。中级职称，初级职称，初级及以下	company_annual_income
 	private int companyPostalcode;	//公司邮编	company_postalcode
-	private Client client;	//外键，客户主键id	company_client_id，此处为方便级联，写成外键对象
+	private int client;	//外键，客户主键id	company_client_id，此处为方便级联，写成外键对象
 	private int binding;	//公司信息与客户的绑定状态，0为未绑定，即离职公司等，1为绑定状态，即现公司
 	public int getId() {
 		return id;
@@ -69,13 +69,14 @@ public class ClientCompany {
 	public void setCompanyPostalcode(int companyPostalcode) {
 		this.companyPostalcode = companyPostalcode;
 	}
-	public Client getClient() {
+	
+	
+	public int getClient() {
 		return client;
 	}
-	public void setClient(Client client) {
+	public void setClient(int client) {
 		this.client = client;
 	}
-	
 	public int getBinding() {
 		return binding;
 	}

@@ -19,8 +19,8 @@ public class BillDetails {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date payTime;						//还款时间				transaction_pay_time
 	private int billId;							//账单表id				bill_id
-	private CreditCard creditCard;				//信用卡id				card_id
-	private Aging aging;						//分期表id				aging_id
+	private int creditCard;				//信用卡id				card_id
+	private int aging;						//分期表id				aging_id
 	public int getId() {
 		return id;
 	}
@@ -69,16 +69,16 @@ public class BillDetails {
 	public void setBillId(int billId) {
 		this.billId = billId;
 	}
-	public CreditCard getCreditCard() {
+	public int getCreditCard() {
 		return creditCard;
 	}
-	public void setCreditCard(CreditCard creditCard) {
+	public void setCreditCard(int creditCard) {
 		this.creditCard = creditCard;
 	}
-	public Aging getAging() {
+	public int getAging() {
 		return aging;
 	}
-	public void setAging(Aging aging) {
+	public void setAging(int aging) {
 		this.aging = aging;
 	}
 	@Override

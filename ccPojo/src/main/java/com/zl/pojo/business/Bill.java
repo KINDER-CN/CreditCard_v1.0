@@ -13,7 +13,7 @@ import com.zl.pojo.client.Client;
 public class Bill {
 	private int id;						//主键id
 	private String billNum;				//账单编号			bill_num
-	private CreditCard creditCard;		//信用卡id,外键		bill_card_id
+	private int creditCard;		//信用卡id,外键		bill_card_id
 	private BigDecimal billMoney;		//账单金额			bill_money
 	private BigDecimal hasPay;			//已还款金额		bill_hasPay
 	@DateTimeFormat(pattern="yyyy-MM-dd")
@@ -23,7 +23,7 @@ public class Bill {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date billDate;				//账单生成时间		bill_creat_date
 	private String billState;			//状态			bill_state
-	private Client client;				//用户id			bill_client_id
+	private int client;				//用户id			bill_client_id
 	public int getId() {
 		return id;
 	}
@@ -35,12 +35,6 @@ public class Bill {
 	}
 	public void setBillNum(String billNum) {
 		this.billNum = billNum;
-	}
-	public CreditCard getCreditCard() {
-		return creditCard;
-	}
-	public void setCreditCard(CreditCard creditCard) {
-		this.creditCard = creditCard;
 	}
 	public BigDecimal getBillMoney() {
 		return billMoney;
@@ -78,10 +72,16 @@ public class Bill {
 	public void setBillState(String billState) {
 		this.billState = billState;
 	}
-	public Client getClient() {
+	public int getCreditCard() {
+		return creditCard;
+	}
+	public void setCreditCard(int creditCard) {
+		this.creditCard = creditCard;
+	}
+	public int getClient() {
 		return client;
 	}
-	public void setClient(Client client) {
+	public void setClient(int client) {
 		this.client = client;
 	}
 	@Override

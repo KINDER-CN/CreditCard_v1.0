@@ -17,10 +17,10 @@ public class Aging {
 	private int agingNper;				// 分期期数 					 aging_nper
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date agingTime;				// 分期账单生成时间 				 aging_time
-	private AgingRate agingRate;		// 分期利率，外键关联分期利率表 		 aging_rate_id
+	private int agingRate;		// 分期利率，外键关联分期利率表 		 aging_rate_id
 	private String agingState; 			// 分期还款状态 					 aging_state
-	private CreditCard creditCard; 		// 分期的信用卡，外键关联信用卡表 		 aging_card_id
-	private Client client; 				// 分期账单所属客户id，外键管理客户表	 aging_client_id
+	private int creditCard; 		// 分期的信用卡，外键关联信用卡表 		 aging_card_id
+	private int client; 				// 分期账单所属客户id，外键管理客户表	 aging_client_id
 	private Date agingEndTime; 			// 账单结束时间					 aging_endtime
 	public int getId() {
 		return id;
@@ -52,29 +52,11 @@ public class Aging {
 	public void setAgingTime(Date agingTime) {
 		this.agingTime = agingTime;
 	}
-	public AgingRate getAgingRate() {
-		return agingRate;
-	}
-	public void setAgingRate(AgingRate agingRate) {
-		this.agingRate = agingRate;
-	}
 	public String getAgingState() {
 		return agingState;
 	}
 	public void setAgingState(String agingState) {
 		this.agingState = agingState;
-	}
-	public CreditCard getCreditCard() {
-		return creditCard;
-	}
-	public void setCreditCard(CreditCard creditCard) {
-		this.creditCard = creditCard;
-	}
-	public Client getClient() {
-		return client;
-	}
-	public void setClient(Client client) {
-		this.client = client;
 	}
 	public Date getAgingEndTime() {
 		return agingEndTime;
@@ -82,10 +64,29 @@ public class Aging {
 	public void setAgingEndTime(Date agingEndTime) {
 		this.agingEndTime = agingEndTime;
 	}
+	public int getAgingRate() {
+		return agingRate;
+	}
+	public void setAgingRate(int agingRate) {
+		this.agingRate = agingRate;
+	}
+	public int getCreditCard() {
+		return creditCard;
+	}
+	public void setCreditCard(int creditCard) {
+		this.creditCard = creditCard;
+	}
+	public int getClient() {
+		return client;
+	}
+	public void setClient(int client) {
+		this.client = client;
+	}
 	@Override
 	public String toString() {
 		return "Aging [id=" + id + ", agingNum=" + agingNum + ", agingLines=" + agingLines + ", agingNper=" + agingNper
 				+ ", agingTime=" + agingTime + ", agingRate=" + agingRate + ", agingState=" + agingState
 				+ ", creditCard=" + creditCard + ", client=" + client + ", agingEndTime=" + agingEndTime + "]";
 	}
+	
 }

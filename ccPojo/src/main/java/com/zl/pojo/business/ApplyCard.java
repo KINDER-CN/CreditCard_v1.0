@@ -11,7 +11,7 @@ import com.zl.pojo.manger.CardType;
 public class ApplyCard {
 	private int id;								//主键id
 	private String applyNum;					//申请编号			apply_num
-	private CardType cardType;					//申请卡种id		apply_card_id
+	private int cardType;					//申请卡种id		apply_card_id
 	private Date applyTime;						//申请时间			apply_time
 	private String applyState;					//申请状态			apply_state
 	private Date applyAcceptTime;				//受理时间			apply_accept_time
@@ -19,7 +19,7 @@ public class ApplyCard {
 	private int creditPoint;					//用户信用分		apply_credit_points
 	private String checkState;					//核实状态			apply_check_state
 	private int applyCardNum;					//发放卡号			apply_cardnum
-	private Client client;						//用户id			apply_client_id
+	private int client;						//用户id			apply_client_id
 	public int getId() {
 		return id;
 	}
@@ -32,12 +32,7 @@ public class ApplyCard {
 	public void setApplyNum(String applyNum) {
 		this.applyNum = applyNum;
 	}
-	public CardType getCardType() {
-		return cardType;
-	}
-	public void setCardType(CardType cardType) {
-		this.cardType = cardType;
-	}
+	
 	public Date getApplyTime() {
 		return applyTime;
 	}
@@ -80,10 +75,16 @@ public class ApplyCard {
 	public void setApplyCardNum(int applyCardNum) {
 		this.applyCardNum = applyCardNum;
 	}
-	public Client getClient() {
+	public int getCardType() {
+		return cardType;
+	}
+	public void setCardType(int cardType) {
+		this.cardType = cardType;
+	}
+	public int getClient() {
 		return client;
 	}
-	public void setClient(Client client) {
+	public void setClient(int client) {
 		this.client = client;
 	}
 	@Override
@@ -93,5 +94,6 @@ public class ApplyCard {
 				+ ", creditPoint=" + creditPoint + ", checkState=" + checkState + ", applyCardNum=" + applyCardNum
 				+ ", client=" + client + "]";
 	}
+	
 	
 }

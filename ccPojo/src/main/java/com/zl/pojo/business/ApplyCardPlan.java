@@ -9,7 +9,7 @@ import com.zl.pojo.manger.CardType;
 
 public class ApplyCardPlan {
 	private int id;//主键id
-	private CardType cardType;		//卡种id，外键关联卡种表		plan_card
+	private int cardType;		//卡种id，外键关联卡种表		plan_card
 	private Date applyTime;			//申请时间					plan_time
 	private String planState;		//进度状态					plan_state
 	private Date acceptTime;		//受理时间					plan_accept_time
@@ -19,12 +19,6 @@ public class ApplyCardPlan {
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	public CardType getCardType() {
-		return cardType;
-	}
-	public void setCardType(CardType cardType) {
-		this.cardType = cardType;
 	}
 	public Date getApplyTime() {
 		return applyTime;
@@ -50,10 +44,17 @@ public class ApplyCardPlan {
 	public void setPlanIDcard(String planIDcard) {
 		this.planIDcard = planIDcard;
 	}
+	public int getCardType() {
+		return cardType;
+	}
+	public void setCardType(int cardType) {
+		this.cardType = cardType;
+	}
 	@Override
 	public String toString() {
 		return "ApplyCardPlan [id=" + id + ", cardType=" + cardType + ", applyTime=" + applyTime + ", planState="
 				+ planState + ", acceptTime=" + acceptTime + ", planIDcard=" + planIDcard + "]";
 	}
+	
 	
 }

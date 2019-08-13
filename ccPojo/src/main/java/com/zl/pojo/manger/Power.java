@@ -4,7 +4,7 @@ package com.zl.pojo.manger;
  */
 public class Power {
 	private int id;				//主键id
-	private Role role;			//角色	idpower_role_id
+	private int role;			//角色	idpower_role_id
 	private String power;		//权限	power
 	public int getId() {
 		return id;
@@ -12,10 +12,11 @@ public class Power {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Role getRole() {
+	
+	public int getRole() {
 		return role;
 	}
-	public void setRole(Role role) {
+	public void setRole(int role) {
 		this.role = role;
 	}
 	public String getPower() {
