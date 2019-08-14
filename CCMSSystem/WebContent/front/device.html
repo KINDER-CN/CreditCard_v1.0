@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="UTF-8">
+		<meta http-equiv="Expires" content="0">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta name="renderer" content="webkit|ie-comp|ie-stand">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+		<title>首页-我的账户_中信银行信用卡会员中心</title>
+		<!--[if lt IE 8]>
+    <script src="./assets/js/json3.js"></script>
+  <![endif]-->
+		<!--[if lt IE 10]>
+    <script src="./assets/js/shim.ie.js"></script>
+  <![endif]-->
+
+		<!-- Bootstrap -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+		<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+		<link href="css/settingManage.7e62b685.css" rel="stylesheet">
+		<link rel="shortcut icon" href="https://creditcard.ecitic.com/citiccard/ebankpc/logo.ico">
+		<link href="css/myaccounts.css" rel="stylesheet">
+	</head>
+
+	<body>
+
+		<div class="header">
+			<div class="content">
+				<a href="index.html" title="中信银行信用卡中心官网" target="_blank" class="logo-area">
+					<img src="img/logo白色.png">
+				</a>
+				<div class="menu-area">
+					<span>欢迎您，<strong id="userName">XXX</strong></span>
+					<span class="line">|</span>
+					<img class="online-server" id="online-server-img" src="img/kf.gif" alt="在线客服">
+					<span class="line">|</span>
+					<img class="security-logout" src="img/gb.gif" alt="安全退出" id="logout">
+				</div>
+			</div>
+		</div>
+		<div class="menu">
+			<ul>
+				<li class="yahei" id="yahei01">
+					<a href="loginIndex.html" class="wdzh" target="_self">我的账户</a>
+				</li>
+				<li class="yahei" id="yahei02">
+					<a href="bill.html" class="zdcx" target="_self">账单查询</a>
+				</li>
+				<li class="yahei" id="yahei03">
+					<a href="repay.html" class="xykhk" target="_self">信用卡还款</a>
+				</li>
+				<li class="yahei" id="yahei04">
+					<a href="aging.html" class="fqyw" target="_self">分期业务</a>
+				</li>
+				<li class="yahei" id="yahei07">
+					<a href="device.html" class="szgl" target="_self">设置管理</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="main_t">
+			<img style="padding-left: 97px;margin-top: 0" src="data:image/gif;base64,R0lGODlhEwAIAMQAANzc3NjY2NHR0fPz89bW1ufn59TU1PDw8PX19ejo6PLy8t3d3eDg4O7u7tLS0uPj497e3tvb29ra2vb29urq6gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4wLWMwNjAgNjEuMTM0Nzc3LCAyMDEwLzAyLzEyLTE3OjMyOjAwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOkI5NTI1QTBEMUVBQkUyMTE4QjlCRjk1MjAxNDgyNkJGIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkM1MTY2OTQ1NkZCNTExRTQ4NTk1QkE5Mjk2OUMyNkQ0IiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkM1MTY2OTQ0NkZCNTExRTQ4NTk1QkE5Mjk2OUMyNkQ0IiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzUuMSBXaW5kb3dzIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RUEzNDA5NDcxNTZFRTQxMTlBN0VDMUVCODU2QTgxMEEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6Qjk1MjVBMEQxRUFCRTIxMThCOUJGOTUyMDE0ODI2QkYiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4B//79/Pv6+fj39vX08/Lx8O/u7ezr6uno5+bl5OPi4eDf3t3c29rZ2NfW1dTT0tHQz87NzMvKycjHxsXEw8LBwL++vby7urm4t7a1tLOysbCvrq2sq6qpqKempaSjoqGgn56dnJuamZiXlpWUk5KRkI+OjYyLiomIh4aFhIOCgYB/fn18e3p5eHd2dXRzcnFwb25tbGtqaWhnZmVkY2JhYF9eXVxbWllYV1ZVVFNSUVBPTk1MS0pJSEdGRURDQkFAPz49PDs6OTg3NjU0MzIxMC8uLSwrKikoJyYlJCMiISAfHh0cGxoZGBcWFRQTEhEQDw4NDAsKCQgHBgUEAwIBAAAh+QQAAAAAACwAAAAAEwAIAAAFPSAljmIBFGSqMsIjMGoMOc3UOFBMLsYx/QfDQkcBEBS/pIIAiEUCg6R0EIikJBGEdIuISEQJCWRL/kEkiRAAOw==">
+		</div>
+		<div class="main" id="main_page">
+			<div class="sub_menu">
+				<a class="hover" href="###" target="_self">基本信息</a>
+				<a href="###" target="_self">绑定手机</a>
+				<a href="###" target="_self">信息修改</a>
+				<a href="creditCardManager.html" target="_self">信用卡管理</a>
+			</div>
+			<div class="table-responsive" style="width: 800px;text-align: center;margin: 0 auto;">
+				<table class="table table-bordered" style="margin-top: 40px;">
+					<tr>
+						<td>姓名</td>
+						<td>张三</td>
+					</tr>
+					<tr>
+						<td>卡号</td>
+						<td>12345****2323</td>
+					</tr>
+					<tr>
+						<td>身份证</td>
+						<td>12342423****23</td>
+					</tr>
+					<tr>
+						<td>姓名</td>
+						<td>张三</td>
+					</tr>
+					<tr>
+						<td>性别</td>
+						<td>男</td>
+					</tr>
+					<tr>
+						<td>爱好</td>
+						<td>女</td>
+					</tr>
+					<tr>
+						<td>爱吃</td>
+						<td>萝卜</td>
+					</tr>
+					<tr>
+						<td>爱吃</td>
+						<td>菜</td>
+					</tr>
+					<tr>
+						<td>蹦蹦</td>
+						<td>跳跳</td>
+					</tr>
+					<tr>
+						<td>真</td>
+						<td>可爱</td>
+					</tr>
+					<tr>
+						<td>姓名</td>
+						<td>张三</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="con_930" id="wenxints">
+				<div class="set_wxts">
+					<div class="wxts_tit">温馨提示</div>
+					<ul class="txt_list">
+						<li>系统将自动带出您名下所有账户下最新的卡号；</li>
+						<li>如您不需显示相应部分卡号，可通过＂设置管理＂中＂卡片签约管理＂进行解约；</li>
+						<li>亲爱的用户，为更好地为您提供相关服务，诚邀您参加中信银行信用卡网上银行体验调查活动，我们将根据您的反馈积极改进
+							<a href="https://sojump.com/jq/11540704.aspx" target="_blank" class="lineUnder">立即参与</a>
+						</li>
+						<li>如您在使用过程中有任何疑问，请联系
+							<a href="javascript:fLogon();" class="lineUnder">在线客服</a>或中信信用卡客服热线40088-95558。</li>
+						<li>为保证页面浏览效果最佳，建议您使用IE8以上版本的IE浏览器，或Chrome、Firefox等浏览器。</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="footer" id="footer">
+			<ul class="footer_list">
+				<li class="footer_cr">
+					<p>CCMS信用卡股份有限公司授权所有Copyright 2002-2019 CITIC BANK ALL rights reserved</p>
+					<p>京公网安备11010502020433号 京ICP证 030779-1号</p>
+				</li>
+				<li class="footer_line">
+					<p class="tip">24小时客服热线</p>
+					<p class="number">40088 - 95558</p>
+				</li>
+				<li class="footer_client" id="footer_client">
+					<a><img id="my_footer" src="img/kf_icon.png" alt="客服"></a>
+					<p>在线客服</p>
+				</li>
+			</ul>
+		</div>
+		<script src="js/dll.js"></script>
+		<script type="text/javascript" src="js/myaccounts.js"></script>
+		<script src="js/dll.vendors.47a4bc191c19df35baf4.js"></script>
+		<script type="text/javascript" src="js/settingManage.7e62b685.js"></script>
+	</body>
+
+</html>

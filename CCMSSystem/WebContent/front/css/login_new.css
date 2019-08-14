@@ -1,0 +1,87 @@
+.form_area_new {
+    position: relative;
+    width: 600px;
+}
+
+.login_form_area.new {
+    height: auto;
+}
+#newphonetext {
+    height: 35px;
+    line-height: 40px;
+}
+#img_code {
+    margin-bottom:.2rem;
+    height: 75px;
+}
+#sms_code_text {
+    height: 35px;
+    font-size:18px;
+    line-height: 40px;
+}
+#imgvalicode {
+	width: 53%;
+	height: 36px;
+	margin-right: 20px;
+	text-indent:14px;
+}
+#valicode{
+	text-indent:0px;
+}
+
+#img_code_text{
+	display:block;
+	height: 35px;
+	line-height: 40px;
+    font-size:18px;
+    vertical-align: text-bottom;
+}
+
+.reg_check {
+    height: 40px;
+    line-height: 40px;
+}
+.tel_login ul>li.error-area {
+    min-height: 20px;
+}
+.button-box .next-btn {
+    width: 300px;
+    height: 40px;
+    line-height: 40px;
+    background: #ff3542;
+    margin: 0 auto;
+    text-align: center;
+    color: #fff;
+}
+.protocol {
+    margin-top: 15px;
+}
+.protocol a {
+    color: #4898f1;
+}
+.img-code-show {
+    height: 300px;
+}
+
+.reg_check {
+    width: 274px;
+    background-color: #ff3542;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+.h25 {
+    height: 25px;
+    line-height: 25px;
+}
+.input-password {
+    padding-left: 8px;
+}
+.password-forgot {
+    display: inline-block;
+    padding-left: 8px;
+    color: #4898f1;
+    font-size: 14px;
+}

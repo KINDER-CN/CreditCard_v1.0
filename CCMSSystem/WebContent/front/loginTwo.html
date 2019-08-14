@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <script src="%E7%99%BB%E5%BD%95_files/xframedefender.js" type="text/javascript"></script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>登录</title>
+        <link rel="stylesheet" href="css/public.css" type="text/css">
+        <link rel="stylesheet" href="css/login.css" type="text/css">
+        <link rel="stylesheet" href="css/login_new.css" type="text/css">
+        <link rel="stylesheet" href="css/cdialog.css" type="text/css">
+        <!--<link rel="stylesheet" href="css/set_mm.css" type="text/css"/>  -->
+        <script src="js/jquery-1.js" type="text/javascript"></script>
+        <script src="js/jquery.js" type="text/javascript"></script>
+        <script src="js/common.js" type="text/javascript"></script>       
+        <script src="js/loginmm.js" type="text/javascript"></script>
+        <script src="js/md5.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            // 根据域名加载地图资源
+            if (window.location.href.indexOf('e.test.bank.ecitic.com') > -1) {
+                document
+                        .write('<script src= "https://e.test.bank.ecitic.com/citiccard/payweb/cashier-pc/modules/resource/index.js"><\/script>');
+            } else {
+                document
+                        .write('<script src= "https://s.creditcard.ecitic.com/citiccard/cashierpc/modules/resource/index.js"><\/script>');
+            }
+        </script><script src="js/index.js"></script>
+    </head>
+    <body>
+    <div class="header clearfix">
+        <div class="wrap clearfix">
+            <img src="img/logo白色.png" alt="中信银行信用卡" title="中信银行信用卡">
+        </div>
+    </div>
+    <div class="content_bg clearfix" style="height: 466px;">
+        <div class="wrap rel">  
+            <div>
+                <ul>               
+                    <li style="font-size:20px;font-weight:bold;padding-top:50px;">请输入登录密码</li>
+                    <li style="padding-top:20px;padding-bottom: 20px" class="password-box">
+                        <label class="font-size:20px;font-weight:bold;">登录密码：</label>
+                        <input type="password" value="" onfocus="mmfocus();" onblur="mmblur();" placeholder="6-15位数字和字母密码" id="mm" class="wid260 h25 input-password" maxlength="15">
+                        <span class="password-forgot" onclick="window.location.href='forgetPwdPageInit.do?isForgetP=Y'" id="PwkSetMobilePass">忘记密码？</span>
+                    </li>
+                    <li>
+                        <div class="loginmmerror" data-flag="tel" id="mm_emsg"></div>
+                    </li>                   
+                   <li class="h50">
+                         <div class="reg_check" id="login">登录</div>
+                   </li>
+                </ul>
+            </div>
+			<div class="mask_bg1" id="mask_bg1" style="display: none">
+				<div class="cdialog-main1">
+					<div class="cdialog-title1" id="cdialog_title1">温馨提示</div>
+					<div class="cdialog-content1" id="cdialog_content1">
+					    <div class="cdialog-text1" id="cdialog_text1"></div>				
+						<div class="btn-areas1">
+							<div class="confirm1" id="cdialog_btn_confirm1">我知道了</div>
+					   </div>
+					</div>   
+				</div>
+			</div>
+
+				<div class="mask_bg" id="mask_bg" style="display: none">
+					<div class="cdialog-main">
+						<div class="cdialog-titles" id="cdialog-titles">
+							<div class="cdialog-title" id="cdialog_title">温馨提示</div>
+							<!-- <div class="cdialog-close" id="cdialog-close"></div> -->
+							<img class="cdialog-close" id="cdialog-close" src="close.txt" alt="" title="关闭" style="display: none">
+						</div>
+						<div class="cdialog-content" id="cdialog_content"></div>
+						<div class="cdialog-text " id="cdialog_text" style="display: none"></div>
+						<div class="btn-areas" id="btn-areas">
+							<a class="btn cancel" id="cdialog_btn_cancel">下次再说</a> <a class="btn confirm" id="cdialog_btn_confirm">立即更新</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    <div class="footer clearfix">
+    <ul class="footer_list wrap">
+        <li class="footer_cr">
+            <p>娃哈哈控股有限责任公司版权所有 Copyright © CITIC Holdings All rights reserved</p>
+            <p>京公网安备11010502020433号   京ICP证 030779-1号</p> 
+        </li>
+        <li class="footer_line">
+            <p class="p1">24小时客服热线</p>
+            <p class="p2">40088 - 95558</p>
+        </li>
+        <li class="footer_client">
+            <a href="javascript:fLogon()"><img src="client-logo.txt" alt="客服"></a>
+            <p>在线客服</p>
+        </li>
+    </ul>
+    </div>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $("input,textarea").placeholder();
+    });
+    </script>
+    <!--<script src="js/userAnalysis.js"></script>  -->
+    
+</body></html>
