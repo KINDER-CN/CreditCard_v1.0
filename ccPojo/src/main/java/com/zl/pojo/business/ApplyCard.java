@@ -11,14 +11,14 @@ import com.zl.pojo.manger.CardType;
 public class ApplyCard {
 	private int id;								//主键id
 	private String applyNum;					//申请编号			apply_num
-	private int cardType;					//申请卡种id		apply_card_id
+	private int cardType;						//申请卡种id		apply_card_id
 	private Date applyTime;						//申请时间			apply_time
 	private String applyState;					//申请状态			apply_state
 	private Date applyAcceptTime;				//受理时间			apply_accept_time
 	private String applyIDcard;					//申请身份证号		apply_idcard
 	private int creditPoint;					//用户信用分		apply_credit_points
 	private String checkState;					//核实状态			apply_check_state
-	private int applyCardNum;					//发放卡号			apply_cardnum
+	private long applyCardNum;					//发放卡号			apply_cardnum
 	private int client;						//用户id			apply_client_id
 	public int getId() {
 		return id;
@@ -69,10 +69,10 @@ public class ApplyCard {
 	public void setCheckState(String checkState) {
 		this.checkState = checkState;
 	}
-	public int getApplyCardNum() {
+	public long getApplyCardNum() {
 		return applyCardNum;
 	}
-	public void setApplyCardNum(int applyCardNum) {
+	public void setApplyCardNum(long applyCardNum) {
 		this.applyCardNum = applyCardNum;
 	}
 	public int getCardType() {

@@ -6,10 +6,10 @@ package com.zl.pojo.business;
  */
 public class RepayCard {
 	private int id; 				// 主键id
-	private int repayCardNum;		// 还款卡号 repay_card
+	private long repayCardNum;		// 还款卡号 repay_card
 	private String repayName; 		// 还款卡卡主姓名 repay_name
 	private String repayIDcard;		// 还款卡卡主身份证号码 repaay_idcar
-	private int repayPhone; 		// 还款卡电话 repay_phone
+	private long repayPhone; 		// 还款卡电话 repay_phone
 	private String repayBank; 		// 还款卡银行 repay_bank
 	public int getId() {
 		return id;
@@ -17,12 +17,7 @@ public class RepayCard {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getRepayCardNum() {
-		return repayCardNum;
-	}
-	public void setRepayCardNum(int repayCardNum) {
-		this.repayCardNum = repayCardNum;
-	}
+	
 	public String getRepayName() {
 		return repayName;
 	}
@@ -35,10 +30,17 @@ public class RepayCard {
 	public void setRepayIDcard(String repayIDcard) {
 		this.repayIDcard = repayIDcard;
 	}
-	public int getRepayPhone() {
+	
+	public long getRepayCardNum() {
+		return repayCardNum;
+	}
+	public void setRepayCardNum(long repayCardNum) {
+		this.repayCardNum = repayCardNum;
+	}
+	public long getRepayPhone() {
 		return repayPhone;
 	}
-	public void setRepayPhone(int repayPhone) {
+	public void setRepayPhone(long repayPhone) {
 		this.repayPhone = repayPhone;
 	}
 	public String getRepayBank() {

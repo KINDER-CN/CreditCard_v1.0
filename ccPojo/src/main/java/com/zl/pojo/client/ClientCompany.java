@@ -7,7 +7,7 @@ public class ClientCompany {
 	private int id; 	//公司信息表主键id
 	private String companyName;	//公司名	company_Name
 	private String companyNature;	//公司性质：行政机关，事业单位。社会团体，企业，个体户工商户。其他		company_nature
-	private int companyPhone;	//公司联系方式	company_phone
+	private long companyPhone;	//公司联系方式	company_phone
 	private String companyIndustry;		//行业类别：公共管理与社会组织，科教文化，金融电力电信，邮政交通运输公共，计算机服务和软件业。体育娱乐。工商服务业贸易，其他	company_industry
 	private String companyAddress;	//公司地址		company_address
 	private String companyJob;	//职务：厅局级以上，处级，科级，一般干部，其他，总经理级，部门经理级，职员，其他	compant_job
@@ -33,10 +33,10 @@ public class ClientCompany {
 	public void setCompanyNature(String companyNature) {
 		this.companyNature = companyNature;
 	}
-	public int getCompanyPhone() {
+	public long getCompanyPhone() {
 		return companyPhone;
 	}
-	public void setCompanyPhone(int companyPhone) {
+	public void setCompanyPhone(long companyPhone) {
 		this.companyPhone = companyPhone;
 	}
 	public String getCompanyIndustry() {

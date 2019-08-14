@@ -6,7 +6,7 @@ package com.zl.pojo.client;
 public class ClientLinkman {
 	private int id;		//主键id
 	private String linkName;	//联系人姓名	client_link_name
-	private int linkPhone;		//联系人电话	client_link_phone
+	private long linkPhone;		//联系人电话	client_link_phone
 	private String linkAddress;	//联系人地址	client_link_address
 	private String linkRelation;	//与联系人关系：父子，母子，同学，同事	client_link_relation
 	private int client;	//外键客户id	clinent_link_client_id,此处为方便级联，写成外键对象
@@ -23,10 +23,10 @@ public class ClientLinkman {
 	public void setLinkName(String linkName) {
 		this.linkName = linkName;
 	}
-	public int getLinkPhone() {
+	public long getLinkPhone() {
 		return linkPhone;
 	}
-	public void setLinkPhone(int linkPhone) {
+	public void setLinkPhone(long linkPhone) {
 		this.linkPhone = linkPhone;
 	}
 	public String getLinkAddress() {

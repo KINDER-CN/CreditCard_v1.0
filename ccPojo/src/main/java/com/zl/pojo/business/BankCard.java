@@ -8,10 +8,10 @@ import java.math.BigDecimal;
 
 public class BankCard {
 	private int id; 				// 主键id
-	private int bankCard; 			// 银行卡卡号 bank_card
+	private long bankCard; 			// 银行卡卡号 bank_card
 	private String bankClientName;	// 银行卡卡主姓名 bank_client_name
 	private String bankIDcard; 		// 银行卡卡主身份证号码 bank_idcard
-	private int bankPhone; 			// 预留电话 bank_client_phone
+	private long bankPhone; 			// 预留电话 bank_client_phone
 	private String bankName; 		// 所属行 bank_name
 	private BigDecimal bankBalance; // 卡余额 bank_balance
 	public int getId() {
@@ -20,10 +20,10 @@ public class BankCard {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getBankCard() {
+	public long getBankCard() {
 		return bankCard;
 	}
-	public void setBankCard(int bankCard) {
+	public void setBankCard(long bankCard) {
 		this.bankCard = bankCard;
 	}
 	public String getBankClientName() {
@@ -38,10 +38,10 @@ public class BankCard {
 	public void setBankIDcard(String bankIDcard) {
 		this.bankIDcard = bankIDcard;
 	}
-	public int getBankPhone() {
+	public long getBankPhone() {
 		return bankPhone;
 	}
-	public void setBankPhone(int bankPhone) {
+	public void setBankPhone(long bankPhone) {
 		this.bankPhone = bankPhone;
 	}
 	public String getBankName() {

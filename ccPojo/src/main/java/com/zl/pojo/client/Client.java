@@ -27,7 +27,7 @@ public class Client {
 	private String clientAddress;	//客户地址		client_address
 	private int postalcode;		//邮编		client_postalcode
 	private String clientEmail;		//客户邮箱地址		client_email
-	private int clientPhone;		//客户联系电话	client_phone
+	private long clientPhone;		//客户联系电话	client_phone
 	public int getId() {
 		return id;
 	}
@@ -130,10 +130,10 @@ public class Client {
 	public void setClientEmail(String clientEmail) {
 		this.clientEmail = clientEmail;
 	}
-	public int getClientPhone() {
+	public long getClientPhone() {
 		return clientPhone;
 	}
-	public void setClientPhone(int clientPhone) {
+	public void setClientPhone(long clientPhone) {
 		this.clientPhone = clientPhone;
 	}
 	@Override

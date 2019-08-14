@@ -14,7 +14,7 @@ import com.zl.pojo.manger.CardType;
  */
 public class CreditCard {
 	private int id;
-	private int cardNum;	//信用卡卡号	card_num
+	private long cardNum;	//信用卡卡号	card_num
 	private int cardType;	//信用卡卡种id，外键，此处用对象	card_type_id
 	private String carPassword;	//信用卡支付密码	card_password
 	@DateTimeFormat(pattern="yyyy-MM-dd")
@@ -40,14 +40,13 @@ public class CreditCard {
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	public int getCardNum() {
+	}	
+	public long getCardNum() {
 		return cardNum;
 	}
-	public void setCardNum(int cardNum) {
+	public void setCardNum(long cardNum) {
 		this.cardNum = cardNum;
 	}
-	
 	public String getCarPassword() {
 		return carPassword;
 	}
