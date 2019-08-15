@@ -1,5 +1,6 @@
 package com.zl.pojo.client;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -8,7 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  * 客户信息表
  *
  */
-public class Client {
+public class Client implements Serializable{
 	private int id;		//客户表主键  	id
 	private String clientId;	//客户编号		client_id
 	private String clientName;	//客户名字		client_name

@@ -19,5 +19,13 @@ public interface ClientDao {
 	 */
 	public int clientRegister(Client client);
 	
+	/**
+	 * 修改绑定的手机号码
+	 */
+	public int updateClientPhone(Client client);
 	
+	/**
+	 * 判断原手机号是否正确
+	 */
+	public Client queryClientPhone(Client client);
 }

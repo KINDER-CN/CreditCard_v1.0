@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.zl.dao.front.ClientDao;
 import com.zl.pojo.client.Client;
 import com.zl.service.front.ClientService;
+import com.zl.util.MD5Util;
 
 @Service
 public class ClientServiceImpl implements ClientService{
@@ -27,6 +28,9 @@ public class ClientServiceImpl implements ClientService{
 	 */
 	@Override
 	public int clientRegister(Client client) {
+		if(client!=null) {
+			client.setPassword(MD5Util.MD5(client.getPassword()));
+		}
 		return cd.clientRegister(client);
 	}
 	

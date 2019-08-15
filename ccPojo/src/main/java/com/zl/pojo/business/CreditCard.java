@@ -29,10 +29,8 @@ public class CreditCard {
 	private int client;	//信用卡所属客户id。此处使用对象，方便级联查询	card_client_id
 	private BigDecimal cardAnnual;	//信用卡年费	card_annual
 	private BigDecimal cardBalance;	//信用卡余额，还款时，金额大于需还款金额，则为余额	card_balance
-	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date cardBillday;	//信用卡出账日.		card_bill_day
-	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private	Date cardRefundDay;	//信用卡还款日		card_refund_day
+	private String cardBillday;	//信用卡出账日.		card_bill_day
+	private	String cardRefundDay;	//信用卡还款日		card_refund_day
 	private int cardpoint;	//信用卡积分	card_point
 	private String  standby;//备用
 	public int getId() {
@@ -108,16 +106,17 @@ public class CreditCard {
 	public void setCardBalance(BigDecimal cardBalance) {
 		this.cardBalance = cardBalance;
 	}
-	public Date getCardBillday() {
+	
+	public String getCardBillday() {
 		return cardBillday;
 	}
-	public void setCardBillday(Date cardBillday) {
+	public void setCardBillday(String cardBillday) {
 		this.cardBillday = cardBillday;
 	}
-	public Date getCardRefundDay() {
+	public String getCardRefundDay() {
 		return cardRefundDay;
 	}
-	public void setCardRefundDay(Date cardRefundDay) {
+	public void setCardRefundDay(String cardRefundDay) {
 		this.cardRefundDay = cardRefundDay;
 	}
 	public int getCardpoint() {

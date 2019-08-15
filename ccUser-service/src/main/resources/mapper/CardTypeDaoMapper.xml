@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zl.dao.front.CardTypeDao">
+	<select id="queryAllProduce" resultType="cardType">
+		select id, card_num cardNum,card_type ctype,card_pic cardPic,card_name cardName,card_annual cardannual,card_anntation1 anntationa1,
+				card_anntation2 anntationa2,card_anntation3 anntationa3,card_anntation4 anntationa4,card_activity1 activity1, 
+				card_activity2 activity2 from cc_card_type
+	</select>
+</mapper>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zl.dao.front.ClientDao">
+	<!-- 判断信用卡是不是本行信用卡 -->
+	<select id="queryBankCardByNum" parameterType="long" resultType="bankCard">
+		select	id,bank_card bankCard,bank_client_name bankClientName,bank_idcard bankIDcard,
+			bank_client_phone bankPhone, bank_name bankName,bank_balance bankBalance 
+				from cc_bank_card
+				where bank_card=#{bankCard}
+	</select>
+	
+	<!--修改已有信用卡绑定状态 -->
+	<update id="updateCreditCardOnBinding" parameterType="creditCard">
+		update cc_client_card set card_binding = #{cardBinding} where card_num=#{cardNum}
+	</update>
+	
+	<!-- 增加信用卡 -->
+	<insert id="addCreditCard" parameterType="creditCard">
+		insert into cc_client_card(card_num,card_num,card_password,card_validity,
+						card_security_code,card_limit,card_short_limit,card_cash_limit,card_state,card_binding,
+							card_bankcard_id,card_client_id,card_annual,card_balance,card_bill_day,card_refund_day,card_point
+								) values(
+						#{cardNum},#{cardType},#{carPassword},#{cardValidity},#{cardSecurityCode},#{cardLimit},#{cardShortLimit},
+						#{cardCashLimit},#{cardState},#{cardBinding},#{repayCard},#{client},#{cardAnnual},#{cardBalance},#{cardBillday},
+						#{cardRefundDay},#{cardpoint}
+								)
+	</insert>
+</mapper>

@@ -5,7 +5,7 @@ package com.zl.pojo.manger;
 public class CardType {
 	private int id;								//主键id
 	private int cardNum;						//卡种编号			card_num
-	private int ctype;						//卡类型			idcard_type
+	private int ctype;							//卡类型id			card_type
 	private String cardPic;						//卡种图片			card_pic
 	private String cardName;					//卡种名称			card_name
 	private int cardannual;						//年费			card_annual
