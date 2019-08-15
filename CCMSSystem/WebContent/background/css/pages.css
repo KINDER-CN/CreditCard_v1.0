@@ -1,0 +1,8 @@
+
+/*css black style pagination*/
+div.black{padding:10px 3px;font-size:80%;margin:3px;color:#a0a0a0;background-color:#000;text-align:center;}
+div.black a{border:#909090 1px solid;padding:2px 5px;color:#c0c0c0;margin:0 3px 0 0;text-decoration:none;}
+div.black a:hover{border:#f0f0f0 1px solid;color:#ffffff;background-color:#404040;}
+div.black a:active{border:#f0f0f0 1px solid;color:#ffffff;background-color:#404040}
+div.black span.current{border:#ffffff 1px solid;padding:2px 5px;font-weight:bold;color:#ffffff;margin:0 3px 0 0;background-color:#606060}
+div.black span.disabled{border:#606060 1px solid;padding:2px 5px;color:#808080;margin:0 3px 0 0;}

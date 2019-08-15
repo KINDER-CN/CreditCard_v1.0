@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>修改个人资料</title>
+		<link rel="stylesheet" type="text/css" href="../css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="../css/htmleaf-demo.css">
+		<link rel="stylesheet" href="../css/pages.css">
+		<link rel="stylesheet" type="text/css" href="../../css/th_td.css">
+	</head>
+
+	<body><center>
+		<div>
+			<div>
+				姓名：<input type="text"placeholder="请输入客户的姓名"> 卡号：
+				<input type="text" placeholder="请输入客户的卡号">
+				<p></p>
+				<form action="#" method="post">
+					<table  class="hovertable">
+						<tr>
+							<th>修改个人资料</th>
+						</tr>
+						<tr>
+							<th>基本信息</th>
+						</tr>
+						<tr>
+							<td>卡号：</td>
+							<td><input type="text" placeholder="Text input" readonly="readonly"></td>
+							<td>姓名：</td>
+							<td><input type="text" placeholder="Text input" readonly="readonly"></td>
+						</tr>
+						<tr>
+							<td>性别：</td>
+							<td><label class="radio-inline">
+  							<input type="radio" value="option1"> 男
+							</label>
+								<label class="radio-inline">
+  							<input type="radio" value="option2"> 女
+							</label></td>
+							<td>身份证：</td>
+							<td><input type="text" placeholder="Text input" readonly="readonly"></td>
+
+						</tr>
+						<tr>
+							<td>出生日期：</td>
+							<td><input type="date"></td>
+							<td>移动电话：</td>
+							<td><input type="text" readonly="readonly"></td>
+
+						</tr>
+						<tr>
+							<td>证件有限日期：</td>
+							<td><input type="date" readonly="readonly"></td>
+
+							<td>教育程度：</td>
+							<td><input type="text" readonly="readonly"></td>
+						</tr>
+						<tr>
+							<td>婚姻状况：</td>
+							<td><input type="text" readonly="readonly"></td>
+							<td>邮政编码：</td>
+							<td><input type="text" readonly="readonly"></td>
+						</tr>
+						<tr>
+							<td>住宅状况：</td>
+							<td><input type="text" readonly="readonly"></td>
+						</tr>
+						<tr>
+							<td>现住宅地址：</td>
+							<td><span>省份</span>
+								<select name="province" id="province" onchange="provinceChange()">
+									<option value="0">请选择</option>
+								</select>
+								<span>城市</span>
+								<select name="city" id="city" onchange="cityChange()">
+									<option value="0">请选择</option>
+								</select>
+								<span>地区</span>
+								<select name="area" id="area">
+									<option value="0">请选择</option>
+								</select>详细地址：<input type="text" readonly="readonly"></td>
+						</tr>
+						<tr>
+							<td >E-mail账单地址：</td>
+							<td ><input type="text" readonly="readonly"></td>
+						</tr>
+						<tr>
+							<td >安全问题：</td>
+							<td ><input type="text" readonly="readonly"></td>
+						</tr>
+						<tr>
+							<td >安全问题答案：</td>
+							<td><input type="text" readonly="readonly"></td>
+						</tr>
+
+						<tr>
+							<th>个人单位信息</th>
+						</tr>
+						<tr>
+							<td ><b>单位名称</b></td>
+							<td><input type="text" readonly="readonly"></td>
+						</tr>  
+						<tr>
+							<td >单位性质：</td>
+							<td ><input type="text" readonly="readonly"></td>
+						</tr>
+						<tr>
+							<td >单位电话：</td>
+							<td><input type="text" readonly="readonly"></td>
+						</tr>
+						<tr>
+							<td>发展行业：</td>
+							<td><input type="text" readonly="readonly"></td>
+						</tr>
+						<tr>
+							<td>单位地址：</td>
+							<td><input type="text" readonly="readonly"></td>
+						</tr>
+						<tr>
+							<td>担任职务：</td>
+							<td><input type="text" readonly="readonly"></td>
+						</tr>
+						<tr>
+							<td>从事实业：</td>
+							<td><input type="text" readonly="readonly"></td>
+						</tr>
+						<tr>
+							<td>年收入：</td>
+							<td><input type="text"readonly="readonly"></td>
+						</tr>
+						<tr>
+							<th>联系人信息</th>
+						</tr>
+
+						<tr>
+							<td>联系人姓名</td>
+							<td><input type="text"readonly="readonly"></td>
+						</tr>
+						<tr>
+							<td>联系人电话：</td>
+							<td><input type="text" readonly="readonly"></td>
+						</tr>
+						<tr>
+							<td>与主卡申请人的关系：</td>
+							<td><input type="text" readonly="readonly"></td>
+						</tr>
+						<tr>
+							<td>联系人地址：</td>
+							<td><input type="text"readonly="readonly"></td>
+						</tr>
+						<tr>
+							<td>单位地址：</td>
+							<td><input type="text" readonly="readonly"></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+			<p>
+				<button><a href="../minMain.html">点击返回</a></button>
+			</p>
+		</div>
+	</center></body>
+
+</html>

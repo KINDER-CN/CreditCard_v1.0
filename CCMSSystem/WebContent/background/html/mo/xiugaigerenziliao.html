@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>修改个人资料</title>
+		<link rel="stylesheet" type="text/css" href="../css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="../css/htmleaf-demo.css">
+		<link rel="stylesheet" href="../css/pages.css">
+		<link rel="stylesheet" type="text/css" href="../../css/th_td.css">
+	</head>
+	<body><center>
+		<div>
+			<div>
+				<form action="#" method="post">
+					<table class="hovertable">
+						<tr>
+							<th><b>修改个人资料</b></th>
+						</tr>
+						<tr>
+							<th><b>基本信息</th>
+						</tr>
+						<tr onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+							<td>卡号：</td>
+							<td><input type="text" placeholder="Text input" readonly="readonly"></td>
+							<td>姓名：</td>
+							<td><input type="text" placeholder="Text input" readonly="readonly"></td>
+						</tr>
+						<tr onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+							<td>性别：</td>
+							<td><label class="radio-inline">
+  							<input type="radio" value="option1"> 男
+							</label>
+								<label class="radio-inline">
+  							<input type="radio" value="option2"> 女
+							</label></td>
+							<td>身份证：</td>
+							<td><input type="text" placeholder="Text input" readonly="readonly"></td>
+
+						</tr>
+						<tr onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+							<td>出生日期：</td>
+							<td><input type="date"></td>
+							<td>移动电话：</td>
+							<td><input type="text" placeholder="Text input"></td>
+
+						</tr>
+						<tr onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+							<td>证件有限日期：</td>
+							<td><input type="date" readonly="readonly"></td>
+
+							<td>教育程度：</td>
+							<td><input type="text" placeholder="Text input"></td>
+						</tr>
+						<tr onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+							<td>婚姻状况：</td>
+							<td><input type="text"></td>
+							<td>邮政编码：</td>
+							<td><input type="text" placeholder="Text input"></td>
+						</tr>
+						<tr onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+							<td colspan="1">住宅状况：</td>
+							<td colspan="3"><input type="text" placeholder="Text input"></td>
+						</tr>
+						<tr onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+							<td colspan="1">现住宅地址：</td>
+							<td colspan="3"><span>省份</span>
+								<select name="province" id="province" onchange="provinceChange()">
+									<option value="0">请选择</option>
+								</select>
+								<span>城市</span>
+								<select name="city" id="city" onchange="cityChange()">
+									<option value="0">请选择</option>
+								</select>
+								<span>地区</span>
+								<select name="area" id="area">
+									<option value="0">请选择</option>
+								</select>详细地址：<input type="text" placeholder="Text input"></td>
+						</tr>
+						<tr onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+							<td>E-mail账单地址：</td>
+							<td><input type="text" placeholder="Text input"></td>
+						</tr>
+						<tr onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+							<td>安全问题：</td>
+							<td><input type="text" placeholder="Text input"></td>
+						</tr>
+						<tr onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+							<td>安全问题答案：</td>
+							<td><input type="text" placeholder="Text input"></td>
+						</tr>
+
+						<tr>
+							<th>个人单位信息<</th>
+						</tr>
+						<tr onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+							<td><b>单位名称</b></td>
+							<td><input type="text" placeholder="Text input"></td>
+						</tr>
+						<tr onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+							<td >单位性质：</td>
+							<td ><input type="text" placeholder="Text input"></td>
+						</tr>
+						<tr onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+							<td>单位电话：</td>
+							<td><input type="text" placeholder="Text input"></td>
+						</tr>
+						<tr onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+							<td >发展行业：</td>
+							<td ><input type="text" placeholder="Text input"></td>
+						</tr>
+						<tr onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+							<td >单位地址：</td>
+							<td><input type="text" placeholder="Text input"></td>
+						</tr>
+						<tr onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+							<td >担任职务：</td>
+							<td ><input type="text" placeholder="Text input"></td>
+						</tr>
+						<tr onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+							<td>从事实业：</td>
+							<td><input type="text" placeholder="Text input"></td>
+						</tr>
+						<tr onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+							<td>年收入：</td>
+							<td><input type="text" placeholder="Text input"></td>
+						</tr>
+						<tr>
+							<th>联系人信息</th>
+						</tr>
+						<tr onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+							<td><b>联系人姓名</b></td>
+							<td><input type="text" placeholder="Text input"></td>
+						</tr>
+						<tr onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+							<td>联系人电话：</td>
+							<td><input type="text" placeholder="Text input"></td>
+						</tr>
+						<tr onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+							<td>与主卡申请人的关系：</td>
+							<td><input type="text" placeholder="Text input"></td>
+						</tr>
+						<tr onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+							<td>联系人地址：</td>
+							<td><input type="text" placeholder="Text input"></td>
+						</tr>
+						<tr onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+							<td>单位地址：</td>
+							<td ><input type="text" placeholder="Text input"></td>
+						</tr>
+					</table>
+					<p></p>
+					<input type="submit" value="提交" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<button><a href="../minMain.html">主页面</a></button>
+				</form>
+			</div>
+		</div>
+	</center></body>
+
+</html>

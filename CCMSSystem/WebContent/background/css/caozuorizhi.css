@@ -1,0 +1,22 @@
+body{
+	text-align:center
+}
+#caozuo{
+	width: 600px;
+	height: 450px;
+	background-color: #000000;
+}
+#inside{
+	width: 400px;
+	height: 450px;
+	margin:0 auto;
+	background-color: blue;
+}
+.inside_all{
+	width: 400px;
+	height: 80px;
+	line-height: 80px;
+    text-align: center;
+	background-color: red;
+	border: 1px solid yellow;
+}
