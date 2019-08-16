@@ -5,7 +5,6 @@ package com.zl.pojo.business;
 
 import java.util.Date;
 
-import com.zl.pojo.manger.CardType;
 
 public class ApplyCardPlan {
 	private int id;//主键id
@@ -14,6 +13,7 @@ public class ApplyCardPlan {
 	private String planState;		//进度状态					plan_state
 	private Date acceptTime;		//受理时间					plan_accept_time
 	private String planIDcard;		//申请人身份证号				plan_idcard
+	private int clientId; 			//用户id					plan_client_id
 	public int getId() {
 		return id;
 	}
@@ -54,6 +54,12 @@ public class ApplyCardPlan {
 	public String toString() {
 		return "ApplyCardPlan [id=" + id + ", cardType=" + cardType + ", applyTime=" + applyTime + ", planState="
 				+ planState + ", acceptTime=" + acceptTime + ", planIDcard=" + planIDcard + "]";
+	}
+	public int getClientId() {
+		return clientId;
+	}
+	public void setClientId(int clientId) {
+		this.clientId = clientId;
 	}
 	
 	

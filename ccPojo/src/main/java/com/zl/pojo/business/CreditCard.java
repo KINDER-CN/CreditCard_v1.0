@@ -28,7 +28,7 @@ public class CreditCard {
 	private BigDecimal cardBalance; 				// 信用卡余额，还款时，金额大于需还款金额，则为余额 		 card_balance
 	private String cardBillday; 					// 信用卡出账日. 							 card_bill_day
 	private String cardRefundDay; 					// 信用卡还款日 								 card_refund_day
-	private int cardpoint; 							// 信用卡积分								 card_point
+	private double cardpoint; 							// 信用卡积分								 card_point
 	private long cardPhone;							// 信用卡电话								 card_phone
 
 	public int getId() {
@@ -143,11 +143,11 @@ public class CreditCard {
 		this.cardRefundDay = cardRefundDay;
 	}
 
-	public int getCardpoint() {
+	public double getCardpoint() {
 		return cardpoint;
 	}
 
-	public void setCardpoint(int cardpoint) {
+	public void setCardpoint(double cardpoint) {
 		this.cardpoint = cardpoint;
 	}
 
