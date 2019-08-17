@@ -2,6 +2,10 @@ package com.zl.pojo.business;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  *卡片激活记录表
  */
@@ -9,7 +13,11 @@ public class CardActiveLog {
 	private int id;//主键id
 	private String activNum;		//申请编号		activ_num
 	private int activCardNum;		//激活卡号		activ_card_num
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date activeTime;		//激活时间		activ_time
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date activApplyTime;	//申请时间		activ_apply_time
 	private int clientId;			//用户id		activ_client_id
 	public int getId() {

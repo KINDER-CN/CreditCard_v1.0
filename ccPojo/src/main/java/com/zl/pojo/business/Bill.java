@@ -8,6 +8,7 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.zl.pojo.client.Client;
 
 public class Bill {
@@ -17,10 +18,13 @@ public class Bill {
 	private BigDecimal billMoney;		//账单金额			bill_money
 	private BigDecimal hasPay;			//已还款金额		bill_hasPay
 	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date srepayDate;			//应还款时间		bill_srepay_date
 	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date repayDate;				//还款时间			bill_repay_date
 	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date billDate;				//账单生成时间		bill_creat_date
 	private String billState;			//状态			bill_state
 	private int client;				//用户id			bill_client_id

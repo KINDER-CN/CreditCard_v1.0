@@ -5,9 +5,15 @@ package com.zl.pojo.manger;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class OperateLog {
 	private int id;					//主键id
 	private String operateNum;		//操作id		operate_num
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date operateTime;		//操作时间		operate_time
 	private String operateUser;		//操作人		operate_user
 	private String operateLog;		//操作详情		operate_log

@@ -5,6 +5,8 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  *分期账单详情表
  */
@@ -22,6 +24,7 @@ public class AgingMonth {
 	private String installments;				//分期方式：按月分期				month_installments
 	private String agingType;					//分期类型：账单分期				aging_type
 	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date agingTime;						//申请时间						aging_time
 	public int getId() {
 		return id;

@@ -5,12 +5,20 @@ package com.zl.pojo.business;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 public class ApplyCardPlan {
 	private int id;//主键id
 	private int cardType;		//卡种id，外键关联卡种表		plan_card
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date applyTime;			//申请时间					plan_time
 	private String planState;		//进度状态					plan_state
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date acceptTime;		//受理时间					plan_accept_time
 	private String planIDcard;		//申请人身份证号				plan_idcard
 	private int clientId; 			//用户id					plan_client_id

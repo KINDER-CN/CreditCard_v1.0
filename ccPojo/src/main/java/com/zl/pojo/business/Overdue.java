@@ -8,13 +8,17 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Overdue {
 	private int id;							//主键id
 	private String overdueNum;				//逾期编号			overdue_num
 	private BigDecimal overMoney;			//逾期金额			overdue_money
 	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date overDate;					//逾期日期应		overdue_date
 	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date overSPayDate;				//应还款日期		overdue_sreturn_date
 	private String overState;				//逾期状态			overdue_state
 	private Date overReturnDate;			//还款日期			overdue_return_date

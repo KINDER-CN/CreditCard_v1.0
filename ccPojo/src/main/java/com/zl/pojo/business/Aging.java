@@ -8,6 +8,7 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.zl.pojo.client.Client;
 
 public class Aging {
@@ -16,6 +17,7 @@ public class Aging {
 	private BigDecimal agingLines;		// 分期总额 					 aging_lines
 	private int agingNper;				// 分期期数 					 aging_nper
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date agingTime;				// 分期账单生成时间 				 aging_time
 	private int agingRate;		// 分期利率，外键关联分期利率表 		 aging_rate_id
 	private String agingState; 			// 分期还款状态 					 aging_state

@@ -5,6 +5,8 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 客户信息表
  *
@@ -17,6 +19,7 @@ public class Client implements Serializable{
 	private String clientNational;	//民族	client_national
 	private String clientIDcard;	//身份证号	client_idcard
 	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date clientBirthday;		//出生年月如	client_birthday
 	private String clientMarriage;		//婚姻状况：已婚（有子女），已婚（无子女），未婚，其他	client_marriage
 	private String clientEdu;	//学历：小学，初中，高中，中专，大专，本科，硕士，博士，博士后	client_edu

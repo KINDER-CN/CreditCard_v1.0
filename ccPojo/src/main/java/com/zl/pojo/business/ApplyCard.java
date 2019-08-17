@@ -2,8 +2,10 @@ package com.zl.pojo.business;
 
 import java.util.Date;
 
-import com.zl.pojo.client.Client;
-import com.zl.pojo.manger.CardType;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 /**
  *信用卡申请详情表实体类
@@ -12,8 +14,12 @@ public class ApplyCard {
 	private int id;								//主键id
 	private String applyNum;					//申请编号			apply_num
 	private int cardType;						//申请卡种id		apply_card_id
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date applyTime;						//申请时间			apply_time
 	private String applyState;					//申请状态			apply_state
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date applyAcceptTime;				//受理时间			apply_accept_time
 	private String applyIDcard;					//申请身份证号		apply_idcard
 	private int creditPoint;					//用户信用分		apply_credit_points

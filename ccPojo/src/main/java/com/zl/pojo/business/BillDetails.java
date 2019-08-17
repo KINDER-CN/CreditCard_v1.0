@@ -8,15 +8,19 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class BillDetails {
 	private int id;								//主键id
 	private String transactionDes;				//交易描述				transaction_des
 	private int transactionType;				//交易类型				transaction_type
 	private BigDecimal transactionMoney;		//交易金额				transaction_monry
 	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date transactionTime;				//交易时间				transaction_time
 	private String transactionCoin;				//交易币种:默认人民币		transaction_coin
 	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date payTime;						//还款时间				transaction_pay_time
 	private int billId;							//账单表id				bill_id
 	private int creditCard;				//信用卡id				card_id

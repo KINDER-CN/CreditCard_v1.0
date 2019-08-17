@@ -4,6 +4,8 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  *信用卡销卡记录表实体类
  */
@@ -12,8 +14,10 @@ public class CardRemove {
 	private String removeApplyNum;				//申请编号			remove_apply_num
 	private int removeCardId;					//销卡卡号			remove_card_id
 	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date removeApplyDate;				//申请时间			remove_apply_time
 	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date removeTime;					//销卡时间			remove_time
 	private int clientId;						//用户id			remove_client_id
 	public int getId() {

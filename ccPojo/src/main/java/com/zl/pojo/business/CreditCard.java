@@ -5,6 +5,8 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 信用卡列表
  *
@@ -14,7 +16,8 @@ public class CreditCard {
 	private long cardNum; 							// 信用卡卡号								 card_num
 	private int cardType; 							// 信用卡卡种id，外键，此处用对象					 card_type_id
 	private String carPassword; 					// 信用卡支付密码 							 card_password
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date cardValidity; 						// 信用卡有效期								 card_validity
 	private int cardSecurityCode; 					// 安全码									 card_security_code
 	private BigDecimal cardLimit; 					// 信用卡额度								 card_limit
