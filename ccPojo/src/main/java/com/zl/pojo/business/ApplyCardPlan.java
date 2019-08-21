@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class ApplyCardPlan {
 	private int id;//主键id
-	private int cardType;		//卡种id，外键关联卡种表		plan_card
+	private String cardType;		//卡种id，外键关联卡种表		plan_card
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date applyTime;			//申请时间					plan_time
@@ -52,10 +52,10 @@ public class ApplyCardPlan {
 	public void setPlanIDcard(String planIDcard) {
 		this.planIDcard = planIDcard;
 	}
-	public int getCardType() {
+	public String getCardType() {
 		return cardType;
 	}
-	public void setCardType(int cardType) {
+	public void setCardType(String cardType) {
 		this.cardType = cardType;
 	}
 	@Override
