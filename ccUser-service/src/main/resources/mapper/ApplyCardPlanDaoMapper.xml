@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zl.dao.front.ApplyCardPlanDao">
-	<select id="ApplyCardPlan" parameterType="String" resultType="applyCardPlan">
-		select id,plan_card cardType,plan_time applyTime,plan_state planState,plan_accept_time acceptTime,plan_idcard planIDcard
-				from cc_client_apply_card_plan where plan_idcard = #{planIDcard}
+	<select id="queryCardPlanByIDCard" parameterType="String" resultType="applyCardPlan">
+		select cp.id,ct.card_name cardType,cp.plan_time applyTime,cp.plan_state planState,cp.plan_accept_time acceptTime,cp.plan_idcard planIDcard
+				from cc_client_apply_card_plan cp, cc_card_type ct where cp.plan_card=ct.id and plan_idcard = #{planIDcard}
 	</select>
 </mapper>

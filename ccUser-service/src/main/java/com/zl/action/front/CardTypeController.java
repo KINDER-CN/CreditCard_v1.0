@@ -26,6 +26,7 @@ public class CardTypeController {
 	public Map<String,Object> queryProduct(){
 		Map<String,Object> result=new HashMap<String,Object>();
 		List<CardType> product=cts.queryAllProduce();
+		System.out.println(product);
 		result.put("product", product);
 		return result;
 	}

@@ -10,10 +10,10 @@
 					client_address clientAddress, client_postalcode postalcode, client_email clientEmail, client_phone clientPhone from cc_client
 					 <where>
 						 <if test="clientName != null">
-						 	client_name=#{clientName} and client_password=#{password}
+						 	client_name=#{clientName}
 						 </if>
 						 <if test="clientPhone !=0">
-						 	and	client_phone = #{clientPhone} and client_password=#{password}
+						 	and	client_phone = #{clientPhone}
 						 </if>
 					 </where>
 					 
@@ -29,6 +29,28 @@
 	</select>
 	<!-- 修改手机号 -->
 	<update id="updateClientPhone" parameterType="client">
-		update cc_client set client_phone=#{clientPhone}
+		update cc_client set client_phone=#{clientPhone} where id=#{id}
+	</update>
+	<!-- 查找用户信用卡片信息 -->
+	<select id="queryClientCard" parameterType="int" resultType="showClientCard">
+		select cd.id id,ct.card_name cardType,cd.card_num cardNum
+		from cc_client_card cd,cc_card_type ct where cd.card_client_id =#{id} and cd.card_type_id=ct.id 
+	</select>
+	<!-- 根据信用卡id查询账单 -->
+	<select id="queryBillByCardId" parameterType="int" resultType="showClientCard">
+		select bill_money-bill_haspay billMoney, bill_srepay_date repayDay from cc_bill where bill_card_id = #{id} order by id DESC
+	</select>
+	<!-- 校验原密码 -->
+	<select id="queryClientByPsdAndId" parameterType="client" resultType="client">
+		select id, client_id clientId from cc_client where client_password=#{password} and id=#{id}
+	</select>
+	<!-- 修改面膜 -->
+	<update id="updatePassword" parameterType="client">
+		update cc_client set client_password=#{password} where id=#{id}
+	</update>
+	<!-- 修改用户信息 -->
+	<update id="updateClient" parameterType="client">
+		update cc_client set client_id=#{clientId},client_idcard=#{clientIDcard},client_bank_creditPoint=#{creditPoint},client_name=#{clientName}
+							where id=#{id}
 	</update>
 </mapper>
