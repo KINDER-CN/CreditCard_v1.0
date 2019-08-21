@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-cn"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta http-equiv="Expires" content="0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta name="renderer" content="webkit|ie-comp|ie-stand">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <title>首页-我的账户_CCMS信用卡会员中心</title>
+  <!--[if lt IE 8]>
+    <script src="./assets/js/json3.js"></script>
+  <![endif]-->
+  <!--[if lt IE 10]>
+    <script src="./assets/js/shim.ie.js"></script>
+  <![endif]-->
+<link rel="shortcut icon" href="https://creditcard.ecitic.com/citiccard/ebankpc/logo.ico">
+<link href="css/myaccount.css" rel="stylesheet">
+<link rel="shortcut icon" href="https://creditcard.ecitic.com/citiccard/ebankpc/logo.ico">
+<link href="css/progressQuery.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div id="app">
+<div class="header">
+    <div class="content">
+        <a href="index.html" title="中信银行信用卡中心官网" target="_blank" class="logo-area">
+            <img src="img/logo白色.png">
+        </a>
+        <div class="menu-area">
+            <span>欢迎您，<strong id="userName">{{clientName}}</strong></span>
+            <span class="line">|</span>
+            <img class="online-server" id="online-server-img" src="img/kf.gif" alt="在线客服">
+            <span class="line">|</span>
+            <img class="security-logout" src="img/gb.gif" alt="安全退出" id="logout">
+        </div>
+    </div>
+</div>
+<div class="menu">
+    <ul>
+        <li class="yahei" id="yahei01">
+            <a href="loginIndex.html" class="wdzh" target="_self">我的账户</a>
+        </li>
+        <li class="yahei" id="yahei02">
+            <a href="#" class="zdcx" target="_self">账单查询</a>
+        </li>
+        <li class="yahei" id="yahei03">
+            <a href="#" class="xykhk" target="_self">信用卡还款</a>
+        </li>
+        <li class="yahei" id="yahei04">
+            <a href="#" class="fqyw" target="_self">分期业务</a>
+        </li>
+        <li class="yahei" id="yahei07">
+            <a href="creditCardManager.html" class="szgl" target="_self">设置管理</a>
+        </li>
+    </ul>
+</div>
+
+    <div class="main_t">                  
+        <img style="padding-left: 97px;margin-top: 0" src="data:image/gif;base64,R0lGODlhEwAIAMQAANzc3NjY2NHR0fPz89bW1ufn59TU1PDw8PX19ejo6PLy8t3d3eDg4O7u7tLS0uPj497e3tvb29ra2vb29urq6gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4wLWMwNjAgNjEuMTM0Nzc3LCAyMDEwLzAyLzEyLTE3OjMyOjAwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOkI5NTI1QTBEMUVBQkUyMTE4QjlCRjk1MjAxNDgyNkJGIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkM1MTY2OTQ1NkZCNTExRTQ4NTk1QkE5Mjk2OUMyNkQ0IiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkM1MTY2OTQ0NkZCNTExRTQ4NTk1QkE5Mjk2OUMyNkQ0IiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzUuMSBXaW5kb3dzIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RUEzNDA5NDcxNTZFRTQxMTlBN0VDMUVCODU2QTgxMEEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6Qjk1MjVBMEQxRUFCRTIxMThCOUJGOTUyMDE0ODI2QkYiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4B//79/Pv6+fj39vX08/Lx8O/u7ezr6uno5+bl5OPi4eDf3t3c29rZ2NfW1dTT0tHQz87NzMvKycjHxsXEw8LBwL++vby7urm4t7a1tLOysbCvrq2sq6qpqKempaSjoqGgn56dnJuamZiXlpWUk5KRkI+OjYyLiomIh4aFhIOCgYB/fn18e3p5eHd2dXRzcnFwb25tbGtqaWhnZmVkY2JhYF9eXVxbWllYV1ZVVFNSUVBPTk1MS0pJSEdGRURDQkFAPz49PDs6OTg3NjU0MzIxMC8uLSwrKikoJyYlJCMiISAfHh0cGxoZGBcWFRQTEhEQDw4NDAsKCQgHBgUEAwIBAAAh+QQAAAAAACwAAAAAEwAIAAAFPSAljmIBFGSqMsIjMGoMOc3UOFBMLsYx/QfDQkcBEBS/pIIAiEUCg6R0EIikJBGEdIuISEQJCWRL/kEkiRAAOw==">
+    </div>
+    <div class="main" id="main_page">
+        <div class="sub_menu">
+            <a :class="{hover:flag}" href="javascript:void(0);" target="_self" @click="chage()">首页</a>
+            <a :class="{hover:flag5}" href="javascript:void(0);" target="_self" @click="chage2()">办卡进度查询</a>
+            <a :class="{hover:flag4}" href="javascript:void(0);" target="_self"  @click="chage3()">推荐办卡</a>
+        </div>
+        <div class="info" >
+            <div class="if_con">
+                <p class="img">
+                    <img src="data:image/png;base64,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" width="50" height="50">
+                </p>
+                <p class="title">您好，{{clientName}}</p>
+                <p class="text">
+                    <span class="cl_999" id="split1" style="display: none;"> | </span>
+                    <span id="stmt" style="display: none;">
+                        <span id="stmt_text"></span> 
+                        <a href="https://creditcard.ecitic.com/citiccard/ebankpc/installments.html"></a>
+                    </span>
+                    <span id="tran" style="display: none;">
+                        <span id="tran_text"></span> 
+                        <a href="https://creditcard.ecitic.com/citiccard/ebankpc/installments.html?tosingle=1">单笔分期</a>
+                    </span>
+                    
+                </p>
+                <div class="scan-app" style="right: 15px">
+                    <div class="introduce">
+                        <p class="head">CCMS信用卡APP</p>
+                        <p class="content">查账还款，办理分期<br>权益随时看，额度随意调</p>
+                    </div>
+                    <div class="image-div">
+                        <img src="img/erweima.png" style="width: 80px">
+                        <p class="tip">扫码下载</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="con_930" v-show="flag">
+                <div class="title">
+                    <span>
+                        <a href="https://creditcard.ecitic.com/citiccard/ebankpc/openCard.html" target="_blank">信用卡开卡</a> | 
+                        <a href="javascript:void(0);" id="applyProcessQry_link">申请进度查询</a>
+                    </span>我的信用卡
+                </div>
+                <div class="my_card">
+                    <div class="s_c_more_r" id="RightArr_02" style="display: none">
+                        <img src="data:image/gif;base64,R0lGODlhDwAWANUAAAAAAP////b29vPz8+7u7u3t7ezs7Ofn5+bm5uTk5OPj4+Li4t/f393d3dzc3Nvb29ra2tnZ2djY2NXV1dPT09DQ0MPDw8HBwcDAwLq6urm5ube3t7a2trOzs7KysrCwsK+vr////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAACEALAAAAAAPABYAAAZiQIEQwRAaj0aE5xNBIpWgKMRptESvU+oAc40+qIJtF/TVcrtlpxgNXl8d7XO0MwAXPl0OlZAZT5x8YxWAfV0UhGMSgBpjaUYEjF0NVBdjC2AGG1EfCmBCmR0JnkYGB6OnR0EAOw==" width="15" height="22">
+                    </div>
+                    <div class="s_c_more_l" id="LeftArr_02" style="display: none">
+                        <img src="data:image/gif;base64,R0lGODlhDwAWANUAAAAAAP////b29vPz8+7u7u3t7ezs7Ofn5+bm5uTk5OPj4+Li4t/f393d3dzc3Nvb29ra2tnZ2djY2NXV1dPT09DQ0MPDw8HBwcDAwLq6urm5ube3t7a2trOzs7KysrCwsK+vr////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAACEALAAAAAAPABYAAAZgQIFwSGQgiMhh5OM5JocQkLT5FESlUsvzgZViBklu9xvugshIMRZNdJjZw0FnDE5yup9CdWLOEKoVfX9PFIJVEoZbZhqDSQ2LjUgLZhdVAgofUhsGlgIJHZudQgecoklBADs=" width="15" height="22">
+                    </div>
+                    <ul id="ISL_Cont_2" style="width: 909px; overflow: hidden">
+                        <div style="overflow: hidden; zoom: 1; width: 32766px">
+                            <div style="float: left; width: 909px; overflow: hidden;" id="cardList" v-for="card in cards">
+                            <li class="mastercard fl_l card_content">
+                            <input type="hidden" name="cardno" value="3e340173a67c8ce231560a4f34638c4b">
+                            <div class="m_c_pop"><div class="m_c_wrap" style="box-shadow: rgb(255, 255, 255) 0px 0px 0px; margin-bottom: 5px; margin-left: 5px;"><div class="m_c_top" style="background:#336699;">
+                            	<p class="ca_name">{{card.cardType}}</p>
+                            	<p class="ca_num">{{card.cardNum}}</p>
+                            	<p class="ca_logo">
+                            		<img src="data:image/gif;base64,R0lGODlhSwAsAMQAAAAAAP////L1+dni7DNmmUBwn015plmDrGaMs3OWuY2pxpmyzLLF2b/P34Cgv5mzzKW80szZ5eXs8v///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAABMALAAAAABLACwAAAX/ICGOZGmeaKqubOu+cCzPdP0iTfM8yt7vvF/w4fApikOkYml8QBgGm+lZkNIgB6voSEhIAuCweEwum8UCR6GhRTC657h8HhAQ3lZGVUDv+8EEEFpvCH+GcwRsUggPBA+HkGURiVYKCImRmWEPB41SkwR8mpkICllSbAejmndWnQQKASIQAYIJh6AjDXKTuTUKCYmgAwHBtIYLBAgRUYVxWApWEHvJBmBREgIDA18QC2DbYNrcAZe0Ucdh2QFfxQ6XUm/Wlw7sBAaCIxIFBgNRXclEFJBF4EAUA1mqvGtlLUABPVJe1RPBIMAbB9GitUqQBU+waAUmFUCQAEI0jncc/9wjECHAAEpSHASrKGJBgygROiqLlu9NAnQA4YC5FKGKhID1aj3Mgy3AqZp2AsGKMqAKgTX3oi3Iki5YlYFvCohKQNYKm4YBIqjlIyACtwgS1LJb23ZbhLZ3wwhg0MBtgGQVr2GRYsAnpLZf4mqTqxhvy5fO7OWzUTadHwmXDCCAJ7DYlCzEwOiZXOMB1UMHCihYIKjAQgd2Ctji/C3MO5WfrkL6d/UegigN8IhYONIyvqc0DDS6ZUiCygNbVyL0rKDAyEsj29WBSZnnIYgIshwIpjl2lAQaEdQG02CpFFMsIVkXIAj+XUEHLjEIVlAUGEu42aAIJC+JwJ9VAiSwGXsJDIAmRifI0cBGZKsYYociNpTiSIWQsOGJDQ5k0RKHhjzAiFkikHgIIxHOMKCKftgBkRT5+AejHDNpkQ9sN8YhwUf80ahFDUUMaYBGQ74g24dadBIBEzwQ0cOUQEzZQxFQNjHlJT5A4CVvSYYp5phklmnmmWimqWaaIQAAOw==" width="75" height="44">
+                            	</p>
+                            	<ul class="species" id="menu1">
+                            		<li class="hover onlycurrent">人民币</li>
+                            	</ul></div><div class="main1">
+                            		<ul class="remUl"><div class="m_c_con">
+                            			<div class="m_c_data">
+                            				<table width="100%" cellspacing="0" cellpadding="0" border="0">
+                            					<tbody>
+                            						<tr>
+                            							<td>本期应还金额<br>
+                            								<span class="txt14">{{card.billMoney}}</span>
+                            							</td>
+                            							<td class="right">到期还款日<br>
+                            								<span class="txt14">{{card.repayDay}}</span>
+                            							</td>
+                            						</tr>
+                            						<tr></tr>
+                            						<tr style="height: 50px">
+                            						<!-- <td></td>
+                            							<td class="right">到期还款日<br>
+                            								<span class="txt14">{{card.repayDay}}</span>
+                            							</td> -->
+                            						</tr>
+                            					</tbody>
+                            				</table>
+                            				<div class="clear"></div>
+                            				<div class="action" style="display: none;">
+                            					<a href="" class="align_c" style="display:inline-block">账单查询</a><a href="https://creditcard.ecitic.com/citiccard/ebankpc/repayment.html?card_nbr=6226****4235" class="align_c" style="display:inline-block">
+                            						我要还款
+                            					</a>
+                            				<a href="" class="align_c" style="display:inline-block">我要分期</a>
+                            				<a href="" target="_blank" class="align_c opencard" style="display:none">我要开卡</a>
+                            				</div></div>
+                            		</div>
+                            		</ul>
+                            	</div>
+                            </div>
+                            </div>
+                            </li>
+                            <li class="no_card fl_l">
+                            	<div>
+                            		<img src="data:image/gif;base64,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" width="286" height="120">
+                            	</div>
+                            	<div class="n_c_bd">
+                            		<p class="txt14">发现惊喜，发现更适合你的信用卡。</p>
+                            		<p>
+                            			<a href="index.html" target="_blanK" class="n_c_ico">现在去看看</a>
+                            		</p>
+                            	</div> 
+                            </li>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+        </div>
+        <!-- 进度查询1 -->
+    <div class="wrap" v-show="flag1">
+    <div class="count-box clearfix">
+        <div class="c-detail">
+            <div class="c-title clearfix">
+                <p>申请进度查询</p>
+                <div class="c-title-list">
+                  <a class="list-info next-active">
+                  <span class="border-box"><i>1</i></span>
+                  设置查询条件
+                  </a>
+                  <span class="red-more"></span>
+                  <a class="list-info" style="color: #666">
+                  <span class="border-box"><i>2</i></span>
+                  输入短信验证码
+                  </a>
+                  <span class="red-more"></span>
+                  <a class="list-info" style="color: #666">
+                  <span class="border-box"><i>3</i></span>
+                  查询结果
+                  </a>
+                </div>
+            </div>
+            
+            <div class="setting-step c-content">
+                <div class="setting-step-form">
+                      <ul class="cd-list">
+                          <li>
+                            <label>证件类型:<em class="must-span">*</em></label>  
+                            <div>
+                             <input type="text"  style="height: 32px;width: 205px" value="18位身份证" readonly="readonly">
+                             <!-- <div class="select-input">18位身份证</div>                          
+                              <ul class="select-iist none" style="display: none">
+                                  <li data-type="1">18位身份证</li>
+                              </ul> -->
+                            </div>                                                           
+                          </li>
+                          <li>
+                            <label>证件号码:</label>  
+                            <input v-model="idCard" type="text"  style="height: 32px">
+                            <span  style="display: none; color: red">请输入正确的证件号码</span>
+                          </li>
+                          <li>
+                            <label>手机号码:</label>  
+                            <input v-model="phone" type="text" id="mobilePhone" style="height: 32px">
+                            <span class="error_phone none" style="display: none; color: red">请输入正确的手机号</span>
+                          </li>
+                      </ul>
+                      <a href="#" class="next-btn red-btn" @click="chage4()">
+                          <img class="loading-image none" style="display: none" src="data:image/gif;base64,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">
+                          <span >下一步</span>
+                      </a>
+                      <p class="ret-error none" style="display: none">服务器出错，请联系客服！</p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<!-- 进度查询2 -->
+<div class="wrap" v-show="flag2">
+			<div class="count-box clearfix">
+				<div class="c-detail">
+					<div class="c-title clearfix">
+						<p>申请进度查询</p>
+						<div class="c-title-list">
+							<a class="list-info" style="color: #666">
+								<span class="border-box"><i>1</i></span> 设置查询条件
+							</a>
+							<span class="red-more"></span>
+							<a class="list-info next-active">
+								<span class="border-box"><i>2</i></span> 输入短信验证码
+							</a>
+							<span class="red-more"></span>
+							<a class="list-info" style="color: #666">
+								<span class="border-box"><i>3</i></span> 查询结果
+							</a>
+						</div>
+					</div>
+
+					<div class="setting-step c-content">
+						<div class="setting-step-form">
+							<ul class="cd-list">
+								<li>
+									<label>短信验证码:<em class="must-span"></em></label>
+									<input v-model="code" type="text" id="id_nbr" style="height: 32px">
+									<span style=" color: red"></span>
+								</li>
+							</ul>
+							<a class="next-btn red-btn"  @click="submitFind()">
+								<img class="loading-image none" style="display: none" src="data:image/gif;base64,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">
+								<span>下一步</span>
+							</a>
+							<p class="ret-error none" style="display: none">服务器出错，请联系客服！</p>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!-- 进度3 -->
+		<div class="wrap" v-show="flag3">
+			<div class="count-box clearfix">
+				<div class="c-detail">
+					<div class="c-title clearfix">
+						<p>申请进度查询</p>
+						<div class="c-title-list">
+							<a class="list-info" style="color: #666">
+								<span class="border-box"><i>1</i></span> 设置查询条件
+							</a>
+							<span class="red-more"></span>
+							<a class="list-info">
+								<span class="border-box"><i>2</i></span> 输入短信验证码
+							</a>
+							<span class="red-more"></span>
+							<a class="list-info next-active" style="color: #666">
+								<span class="border-box"><i>3</i></span> 查询结果
+							</a>
+						</div>
+						<table class="table table-hover">
+							  <thead>
+							    <tr>
+							      <th>申请信用卡</th>
+							      <th>申请时间</th>
+							      <th>申请状态</th>
+							      <th>受理时间</th>
+							    </tr>
+							  </thead>
+							  <tbody v-for="p in cardplans">
+							    <tr>
+							      <td>{{p.cardType}}</td>
+							      <td>{{p.applyTime}}</td>
+							      <td>{{p.planState}}</td>
+							      <td>{{p.acceptTime}}</td>
+							    </tr>
+							  </tbody>
+							</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="wrap" v-show="flag4">
+			<div class="count-box clearfix">
+				<div class="c-detail">
+					<div class="c-title clearfix">
+						<ul style="margin-left: -120px; width: 960px;">
+				        	<li v-for="pro in products" style="float: left;margin-left:15px; margin-right:15px; margin-top: 10px; margin-bottom: 10px;">
+				        	<div class="row" style="width: 230px;">
+				        		<div class="col-sm-6 col-md-3">
+							         <div class="thumbnail" style="height: 200px;width: 200px;">
+							            <img src="img/04.png" 
+							             alt="通用的占位符缩略图" v-if="pro.cardPic==null">
+							             <img :src="pro.cardPic" alt="" v-if="pro.cardPic!=null">
+							             <div style="margin-left: auto;text-align: center;">
+							             	<span style=" font-size: 16px">{{pro.cardName}}</span>
+							             </div>
+							             
+							            <div class="caption" style="width: 180px">
+							            	
+							                <p>
+							                    <a :href="'handleCardApplication.html?id='+pro.id" class="btn btn-primary" role="button" style="margin-left: 30px">立即申请</a>
+							                </p>
+							            </div>
+							         </div>
+				        		</div>
+				        	</div>
+				            	<!-- <a href="https://creditcard.ecitic.com/shenqing/chezhu/index.shtml" onclick="buttonEvent(this);" id="PCHOMEPAGE059" class="gcon01_a"><img src="img/04.png" class="gcon01_img"></a>
+				                <p class="gcon01_tit" title="中信银行标准车主信用卡">娃哈哈银行标准车主信用卡</p>
+				                <p class="gcon01_word">为你加油，乐享返还</p>
+				                <a href="handleCardApplication.html" onclick="buttonEvent(this);" id="PCHOMEPAGE060" class="gcon01_link">立即申请</a> -->
+				            </li>    
+				        </ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+        <div class="h_35"> </div>
+        <div class="con_930">
+                    <div class="txt_wrap line_r">
+                        <div class="title">
+                                <span>
+                                
+                                </span>活动权益
+                        </div>
+                        <ul class="txt_list" id="id_active_rights">
+                            <li><a href="###" target="_blank">9分享兑 超值好礼</a></li>
+                            <li><a href="###" target="_blank">邀好友 得好礼</a></li>
+                            <li><a href="###" target="_blank">幸运星期一</a></li>
+                            <li><a href="###" target="_blank">天天友券 享优惠</a></li>
+                        </ul>
+                    </div>
+                    <div class="txt_wrap line_r">
+                        <div class="zzfw_title">增值服务</div>
+                        <ul>
+                            <a class="zzfw_list" id="changeCard" href="javascript:void(0);">
+                            <img src="data:image/gif;base64,R0lGODlhMgAyANU5AEC9/wOo/8/u/0jA/2zM/6vi/xCt/5/e/0W//9Lv/1rG/+H1/+/5//n9/w+s/xKt/13H/+35/2bK//D6/5Pa//b8/y23/6Lf/zm7/zO5/1TE/6/j/ySz/3DO/+r4/2DI/4/Y//P7/9/0/1DD/6jh/4TV/4HU/970/+T2/+f3/2nL/0K+/7Hk/2PJ/zC4//z+/4fW/7Tl/wap/4rX/wyr/7/p/4DT/////wCn/////wAAAAAAAAAAAAAAAAAAAAAAACH5BAEAADkALAAAAAAyADIAAAb/wJxwSCwOJwUJIhPA4QIZhKQwMVqv2GGKMmg6v2BnYEBBZc/WhCLMbjsVCTQ68nHb2xCP/Fpw3P9hDgV7RA0EgIhhBA2EFQOJkF8IIXIVGJGYOBiUZ2uZmCuMWDCfnxJYLF6lOAAddYAkVhEPmQYANhsCNzcMNwKAD3pFEIm2uCK7Ihs2AAasNwCACkUJdwYjNjW9vsvNbdCIAkQadi69Agcd0YDggBpDC6psIjXOke1/ASdCJXf4kP/umBBiwV+NgwgTKkzo6+ABe24s5Fjwh5eNixgzatwIgsGBPwsuVByxCkeHG38uHPInYKHLlzV0/SHwyN+BjThz2jiA8s4Azg4V15UC0NMOBz82dSrFyPMPDXYtYUo9KLMkjoCYiP6RgdQO1kha7zwA6k/op7BGa3o1mwmtmwEr15Z024aAyLJzi7q5QBHvKrpsFuQoKPevXjYSc/TzaqNkR4FC4tkB0XDqS12N3egbQs4OtqVK2YZ5N6Sa1VJxiLQ4nQmCkVmsIT2IYCWGvNh2Yl2ZgfuPijPEerdBIApLg0vCwWCoUEmt8EmEXsTFvYjQkD6xBVkvQud0nu1pPGWCAz7Lli6AxpQpvweJkgxgokypsj0IADs=" alt="换卡" width="40" height="40">
+                            <span>换卡</span>
+                            </a>
+                            <a class="zzfw_list" id="cvv2Deblock" href="javascript:void(0);">
+                            <img src="data:image/gif;base64,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" alt="cvv2解锁" width="40" height="40">
+                            <span>cvv2解锁</span>
+                            </a>
+                            <a class="zzfw_list" href="https://creditcard.ecitic.com/eshop/trip/index.htm" target="_blank">
+                            <img src="data:image/gif;base64,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" alt="酒店预订" width="40" height="40">
+                            <span>酒店预订</span>
+                            </a>
+                            <a class="zzfw_list" href="http://creditcard.ecitic.com/shequ/bianmin.shtml" target="_blank">
+                            <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkZEOEYzMTMxMzc3ODExRTZCN0Y2QzhGRTNENjg1NUY5IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkZEOEYzMTMyMzc3ODExRTZCN0Y2QzhGRTNENjg1NUY5Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RkQ4RjMxMkYzNzc4MTFFNkI3RjZDOEZFM0Q2ODU1RjkiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RkQ4RjMxMzAzNzc4MTFFNkI3RjZDOEZFM0Q2ODU1RjkiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz75Ll+7AAADBklEQVR42syYUUhTURjHv206FBaD5WxUrIKRlRiBUSCGYRhKZUSJVAwKg+qpN4mI6qF6lKAskGI+ZAQLRsFIEswoCoJKGAXDhSIMRispsmnGpO/Ed9bles927t0m5w8/8Mrd9rvnnHvO+Y6t7vlasBgP0oY0IF5kDeJDPiFzSByJISNQRCosSJ1A2knOKI266xlkGHmERMwK2iRb0IWcQ87T31bDWrSXhKVil7inG5lArhYpBzQcniJjSKBYQSdyF3lIY6uUaUE+IEesClbTk/ZA+cJ6I4ycNSvooFZrheXJbRpG0m8xG2udog/Ur2iAg6sOQ5W9ypTFy5kxGPkqfDdCSAJ5V+gt7qbWE+ZV03uocXpz14lfE/B7cd7w3k2uLeCwOXLXHW93w2Tms+irk8hWmpYMW9BDzZ03Wrl5FBtKhiALi4b3Hl0dhM2u+v8/UOmBSRAKson+JnJcJHiJJKXDuvnyxuulHI/HkD5tV3NBr5k3NpIKw/1kSPpXG9074ELgiuztbDHo0gsGzUzC6YUv8PFnTFrQ66w104qHaN5NaaeZIKgTB3V1bh5ktttArbRqBZtBvbRoBesUFGTvg58LBkDNbOCCbkUF3VzQqaigkwvOKio4ywXTigqmuWBcUcE4FxxXUC6h7eI3VMeqlFHtRJ1FnigmGNHXJIMKyaW0pxFccJiKahXSR726ZEd9EXksu79jxZNs/NXrZW9ldckd0ZafjcMosq/gjtLX9Q99hpKD0FF7AGuPlVZbr1e/cOjr4pP0FML8+PPd8P+sgBqY7ofpuSnhZzPZTL6vvoc8kDk8YpvX13S6sCRtNe3Q4z8DlTZzS/jot2fQP3VDWM0ie5AFGUFeF4Rp+70cK8Yu0ZJrzzMP7dUX0WXIC6Qp337AXmA231nGtXpAphEKnQ+yNXE7TUGl2pax+XY/ctpozJkV5Puya8g65FYR6zZ72FN0/hKV/ZDNwiE6K2g6iWY6UxFlnJatKI0307EVccqvjU8nGpPpPplUlGhcpfhRRanzV4ABAOXJqaaV0koSAAAAAElFTkSuQmCC" alt="手机充值" width="40" height="40">
+                            <span>手机充值</span>
+                            </a>
+                        </ul>
+                    </div>
+                    <div class="txt_wrap line_r">
+                        <div class="title"><span><a id="selMuch">查看更多</a></span>常见问题</div>
+                        <ul class="txt_list">
+                            <li><a id="quotaSharing" target="_blank">什么是额度共享？</a></li>
+                            <li><a id="webSwindle" target="_blank">什么是伪冒网站诈骗？</a></li>
+                            <li><a id="enjoyFree" target="_blank">如何享受免息期？</a></li>
+                            <li><a id="creditCardFun" target="_blank">个人网银中还有哪些信用卡功能？</a></li>
+                            <li><a id="serviceCharge" target="_blank">分期业务手续费收取方式？</a></li>
+                        </ul>
+                    </div>
+                    <div class="txt_wrap">
+                        <div class="title">移动应用</div>
+                        <div class="mob_app">
+                            <p class="fl_l"><img src="img/erweima.png" width="94" height="91">移动官网</p>
+                            <p class="fl_r"><img src="img/erweima.png" width="94" height="91">手机APP</p>
+                        </div>
+                    </div>
+        </div>
+    </div>
+    <div class="main" id="applyProcess">
+        <div class="con_930"> 
+            <div class="title mt_20">申请进度查询</div>
+            <div class="schedule">
+                <img src="data:image/gif;base64,R0lGODlhMQAxAOYAAAAAAP///+jx6PH08fP18/X29fT19Obx5bPgrdXr0h6uByOwDSSwDSiyEimyEi2zFy2yGDK0HTW1IDa1Izy3KD24KUC5LEK5LkS6MUm8N0u9Ok2+PFfBRVvCSmDDT2PFVGfHWWfGWWzIXm3IXm/JYG/JYXLKY3TLZXrNbHvNbnzNb3/Nc4HOdYbQe4rSfonRfY7Tgo7Tg5XVi5fWjpvXkp3YlJ/Zlqvdo6/ep7fhsLnis7zjtsHlu8Hku8PlvsnnxMvoxtHpzdPqz9ns1trs1+Du3uLv4Ozz6+vy6u3z7KLamLLfqsTmvsfnwd3t2uXw4+/07vD07/H08Pb29v///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAFQALAAAAAAxADEAAAf/gFSCg4SFhVFJQ0JLP0IHSYaRkpOGBUU0Ewqam5wiPFCUoZNHMQ2cp6gKG0yirVQDMqmyqBhBrpJTOAyzvKccB7eEBB+9xZwMTcFUSBjGzptKt06mz9UlrUjU1dUtoQQW2+EKCJNTIeLiCZI36OINkQPa7dU0hrHz4oVH+OgrhC78UDmA0aNGhVmDDOwKuAkCkCkQn0iQFY0KEIYNH0KEyEJWBEEAMTrcuPEFQioPRGokKeUCwigqSW40wSuGEYYjZU4h0avDRX45ZfLs1YAHLwcmWmTgFZTk0GI5ZkUgApEACllNNz4tpmPWDJkqUGWFuLVYk1kIdIbNqHPnNiGzm1S0XTvWbTUKAmYt8DG3blljJ6gc5avTSdu/xgR1GNxWJ+LEVNgxbky2naAnxRwQPtwuxKBmvTRztjxohzHRTuc9KBThdA+IUkbgM9TVmQYQE+d9NLQUYzFJN33z8iwJgXBZE0KtOH6KQatzzDXdOsHcebAYwncrAyJvHnFlg1Lg0w6+kAhxq8tTUtLa2Af1wWyI8LBpggh/5QMBADs=" width="49" height="49" align="absmiddle"> 您共申请了
+                <span class="red" id="card_count"> 1 </span>张卡，以下是您的进度情况
+            </div>
+            <div class="table_mx mt_20" style="clear:both" id="applyProcess_tbl"></div>
+        </div>
+    </div>
+    <div class="main_b"></div>
+    
+    <div class="con_930" id="wenxints">
+        <div class="set_wxts">
+            <div class="wxts_tit">温馨提示</div>
+            <ul class="txt_list">
+                <li>系统将自动带出您名下所有账户下最新的卡号；</li>
+                <li>如您不需显示相应部分卡号，可通过＂设置管理＂中＂卡片签约管理＂进行解约；</li>
+                <li>亲爱的用户，为更好地为您提供相关服务，诚邀您参加CCMS信用卡网上银行体验调查活动，我们将根据您的反馈积极改进<a href="https://sojump.com/jq/11540704.aspx" target="_blank" class="lineUnder">立即参与</a></li>
+                <li>如您在使用过程中有任何疑问，请联系<a href="javascript:fLogon();" class="lineUnder">在线客服</a>或中信信用卡客服热线40088-95558。</li>
+                <li>为保证页面浏览效果最佳，建议您使用IE8以上版本的IE浏览器，或Chrome、Firefox等浏览器。</li>
+            </ul>
+        </div>
+    </div>
+
+<div class="footer">
+	<ul class="footer_list">
+		<li class="footer_cr">
+			<p>CCSM信用卡股份有限公司授权所有Copyright 2002-2019 CITIC BANK ALL rights reserved</p>
+			<p>京公网安备11010502020433号 京ICP证 030779-1号</p>
+		</li>
+		<li class="footer_line">
+			<p class="tip">24小时客服热线</p>
+			<p class="number">40088 - 95558</p>
+		</li>
+		<li class="footer_client" id="footer_client">
+			<a><img id="my_footer" src="data:image/png;base64,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" alt="客服"></a>
+			<p>在线客服</p>
+		</li>
+	</ul>
+</div>
+</div>
+<script type="text/javascript" src="js/vuejs-2.5.16.js"></script>
+<script type="text/javascript" src="js/axios-0.18.0.js"></script>
+<script src="js/dll.js"></script>
+<script type="text/javascript" src="js/myaccount.js"></script>
+<script src="js/progressQueryOne.js"></script>
+<script type="text/javascript" src="js/progressQueryTwo.js"></script>
+<script type="text/javascript">
+	new Vue({
+		el: "#app",
+		data:{
+			flag:true,
+			flag1:false,
+			flag2:false,
+			flag3:false,
+			flag4:false,
+			flag5:false,
+			imgflag:true,
+			clientName:'',
+			idCard:'',
+			phone:'',
+			code:'',
+			scode:'',
+			card:{
+				id:'',
+				cardType:'',
+				cardNum:'',
+				billMoney:'',
+				repayDay:'',
+			},
+			cardplan:{
+				cardType:'',
+				applyTime:'',
+				planState:'',
+				acceptTime:''
+			},
+			product:{
+				id:'',
+				cardPic:'',
+				cardName:'',
+			},
+			cards:[],
+			cardplans:[],
+			products:[],
+		},
+		methods:{
+			queryCard:function(){
+				var _this=this;
+				axios.get("/client/queryClientCard")
+				.then(function(response){
+						if(response.data.flag==true){
+    						_this.cards=response.data.cards;
+    						if(_this.cards==""){
+    							alert("当前无绑定的信用卡，请先绑定");
+    							window.location.href='setting.html';
+    						}else{
+    							_this.clientName=response.data.clientName;
+    						} 
+    					}    					
+    				})
+			},
+			chage:function(){
+				this.flag=true;
+				this.flag1=false;
+				this.flag2=false;
+				this.flag3=false;
+				this.flag4=false;
+				this.flag5=false;
+			},
+			chage2:function(){
+				this.flag=false;
+				this.flag1=true;
+				this.flag2=false;
+				this.flag3=false;
+				this.flag4=false;
+				this.flag5=true;
+			},
+			chage3:function(){
+				this.flag=false;
+				this.flag1=false;
+				this.flag2=false;
+				this.flag3=false;
+				this.flag4=true;
+				this.flag5=false;
+				var _this=this;
+				axios.get("/product/product")
+				.then(function(response){
+					if(response.data.product!=null){
+						_this.products=response.data.product
+						console.log(response.data.product);
+					}
+				})
+			},
+			chage4:function(phone){
+				var _this=this;
+				if(this.idCard!=""){
+					if(this.phone!=""){
+						axios.post("/client/checkphone",_this.phone)
+						.then(function(response){
+							if(response.data.flag==true){
+								_this.flag=false;
+								_this.flag1=false;
+								_this.flag2=true;
+								_this.flag3=false;
+								_this.flag4=false;
+								_this.flag5=true;
+			                    _this.scode=response.data.scode;
+			                    alert(response.data.scode);
+							}
+						}) 
+					}else{
+						alert("请输入电话号码")
+					}
+				}else{
+					alert("请输入身份证")
+				}
+			},
+			submitFind:function(){
+				var _this=this;
+				if( this.code==this.scode ){
+					axios.post("/creditCard/queryPlan",_this.idCard)
+					.then(function(response){
+							if(response.data.plan!=null){
+								_this.flag=false;
+								_this.flag1=false;
+								_this.flag2=false;
+								_this.flag3=true;
+								_this.flag4=false;
+								_this.flag5=true;
+			                    _this.cardplans=response.data.plan
+			                    console.log(_this.cardplans);
+							}else{
+								alert(你无任何业务办理进度);
+							}
+						})
+				}else{
+					alert("验证码错误，请重新输入")
+				}
+			}
+		},
+		created:function() {//当我们页面加载的时候触发请求，查询所有
+		       this.queryCard();
+		  }
+	})
+</script>
+</body>
+</html>
+
+
+

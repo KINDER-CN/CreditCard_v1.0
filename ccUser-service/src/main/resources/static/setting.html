@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta http-equiv="Expires" content="0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta http-equiv="Cache-Control"
+	content="no-cache, no-store, must-revalidate">
+<title>设置管理-通用设置</title>
+<link rel="shortcut icon"
+	href="https://creditcard.ecitic.com/citiccard/ebankpc/logo.ico">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="css/settingManage.7e62b685.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+	<div class="header">
+		<div class="content">
+			<a href="http://creditcard.ecitic.com/" title="中信银行信用卡中心官网"
+				target="_blank" class="logo-area"> <img src="img/logo白色.png">
+			</a>
+			<div class="menu-area">
+				<span>欢迎您，<strong id="userName">***</strong></span> <span
+					class="line">|</span> <img class="online-server"
+					id="online-server-img" src="img/kf.gif" alt="在线客服"> <span
+					class="line">|</span> <img class="security-logout" src="img/gb.gif"
+					alt="安全退出" id="logout">
+			</div>
+		</div>
+	</div>
+	<div class="menu">
+		<ul>
+			<li class="yahei" id="yahei01"><a href="loginIndex.html"
+				class="wdzh" target="_self">我的账户</a></li>
+			<li class="yahei" id="yahei02"><a href="" class="zdcx"
+				target="_self">账单查询</a></li>
+			<li class="yahei" id="yahei03"><a href=""
+				class="xykhk" target="_self">信用卡还款</a></li>
+			<li class="yahei" id="yahei04"><a href="" class="fqyw"
+				target="_self">分期业务</a></li>
+			<li class="yahei" id="yahei07"><a href="setting.html"
+				class="szgl" target="_self">设置管理</a></li>
+		</ul>
+	</div>
+
+	<div class="main_top">
+		<img style="padding-left: 793px; margin-top: -7px" src="img/jt.gif">
+	</div>
+	<div id="app" class="main" id="mainSettingManage" >
+		<DIV class="sub_menu"><A class="hover" href="javascript:void(0);">通用设置</A></DIV>
+		<div class="base_setting" id="baseSetting" style="display: block">
+			<DIV class="title mt_30">银行卡设置</DIV>
+			<UL class="bind_bank_card"><A href="javascript:bindcard()">
+			  <LI class="bank_card_add">
+			  </LI></A>	
+			   			<li class="no_card fl_l">
+			   			<div >
+			   			<div>
+                            	<img src="data:image/gif;base64,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" width="286" height="120">
+                            	</div>
+                            	<div class="n_c_bd">
+                            	<DIV class="add" style="margin-left: 120px;" data-toggle="modal" data-target="#binding"><IMG src="img/per-9.PNG">
+			  						<DIV style="margin-left: -20px;">绑定银行卡{{code}}</DIV></DIV>
+                            	</div> 
+                            	<!-- 模态框 -->
+                            	<div class="modal fade" id="binding" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+												</button>
+												<h4 class="modal-title" id="myModalLabel">
+													增加绑定信用卡
+												</h4>
+											</div>
+											<div class="modal-body">
+												<div class="input-group">
+										            <span >信用卡号:</span>
+										            <input @blur="findCard()"  v-model="credit.cardNum" placeholder="输入信用卡号" type="text" class="form-control" style="float: left;">
+										        </div>
+										        <div class="input-group">
+										            <span >卡片类型:</span>
+										            <input v-model="bankCard" readonly="readonly" :value="bankCard" placeholder="识别中" type="text" class="form-control" style="float: left;">
+										        </div>
+										        <div class="input-group">
+										            <span >持卡人姓名:</span>
+										            <input v-model="name" placeholder="请输入持卡人姓名" type="text" class="form-control" style="float: left;" >
+										        </div>
+										        <div class="input-group">
+										            <span >身份证件号:</span>
+										           <input v-model="IDcard" placeholder="请输入持卡人证件号码" type="text" class="form-control" style="float: left;">
+										        </div>
+										        <div class="input-group">
+										            <span >有效期:</span>
+										            <input v-model="credit.cardValidity" placeholder="输入信用卡有效期" type="date" class="form-control" style="float: left;">
+										        </div>
+										        <div class="input-group">
+										            <span >卡背末三位:</span>
+										            <input v-model="credit.cardSecurityCode" placeholder="请输入信用卡背末3位" type="text" class="form-control" style="float: left;">
+										        </div>
+										        <div class="input-group">
+										            <span >手机号码:</span>
+										            <input v-model="credit.cardPhone" placeholder="输入银行预留手机号" type="text" class="form-control" style="float: left;" >
+										        </div>
+										        <div class="input-group">
+										            <span >验证码:</span>
+										             <input type="text" v-model="code" placeholder="6位数字验证码" id="valicode" maxlength="6"  style="width:53%;height:36px;text-indent: 14px;margin-right: 20px;">
+													<button class="btn btn-primary btn-sm" @click="callMsg" v-bind:disabled="!stop">
+													    <span v-if="stop">获取验证码</span>
+													    <span v-else>{{timer}}秒后重试</span>
+													</button>
+										        </div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">
+													关闭
+												</button>
+												<button type="button" class="btn btn-primary" @click="cardBinding" >
+													提交
+												</button>
+											</div>
+										</div><!-- /.modal-content -->
+									</div><!-- /.modal-dialog -->
+								</div>
+			   					</div>
+                            </li>
+			  	 </UL>
+			  <DIV class="sett_credit bill_card">
+				<DIV class="my_card"><!--  <div class="s_c_more_r" id="RightArr_02"><img src="images/memberset/jt_right.gif" width="15" height="22" /></div>
+				          <div class="s_c_more_l" id="LeftArr_02"><img src="images/memberset/jt_left.gif" width="15" height="22" /></div> --> 
+				          
+				<UL id="ISL_Cont_2">
+				  <LI class="visa fl_l"></LI></UL><!-- 左右滚动-in -->                     <!-- 左右滚动-end --> 
+				                  </DIV>
+				<DIV class="mt_20">
+				</DIV></DIV>
+			<div class="card_setting_content">
+				<div class="split_line" style="margin-bottom: 10px;"></div>
+				<div id="selectById">
+					<ul>
+						<li>
+							<div class="sub_content personal_info">
+								<span class="sub_title">修改登录密码</span> <br />在这里修改你的登录密码。&nbsp;|
+								<span class="ico_edit">
+									<a style="cursor: pointer" data-toggle="modal" data-target="#chagePassword">修改</a>
+								</span>
+								<!-- 修改密码模态框 -->
+								<div class="modal fade" id="chagePassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+												</button>
+												<h4 class="modal-title" id="myModalLabel">
+													修改登录密码
+												</h4>
+											</div>
+											<div class="modal-body">
+												<div class="input-group">
+										            <span >原密码:</span>
+										            <input type="password" class="form-control" style="float: left;" v-model="oldpsd">
+										        </div>
+										        <div class="input-group">
+										            <span >新密码:</span>
+										            <input type="password" class="form-control" style="float: left;" v-model="newpsd">
+										        </div>
+										        <div class="input-group">
+										            <span >确认新密码:</span>
+										            <input type="password" class="form-control" style="float: left;" v-model="querypsd">
+										        </div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">
+													关闭
+												</button>
+												<button type="button" class="btn btn-primary" @click="chage" >
+													提交更改
+												</button>
+											</div>
+										</div><!-- /.modal-content -->
+									</div><!-- /.modal-dialog -->
+								</div><!-- /.modal -->
+							</div>
+						</li>
+						<li>
+							<div class="sub_content personal_info">
+								<span class="sub_title">更换手机号码</span> <br />提交新手机号，更换登录手机号。&nbsp;|
+								<span class="ico_edit">
+									<a style="cursor: pointer" data-toggle="modal" data-target="#chagePgone">更换</a>
+								</span>
+								<!-- 更换手机号模态框 -->
+								<div class="modal fade" id="chagePgone" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+												</button>
+												<h4 class="modal-title" id="myModalLabel">
+													更换手机号
+												</h4>
+											</div>
+											<div class="modal-body">
+												<div class="input-group">
+										            <span >原手机号:</span>
+										            <input v-model="oldphone" type="text" class="form-control" style="float: left;">
+										        </div>
+										        <div class="input-group">
+										            <span >新手机号:</span>
+										            <input v-model="newphone" type="text" class="form-control" style="float: left;">
+										        </div>
+										         <span v-model="code" id="sms_code_text">短信验证码</span>
+				                                 <div class="input-group">
+										             <input type="text" v-model="code" placeholder="6位数字验证码" id="valicode" maxlength="6" style="width:53%;height:36px;text-indent: 14px;margin-right: 20px;">
+													<button class="btn btn-primary btn-sm" @click="callMsg" v-bind:disabled="!stop">
+													    <span v-if="stop">获取验证码</span>
+													    <span v-else>{{timer}}秒后重试</span>
+													</button>
+										        </div>       
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">
+													关闭
+												</button>
+												<button @click="chagePhone" type="button" class="btn btn-primary">
+													提交更改
+												</button>
+											</div>
+										</div><!-- /.modal-content -->
+									</div><!-- /.modal-dialog -->
+								</div><!-- /.modal -->
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer" id="footer_a">
+		<ul class="footer_list">
+			<li class="footer_cr">
+				<p>CCMS信用卡股份有限公司授权所有Copyright 2002-2019 CITIC BANK ALL rights
+					reserved</p>
+				<p>京公网安备11010502020433号 京ICP证 030779-1号</p>
+			</li>
+			<li class="footer_line">
+				<p class="tip">24小时客服热线</p>
+				<p class="number">40088 - 95558</p>
+			</li>
+			<li class="footer_client" id="footer_client"><a><img
+					id="my_footer" src="img/kf_icon.png" alt="客服"></a>
+				<p>在线客服</p></li>
+		</ul>
+	</div>
+	<script src="js/dll.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/vuejs-2.5.16.js"></script>
+	<script type="text/javascript" src="js/axios-0.18.0.js"></script>
+	<script type="text/javascript" src="js/settingManage.7e62b685.js"></script>
+	<script type="text/javascript" src="js/binding.js"></script>
+</body>
+</html>

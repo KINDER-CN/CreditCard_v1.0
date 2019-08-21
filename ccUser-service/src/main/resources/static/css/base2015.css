@@ -1,0 +1,114 @@
+body, div, h1, h2, h3, h4, h5, h6, hr, p, dl, dt, dd, ul, ol, li, form, button, input, textarea, table, thead, tbody, th, td, i, b, span, em, section, header, footer, aside, nav, menu, article, dialog, figure, hgroup, mark { margin:0; padding:0; }
+section, header, footer, aside, nav, menu, article, dialog, figure, hgroup { display:block; }
+body { font-family:"Microsoft Yahei", "Hiragino Sans GB", sans-serif; font-size:12px;min-width:1000px;}
+ul, ol, li { list-style:none }
+em, i { font-style:normal }
+img { border:0 }
+.c { clear:both; }
+.clearfix { *zoom:1
+}
+.clearfix:before, .clearfix:after { display:table; content:""; line-height:0 }
+.clearfix:after { clear:both }
+.hide { display:none; }
+.body_bg { background:url(../images/body_bg2.jpg) top repeat-x; }
+.main_980 { width:980px; margin:0 auto; }
+
+
+/*  在线客服 */
+.online_service { display:block; width:70px; height:70px; text-decoration:none; color:#555; padding:10px 0 0 0; position:fixed; top:360px; right:24px; }
+.online_service .span_icon { display:block; width:45px; height:45px; margin:0 auto; background:url(../images_kk/icons.png) no-repeat; background-position:0 -390px; }
+.online_service .span_txt { display:block; text-align:center; line-height:20px; font-size:14px; }
+/*  弹窗 */
+.pop_box { width:470px; }
+.pop_box .pop_tit { height:30px; padding:10px 22px 10px 30px; background-color:#ff2e3c; border-top-left-radius:4px; border-top-right-radius:4px; }
+.pop_box .pop_tit .s_txt { display:block; float:left; line-height:30px; font-size:16px; color:#fff; }
+.pop_box .pop_tit .close_btn { display:block; width:30px; height:30px; float:right; background:url(../images/icons.png) no-repeat; background-position:0 -450px; }
+.pop_box .pop_con { background-color:#fff; border-bottom-left-radius:4px; border-bottom-right-radius:4px; }
+.pop_box .icon_box { padding-top:44px; text-align:center; }
+.pop_box .p_txt { line-height:24px; padding:3px 0; margin-top:8px; text-align:center; color:#333; font-size:18px; }
+.pop_box .pop_btn_area { padding:0 0 30px 0; height:32px; margin-top:38px; text-align:center; }
+.pop_box .g_btn { display:inline-block; width:89px; height:32px; line-height:32px; text-align:center; text-decoration:none; font-size:14px; color:#fff; background:url(../images/btn_bg.png) no-repeat; background-position:0 0; }
+/*  页面标题栏  */
+.page_tit_wrap { width:980px; height:110px; margin:0 auto; border-bottom:solid 1px #afafaf; }
+.page_tit { float:left; width:700px; height:65px; padding:36px 0 9px 0; }
+.page_tit .p_tit { line-height:40px; font-size:32px; color:#555; }
+.page_tit .p_txt { line-height:25px; font-size:14px; color:#555; }
+.page_cru { float:right; width:270px; height:25px; padding:76px 10px 9px 0; text-align:right; }
+.page_cru .h_span { display:inline-block; width:17px; height:25px; line-height:25px; vertical-align:middle; background:url(../images/icons.png) no-repeat; background-position:0 -641px; }
+.page_cru .s_span { font-family:'宋体'; padding:0 6px; vertical-align:middle; color:#999; }
+.page_cru .t_span { line-height:25px; vertical-align: middle; color:#999; }
+.page_cru .a_link { line-height:25px; vertical-align: middle; color:#555; text-decoration:none; }
+/*---------------------页面底部增加二维码链接 -------------------------*/
+.footer_link_wrap { height:85px; padding-top:50px; background-color:#fff;border-bottom:solid 1px #ddd; }
+.footer_link { width:980px; height:85px; margin:0 auto; }
+.footer_link ul li { float:left; width:50px; height:50px; padding:20px 24px 15px 22px; position:relative;_padding:10px 12px 8px 11px;}
+.footer_link ul li a { display:block; }
+.footer_link ul li .wx_icon, .footer_link ul li .zfb_icon, .footer_link ul li .qq_icon, .footer_link ul li .sina_icon, .footer_link ul li .qqzone_icon {display:block; width:62px;height:60px; margin:0 auto;}
+.footer_link ul li .span_txt { display:block; height:20px; text-align:center; }
+.footer_link ul li .code_pop { width:130px; height:130px; padding:3px; position:absolute; left:80px; top:-80px; z-index:9999; border:solid 2px #c7c7c7; background-color:#fff;}
+.page_cru .a_link:hover { text-decoration:underline; }
+/*联系我们*/
+.lxwm_con{width:925px;padding:0 45px 40px 10px;}
+.lxwm_con ul{}
+.lxwm_con ul li{padding:45px 0 40px 0;overflow:hidden;border-bottom:1px dashed #C5C5C5;}
+.lxwm_con ul li.border_none{border:none;}
+/*网站导航*/
+.wzdt_con{width:980px;padding:10px 0 40px 0;}
+.wzdt_con ul li{width:400px;float:left;padding:0 75px 0 15px;}
+.wzdt_con ul li .map_list{padding:35px 0 30px 0;border-bottom:1px dashed #C5C5C5;}
+.wzdt_con ul li a{padding:0 20px;line-height:30px;font-size:14px;color:#666;text-decoration:none;}
+.wzdt_con ul li a:hover{color:#f00;text-decoration:underline;}
+/*新手入门*/
+.xinshou_con{width:956px;padding:40px 14px 40px 10px;}
+.xs_list{overflow:hidden;}
+.xs_list .xs_list_lc{display:block;float:left;width:190px;height:190px;border:1px solid #CCCCCC;overflow:hidden;}
+.xs_list_pic{display:block;padding:28px 0 25px 46px;}
+.xs_list_txt{line-height:26px;font-size:20px;color:#666;text-align:center;}
+.xs_list .on{color:#F10000;text-decoration:underline;}
+.xs_list .xs_lc_next{width:46px;padding:70px 0 0 16px;float:left;}
+.xs_list .xs_list_div{display:block;float:left;width:190px;height:190px;border-right:1px solid #CCCCCC;border-top:1px solid #CCCCCC;border-bottom:1px solid #CCCCCC;overflow:hidden;}
+.border_left{border-left:1px solid #CCCCCC;}
+/*友情链接*/
+.yqlj_con{width:818px;padding:45px 81px 40px 81px;}
+.yqlj_list{margin-bottom:15px;overflow:hidden;}
+.yqlj_list li{width:184px;height:90px;border:1px solid #C9C9C9;margin:0 8px;float:left;}
+.yqlj_link{line-height:36px;font-size:14px;color:#333;}
+.yqlj_link a{padding:0 20px;text-decoration:none;line-height:36px;font-size:14px;color:#333;}
+.yqlj_link a:hover{color:#f00;text-decoration:underline;}
+/*关于我们*/
+.gywm_con{width:980px;margin:0 auto;border-left:1px solid #E5E5E5;}
+.gywm_list{padding:0px 0 0 40px;background:url(../images/gywm_bg.png) repeat-y;}
+.gywm_list li{_height:24px;background:url(../images/rep_rel_list_icon.png) no-repeat left 6px;padding-left:25px;}
+/*社区/资讯*/
+.shequ_banner_con{width:980px;height:585px;padding-top:200px; margin:0 auto;}
+.shequ_banner{position:relative;height:785px;overflow:hidden;background:url(../images/loading.gif) 50% no-repeat;}
+.shequ_big_con{z-index:1;}
+.shequ_big_con .shequ_banner_bg{height:785px;}
+.shequ_banner_tit{line-height:50px;font-size:36px;color:#434343;text-align:center;}
+.shequ_banner_list{padding-top:70px;overflow:hidden;}
+
+.mr_100{margin-right:100px;}
+.shequ_banner_list li{width:260px;height:335px;float:left;position:relative;}
+.shequ_banner_list li a{display:block;width:260px;height:335px;}
+.shequ_banner_list li .shequ_banner_pic1{background:url(../images/shequ_banner_pic01.png) no-repeat;}
+.shequ_banner_list li .shequ_banner_pic2{background:url(../images/shequ_banner_pic02.png) no-repeat;}
+.shequ_banner_list li .shequ_banner_pic3{background:url(../images/shequ_banner_pic03.png) no-repeat;}
+.shequ_banner_list li .shequ_banner_pic_on{position:absolute;bottom:0px;left:0px;}
+.shequ_con{width:980px;margin:0 auto;padding:36px 0;position:relative;}
+.shequ_con .tabs-content-item{padding:0;}
+.shequ_tit{width:100%;background-color:#444444;}
+.tabs_sq_w980{width:980px;margin:0 auto;}
+.tabs_sq_w980 li{width:326px; height:95px;float:left;}
+.tabs_sq_w980 li a{display:block;width:326px; height:70px;text-align:center;padding-top:25px;font-size:24px;color:#ccc;text-decoration:none;}
+.tabs_sq_w980 li .focus{font-size:30px;color:#fff;}
+.sq_more_list{overflow:hidden;}
+.sq_more_list li{width:158px;height:253px;border:1px solid #CFCFCF;float:left;margin-bottom:15px;padding:45px 40px 0 40px;text-align:center;}
+.mr_130{margin-right:130px;}
+.shequ_tab_on1{position:absolute;display:block; width:22px;height:20px;background:url(../images/shequ_tab_on.jpg) no-repeat;top:-19px;left:150px;}
+.shequ_tab_on2{position:absolute;display:block; width:22px;height:20px;background:url(../images/shequ_tab_on.jpg) no-repeat;top:-19px;left:475px;}
+.shequ_tab_on3{position:absolute;display:block; width:22px;height:20px;background:url(../images/shequ_tab_on.jpg) no-repeat;top:-19px;left:800px;}
+.shequ_gz_tit{line-height:42px; text-align:center;font-size:30px;color:#434343;padding-bottom:30px;border-bottom:2px solid #E5E5E5;}
+.shequ_gz_pic{border-bottom:2px solid #E5E5E5;}
+.shequ_gz_btn{display:inline-block;width:60px;height:26px;line-height:26px;font-size:14px;color:#fff;background-color:#FE3232;border-radius:2px;text-align:center;text-decoration:none;}
+
+.iframe_con{width:960px; margin:30px auto 0;}

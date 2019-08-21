@@ -1,0 +1,185 @@
+new Vue({
+	el:'#app',
+	data:{
+		timer:60,
+        stop:true,
+        Interval:null,
+		code:'',
+		scode:'',
+		bankCard:'',
+		credit:{
+			cardNum:'',
+			cardType:'',
+			carPassword:'',
+			cardValidity:'',
+			cardSecurityCode:'',
+			cardLimit:'',
+			cardShortLimit:'',
+			cardCashLimit:'',
+			cardState:'',
+			cardBinding:'',
+			repayCard:'',
+			client:'',
+			cardAnnual:'',
+			cardBalance:'',
+			cardBillday:'',
+			cardRefundDay:'',
+			cardpoint:'',
+			cardPhone:'',
+		},
+		userName:'',
+		userIDcard:'',
+		day:'',
+		three:'',
+		name:'',
+		IDcard:'',
+		oldpsd:'',
+		newpsd:'',
+		querypsd:'',
+		oldphone:'',
+		newphone:'',
+	},
+	methods:{
+		//查找银行卡
+		findCard:function(){
+			var _this=this;
+			if(this.credit.cardNum!=""){
+				axios.post("/creditCard/queryBankCard",this.credit)
+				.then(function(response){
+					if(response.data.bankCard!=""){
+						_this.bankCard=response.data.bankCard;
+						_this.userName=response.data.name;
+						_this.userIDcard=response.data.idcard;
+						_this.day=response.data.day;
+						_this.three=response.data.num;
+					}
+				})
+			}else{
+				alert("请输入信用卡号");
+			}
+		},
+		//发送验证码及倒计时
+		update () {
+            if(this.timer <= 0)
+            {
+                this.stop = !this.stop;
+                clearInterval(this.Interval);
+                this.timer=60;
+            }
+            else{
+                this.timer--;
+            }
+        },
+        startTimer :function() {
+            this.Interval = setInterval(this.update, 1000);
+            console.log(this.Interval);
+        },
+		callMsg:function(){
+			var _this=this;
+			if(this.newphone!=""){
+				_this.credit.cardPhone=this.newphone;
+			}
+			axios.post("/client/checkphone",_this.credit.cardPhone)
+			.then(function(response){
+				if(response.data.flag==true){
+					_this.stop=!this.stop;
+                    _this.startTimer();
+                    _this.scode=response.data.scode;
+                    alert(response.data.scode);
+				}
+			})
+		},
+		//提交绑定信用卡方法
+		cardBinding:function(){
+			var _this=this;
+			this.checkIDcard();
+			if(this.name==this.userName){
+				if(this.IDcard==this.userIDcard){
+					if(this.credit.cardValidity==this.day){
+						if(this.credit.cardSecurityCode==this.three){
+							if(this.code==this.scode){
+								axios.post("/creditCard/addBindingCard",_this.credit)
+								.then(function(response){
+									if(response.data.flag==true){
+					                    alert("绑定成功");
+					                    window.location.href='loginIndex.html';
+									}else{
+										alert(response.data.mess);
+									}
+								})
+							}else{
+								alert("验证码不正确");
+							}
+						}else{
+							alert("安全码不正确")
+						}
+					}else{
+						alert(this.credit.cardValidity)
+						alert("日期信息不匹配");
+					}
+				}else{
+					alert("证件号不正确")
+				}
+			}else{
+				alert("持卡人姓名不匹配")
+			}
+			
+			
+		},
+		//验证身份证信息
+		checkIDcard:function(){
+			var _this=this;
+			if(this.name!=""){
+				if(this.IDcard!=""){
+					axios.post("/client/idcard",{name:_this.name,IDcard:_this.IDcard})
+					.then(function(response){
+						console.log(response.data);
+					})
+				}else{
+					alert("请输入身份证号")
+				}
+			}else{
+				alert("请输入身份证姓名")
+			}
+		},
+		//修改手机号
+		chagePhone:function(){
+			var _this=this;
+			if(this.oldphone!=""){
+				if(this.newphone!=""){
+					if(this.code=this.scode){
+						axios.get("/client/updateClientPhone",{params:{oldPhone:_this.oldphone,newPhone:_this.newphone}})
+						.then(function(response){
+							if(response.data.flag){
+								alert("更换号码成功");
+								window.location.href='setting.html';
+							}else{
+								alert(response.data.mess);
+							}
+							
+						})	
+					}else{
+						alert("验证码不正确");
+					}
+					
+				}
+			}
+		},
+		//修改密码
+		chage:function(){
+			var _this=this;
+			if(this.newpsd==this.querypsd){
+				axios.get('/client/updatePsd',{params:{oldpsd:_this.oldpsd,newpsd:_this.newpsd}})
+				.then(function(response){
+					if(response.data.flag){
+						alert("修改成功");
+						window.location.href='setting.html';
+					}else{
+						alert(response.data.mess);
+						
+					}
+				})
+			}
+		}
+	}
+})
