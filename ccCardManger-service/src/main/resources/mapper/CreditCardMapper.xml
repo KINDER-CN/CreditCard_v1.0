@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zl.dao.MklCreditCardDao">
+
+	<!--1. 根据id查询用户资料 -->
+	<select id="queryClientById" parameterType="int" resultType="client">
+		select id id,client_id clientId,client_name clientName,client_sex
+		clientSex,client_national clientNational,client_idcard
+		clientIdcard,client_birthday clientBirthday,client_marriage
+		clientMarriage,client_edu clientEdu,client_bank_creditPoint
+		clientBankCreditPoint,client_password
+		clientPassword,client_question_id clientQuestionId,
+		client_answer
+		clientAnswer,client_housing clientHousing,client_address
+		clientAddress,client_postalcode clientPostalcode,client_email
+		clientEmail,client_phone clientPhone FROM cc_client where
+		id=#{id}
+	</select>
+
+
+	<!--2. 根据客户id查询用户公司信息 -->
+	<select id="queryClientCompanyById" parameterType="int"
+		resultType="clientCompany">
+		select company_name companyName,company_nature
+		companyNature,company_phone
+		companyPhone,company_industry
+		companyIndustry,company_address
+		companyAddress,company_job
+		companyJob,company_annual_income
+		annualIncome,company_postalcode
+		companyPostalcode,company_client_id
+		companyClientId,company_client_binding companyBinding from
+		cc_client_company where company_client_id=#{id}
+	</select>
+
+
+	<!--3. 根据客户id查询用户联系人信息 -->
+	<select id="queryClientLinkmanById" parameterType="int"
+		resultType="clientLinkman">
+		select client_link_name
+		linkName,client_link_phone
+		linkPhone,client_link_relation
+		linkRelation, client_link_address
+		linkAddress,client_link_client_id clientLinkClientId from
+		cc_client_linkman where client_link_client_id=#{id}
+	</select>
+
+	<!-- 4.根据客户id修改用户资料信息 -->
+	<update id="updateClientById" parameterType="client">
+		update cc_client
+		set(client_id,client_name,client_sex,client_national,client_idcard,client_birthday,client_marriage,client_edu,client_question_id,client_housing,client_address,client_postalcode,client_email,client_phone)VALUES(#{clientId},#{clientName},#{clientSex},#{clientNational},#{clientIDcard},#{clientBirthday},#{clientMarriage},#{clientEdu},#{questionId},#{clientAnswer},#{clientHousing},#{clientAddress},#{postalcode},#{clientEmail},#{clientPhone})
+		where id=#{id}
+	</update>
+
+	<!-- 5.根据客户id修改用户公司信息 -->
+	<update id="updateClientCompanyById" parameterType="clientCompany">
+		update
+		cc_client_company
+		set(company_name,company_nature,company_phone,company_industry,company_address,company_job,company_annual_income,company_postalcode)VALUES(companyName,companyNature,companyPhone,companyIndustry,companyAddress,companyJob,companyAnnualIncome,companyPostalcode)
+		where company_client_id=#{client}
+	</update>
+
+	<!-- 6.根据客户id修改用户联系人信息 -->
+	<update id="updateClientLinkmanById" parameterType="clientLinkman">
+		update
+		cc_client_linkman
+		set(client_link_name,client_link_phone,client_l
+		ink_relation,client_link_address)VALUES(clientLinkName,clientLinkPhone,clientLinkRelation,clientLinkAddress)
+		where client_link_client_id={id}
+	</update>
+
+
+	<!-- 7.根据条件进行查询申请进度表符合要求记录总数 -->
+	<select id="queryCountApplyCard" parameterType="queryClientApplyCard"
+		resultType="int">
+		select count(1) from cc_client_apply_card
+		<!-- 会自动帮我们拼一个where关键字,并且会去掉对于and关键字 -->
+		<where>
+			<if test="applyIdcard!=null and applyIdcard!=''">
+				and apply_idcard =#{applyIdcard}
+			</if>
+			<if test="applyCheckState!=null and applyCheckState!=''">
+				and apply_check_state=#{applyCheckState}
+			</if>
+			<if test="applyState!=null and applyState!=''">
+				and apply_state=#{applyState}
+			</if>
+		</where>
+	</select>
+
+
+	<!-- 8.根据条件进行分页查询申请详情表 -->
+	<select id="queryApplyCardByFenYe" parameterType="fenYeClientApplyCard"
+		resultType="applyCard">
+		select apply_num applyNum,apply_card_id cardType,apply_time
+		applyTime,apply_state applyState,apply_accept_time
+		applyAcceptTime,apply_idcard applyIdcard,apply_credit_points
+		applyCreditPoints,apply_check_state checkState,apply_cardnum
+		applyCardnum,apply_client_id client from cc_client_apply_card
+		<where>
+			<if test="queryClientApplyCard!=null">
+				<if
+					test="queryClientApplyCard.applyIdcard!=null and queryClientApplyCard.applyIdcard!=''">
+					and apply_idcard=#{queryClientApplyCard.applyIdcard}
+				</if>
+				<if
+					test="queryClientApplyCard.applyCheckState!=null and queryClientApplyCard.applyCheckState!=''">
+					and apply_check_state=#{queryClientApplyCard.applyCheckState}
+				</if>
+				<if
+					test="queryClientApplyCard.applyState!=null and queryClientApplyCard.applyState!=''">
+					and apply_state=#{queryClientApplyCard.applyState}
+				</if>
+			</if>
+		</where>
+		limit #{startRows},#{rows}
+	</select>
+
+	<!-- 9.根据条件进行查询信用卡符合要求记录总数 -->
+	<select id="queryCountClientCard" parameterType="queryCreditCard"
+		resultType="int">
+		select count(1) from cc_client_card cd,cc_client ct
+		<where>
+			cd.card_client_id=ct.id
+			<if test="clientName!=null and clientName!=''">
+				and ct.client_name=#{clientName}
+			</if>
+			<if test="clientIdcard!=null and clientIdcard!=''">
+				and ct.client_idcard=#{clientIdcard}
+			</if>
+			<if test="cardNum!=0">
+				and cd.card_num=#{cardNum}
+			</if>
+		</where>
+	</select>
+
+	<!-- 10.根据条件进行查询信用卡符合要求的记录 -->
+	<select id="queryAllClientCardByFenYe" parameterType="pagingCreditCard"
+		resultType="creditCard">
+		select cd.card_client_id client, cd.card_num cardNum,cd.card_type_id
+		cardType,cd.card_state
+		cardState,cd.card_binding
+		cardBinding,cd.card_point
+		cardpoint,cd.card_phone
+		cardPhone,cd.card_bill_day
+		cardBillday,cd.card_refund_day cardRefundDay
+		from
+		cc_client_card
+		cd,cc_client ct
+		<where>
+			cd.card_client_id=ct.id
+			<if test="queryCreditCard!=null">
+				<if
+					test="queryCreditCard.clientName!=null and queryCreditCard.clientName!=''">
+					and ct.client_name=#{queryCreditCard.clientName}
+				</if>
+				<if
+					test="queryCreditCard.clientIdcard!=null and queryCreditCard.clientIdcard!=''">
+					and ct.client_idcard=#{queryCreditCard.clientIdcard}
+				</if>
+				<if test="queryCreditCard.cardNum!=0">
+					and cd.card_num=#{queryCreditCard.cardNum}
+				</if>
+			</if>
+		</where>
+		limit #{startRows},#{rows}
+	</select>
+
+	<!-- 11.根据id修改详情表 -->
+	<update id="updateApplyCardById" parameterType="applyCard">
+		update cc_client_apply_card
+		<trim prefix="set" suffixOverrides=",">
+			<if test="applyState!=null and applyState!=''">
+				apply_state=#{applyState},
+			</if>
+			<if test="creditPoint!=null and creditPoint!=''">
+				apply_credit_points=#{applyCreditPoints},
+			</if>
+			<if test="checkState!=null and checkState!=''">
+				apply_check_state=#{checkState},
+			</if>
+			<if test="applyCardNum!=null and applyCardNum!=''">
+				apply_cardnum=#{applyCardnum},
+			</if>
+		</trim>
+		where apply_client_id=#{client}
+	</update>
+
+	<!-- 12.根据id修改进度表 -->
+	<update id="updateApplyCardPlanByIdCard" parameterType="applyCardPlan">
+		update
+		cc_client_apply_card_plan set plan_state=#{planState} where
+		plan_client_id=#{id}
+	</update>
+
+	<!-- 13.添加信用卡 -->
+	<insert id="addCreditCardById" parameterType="creditCard">
+		insert into
+		cc_client_card
+		(card_num,card_type_id,card_password,card_validity,card_security_code,card_limit,card_short_limit,card_cash_limit,card_state,card_binding,card_bankcard_id,card_client_id,card_annual,card_balance,card_bill_day,card_refund_day,card_point,card_phone)values(#{cardNum},#{cardType},#{carPassword},#{cardValidity},#{cardSecurityCode},#{cardLimit},#{cardShortLimit},#{cardCashLimit},#{cardState},#{cardBinding},#{repayCard},#{client},#{cardAnnual},#{cardBalance},#{cardBillday},#{cardRefundDay},#{cardpoint},#{cardPhone})
+	</insert>
+
+	<!-- 14.根据或者原密码进行修改密码 -->
+	<update id="updateCreditCardRepairById" parameterType="creditCard">
+		update
+		cc_client_card set card_password=#{cardPassword} where card_client_id=
+		#{cardClientId}
+	</update>
+
+	<!-- 15.根据身份证进行修改密码 -->
+	<update id="updateClientApplyCardPlanId" parameterType="applyCardPlan">
+		update
+		cc_client_card cd,cc_client ct set cd.card_password=1 where
+		ct.client_idcard={clientIdcard} and ct.client_id=cd.card_client_id
+	</update>
+
+	<!-- 16.根据卡号查看信用卡 -->
+	<select id="queryCreditCardById" parameterType="long"
+		resultType="creditCard">
+		select cd.card_client_id client,cd.card_annual
+		cardAnnual,cd.card_num cardNum,cd.card_type_id
+		cardType,cd.card_state
+		cardState,cd.card_binding
+		cardBinding,cd.card_point
+		cardpoint,cd.card_phone
+		cardPhone,cd.card_bill_day
+		cardBillday,cd.card_refund_day cardRefundDay,cd.card_limit
+		cardLimit,cd.card_balance cardBalance
+
+		from cc_client_card cd
+		where
+		cd.card_num=#{id}
+	</select>
+
+
+
+	<!--17.根据信用卡对象进行修改修改信用卡状态 -->
+	<update id="updateCreditCardByClientId" parameterType="creditCard">
+		update
+		cc_client_card set card_state=#{cardState} where
+		card_client_id=#{client}
+	</update>
+
+	<!--18.根据客户id查看详情表 -->
+	<select id="queryClientApplyCardById" parameterType="int"
+		resultType="applyCard">
+		select apply_num applyNum,apply_card_id cardType,apply_time
+		applyTime,apply_state applyState,apply_accept_time
+		applyAcceptTime,apply_idcard applyIdcard,apply_credit_points
+		applyCreditPoints,apply_check_state checkState,apply_cardnum
+		applyCardnum,apply_client_id client from cc_client_apply_card where
+		apply_client_id=#{id}
+	</select>
+
+	<update id="udpateCreditCardLimit" parameterType="creditCard">
+		update cc_client_card c set
+		c.card_limit=#{cardLimit},c.card_short_limit=#{cardShortLimit},c.card_cash_limit=#{cardCashLimit}
+		where c.card_num=#{cardNum}
+	</update>
+
+
+</mapper>

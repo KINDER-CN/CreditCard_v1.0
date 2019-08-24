@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zl.dao.clientdao.AgingClientDao">
+<!-- 提交分期申请 添加分期概括表 --><!-- public int addAging(Aging aging); -->
+	<insert id="addAging" parameterType="aging">
+		insert into
+		cc_Aging(id,aging_num,aging_lines,aging_nper,aging_time,aging_rate_id,aging_state,aging_card_id,aging_client_id,aging_endtime)
+		values(#{id},#{agingNum},#{agingLines},#{agingNper},#{agingTime},#{agingRate},#{agingState},#{creditCard},#{client},#{agingEndTime})
+	</insert>
+	<!-- 根据信用卡查询分期概括 --><!-- public List<Aging> queryAgingByClient(int client);-->
+	<select id="queryAgingByClient" parameterType="int" resultType="aging">
+		select id id,aging_num agingNum,aging_lines agingLines,aging_nper
+		agingNper,aging_time agingTime, aging_rate_id agingRate,aging_state
+		agingState,
+		aging_card_id creditCard,aging_client_id client,aging_endtime agingEndTime from
+		cc_aging where aging_card_id=#{creditCard}
+	</select>
+	<!-- 根据分期概况表查询详情表 --><!-- public AgingMonth queryAgingMonthByAging(int Aging); -->
+	<select id="queryAgingMonthByAging" parameterType="int" resultType="agingMonth">
+		select id id,month_money monthMoney,month_interest
+		monthInterest,month_not_return_money notReturnMoney,aging_rate_id
+		agingRate,month_aging_refund agingRefund,
+		month_return_money returnMoney,aging_id aging,month_nper monthNper,month_aging_poundage
+		agingPoundage,month_installments installments,aging_type
+		agingType,aging_time agingTime
+		from cc_aging_month where aging_id=#{aging}
+	</select>
+	<!-- 根据客户id查询客户信用比对是否有分期资格 --><!-- public Client queryCreditPointByClientId(int clientId);-->
+	<select id="queryCreditPointByClientId" parameterType="int" resultType="client">
+		select id id, client_id clientId,client_name clientName,client_idcard
+		clientIDcard,client_bank_creditPoint creditPoint
+		from cc_client where id=#{Id}
+	</select>
+	<!-- 生成分期详情表 --><!-- public int addAgingMonth(AgingMonth agingMonth);-->
+	<insert id="addAgingMonth" parameterType="agingMonth">
+		insert into
+		cc_aging_month(id,month_money,month_interest,month_not_return_money,aging_rate_id,month_aging_refund,month_return_money,aging_id,month_nper,month_aging_poundage,month_installments,aging_type,aging_time)
+		values(#{id},#{monthMoney},#{monthInterest},#{notReturnMoney},#{agingRate},#{agingRefund},#{returnMoney},#{aging},#{monthNper},#{agingPoundage},#{installments},#{agingType},#{agingTime})
+	</insert>
+	<!-- 查询利率表 -->
+	<select id="queryAgingRate" parameterType="int" resultType="agingRate">
+	   select id id ,aging_rate agingRate from cc_aging_rate where id=#{id}
+	</select>
+	<!-- 根据分期编号查询分期概括表 -->
+	<select id="queryAgingByNum" parameterType="String" resultType="Aging">
+	select id id,aging_num agingNum,aging_lines agingLines,aging_nper
+		agingNper,aging_time agingTime, aging_rate_id agingRate,aging_state
+		agingState,
+		aging_card_id creditCard,aging_client_id client,aging_endtime agingEndTime from
+		cc_aging where aging_num=#{agingNum}
+	</select>
+	<select id="queryClient" resultType="client">
+		select id id, client_id clientId,client_name clientName,client_idcard
+		clientIDcard,client_bank_creditPoint creditPoint
+		from cc_client
+	</select>
+	
+	<select id="queryCreditCard" resultType="creditCard">
+		select id id, card_num cardNum,card_client_id client from cc_client_card
+	</select>
+</mapper>

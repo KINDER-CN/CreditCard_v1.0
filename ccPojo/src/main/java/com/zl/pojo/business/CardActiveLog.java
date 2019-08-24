@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class CardActiveLog {
 	private int id;//主键id
 	private String activNum;		//申请编号		activ_num
-	private int activCardNum;		//激活卡号		activ_card_num
+	private Long activCardNum;		//激活卡号		activ_card_num
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date activeTime;		//激活时间		activ_time
@@ -32,10 +32,10 @@ public class CardActiveLog {
 	public void setActivNum(String activNum) {
 		this.activNum = activNum;
 	}
-	public int getActivCardNum() {
+	public Long getActivCardNum() {
 		return activCardNum;
 	}
-	public void setActivCardNum(int activCardNum) {
+	public void setActivCardNum(Long activCardNum) {
 		this.activCardNum = activCardNum;
 	}
 	public Date getActiveTime() {

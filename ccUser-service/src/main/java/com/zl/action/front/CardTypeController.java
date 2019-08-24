@@ -26,6 +26,11 @@ public class CardTypeController {
 	public Map<String,Object> queryProduct(){
 		Map<String,Object> result=new HashMap<String,Object>();
 		List<CardType> product=cts.queryAllProduce();
+		for(int i=0;i<product.size();i++) {
+			if(product.get(i).getCardPic()!=null) {
+				product.get(i).setCardPic(product.get(i).getCardPic().substring(4,product.get(i).getCardPic().length()));
+			}
+		}
 		System.out.println(product);
 		result.put("product", product);
 		return result;

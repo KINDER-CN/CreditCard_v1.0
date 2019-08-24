@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>申请详情分页查询</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="/css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="/css/htmleaf-demo.css">
+<link rel="stylesheet" href="/css/pages.css">
+<link rel="stylesheet" type="text/css" href="/css/th_td.css">
+<style type="text/css">
+body {
+	background-color: white;
+}
+
+#a {
+	align: center;
+}
+</style>
+</head>
+
+<body>
+	<div>
+		<div>
+			<h1></h1>
+
+		</div>
+
+		<div>
+			<div id="a" align="center">
+				<input class="tl-price-input" type="text" id="applyIdcard"
+					placeholder="请输入身份证"> &nbsp;&nbsp;<input
+					class="tl-price-input" type="text" id="applyCheckState"
+					placeholder="请输入核实状况"> &nbsp;&nbsp; <input
+					class="tl-price-input" type="text" id="applyState"
+					placeholder="请输入申请状态"> &nbsp;&nbsp;
+				<button class="ant-btn ant-btn-red" id="search">搜索</button>
+			</div>
+			<div align="center">
+				<P>
+				<P>
+				<P>
+				<P>
+				<table class="hovertable">
+					<tr>
+						<th>申请编号</th>
+						<th>申请卡种</th>
+						<th style="width: 120px">申请时间</th>
+						<th style="width: 120px">申请身份证</th>
+						<th>核实状态</th>
+						<th style="width: 120px">申请状态</th>
+						<th style="text-align: center;">审核</th>
+					</tr>
+					<tbody id="ns">
+						<tr></tr>
+
+					</tbody>
+
+				</table>
+				<div align="center">
+					<p>
+						<button id="up">上一页</button>
+						<span id="dqym"></span>
+						<button id="down">下一页</button>
+						<span id="zym"></span>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="js/global.js"></script>
+	<script type="text/javascript" src="js/jquery.accordion.js"></script>
+	<script type="text/javascript" src="js/select.js"></script>
+
+	<script type="text/javascript">
+		$(function() {
+			$.ajax({
+				url : "http://10.1.12.66:8086/cardmanger/mo/queryAllApplyCard",
+				type : "get",
+				dataType : "json",
+				success : function(data) {
+					//console.log(data)
+					queryAllApplyCard(data);
+				}
+			});
+		})
+		function queryAllApplyCard(data) {
+			$("#dqym").val(data.fenYeClientApplyCard.page).html(
+					"当前第" + data.fenYeClientApplyCard.page + "页");
+			$("#zym").val(data.fenYeClientApplyCard.pageCount).html(
+					"共" + data.fenYeClientApplyCard.pageCount + "页");
+			$("#ns tr:gt(0)").remove();
+			$(data.applyCard).each(
+					function() {
+						var a = "<tr>" + "<td>" + this.applyNum + "</td>"
+								+ "<td>" + this.cardType + "</td>" + "<td>"
+								+ this.applyTime + "</td>" + "<td>"
+								+ this.applyIDcard + "</td>" + "<td>"
+								+ this.checkState + "</td>" + "<td>"
+								+ this.applyState + "</td>" + "<td>"
+								+ "<a class=btn04 href=http://10.1.12.66:8086/cardmanger/dynamicState.html?id="
+								+ this.client + ">审核</a>" + "</td>" + "</tr>";
+						$("#ns").append(a);
+					});
+		};
+		$(function() {
+			//页面初始化
+			$("#ns tr:gt(0)").remove();
+			$.get("mo/queryAllApplyCard", {
+				"queryClientApplyCard.applyIdcard" : $("#applyIdcard").val(),
+				"queryClientApplyCard.applyCheckState" : $("#applyCheckState")
+						.val(),
+				"queryClientApplyCard.applyState" : $("#applyState").val(),
+
+			}, function(data) {
+				//拼每一行数据
+				queryAllApplyCard(data);
+			});
+			//给搜索按钮绑定点击事件,完成搜索
+			$("#search").click(
+					function() {
+						$("#ns tr:gt(0)").remove();
+						$.get("http://10.1.12.66:8086/cardmanger/mo/queryAllApplyCard",
+								{
+									"queryClientApplyCard.applyIdcard" : $(
+											"#applyIdcard").val(),
+									"queryClientApplyCard.applyCheckState" : $(
+											"#applyCheckState").val(),
+									"queryClientApplyCard.applyState" : $(
+											"#applyState").val(),
+								}, function(data) {
+									queryAllApplyCard(data)
+								});
+					});
+
+			//上一页
+			$("#up").click(
+					function() {
+						$("#ns tr:gt(0)").remove();
+						$.get("http://10.1.12.66:8086/cardmanger/mo/queryAllApplyCard",
+								{
+									"page" : parseInt($("#dqym").val()) - 1,
+									"queryClientApplyCard.applyIdcard" : $(
+											"#applyIdcard").val(),
+									"queryClientApplyCard.applyCheckState" : $(
+											"#applyCheckState").val(),
+									"queryClientApplyCard.applyState" : $(
+											"#applyState").val(),
+
+								}, function(data) {
+									queryAllApplyCard(data)
+								});
+					});
+			//下一页
+			$("#down").click(
+					function() {
+						$("#ns tr:gt(O)").remove();
+						$.get("http://10.1.12.66:8086/cardmanger/mo/queryAllApplyCard",
+								{
+									"page" : parseInt($("#dqym").val()) + 1,
+									"queryClientApplyCard.applyIdcard" : $(
+											"#applyIdcard").val(),
+									"queryClientApplyCard.applyCheckState" : $(
+											"#applyCheckState").val(),
+									"queryClientApplyCard.applyState" : $(
+											"#applyState").val(),
+								}, function(data) {
+									queryAllApplyCard(data)
+								});
+					});
+
+		})
+	</script>
+</body>
+
+</html>

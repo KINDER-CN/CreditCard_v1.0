@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Overdue {
 	private int id;							//主键id
-	private String overdueNum;				//逾期编号			overdue_num
+	private int overdueNum;				//逾期编号			overdue_num
 	private BigDecimal overMoney;			//逾期金额			overdue_money
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonFormat(pattern="yyyy-MM-dd")
@@ -31,10 +31,10 @@ public class Overdue {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getOverdueNum() {
+	public int getOverdueNum() {
 		return overdueNum;
 	}
-	public void setOverdueNum(String overdueNum) {
+	public void setOverdueNum(int overdueNum) {
 		this.overdueNum = overdueNum;
 	}
 	public BigDecimal getOverMoney() {

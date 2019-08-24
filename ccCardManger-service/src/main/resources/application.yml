@@ -16,13 +16,13 @@ spring:
     store-type: redis
   #数据库相关设置
   datasource:
-    url: jdbc:mysql://localhost:3306/ccdata
-    driver-class-name:  com.mysql.jdbc.Driver
-    username: manager
+    url: jdbc:mysql://10.1.12.66:3306/ccdatal
+    driver-class-name: com.mysql.jdbc.Driver
+    username: manger
     password: root
   #配置redis相关的连接信息
   redis:
-    host: 127.0.0.1
+    host: 10.1.12.66
     port: 6379
   #mybatis相关配置
 mybatis:
@@ -30,7 +30,7 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   #统一指定实体类的别名:默认是类名或类名首字母小写
   type-aliases-package: com.zl.pojo
-#超时配置    
+  
 ribbon: 
   ReadTimeout: 4000
   ConnectTimeout: 4000

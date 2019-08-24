@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../csss/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="../../csss/htmleaf-demo.css">
+		<link rel="stylesheet" href="../../csss/pages.css">
+		<link rel="stylesheet" type="text/css" href="../../csss/th_td.css">
+		</style>
+	</head>
+	<body><center><br><br><br><br>
+		<div id="queryCID">
+		<table border="0" class="hovertable">
+			<tr>
+				<th>姓名</th>
+				<th>交易类型</th>
+				<th>交易时间</th>
+				<th>交易金额</th>
+				<th>生产账单时间</th>
+			</tr>
+			<tr v-for="clientBillDetail in clientBillDetails" onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+				<td>{{clientBillDetail.clientName}}</td>
+				<td>{{clientBillDetail.transactionType}}</td>
+				<td>{{clientBillDetail.transactionTime}}</td>
+				<td>{{clientBillDetail.transactionMoney}}</td>
+				<td>{{clientBillDetail.payTime}}</td>
+			</tr>
+		</table>
+		</div>
+		<script type="text/javascript" src="../../jss/vuejs-2.5.16.js"></script>
+	<script type="text/javascript" src="../../jss/axios-0.18.0.js"></script>
+	<!-- <script type="text/javascript" src="../../js/main.js"></script> -->
+	<script type="text/javascript">
+	new Vue({
+		   el:"#queryCID",
+		   data:{
+			   clientBillDetails:
+			   [{
+				   clientName:'',
+				   transactionType:'',
+				   transactionTime:'',
+				   transactionMoney:'',
+				   payTime:''
+		     }]
+		   },
+		   methods:{
+			   queryBillDetailsById:function(){
+		     var _this=this;
+		     var  clientName= decodeURIComponent(GetQueryString("clientName"));
+		     console.log(clientName);
+		     axios.get("http://10.1.12.66:8086/client/gu/queryBillDetailsById",{params:{clientName:clientName}})
+		     .then(function(response){
+		      _this.clientBillDetails=response.data.clientBillDetails;
+		      console.log(_this.clientBillDetails);
+		     })
+		    }
+		   },
+		   created:function(){
+		    this.queryBillDetailsById();
+		   },
+		 })
+		 function GetQueryString(name){
+		     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		     var r = window.location.search.substr(1).match(reg);
+		     if(r!=null)return  unescape(r[2]); return null;
+		 }
+	</script>
+	</center></body>
+</html>

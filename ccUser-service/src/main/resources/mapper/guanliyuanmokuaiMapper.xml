@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zl.dao.gu.guanliyuanmokuaiDao">
+	<select id="queryAllManger" resultType="MangerRole">
+		select * from manger_role
+	</select>
+	<select id="login" resultType="manger">
+		select id id,manger_id mangerId,manger_name mangerName,manger_password mPassword,manger_phone mPhone
+		from 
+		cc_manger where manger_name=#{mangerName} and manger_password=#{mPassword}
+	</select>
+	<select id="queryMangerById" resultType="manger" parameterType="int">
+		SELECT id id,manger_id mangerId,manger_name mangerName,manger_password mPassword,manger_phone mPhone,manger_role_id role from cc_manger where id=#{id};
+	</select>
+	<insert id="insertManger" parameterType="manger">
+		INSERT INTO 
+		cc_manger(manger_id,manger_name,manger_password,manger_phone,manger_role_id)   
+		VALUES
+		(#{mangerId},#{mangerName},#{mPassword},#{mPhone},#{role});
+	</insert>
+	<update id="updateMangerById" parameterType="manger">
+		UPDATE cc_manger SET manger_id=#{mangerId},manger_name=#{mangerName},manger_password=#{mPassword},manger_phone=#{mPhone},manger_role_id=#{role} WHERE id=#{id};
+	</update>
+	<update id="updateManger" parameterType="int">
+		UPDATE cc_manger SET manger_role_id=0 WHERE id=#{id};
+	</update>
+</mapper>

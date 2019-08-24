@@ -16,13 +16,13 @@ spring:
     store-type: redis
   #数据库相关设置
   datasource:
-    url: jdbc:mysql://localhost:3306/ccdata
+    url: jdbc:mysql://10.1.12.66:3306/ccdatal
     driver-class-name:  com.mysql.jdbc.Driver
-    username: manager
+    username: manger
     password: root
   #配置redis相关的连接信息
   redis:
-    host: 127.0.0.1
+    host: 10.1.12.66
     port: 6379
   #mybatis相关配置
 mybatis:

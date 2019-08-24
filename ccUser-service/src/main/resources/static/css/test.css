@@ -1,0 +1,64 @@
+.page { 
+ 2   font-weight: 900; 
+ 3   height: 40px; 
+ 4   text-align: center; 
+ 5   color: #888; 
+ 6   margin: 20px auto 0; 
+ 7   background: #f2f2f2; 
+ 8 } 
+ 9
+10.pagelist { 
+11   font-size: 0; 
+12   background: #fff; 
+13   height: 50px; 
+14   line-height: 50px; 
+15 } 
+16  
+17 .pagelist span { 
+18   font-size: 14px; 
+19 } 
+20  
+21 .pagelist .jump { 
+22   border: 1px solid #ccc; 
+23   padding: 5px 8px; 
+24   -webkit-border-radius: 4px; 
+25   -moz-border-radius: 4px; 
+26   border-radius: 4px; 
+27   cursor: pointer; 
+28   margin-left: 5px; 
+29 } 
+30  
+31 .pagelist .bgprimary { 
+32   cursor: default; 
+33   color: #fff; 
+34   background: #337ab7; 
+35   border-color: #337ab7; 
+36 } 
+37  
+38 .jumpinp input { 
+39   width: 55px; 
+40   height: 26px; 
+41   font-size: 13px; 
+42   border: 1px solid #ccc; 
+43   -webkit-border-radius: 4px; 
+44   -moz-border-radius: 4px; 
+45   border-radius: 4px; 
+46   text-align: center; 
+47 } 
+48  
+49 .ellipsis { 
+50   padding: 0px 8px; 
+51 } 
+52  
+53 .jumppoint { 
+54   margin-left: 30px; 
+55 } 
+56  
+57 .pagelist .gobtn {} 
+58  
+59 .bgprimary { 
+60   cursor: default; 
+61   color: #fff; 
+62   background: #337ab7; 
+63   border-color: #337ab7; 
+64 }

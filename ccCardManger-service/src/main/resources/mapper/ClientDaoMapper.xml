@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zl.dao.ClientDao">
+	<select id="selectClientById" parameterType="int" resultType="client">
+		select id id,
+		client_id clientId, client_name clientName, client_sex
+		clientSex,
+		client_national clientNational,
+		client_idcard clientIDcard,
+		client_birthday clientBirthday, client_marriage
+		clientMarriage,
+		client_edu clientEdu, client_bank_creditPoint creditPoint,
+		client_password password,
+		client_question_id questionId, client_answer
+		clientAnswer, client_housing clientHousing, client_address
+		clientAddress, client_postalcode postalcode, client_email clientEmail,
+		client_phone clientPhone from cc_client where id=#{id}
+	</select>
+	<update id="updateClientInfo" parameterType="client">
+		update cc_client set
+		client_id=#{clientId},
+		client_name=#{clientName},
+		client_sex=#{clientSex},
+		client_national=#{clientNational},
+		client_idcard=#{clientIDcard},
+		client_birthday=#{clientBirthday}, client_marriage=#{clientMarriage},
+		client_edu=#{clientEdu},
+		client_question_id=#{questionId},
+		client_answer=#{clientAnswer}, client_housing=#{clientHousing},
+		client_address=#{clientAddress}, client_postalcode=#{postalcode},
+		client_email=#{clientEmail} where id=#{id}
+	</update>
+	
+	
+</mapper>

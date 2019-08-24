@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zl.dao.CreditCardDao">
+	<update id="updateCreditCardState" parameterType="creditCard">
+		update cc_client_card set card_state=#{cardState} where id=#{id}
+	</update>
+	
+	<update id="updateCreditCardPassword" parameterType="creditCard">
+		update cc_client_card set card_password=#{carPassword} where id=#{id}
+	</update>
+	
+	<update id="setCreditCardPassword" parameterType="creditCard">
+		update cc_client_card set card_password=#{carPassword} where id=#{id}
+	</update>
+
+	<select id="selectCreditCardById" resultType="creditCard" parameterType="int">
+		select id id, card_num cardNum, card_type_id cardType,
+		card_password carPassword, card_validity cardValidity,
+		card_security_code cardSecurityCode,
+		card_limit cardLimit,
+		card_short_limit cardShortLimit,
+		card_state cardState, card_binding
+		cardBinding,
+		card_bankcard_id repayCard, card_client_id client,
+		card_annual cardAnnual, card_balance cardBalance,
+		card_bill_day cardBillday, card_refund_day cardRefundDay,
+		card_point cardpoint, card_phone cardPhone
+		from cc_client_card where id=#{id}
+	</select>
+	
+	<select id="selectAllCreditCard" resultType="creditCard" parameterType="int">
+		select id id, card_num cardNum, card_type_id cardType,
+		card_password carPassword, card_validity cardValidity,
+		card_security_code cardSecurityCode,
+		card_limit cardLimit,
+		card_short_limit cardShortLimit,
+		card_state cardState, card_binding
+		cardBinding,
+		card_bankcard_id repayCard, card_client_id client,
+		card_annual cardAnnual, card_balance cardBalance,
+		card_bill_day cardBillday, card_refund_day cardRefundDay,
+		card_point cardpoint, card_phone cardPhone
+		from cc_client_card where card_client_id=#{id}
+	</select>
+	<select id="selectAllCardType" resultType="cardType">
+	 	select id id, card_name cardName from cc_card_Type
+	</select>
+</mapper>

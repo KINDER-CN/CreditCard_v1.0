@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zl.dao.gu.jiaoyilishiDao">
+	<select id="queryAllBillDetails" resultType="ClientBill">
+		select * from client_bill	
+	</select>
+	<select id="queryBillDetailsById" resultType="clientBillDetails" parameterType="String">
+		select * from client_bill_details where clientName=#{clientName}
+	</select>
+	<select id="queryBillDetailsByLike" resultType="ClientBill" parameterType="string">
+		select * from client_bill
+		<if test="clientIDcard!=null and clientIDcard!=''">
+		where clientIDcard like concat('%',concat(#{clientIDcard},'%'));
+		</if>
+	</select>
+</mapper>

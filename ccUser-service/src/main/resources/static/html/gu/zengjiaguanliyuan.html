@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../csss/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="../../csss/htmleaf-demo.css">
+		<link rel="stylesheet" href="../../csss/pages.css">
+		<link rel="stylesheet" type="text/css" href="../../csss/th_td.css">
+		<link rel="stylesheet" href="../../csss/input.css">
+	</head>
+	<body><center><br><br><br><br>
+	<div id="addM">
+		<form  @submit.prevent="submit" method="post"><p>
+		员工编号: <input class="inputText4" type="text" name="mangerId" v-model="manger.mangerId" ><p>
+		员工姓名: <input class="inputText4" type="text" name="mangerName" v-model="manger.mangerName" ><p>
+		登录密码: <input class="inputText4" type="text" name="mPassword" v-model="manger.mPassword" ><p>
+		练习电话: <input class="inputText4" type="text" name="mPhone" v-model="manger.mPhone" ><p>
+		员工角色: <input class="inputText4" type="text" name="role" v-model="manger.role" ><p>
+		        <input class="button blue" type="submit" value="登录">
+	</form></div>
+		<script type="text/javascript" src="../../jss/vuejs-2.5.16.js"></script>
+		<script type="text/javascript" src="../../jss/axios-0.18.0.js"></script>
+		<script type="text/javascript">
+		new Vue({
+			   el: '#addM',
+			   data: {
+				   manger:{
+					   id:"",
+					   mangerId:"",
+					   mangerName:"",
+					   mPassword:"",
+					   mPhone:"",
+					   role:""
+			    },
+			   }, 
+			   methods: {
+			    submit: function() {
+			     var _this=this;
+			       axios.post('http://10.1.12.66:8086/client/gu/insertManger',_this.manger)
+			       .then(function(response){
+		    	   _this.manger=response.data.manger
+		    	   if(_this.manger!=null){
+		    		   window.location.href='http://10.1.12.66:8086/client/html/gu/guanlirenyuan.html'
+			    	}else{
+			    		window.location.href='http://10.1.12.66:8086/client/html/gu/zengjiaguanliyuan.html'
+			    	}
+			       })
+			        .catch(function (error) {
+			                    console.log(error);
+			              })
+			    } 
+			   }
+			 })
+		</script> 
+		
+	</center></body>
+</html>

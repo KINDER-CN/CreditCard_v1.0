@@ -1,0 +1,48 @@
+server:
+  port: 8086
+#连接注册中心的配置
+eureka: 
+  client:
+    service-url: 
+      defaultZone: http://10.1.12.66:8081/eureka/
+#在服务器中的名称
+spring:
+  application:
+    name: zuul-service
+  #配置redis相关的连接信息
+  redis:
+    host: 10.1.12.66
+    port: 6379
+#路由转发
+zuul: 
+  sensitiveHeaders: #等后面为空即可防止请求经过Zuul的时候过滤cookie
+  routes:
+    user-service: /client/**
+    cardmanger-service: /cardmanger/**
+    trading-service: /trading/**
+    #禁止使用服务名称对服务进行访问
+  ignored-patterns: /*-service/**
+  ratelimit: 
+    key-prefix: pk #按粒度拆分的临时变量key前缀
+    enabled: true #启用开关
+    repository: REDIS #key存储，默认是IN_MEMORY本地内存，此外还有多种形式
+    behind-proxy: true #表示代理之后
+#网关的超时
+  host:
+    connect-timeout-millis: 10000 #HTTP连接超时要比Hystrix的大
+    socket-timeout-millis: 50000   #socket超时
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 5000
+#熔断器超时
+hystrix: 
+  command: 
+    default:
+      execution:
+        timeout: 
+          enabled: true
+        isolation: 
+          thread: 
+            timeoutInMilliseconds: 5000    
+#http://localhost:8085/product-service/queryAllProduct
+#http://localhost:8085/gateway/product/queryAllProduct

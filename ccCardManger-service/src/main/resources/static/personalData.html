@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>个人资料</title>
+<style>
+.container {
+	width: 800px;
+	margin: 0 auto;
+}
+
+.container .address {
+	margin: 20px 0;
+}
+
+.container .address select {
+	width: 150px;
+	height: 28px;
+	margin-right: 50px;
+}
+
+.container .address span {
+	margin-right: 10px;
+}
+</style>
+</head>
+
+<body>
+	<div id="div" style="background-color: lightyellow;">
+		<div align="center" id="container">
+			<table border=5 bordercolor=blue align=center width="800px ;">
+				<tr>
+					<td colspan="4" align="center"><b>个人资料</b></td>
+				</tr>
+				<tr>
+					<td height="20px" colspan="4" bgcolor="darkorange"><b>基本信息</b></td>
+				</tr>
+				<tr>
+					<td>姓名：</td>
+					<td id="clientName"></td>
+					<td>性别：</td>
+					<td id="clientSex"></td>
+				</tr>
+				<tr>
+					<td>教育程度：</td>
+					<td id="clientEdu"></td>
+					<td>民族：</td>
+					<td id="clientNational"></td>
+
+				</tr>
+				<tr>
+					<td>E-mail账单地址：</td>
+					<td id="clientEmail"></td>
+					<td>身份证：</td>
+					<td id="clientIDcard"></td>
+
+				</tr>
+				<tr>
+					<td>出生日期：</td>
+					<td id="clientBirthday"></td>
+					<td>移动电话：</td>
+					<td id="clientPhone"></td>
+
+				</tr>
+		
+				<tr>
+					<td>婚姻状况：</td>
+					<td id="clientMarriage"></td>
+					<td>邮政编码：</td>
+					<td id="postalcode"></td>
+				</tr>
+				<tr>
+					<td colspan="1">住宅状况：</td>
+					<td colspan="3" id="clientHousing"></td>
+				</tr>
+				<tr>
+					<td colspan="1">现住宅地址：</td>
+					<td colspan="3" id="clientAddress"></td>
+				</tr>
+				<tr>
+					<td colspan="1">安全问题：</td>
+					<td colspan="3" id="questionId"></td>
+				</tr>
+				<tr>
+					<td colspan="1">安全问题答案：</td>
+					<td colspan="3" id="clientAnswer"></td>
+				</tr>
+
+				<tr>
+					<td height="20px" colspan="4" bgcolor="darkorange"><b>个人单位信息</b></td>
+				</tr>
+				<tr>
+					<td colspan="1"><b>单位名称</b></td>
+					<td colspan="3" id="companyName"></td>
+				</tr>
+				<tr>
+					<td colspan="1">单位性质：</td>
+					<td colspan="3" id="companyNature"></td>
+				</tr>
+				<tr>
+					<td colspan="1">单位电话：</td>
+					<td colspan="3" id="companyPhone"></td>
+				</tr>
+				<tr>
+					<td colspan="1">发展行业：</td>
+					<td colspan="3" id="companyIndustry"></td>
+				</tr>
+				<tr>
+					<td colspan="1">单位地址：</td>
+					<td colspan="3" id="companyAddress"></td>
+				</tr>
+				<tr>
+					<td colspan="1">担任职务：</td>
+					<td colspan="3" id="companyJob"></td>
+				</tr>
+				<tr>
+					<td colspan="1">从事实业：</td>
+					<td colspan="3" id="annualIncome"></td>
+				</tr>
+				<tr>
+					<td colspan="1">公司邮编：</td>
+					<td colspan="3" id="companyPostalcode"></td>
+				</tr>
+				<tr>
+					<td height="20px" colspan="4" bgcolor="darkorange"><b>联系人信息</b></td>
+				</tr>
+
+				<tr>
+					<td colspan="1"><b>联系人姓名</b></td>
+					<td colspan="3" id="linkName"></td>
+				</tr>
+				<tr>
+					<td colspan="1">联系人电话：</td>
+					<td colspan="3" id="linkPhone"></td>
+				</tr>
+				<tr>
+					<td colspan="1">与主卡申请人的关系：</td>
+					<td colspan="3" id="linkRelation"></td>
+				</tr>
+				<tr>
+					<td colspan="1">联系人地址：</td>
+					<td colspan="3" id="linkAddress"></td>
+				</tr>
+			
+			</table>
+			<p align="center">
+				<input type="button" id="goBack" value="点击返回">
+			</p>
+
+		</div>
+
+	</div>
+	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="js/global.js"></script>
+	<script type="text/javascript" src="js/jquery.accordion.js"></script>
+	<script type="text/javascript" src="js/select.js"></script>
+	<script type="text/javascript">
+		/* 解析url带过来的数据 */
+		function GetQueryString(name) {
+			//alert(name);
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+			//alert(reg);
+			var r = window.location.search.substr(1).match(reg);
+			//alert(r);
+			if (r != null)
+				return unescape(r[2]);
+
+			return null;
+		}
+
+		/* 	方法执行 */
+		$(function() {
+			var name = GetQueryString("id");
+			/* 	alert(name); */
+			$.ajax({
+				url : "http://10.1.12.66:8086/cardmanger/mo/queryClientCompanyLinkmanById",
+				type : "get",
+				data : {
+					"id" : name
+				},
+				dataType : "json",
+				success : function(data) {
+					/* 	alert(name); */
+					queryClientCompanyLinkmanById(data);
+				}
+			});
+
+		})
+
+		function queryClientCompanyLinkmanById(data) {
+			/* 	alert(data.client); */
+			$(function() {
+				/* 个人资料 */
+				var clientName = data.client.clientName;
+				$("#clientName").append(clientName);
+				var clientSex = data.client.clientSex;
+				$("#clientSex").append(clientSex);
+				var clientNational = data.client.clientNational;
+				$("#clientNational").append(clientNational);
+				var clientIDcard = data.client.clientIDcard;
+				$("#clientIDcard").append(clientIDcard);
+				var clientBirthday = data.client.clientBirthday;
+				$("#clientBirthday").append(clientBirthday);
+				var clientMarriage = data.client.clientMarriage;
+				$("#clientMarriage").append(clientMarriage);
+				var clientEdu = data.client.clientEdu;
+				$("#clientEdu").append(clientEdu);
+				var questionId = data.client.questionId;
+				$("#questionId").append(questionId);
+				var clientAnswer = data.client.clientAnswer;
+				$("#clientAnswer").append(clientAnswer);
+				var clientHousing = data.client.clientHousing;
+				$("#clientHousing").append(clientHousing);
+				var clientAddress = data.client.clientAddress;
+				$("#clientAddress").append(clientAddress);
+				var postalcode = data.client.postalcode;
+				$("#postalcode").append(postalcode);
+				var clientEmail = data.client.clientEmail;
+				$("#clientEmail").append(clientEmail);
+				var clientPhone = data.client.clientPhone;
+				$("#clientPhone").append(clientPhone);
+
+				/* 客户单位信息 */
+				var companyName = data.company.companyName;
+				$("#companyName").append(companyName);
+				var companyNature = data.company.companyNature;
+				$("#companyNature").append(companyNature);
+				var companyPhone = data.company.companyPhone;
+				$("#companyPhone").append(companyPhone);
+				var companyIndustry = data.company.companyIndustry;
+				$("#companyIndustry").append(companyIndustry);
+				var companyAddress = data.company.companyAddress;
+				$("#companyAddress").append(companyAddress);
+				var companyJob = data.company.companyJob;
+				$("#companyJob").append(companyJob);
+				var annualIncome = data.company.annualIncome;
+				$("#annualIncome").append(annualIncome);
+				var companyPostalcode = data.company.companyPostalcode;
+				$("#companyPostalcode").append(companyPostalcode);
+
+				/* 联系人信息 */
+				var linkName = data.linkman.linkName;
+				$("#linkName").append(linkName);
+				var linkPhone = data.linkman.linkPhone;
+				$("#linkPhone").append(linkPhone);
+				var linkAddress = data.linkman.linkAddress;
+				$("#linkAddress").append(linkAddress);
+				var linkRelation = data.linkman.linkRelation;
+				$("#linkRelation").append(linkRelation);
+			});
+		};
+
+		/* 	点击返回 */
+		$(function() {
+			$("#goBack")
+					.click(
+							function() {
+								var name = GetQueryString("id");
+								/* 	alert(name); */
+								$
+										.ajax({
+											/* 	url : "mo/updatePlanStaterefuse",
+												type : "get",
+												data : {
+													"id" : name
+												},
+												dataType : "json", */
+											success : function() {
+												/* 	alert("登录成功"); */
+												location.href = "http://10.1.12.66:8086/cardmanger/dynamicState.html?id="
+														+ name;
+											}
+										});
+
+							})
+
+		})
+	</script>
+</body>
+
+</html>

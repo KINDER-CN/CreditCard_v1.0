@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zl.dao.clientdao.BillClientDao">
+<!--根据账单概括id查询账单（已出/未出） --><!-- public List<BillDetails> queryBillDetailsBybillId(int billId);-->
+	<select id="queryBillDetailsBybillId" resultType="billDetails" parameterType="int">
+		select id id,transaction_des transactionDes,transaction_type
+		transactionType,transaction_monry transactionMoney,transaction_time
+		transactionTime,transaction_coin transactionCoin,transaction_pay_time
+		payTime,bill_id billId,card_id creditCard,aging_id agingId
+		from cc_bill_details where bill_id=#{billId} and card_id=#{creditCard}
+	</select>
+	<!--根据账单编号和卡号查询账单概况表 --><!-- public List<Bill> queryBillByCardIdAndDate(Bill bill); -->
+	<select id="queryBillByCardIdAndDate" resultType="bill" parameterType="bill">
+		select id id,bill_num billNum,bill_card_id creditCard,bill_money
+		billMoney,bill_hasPay hasPay,bill_srepay_date
+		srepayDate,bill_repay_date repayDate,bill_creat_date
+		billDate,bill_state billState, bill_client_id client
+		from cc_bill where bill_num=#{billNum} and bill_card_id=#{creditCard}
+	</select>
+	<!--根据账单详情表生成账单概括表 --><!-- public int addBillByBillDetails(Bill bill); -->
+	<insert id="addBillByBillDetails"  parameterType="bill">
+		insert into cc_bill
+		(id,bill_num,bill_card_id,bill_money,bill_hasPay,bill_srepay_date,bill_repay_date,bill_creat_date,bill_state,bill_client_id)
+		values(#{id},#{billNum},#{creditCard},#{billMoney},#{hasPay},#{srepayDate},#{repayDate},#{billDate},#{billState},#{client})
+	</insert>
+</mapper>

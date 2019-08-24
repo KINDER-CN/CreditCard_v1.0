@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zl.dao.ClientCompanyDao">
+	<insert id="insertClientCompanyInfo" parameterType="clientCompany">
+		insert into
+		cc_client_company (company_Name, company_nature, company_phone,
+		company_industry,
+		company_address, company_job, company_annual_income,
+		company_postalcode)
+		values
+		(#{companyName},
+		#{companyNature}, #{companyPhone},
+		#{companyIndustry},
+		#{companyAddress},
+		#{companyJob}, #{annualIncome},
+		#{companyPostalcode})
+	</insert>
+</mapper>

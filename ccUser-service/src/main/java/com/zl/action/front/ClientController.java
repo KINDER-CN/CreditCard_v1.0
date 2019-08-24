@@ -167,7 +167,7 @@ public class ClientController {
 				        }
 					 clientCards.get(i).setCardNum(stringBuilder.toString());
 			}
-				}
+		}
 			result.put("clientName", client.getClientName());
 			result.put("cards", clientCards);
 			result.put("flag", true);

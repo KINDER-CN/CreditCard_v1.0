@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../csss/license.css">
+	</head>
+	<body>
+			<div id="right">
+				<div id="right_top">
+					<h1 class="right_top">欢迎登陆</h1>
+				</div>
+				<div id="right_bottom">
+					<div class="right_bottom_top">
+						温馨提示,您上次的登录时间为+date,请确认上次操作为本人操作
+					</div>
+					<div class="right_bottom_bottom">
+						
+					</div>
+				</div>
+			</div>
+			<div id="left">
+					<div id="inside">
+						<center>
+						<div id="one" class="inside_all">
+						<table>
+							<tr v-for="operateLog in operateLogs">
+							<td>{{operateLog.operateTime}}{{operateLog.operateUser}}{{operateLog.operateLog}}{{operateLog.operateObj}}</td>
+							</tr>
+						</table>
+							
+						</div>
+						</center>
+					</div>
+			</div>
+			<script type="text/javascript" src="../jss/vuejs-2.5.16.js"></script>
+	<script type="text/javascript" src="../jss/axios-0.18.0.js"></script>
+	<!-- <script type="text/javascript" src="../../js/main.js"></script> -->
+	<script type="text/javascript">
+	new Vue({
+		   el:"#one",
+		   data:{
+			   operateLogs:[
+		     {
+		      id:'',
+		      operateNum:'',
+		      operateTime:'',
+		      operateUser:'',
+		      operateLog:'',
+		      operateObj:''
+		     }
+		    ]
+		   },
+		   methods:{
+			   queryAllOperateLog:function(){
+		     var _this=this;
+		     axios.get("http://localhost:8082/gu/queryAllOperateLog")
+		     .then(function(response){
+		      _this.operateLogs=response.data.operateLogs;
+		      console.log(response);
+		     })
+		    }
+		   },
+		   created:function(){
+		    this.queryAllOperateLog();
+		   },
+		 })
+	</script>
+	</body>
+</html>

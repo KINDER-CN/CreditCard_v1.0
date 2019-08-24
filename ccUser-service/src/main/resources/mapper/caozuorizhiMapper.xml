@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zl.dao.gu.caozuorizhiDao">
+	<select id="queryAllOperateLog" resultType="operateLog">
+	select id id,operate_num operateNum,operate_time operateTime,operate_user operateUser,operate_log operateLog,operate_object operateObj from cc_operate_log order by id desc limit 5;
+	</select>
+	<insert id="insertOperateLog">
+	INSERT INTO cc_operate_log(operate_num,operate_time,operate_user,operate_log,operate_object) VALUES(#{operateNum},#{operateTime},#{operateUser},#{operateLog},#{operateObj});
+	</insert>
+</mapper>

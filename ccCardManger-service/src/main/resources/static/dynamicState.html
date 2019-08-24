@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+body {
+	background-color: lightyellow;
+}
+
+#i {
+	margin-top: 100px;
+}
+</style>
+</head>
+
+<body>
+
+	<div id="div">
+		<div align="center" id="container">
+
+			<div id="i" align="center">
+				<table border=5px bordercolor=blue align=center width="800px">
+					<tr>
+						<td colspan="4 " align="center"><b
+							style="font-size: 30px; color: orange;">动态管理</b></td>
+					</tr>
+					<tr>
+						<td>请先修改进程再进行其它操作：</td>
+						<td colspan="3 "><input type="button" id="updatePlanState"
+							value="点击修改用户进度为审核中"></td>
+					</tr>
+					<tr>
+						<td>进度：</td>
+						<td colspan="3" id="applyState" style="color: red"></td>
+					</tr>
+					<tr>
+						<td>用户id：</td>
+						<td colspan="3" id="client"></td>
+					</tr>
+					<tr>
+						<td>用户姓名：</td>
+						<td colspan="3" id="clientName"></td>
+					</tr>
+					<tr>
+						<td>申请编号：</td>
+						<td colspan="3" id="applyNum"></td>
+					</tr>
+					<tr>
+						<td>申请卡种：</td>
+						<td colspan="3 " id="cardType"></td>
+					</tr>
+					<tr>
+						<td>申请时间：</td>
+						<td colspan="3" id="applyTime"></td>
+					</tr>
+					<tr>
+						<td>申请身份证号：</td>
+						<td colspan="3 " id="applyIDcard"></td>
+					</tr>
+					<tr>
+						<td>用户信用分：</td>
+						<td colspan="3" id="creditPoint"></td>
+					</tr>
+					<tr>
+						<td>核实状况：</td>
+						<td colspan="3 " id="checkState" style="color: red"></td>
+					</tr>
+					<tr>
+						<td>用户资料：</td>
+						<td colspan="3 "><input type="button"
+							id="queryClientCompanyLinkmanById" value="点击查看个人资料信息"></td>
+					</tr>
+					<tr>
+						<td>修改核实状况：</td>
+						<td colspan="3 "><input type="button" id="updateCheckState"
+							value="点击核实"></td>
+					</tr>
+					<tr>
+						<td>拒绝申请：</td>
+						<td colspan="3 "><input type="button"
+							id="updatePlanStaterefuse" value="点击拒绝" style="color: red"></td>
+					</tr>
+					<tr>
+						<td>确认无误：</td>
+						<td colspan="3 "><input type="button" id="addCreditCard"
+							value="点击制作信用卡和修改进度" style="color: blue"></td>
+					</tr>
+				</table>
+				<p align="center">
+					<input type="button" id="gongHome" value="点击返回">
+				</p>
+			</div>
+
+
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="js/global.js"></script>
+	<script type="text/javascript" src="js/jquery.accordion.js"></script>
+	<script type="text/javascript" src="js/select.js"></script>
+	<script type="text/javascript">
+		/* 	点击修改进度表和详情表进度 */
+		$(function() {
+			$("#updatePlanState")
+					.click(
+							function() {
+								var name = GetQueryString("id");
+								/* 	alert(name); */
+								$
+										.ajax({
+											url : "http://10.1.12.66:8086/cardmanger/mo/updatePlanState",
+											type : "get",
+											data : {
+												"id" : name
+											},
+											dataType : "json",
+											success : function() {
+												location.href = "http://10.1.12.66:8086/cardmanger/dynamicState.html?id="
+														+ name;
+											}
+										});
+
+							})
+
+		})
+
+		$(function() {
+			$("#gongHome").click(function() {
+				/* 	var name = GetQueryString("id"); */
+				/* 	alert(name); */
+				$.ajax({
+
+					success : function() {
+						location.href = "http://10.1.12.66:8086/cardmanger/ApplicationDetails.html";
+					}
+				});
+
+			})
+
+		})
+		$(function() {
+			$("#addCreditCard")
+					.click(
+							function() {
+								var name = GetQueryString("id");
+								/* 	alert(name); */
+								$
+										.ajax({
+
+											success : function() {
+												location.href = "http://10.1.12.66:8086/cardmanger/CreditCard.html?id="
+														+ name;
+											}
+										});
+
+							})
+
+		})
+
+		/* 	点击查看个人信息 */
+		$(function() {
+			$("#queryClientCompanyLinkmanById")
+					.click(
+							function() {
+								var name = GetQueryString("id");
+								/* 	alert(name); */
+								$
+										.ajax({
+											
+											success : function() {
+
+												location.href = "http://10.1.12.66:8086/cardmanger/personalData.html?id="
+														+ name;
+											}
+										});
+
+							})
+
+		})
+
+		/* 	点击修改进度表和详情表进度为拒绝  */
+		$(function() {
+			$("#updatePlanStaterefuse")
+					.click(
+							function() {
+								var name = GetQueryString("id");
+								/* 	alert(name); */
+								$
+										.ajax({
+											url : "http://10.1.12.66:8086/cardmanger/mo/updatePlanStaterefuse",
+											type : "get",
+											data : {
+												"id" : name
+											},
+											dataType : "json",
+											success : function() {
+												/* 	alert("登录成功"); */
+												location.href = "http://10.1.12.66:8086/cardmanger/dynamicState.html?id="
+														+ name;
+											}
+										});
+
+							})
+
+		})
+
+		/* 	点击修改详情表为核实 */
+		$(function() {
+			$("#updateCheckState")
+					.click(
+							function() {
+								var name = GetQueryString("id");
+								/* 	alert(name); */
+								$
+										.ajax({
+											url : "http://10.1.12.66:8086/cardmanger/mo/updateCheckState",
+											type : "get",
+											data : {
+												"id" : name
+											},
+											dataType : "json",
+											success : function() {
+												/* 	alert("登录成功"); */
+												location.href = "http://10.1.12.66:8086/cardmanger/dynamicState.html?id="
+														+ name;
+											}
+										});
+
+							})
+
+		})
+
+		/* 解析url带过来的数据 */
+		function GetQueryString(name) {
+			//alert(name);
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+			//alert(reg);
+			var r = window.location.search.substr(1).match(reg);
+			//alert(r);
+			if (r != null)
+				return unescape(r[2]);
+
+			return null;
+		}
+		/* 	方法执行 */
+		$(function() {
+			var name = GetQueryString("id");
+			/* 	alert(name); */
+			$.ajax({
+				url : "mo/queryClientApplyCardById",
+				type : "get",
+				data : {
+					"id" : name
+				},
+				dataType : "json",
+				success : function(data) {
+					/*alert(name); */
+					applyCard(data);
+				}
+			});
+
+		})
+
+		function applyCard(data) {
+			/* 		alert(data.applyCard.applyTime); */
+			$(function() {
+				var client = data.applyCard.client;
+				$("#client").append(client);
+				var applyNum = data.applyCard.applyNum;
+				$("#applyNum").append(applyNum);
+				var cardType = data.applyCard.cardType;
+				$("#cardType").append(cardType);
+				var applyTime = data.applyCard.applyTime;
+				$("#applyTime").append(applyTime);
+				var applyIDcard = data.applyCard.applyIDcard;
+				$("#applyIDcard").append(applyIDcard);
+				var creditPoint = data.applyCard.creditPoint;
+				$("#creditPoint").append(creditPoint);
+				var checkState = data.applyCard.checkState;
+				$("#checkState").append(checkState);
+				var applyState = data.applyCard.applyState;
+				$("#applyState").append(applyState);
+				var clientName = data.clientName;
+				$("#clientName").append(clientName);
+
+			});
+		};
+	</script>
+
+</body>
+
+</html>

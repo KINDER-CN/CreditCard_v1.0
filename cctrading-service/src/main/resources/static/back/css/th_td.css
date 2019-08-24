@@ -1,0 +1,33 @@
+table.hovertable {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:white;
+}
+table.hovertable th {
+	background-color:#000000;
+	padding: 8px;
+}
+table.hovertable tr {
+	background-color:122B40;
+}
+table.hovertable td {
+	padding: 8px;
+}
+th{
+	width: 150px;
+	height: 40px;
+}
+td{
+	width: 150px;
+	height: 40px;
+}
+body{
+	background-color:#FFFAE8;
+}
+button{
+	background-color: #000000;
+	color: white;
+}
+a{
+	color: white;
+}

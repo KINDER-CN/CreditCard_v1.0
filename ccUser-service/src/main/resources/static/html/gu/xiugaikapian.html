@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../csss/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="../../csss/htmleaf-demo.css">
+		<link rel="stylesheet" href="../../csss/pages.css">
+		<link rel="stylesheet" type="text/css" href="../../csss/th_td.css">
+		<link rel="stylesheet" href="../../csss/input.css">
+		<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+		<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+		<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+	<body><center>
+	<div id="updateCard"><br><br><br><br><p>
+		卡片序号 :<input  class="inputText4" type="text" name="cardNum" v-model="cardType.cardNum" ><p>
+		卡片类型 :<input class="inputText4" type="text" name="ctype" v-model="cardType.ctype" ><p>
+		卡片图形 :	<img  v-bind:src="cardType.cardPic" width="400px" height="200px" ><p>
+		 <input  class="inputText4" type="file"  accept=".png,.jpg"  v-on:change="handleFileChange($event)"><p>
+		卡片年费 : <input class="inputText4" type="text" name="cardannual" v-model="cardType.cardannual" ><p>
+		卡片优惠1: <input class="inputText4" type="text" name="anntationa1" v-model="cardType.anntationa1" ><p>
+		卡片优惠2: <input class="inputText4" type="text" name="anntationa2" v-model="cardType.anntationa2" ><p>
+		卡片优惠3: <input class="inputText4" type="text" name="anntationa3" v-model="cardType.anntationa3" ><p>
+		卡片优惠4: <input class="inputText4" type="text" name="anntationa4" v-model="cardType.anntationa4" ><p>
+		卡片活动1: <input class="inputText4" type="text" name="activity1" v-model="cardType.activity1" ><p>
+		卡片活动2: <input class="inputText4" type="text" name="activity2" v-model="cardType.activity2" ><p>
+		        <br><input type="button" class="button blue" value="修改" @click="tijiao">
+	</div>
+	<script type="text/javascript" src="../../jss/vuejs-2.5.16.js"></script>
+	<script type="text/javascript" src="../../jss/axios-0.18.0.js"></script>
+	<script type="text/javascript">
+	new Vue({
+		   el:"#updateCard",
+		   data:{
+			   cardType:
+			   {
+				  id:'',
+				  cardNum:'',
+				  ctype:'',
+				  cardPic:'',
+				  cardName:'',
+				  cardannual:'',
+				  anntationa1:'',
+				  anntationa2:'',
+				  anntationa3:'',
+				  anntationa4:'',
+				  activity1:'',
+				  activity2:''
+		     }
+		   },
+		   methods:{
+			 queryCardTypeById:function(){
+		     var _this=this;
+		     var  id= GetQueryString("id")
+		     axios.get("http://10.1.12.66:8086/client/gu/queryCardTypeById",{params:{id:id}})
+		     .then(function(response){
+		      _this.cardType=response.data.cardType;
+		      console.log(_this.cardType);
+		     })
+		    },
+		    tijiao:function (){	
+	    		 	let that = this;
+					let formData = new FormData();
+					formData.append("cardNum",that.cardType.cardNam);
+					formData.append("ctype",that.cardType.ctype);
+					formData.append("cardPic", that.cardType.cardPic);
+					formData.append("cardName", that.cardType.cardName);
+					formData.append("cardannual", that.cardType.cardannual);
+					formData.append("anntationa1", that.cardType.anntationa1);
+					formData.append("anntationa2", that.cardType.anntationa2);
+					formData.append("anntationa3", that.cardType.anntationa3);
+					formData.append("anntationa4", that.cardType.anntationa4);
+					formData.append("activity1", that.cardType.activity1);
+					formData.append("activity2", that.cardType.activity2);
+					axios.post('http://10.1.12.66:8086/client/gu/updateCardType',that.cardType)
+					.then(function(res){
+						alert("请等待");
+						window.location.href='http://10.1.12.66:8086/client/html/gu/kapianzhonglei.html';
+					});
+				},
+	    	imgPreview (file) {
+	           let self = this;
+	                // 看支持不支持FileReader
+	             if (!file || !window.FileReader) return;
+	            
+	              if (/^image/.test(file.type)) {
+	                   // 创建一个reader
+	               
+	                 let reader = new FileReader();
+	                   // 将图片将转成 base64 格式
+	                        reader.readAsDataURL(file);
+	                       // 读取成功后的回调
+	                        reader.onloadend = function () {
+	                            self.cardType.cardPic = this.result;
+	                        }
+	                        
+	                    }
+	        }  ,
+	   	 handleFileChange (e) {
+	        		            this.file = e.target.files[0];
+	            // 在获取到文件对象进行预览就行了！
+	            this.imgPreview(this.file);
+	        },
+		   },
+		   
+		   created:function(){
+		    this.queryCardTypeById();
+		   },
+		 })
+		 function GetQueryString(name){
+		     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		     var r = window.location.search.substr(1).match(reg);
+		     if(r!=null)return  unescape(r[2]); return null;
+		 }
+	</script>
+	</center></body>
+</html>

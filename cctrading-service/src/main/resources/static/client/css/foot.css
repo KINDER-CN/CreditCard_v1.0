@@ -1,0 +1,49 @@
+@charset "utf-8";
+.footer_wrap { height:130px; border-top:solid 1px #ddd; background-color:#fff; }
+html[xmlns] .clearfix{display: block;}/* End hide from IE Mac */
+.footer { width:980px; margin:0 auto; }
+.clearfix:before, .clearfix:after { display:table; content:""; line-height:0 }
+.clearfix:after {content: ".";display:block;clear:both;visibility:hidden;line-height: 0;height: 0;}
+.footer .left_con { width:590px; float:left; padding:22px 0 0 0; }
+.footer .link_area { font-size:14px; color:#d4d4d4; }
+.footer .p_right { line-height:30px; color:#999; }
+.footer .foot_link { margin-left: -12px; }
+.footer .foot_link li { float: left; border-right: 1px solid #ccc; position: relative; }
+.footer .foot_link li a { padding: 0 12px; display: block; position: relative; z-index: 999; border-bottom: 1px solid #fbfbfb; }
+.footer .link_area a { font-size:14px; color:#999; text-decoration:none; }
+.footer .right_con { width:380px; float:right; padding-top:28px; }
+.footer .service_tel0 { float:left; height:44px; padding-right:30px; text-align:right; border-right:solid 1px #d6d6d6; }
+.footer .ol_service { display:block; width:50px; height:16px; line-height:16px; font-size:12px; text-decoration:none; color:#666; padding:0px 0 0 25px; float:right;  }/*padding:28px 0 0 25px;*/
+.footer .service_tel0 .p1 { line-height:18px; color:#666; font-size:12px; }
+.footer .service_tel0 .p2 { line-height:22px; margin-top:4px; font-size:16px; color:#666; }
+.footer .service_tel1{margin-left: 10px;float: left;}
+.footer .service_tel1 .p1 { line-height:18px; color:#666; font-size:12px; }
+.footer .service_tel1 .p2 { line-height:22px; margin-top:4px; font-size:16px; color:#666; }
+/*.c { clear:both; }*/
+.footer .foot_open_box { position:absolute; width: 220px; height: auto; border:1px solid #ccc; background:#fff; padding:12px 12px 0; bottom:20px; left:-1px; z-index: 998; display:none; }/*height: 100px; */
+.footer .foot_open_box dl dd { color: #333; font-size: 12px; float: left; margin: 0 0 12px 0; }
+.footer .foot_open_box dl dd a { font-size: 12px; border: none; }
+.footer .foot_link li a { padding: 0 12px; display: block; position: relative; z-index: 999; border-bottom: 1px solid #fbfbfb; }
+.footer .foot_link li a.active { background: #fff; border-color: #ccc; }
+.footer .more_ico { background:url(../../images/icons.png) no-repeat; background-position:-37px -276px; width: 8px; height: 16px; vertical-align: middle; display: inline-block; margin-left: 4px; }
+
+.footer_link_wrap { height:85px; padding-top:50px; background-color:#fff; }
+.footer_link { width:980px; height:85px; margin:0 auto; }
+.footer_link ul li { float:left; width:50px; height:50px; padding:20px 24px 15px 22px;_padding:20px 15px 15px 15px; position:relative;}
+.footer_link ul li a { display:block; }
+.footer_link ul li .wx_icon, .footer_link ul li .zfb_icon, .footer_link ul li .qq_icon, .footer_link ul li .sina_icon, .footer_link ul li .qqzone_icon {display:block; width:62px;height:60px; margin:0 auto;}
+.footer_link ul li .span_txt { display:block; height:20px; text-align:center; }
+.footer_link ul li .code_pop { width:130px; height:130px; padding:3px; position:absolute; left:70px; top:-80px; z-index:9999; border:solid 2px #c7c7c7; background-color:#fff;}
+
+/*动卡APP*/
+.dkkj_app{ width:100%; position:fixed; margin:-38px 0 0 0; font-family:"Microsoft Yahei"; font-size:15px; z-index: 1000;left:0px; bottom: 0px; _position: absolute; z-index:9000; _bottom:auto;
+_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)));
+}
+.dkkj_app_con{position:fixed;left:0px;bottom:0px; width:100%; height:220px;}
+.dkkj_app_open{position:fixed;left:0px;bottom:20px; width:100px; height:155px;  background:url(../../images/footFloatDiv/dkkj_app_open.png) no-repeat; cursor:pointer;_position: absolute;}
+
+.dkkj_app_pop{ width:100%; height:130px; position:fixed;bottom:0px; background:url(../2017_images/dkkj_app_pop_bg.png) repeat-x; z-index:9999;}
+.dkkj_app_pop_box{width:940px;height:170px;z-index:10000;position:absolute;left:50%;margin-left:-490px;bottom:0px;}
+.dkkj_app_pop_box .app_pop_box_pic{position:absolute;width:940px;height:170px;}
+.dkkj_app_pop .app_pop_close{ width:40px; height:40px; display:block; cursor:pointer; position:absolute; right:50%;margin-right:-490px; top:0px;background:url(../2017_images/app_pop_close.png) no-repeat;z-index:99999;}
+

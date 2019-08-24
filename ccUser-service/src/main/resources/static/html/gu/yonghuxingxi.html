@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../csss/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="../../csss/htmleaf-demo.css">
+		<link rel="stylesheet" href="../../csss/pages.css">
+		<link rel="stylesheet" type="text/css" href="../../csss/th_td.css">
+		<link rel="stylesheet" href="../../csss/input.css">
+	</head>
+	<body>
+<!-- Table goes in the document BODY -->
+<center>
+	<br /><br /><br /><br /><br /><br />
+	<div id="queryOp">
+	<div>
+		<input class="inputText4"  type="text" name="clientName" v-model="clientName" placeholder="客户姓名" />&nbsp;&nbsp;&nbsp;
+		<a @click="submit()"><button class="button blue">搜索</button></a><br /><br />
+	</div>
+	<table class="hovertable" >
+		<tr>
+			<th>序号</th>
+			<th>用户姓名</th>
+			<th>身份证号</th>
+			<th>卡号(电话)</th>
+			<th>详情</th>
+		</tr>
+		<tr v-for="client in clients" onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+			<td>{{client.id}}</td>
+			<td>{{client.clientName}}</td>
+			<td>{{client.clientIDcard}}</td>
+			<td>{{client.clientPhone}}</td>
+			<td><a :href="'yonghuxiangxi.html?id='+client.id"  target="page"><button style="background-color: black;color: white;">详情</button></a></td>
+		</tr>
+	</table>
+	</div>
+</center>
+	<script type="text/javascript" src="../../jss/vuejs-2.5.16.js"></script>
+	<script type="text/javascript" src="../../jss/axios-0.18.0.js"></script>
+	<script type="text/javascript" src="../../jss/jquery-3.4.1.min.js"></script>
+	<!-- <script type="text/javascript" src="../../js/main.js"></script> -->
+	 <script type="text/javascript">
+	 new Vue({
+		   el:"#queryOp",
+		   data:{
+			 client:
+		     {
+		      id:'',
+		      clientName:'',
+		      clientIDcard:'',
+		      clientPhone:''
+		     },
+		    clientName:'',
+		    clients:[],
+		   },
+		   methods:{
+			   submit: function() {
+				     var _this=this;
+				       axios.get('http://10.1.12.66:8086/client/gu/queryClientByLike',{params:{clientName:_this.clientName}})
+				       .then(function(response){
+				     _this.clients=response.data.clients;
+				     		console.log(_this.clients);
+			       })
+				        .catch(function (error) {
+				                    console.log(error);
+				              })
+				    } 
+		   },
+		   created:function(){
+		    this.submit();
+		   },
+		 })
+	 function GetQueryString(name){
+	     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+	     var r = window.location.search.substr(1).match(reg);
+	     if(r!=null)return  unescape(r[2]); return null;
+	 }
+	 </script>
+	</body>
+	
+</html>

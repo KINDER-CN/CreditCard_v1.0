@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>销卡页面</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="/css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="/css/htmleaf-demo.css">
+<link rel="stylesheet" href="/css/pages.css">
+<link rel="stylesheet" type="text/css" href="/css/th_td.css">
+<style type="text/css">
+body {
+	background-color: white;
+}
+
+#a {
+	align: center;
+}
+</style>
+</head>
+
+<body>
+	<div>
+		<div>
+			<h1></h1>
+
+		</div>
+
+		<div>
+			<div id="a" align="center">
+				<input class="tl-price-input" type="text" id="clientName"
+					placeholder="请输入姓名"> &nbsp;&nbsp;<input
+					class="tl-price-input" type="text" id="clientIdcard"
+					placeholder="请输入身份证"> &nbsp;&nbsp; <input
+					class="tl-price-input" type="text" id="cardNum" placeholder="请输入卡号">
+				&nbsp;&nbsp;
+				<button class="ant-btn ant-btn-red" id="search">搜索</button>
+			</div>
+			<div align="center">
+				<P>
+				<P>
+				<P>
+				<P>
+				<table class="hovertable">
+					<tr>
+						<th>卡号</th>
+						<th>卡种</th>
+						<th>状态</th>
+						<th>出账日</th>
+						<th>还款日</th>
+						<th>手机号</th>
+						<th>积分</th>
+						<th>操作</th>
+					</tr>
+					<tbody id="ns">
+						<tr></tr>
+
+					</tbody>
+
+				</table>
+				<div align="center">
+					<p>
+						<button id="up">上一页</button>
+						<span id="dqym"></span>
+						<button id="down">下一页</button>
+						<span id="zym"></span>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="js/global.js"></script>
+	<script type="text/javascript" src="js/jquery.accordion.js"></script>
+	<script type="text/javascript" src="js/select.js"></script>
+
+	<script type="text/javascript">
+		$(function() {
+			$.ajax({
+				url : "http://10.1.12.66:8086/cardmanger/mo/queryAllCreditCard",
+				type : "get",
+				dataType : "json",
+				success : function(data) {
+					//console.log(data)
+					selectAllCreditCard(data);
+				}
+			});
+		})
+		function selectAllCreditCard(data) {
+			$("#dqym").val(data.pagingCreditCard.page).html(
+					"当前第" + data.pagingCreditCard.page + "页");
+			$("#zym").val(data.pagingCreditCard.pageCount).html(
+					"共" + data.pagingCreditCard.pageCount + "页");
+			$("#ns tr:gt(0)").remove();
+			$(data.creditCard).each(
+					function() {
+						var b = "<tr>" + "<td>" + this.cardNum + "</td>"
+								+ "<td>" + this.cardType + "</td>" + "<td>"
+								+ this.cardState + "</td>" + "<td>"
+								+ this.cardBillday + "</td>" + "<td>"
+								+ this.cardRefundDay + "</td>" + "<td>"
+								+ this.cardPhone + "</td>" + "<td>"
+								+ this.cardpoint + "</td>" + "<td>"
+								+ "<a class=btn04 href=http://10.1.12.66:8086/cardmanger/PinCard.html?id="
+								+ this.cardNum + ">销卡</a>" + "</td>" + "</tr>";
+						$("#ns").append(b);
+					});
+		};
+
+		$(function() {
+			//页面初始化
+			$("#ns tr:gt(0)").remove();
+			$.get("http://10.1.12.66:8086/cardmanger/mo/queryAllCreditCard", {
+				"queryCreditCard.clientName" : $("#clientName").val(),
+				"queryCreditCard.clientIdcard" : $("#clientIdcard").val(),
+				"queryCreditCard.cardNum" : $("#cardNum").val(),
+
+			}, function(data) {
+				//拼每一行数据
+				selectAllCreditCard(data);
+			});
+
+			//给搜索按钮绑定点击事件,完成搜索
+			$("#search").click(function() {
+				$("#ns tr:gt(0)").remove();
+				$.get("http://10.1.12.66:8086/cardmanger/mo/queryAllCreditCard", {
+					"queryCreditCard.clientName" : $("#clientName").val(),
+					"queryCreditCard.clientIdcard" : $("#clientIdcard").val(),
+					"queryCreditCard.cardNum" : $("#cardNum").val(),
+				}, function(data) {
+					selectAllCreditCard(data)
+				});
+			});
+
+			//上一页
+			$("#up").click(function() {
+				$("#ns tr:gt(0)").remove();
+				$.get("http://10.1.12.66:8086/cardmanger/mo/queryAllCreditCard", {
+					"page" : parseInt($("#dqym").val()) - 1,
+					"queryCreditCard.clientName" : $("#clientName").val(),
+					"queryCreditCard.clientIdcard" : $("#clientIdcard").val(),
+					"queryCreditCard.cardNum" : $("#cardNum").val(),
+
+				}, function(data) {
+					selectAllCreditCard(data)
+				});
+			});
+			//下一页
+			$("#down").click(function() {
+				$("#ns tr:gt(O)").remove();
+				$.get("http://10.1.12.66:8086/cardmanger/mo/queryAllCreditCard", {
+					"page" : parseInt($("#dqym").val()) + 1,
+					"queryCreditCard.clientName" : $("#clientName").val(),
+					"queryCreditCard.clientIdcard" : $("#clientIdcard").val(),
+					"queryCreditCard.cardNum" : $("#cardNum").val(),
+				}, function(data) {
+					selectAllCreditCard(data)
+				});
+			});
+
+		})
+	</script>
+</body>
+
+</html>

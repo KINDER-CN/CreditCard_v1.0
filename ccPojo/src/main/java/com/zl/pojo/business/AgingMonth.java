@@ -15,7 +15,7 @@ public class AgingMonth {
 	private BigDecimal monthMoney;				//每月分期金额					month_money
 	private BigDecimal monthInterest;			//本月利息						month_interest
 	private BigDecimal notReturnMoney;			//本月未还分期金额				month_not_return_money
-	private int agingRate;				//分期利率表，外键关联分期利率表		aging_rate_id
+	private double agingRate;				//分期利率表，外键关联分期利率表		aging_rate_id
 	private String agingRefund;					//分期还款状态，已还完，未还完		month_aging_refund
 	private BigDecimal returnMoney;				//本月以还分期金额				month_return_money
 	private int aging;						//分期概况表id，外键，此处以对象的形式	aging_id
@@ -92,10 +92,10 @@ public class AgingMonth {
 	public void setAgingTime(Date agingTime) {
 		this.agingTime = agingTime;
 	}
-	public int getAgingRate() {
+	public double getAgingRate() {
 		return agingRate;
 	}
-	public void setAgingRate(int agingRate) {
+	public void setAgingRate(double agingRate) {
 		this.agingRate = agingRate;
 	}
 	public int getAging() {

@@ -1,0 +1,39 @@
+table.hovertable {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:white;
+	border-width: 1px;
+	border-color: #999999;
+	border-collapse: collapse;
+}
+table.hovertable th {
+	background-color:#000000;
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #a9c6c9;
+}
+table.hovertable tr {
+	background-color:#122B40;
+}
+table.hovertable td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #a9c6c9;
+}
+th{
+	width: 100px;
+	height: 40px;
+}
+td{
+	width: 100px;
+	height: 40px;
+}
+body{
+	background-color: #353D47;
+}
+button{
+	background-color: #000000;
+	color: white;
+}

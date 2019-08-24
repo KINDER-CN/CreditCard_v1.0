@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class CardRemove {
 	private int id;								//主键id
 	private String removeApplyNum;				//申请编号			remove_apply_num
-	private int removeCardId;					//销卡卡号			remove_card_id
+	private Long removeCardId;					//销卡卡号			remove_card_id
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date removeApplyDate;				//申请时间			remove_apply_time
@@ -32,10 +32,10 @@ public class CardRemove {
 	public void setRemoveApplyNum(String removeApplyNum) {
 		this.removeApplyNum = removeApplyNum;
 	}
-	public int getRemoveCardId() {
+	public Long getRemoveCardId() {
 		return removeCardId;
 	}
-	public void setRemoveCardId(int removeCardId) {
+	public void setRemoveCardId(Long removeCardId) {
 		this.removeCardId = removeCardId;
 	}
 	public Date getRemoveApplyDate() {

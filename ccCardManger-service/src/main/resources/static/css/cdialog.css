@@ -1,0 +1,89 @@
+.mask_bg1 {
+    background: url(../img/masking-bg.png);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+}
+.cdialog-main1{
+  position: fixed;
+  left:50%;
+  top:35%;
+  background-color:#fff;
+  border-radius:3px;
+  -webkit-border-radius:3px;
+  -moz-border-radius:3px;
+  -ms-border-radius:3px;
+  -o-border-radius:3px;
+  box-shadow:0 0 5px #e5e5e5;
+  -webkit-box-shadow:0 0 5px #e5e5e5;
+  -moz-box-shadow:0 0 5px #e5e5e5;
+  -ms-box-shadow:0 0 5px #e5e5e5;
+  -o-box-shadow:0 0 5px #e5e5e5;
+  width: 300px;
+  margin-left: -150px;
+}
+.cdialog-title1{
+  border-bottom: 1px solid #e5e5e5;
+  line-height: 40px;
+  text-align: center;
+  color: #000;
+  font-size: 16px;
+}
+.cdialog-content1{
+  padding: 20px 5%;
+  color: #666;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  overflow: hidden;
+  border-bottom:1px solid #e5e5e5;
+}
+.cdialog-text1{
+  padding: 5px 5%;
+  border-radius:10px;
+  color: #333;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: left;
+  overflow: hidden;
+  border-bottom:1px solid #e5e5e5;
+  padding-left:25px;
+  padding-right:25px;
+  font-weight:bold;
+}
+.btn-areas1{
+  padding:10px 5%;
+  text-align: center;
+  line-height: 30px;
+  font-size:16px;
+}
+.btn-areas1 .btn {
+  border: 1px solid #999;
+  text-align: center;
+  width: 30%;
+  color:#666;
+  border-radius:2px;
+  -webkit-border-radius:2px;
+  -moz-border-radius:2px;
+  -ms-border-radius:2px;
+  -o-border-radius:2px;
+  display: inline-block;
+  cursor: pointer;
+}
+.btn-areas1 .cancel{
+  margin-left: 10%;
+}
+.btn-areas1 .cancel:active {
+  background-color:#eee;
+}
+.btn-areas1 .confirm1{
+  border-color:#df0001;
+  background-color:#df0001;
+  color:#fff;
+}
+.btn-areas1 .confirm1:active {
+  background:#E83C3D;
+}

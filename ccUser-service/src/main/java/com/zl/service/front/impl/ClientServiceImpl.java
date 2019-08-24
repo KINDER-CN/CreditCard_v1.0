@@ -57,6 +57,7 @@ public class ClientServiceImpl implements ClientService{
 	
 	@Override
 	public List<ShowClientCard> queryClientCard(int clientId) {
+		System.out.println(clientId);
 		List<ShowClientCard> list =cd.queryClientCard(clientId);
 		for(int i=0;i<list.size();i++) {
 			if(cd.queryBillByCardId(list.get(i).getId())!=null) {

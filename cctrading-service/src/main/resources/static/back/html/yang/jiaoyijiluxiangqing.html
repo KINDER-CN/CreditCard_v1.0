@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Flat Admin V.2 - Free Bootstrap Admin Templates</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    	<link rel="stylesheet" type="text/css" href="../css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="../css/htmleaf-demo.css">
+		<link rel="stylesheet" href="../css/pages.css">
+		<link rel="stylesheet" type="text/css" href="../../css/th_td.css">
+		<link rel="stylesheet" href="../../css/input.css">
+</head>
+
+<body><center>
+  	<div>
+		<div>
+				<h1>账单交易记录</h1></br>
+		</div>
+		<div>
+			<div id="billDetails">
+				<table class="hovertable">
+					<tr>
+						<th>编号</th>
+						<th>交易描述</th>
+						<th>交易类型</th>
+						<th>交易金额</th>
+						<th>交易时间</th>
+						<th>交易币种</th>
+						<th>最低还款时间</th>
+						<th>还款时间</th>
+						<th>还款形式</th>
+						<th>逾期利息</th>
+						<th>分期利息</th>
+					</tr>
+					
+					<tr v-for="aa in billDetailsId" onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+						<td>{{aa.id}}</td>
+						<td>{{aa.transactionDes}}</td>
+						<td>{{aa.transactionType}}</td>
+						<td>{{aa.transactionMoney}}</td>
+						<td>{{aa.transactionTime}}</td>
+						<td>{{aa.transactionCoin}}</td>
+						<td>2019-07-20</td>
+						<td>{{aa.payTime}}</td>
+						<td>逾期</td>
+						<td>30</td>
+						<td>0</td>
+					</tr>
+				</table>
+				<div>
+					<a href="huankuan.html" class="btn btn-primary" role="button"><button class="button blue">返回</button></a>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</center>
+	<script type="text/javascript" src="../../js/vuejs-2.5.16.js"></script>
+    <script type="text/javascript" src="../../js/axios-0.18.0.js"></script>
+    <script type="text/javascript" src="../../js/billDetails.js"></script>
+</body>
+
+</html>

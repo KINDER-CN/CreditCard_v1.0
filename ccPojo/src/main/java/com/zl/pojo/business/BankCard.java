@@ -14,6 +14,13 @@ public class BankCard {
 	private long bankPhone; 			// 预留电话 bank_client_phone
 	private String bankName; 		// 所属行 bank_name
 	private BigDecimal bankBalance; // 卡余额 bank_balance
+	private int cardPwd;           //卡密码 card_pwd
+	public int getCardPwd() {
+		return cardPwd;
+	}
+	public void setCardPwd(int cardPwd) {
+		this.cardPwd = cardPwd;
+	}
 	public int getId() {
 		return id;
 	}
@@ -60,7 +67,8 @@ public class BankCard {
 	public String toString() {
 		return "BankCard [id=" + id + ", bankCard=" + bankCard + ", bankClientName=" + bankClientName + ", bankIDcard="
 				+ bankIDcard + ", bankPhone=" + bankPhone + ", bankName=" + bankName + ", bankBalance=" + bankBalance
-				+ "]";
+				+ ", cardPwd=" + cardPwd + "]";
 	}
+	
 	
 }

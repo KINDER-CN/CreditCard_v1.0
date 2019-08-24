@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zl.dao.CardActiveLogDao">
+	<insert id="activateCreditCard" parameterType="cardActiveLog">
+		insert into
+		cc_client_card_activation (activ_num, activ_card_num,
+		activ_time, activ_apply_time, activ_client_id)
+		values
+		(#{activNum},
+		#{activCardNum}, #{activeTime}, #{activApplyTime}, #{clientId})
+	</insert>
+</mapper>

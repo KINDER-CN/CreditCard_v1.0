@@ -44,16 +44,16 @@
             <a href="loginIndex.html" class="wdzh" target="_self">我的账户</a>
         </li>
         <li class="yahei" id="yahei02">
-            <a href="#" class="zdcx" target="_self">账单查询</a>
+            <a href="/trading/client/bill.html" class="zdcx" target="_self">账单查询</a>
         </li>
         <li class="yahei" id="yahei03">
-            <a href="#" class="xykhk" target="_self">信用卡还款</a>
+            <a href="/trading/client/repay.html.html" class="xykhk" target="_self">信用卡还款</a>
         </li>
         <li class="yahei" id="yahei04">
-            <a href="#" class="fqyw" target="_self">分期业务</a>
+            <a href="/trading/client/aging.html" class="fqyw" target="_self">分期业务</a>
         </li>
         <li class="yahei" id="yahei07">
-            <a href="creditCardManager.html" class="szgl" target="_self">设置管理</a>
+            <a href="/cardmanger/creditCardManager.html" class="szgl" target="_self">设置管理</a>
         </li>
     </ul>
 </div>
@@ -113,8 +113,8 @@
                     </div>
                     <ul id="ISL_Cont_2" style="width: 909px; overflow: hidden">
                         <div style="overflow: hidden; zoom: 1; width: 32766px">
-                            <div style="float: left; width: 909px; overflow: hidden;" id="cardList" v-for="card in cards">
-                            <li class="mastercard fl_l card_content">
+                            <div style="float: left; width: 909px; overflow: hidden;" id="cardList" >
+                            <li class="mastercard fl_l card_content" v-for="card in cards">
                             <input type="hidden" name="cardno" value="3e340173a67c8ce231560a4f34638c4b">
                             <div class="m_c_pop"><div class="m_c_wrap" style="box-shadow: rgb(255, 255, 255) 0px 0px 0px; margin-bottom: 5px; margin-left: 5px;"><div class="m_c_top" style="background:#336699;">
                             	<p class="ca_name">{{card.cardType}}</p>
@@ -336,7 +336,7 @@
 							            <div class="caption" style="width: 180px">
 							            	
 							                <p>
-							                    <a :href="'handleCardApplication.html?id='+pro.id" class="btn btn-primary" role="button" style="margin-left: 30px">立即申请</a>
+							                    <a :href="'/cardmanger/handleCardApplication.html?id='+pro.id" class="btn btn-primary" role="button" style="margin-left: 30px">立即申请</a>
 							                </p>
 							            </div>
 							         </div>
@@ -497,7 +497,7 @@
 		methods:{
 			queryCard:function(){
 				var _this=this;
-				axios.get("/client/queryClientCard")
+				axios.get("/client/client/queryClientCard")
 				.then(function(response){
 						if(response.data.flag==true){
     						_this.cards=response.data.cards;
@@ -534,7 +534,7 @@
 				this.flag4=true;
 				this.flag5=false;
 				var _this=this;
-				axios.get("/product/product")
+				axios.get("/client/product/product")
 				.then(function(response){
 					if(response.data.product!=null){
 						_this.products=response.data.product
@@ -546,7 +546,7 @@
 				var _this=this;
 				if(this.idCard!=""){
 					if(this.phone!=""){
-						axios.post("/client/checkphone",_this.phone)
+						axios.post("/client/client/checkphone",_this.phone)
 						.then(function(response){
 							if(response.data.flag==true){
 								_this.flag=false;
@@ -569,7 +569,7 @@
 			submitFind:function(){
 				var _this=this;
 				if( this.code==this.scode ){
-					axios.post("/creditCard/queryPlan",_this.idCard)
+					axios.post("/client/creditCard/queryPlan",_this.idCard)
 					.then(function(response){
 							if(response.data.plan!=null){
 								_this.flag=false;

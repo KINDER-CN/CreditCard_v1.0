@@ -46,7 +46,10 @@ public class ShiroConfiguration {
 		filterMap.put("/index.html", "anon");
 		filterMap.put("/register.html", "anon");
 		filterMap.put("/index.html", "anon");
-		filterMap.put("//client/queryClientCard", "anon");
+		filterMap.put("/main.html", "anon");
+		filterMap.put("/htlogin.html", "anon");
+		filterMap.put("/static/*", "anon");
+		filterMap.put("/client/client/queryClientCard", "anon");
 		filterMap.put("/*", "authc");
 		
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);

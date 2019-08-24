@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title></title>
+
+</head>
+
+<body>
+	<div id="all">
+		<table border=5 bordercolor=blue align=center width="800px ;">
+			<tr>
+				<td colspan="4" align="center"><b>信用卡</b></td>
+			</tr>
+			<tr>
+				<td>客户id：</td>
+				<td><input type="text" id="client" class="form-control"
+					readonly="readonly"></td>
+				<td>卡号：</td>
+				<td><input type="text" class="form-control" id="cardNum"
+					placeholder="请输入十六位数卡号"></td>
+			</tr>
+			<tr>
+				<td>卡种：</td>
+				<td><input type="text" id="cardType" readonly="readonly"></td>
+				<td>交易密码：</td>
+				<td><input type="password" id="carPassword"
+					class="form-control" placeholder="请输入六位数密码"></td>
+			</tr>
+			<tr>
+				<td>有效期：</td>
+				<td><input type="date" class="form-control" id="cardValidity"
+					placeholder="请输入有效日期"></td>
+				<td>安全码：</td>
+				<td><input type="text" class="form-control"
+					id="cardSecurityCode" placeholder="请输入安全码"></td>
+			</tr>
+
+			<tr>
+				<td>信用卡额度：</td>
+				<td><input type="text" class="form-control" id="cardLimit"
+					placeholder="请输入额度"></td>
+				<td>临时额度：</td>
+				<td><input type="text" class="form-control" id="cardShortLimit"
+					placeholder="请输入临时额度"></td>
+			</tr>
+			<tr>
+				<td>取现额度：</td>
+				<td><input type="text" class="form-control" id="cardCashLimit"
+					placeholder="请输入取现额度"></td>
+				<td>卡状态：</td>
+				<td><input type="text" id="cardState" name="cardState"
+					readonly="readonly"></td>
+			</tr>
+			<tr>
+				<td>绑定状态：</td>
+				<td><input type="text" id="cardBinding" name="cardBinding"
+					class="form-control" readonly="readonly"></td>
+				<td>余额：</td>
+				<td><input type="text" class="form-control" id="cardBalance"
+					name="cardBalance" readonly="readonly"></td>
+			</tr>
+			<tr>
+				<td>年费：</td>
+				<td><input type="text" class="form-control" id="cardAnnual"
+					name="cardAnnual"></td>
+				<td>积分：</td>
+				<td><input type="text" id="cardpoint" name="cardpoint"
+					class="form-control" readonly="readonly"></td>
+			</tr>
+			<tr>
+				<td>出账日：</td>
+				<td><input type="text" class="form-control" id="cardBillday"
+					name="cardBillday" readonly="readonly"></td>
+				<td>还款日：</td>
+				<td><input type="text" id="cardRefundDay" name="cardRefundDay"
+					class="form-control" readonly="readonly"></td>
+			</tr>
+			<tr>
+				<td>手机号码：</td>
+				<td colspan="3"><input type="text" class="form-control"
+					id="cardPhone" name="cardPhone" readonly="readonly"></td>
+
+			</tr>
+		</table>
+		<p align="center">
+			<input type="button" id="addCreditCard" value="点击发卡"
+				style="color: red">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+				type="button" id="gongHome" value="点击返回">
+		</p>
+	</div>
+
+	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="js/global.js"></script>
+	<script type="text/javascript" src="js/jquery.accordion.js"></script>
+	<script type="text/javascript" src="js/select.js"></script>
+	<script type="text/javascript">
+		/* 解析url带过来的数据 */
+		function GetQueryString(name) {
+			//alert(name);
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+			//alert(reg);
+			var r = window.location.search.substr(1).match(reg);
+			//alert(r);
+			if (r != null)
+				return unescape(r[2]);
+
+			return null;
+		}
+
+		$(function() {
+			var name = GetQueryString("id");
+			/* 	alert(name); */
+			$.ajax({
+				url : "mo/addCreditCardByApplyCard",
+				type : "get",
+				data : {
+					"id" : name
+				},
+				dataType : "json",
+				success : function(data) {
+					/*alert(name); */
+					addCreditCardApplyCard(data);
+				}
+			});
+
+		})
+
+		function addCreditCardApplyCard(data) {
+			/* 	alert(data.creditCard); */
+			$(function() {
+				$("#client").val(data.creditCard.client);
+				$("#cardType").val(data.creditCard.cardType);
+				$("#cardState").val(data.creditCard.cardState);
+				$("#cardBinding").val(data.creditCard.cardBinding);
+				$("#cardpoint").val(data.creditCard.cardpoint);
+				$("#cardBinding").val(data.creditCard.cardBinding);
+				$("#cardBalance").val(data.creditCard.cardBalance);
+				$("#cardBillday").val(data.creditCard.cardBillday);
+				$("#cardRefundDay").val(data.creditCard.cardRefundDay);
+				$("#cardAnnual").val(data.creditCard.cardAnnual);
+				$("#cardPhone").val(data.creditCard.cardPhone);
+				/* 	var client = data.creditCard.client;
+					$("#client").val = client;
+					var cardType = data.creditCard.cardType;
+					$("#cardType").append(cardType);
+					var cardState = data.creditCard.cardState;
+					$("#cardState").append(cardState); */
+			});
+
+		}
+
+		//给添加按按钮绑定点击事件,完成添加
+		$("#addCreditCard").click(function() {
+			var name = GetQueryString("id");
+			$.ajax({
+				url : "mo/addCreditCard",
+				type : "post",
+				data : {
+					"cardNum" : $("#cardNum").val(),
+					"cardType" : $("#cardType").val(),
+					"cardNum" : $("#cardNum").val(),
+					"carPassword" : $("#carPassword").val(),
+					"cardValidity" : $("#cardValidity").val(),
+					"cardSecurityCode" : $("#cardSecurityCode").val(),
+					"cardLimit" : $("#cardLimit").val(),
+					"cardShortLimit" : $("#cardShortLimit").val(),
+					"cardCashLimit" : $("#cardCashLimit").val(),
+					"cardState" : $("#cardState").val(),
+					"cardBinding" : $("#cardBinding").val(),
+					"repayCard" : $("#repayCard").val(),
+					"client" : $("#client").val(),
+					"cardAnnual" : $("#cardAnnual").val(),
+					"cardBalance" : $("#cardBalance").val(),
+					"cardRefundDay" : $("#cardRefundDay").val(),
+					"cardBillday" : $("#cardBillday").val(),
+					"cardpoint" : $("#cardpoint").val(),
+					"cardPhone" : $("#cardPhone").val(),
+				},
+				dataType : "json",
+				success : function() {
+					/* alert("添加成功"); */
+					location.href = "http://10.1.12.66:8086/cardmanger/dynamicState.html?id=" + name;
+				}
+			});
+
+		});
+
+		$(function() {
+			$("#gongHome").click(function() {
+				var name = GetQueryString("id");
+				/* alert(name); */
+				$.ajax({
+
+					success : function() {
+						location.href = "http://10.1.12.66:8086/cardmanger/dynamicState.html?id=" + name;
+					}
+				});
+
+			})
+
+		})
+	</script>
+</body>
+
+</html>

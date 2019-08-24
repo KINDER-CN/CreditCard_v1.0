@@ -8,7 +8,7 @@ public class Manger {
 	private String mangerName;	//员工姓名			manger_name
 	private String mPassword;	//登录密码			manger_password
 	private long mPhone;			//联系电话			manger_phone
-	private Role role;			//角色id，外键		manger_role_id
+	private int role;			//角色id，外键		manger_role_id
 	public int getId() {
 		return id;
 	}
@@ -39,10 +39,10 @@ public class Manger {
 	public void setmPhone(long mPhone) {
 		this.mPhone = mPhone;
 	}
-	public Role getRole() {
+	public int getRole() {
 		return role;
 	}
-	public void setRole(Role role) {
+	public void setRole(int role) {
 		this.role = role;
 	}
 	@Override

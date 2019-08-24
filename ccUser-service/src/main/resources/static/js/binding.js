@@ -44,7 +44,7 @@ new Vue({
 		findCard:function(){
 			var _this=this;
 			if(this.credit.cardNum!=""){
-				axios.post("/creditCard/queryBankCard",this.credit)
+				axios.post("/client/creditCard/queryBankCard",this.credit)
 				.then(function(response){
 					if(response.data.bankCard!=""){
 						_this.bankCard=response.data.bankCard;
@@ -79,7 +79,7 @@ new Vue({
 			if(this.newphone!=""){
 				_this.credit.cardPhone=this.newphone;
 			}
-			axios.post("/client/checkphone",_this.credit.cardPhone)
+			axios.post("/client/client/checkphone",_this.credit.cardPhone)
 			.then(function(response){
 				if(response.data.flag==true){
 					_this.stop=!this.stop;
@@ -98,7 +98,7 @@ new Vue({
 					if(this.credit.cardValidity==this.day){
 						if(this.credit.cardSecurityCode==this.three){
 							if(this.code==this.scode){
-								axios.post("/creditCard/addBindingCard",_this.credit)
+								axios.post("/client/creditCard/addBindingCard",_this.credit)
 								.then(function(response){
 									if(response.data.flag==true){
 					                    alert("绑定成功");
@@ -131,7 +131,7 @@ new Vue({
 			var _this=this;
 			if(this.name!=""){
 				if(this.IDcard!=""){
-					axios.post("/client/idcard",{name:_this.name,IDcard:_this.IDcard})
+					axios.post("/client/client/idcard",{name:_this.name,IDcard:_this.IDcard})
 					.then(function(response){
 						console.log(response.data);
 					})
@@ -148,7 +148,7 @@ new Vue({
 			if(this.oldphone!=""){
 				if(this.newphone!=""){
 					if(this.code=this.scode){
-						axios.get("/client/updateClientPhone",{params:{oldPhone:_this.oldphone,newPhone:_this.newphone}})
+						axios.get("/client/client/updateClientPhone",{params:{oldPhone:_this.oldphone,newPhone:_this.newphone}})
 						.then(function(response){
 							if(response.data.flag){
 								alert("更换号码成功");
@@ -169,7 +169,7 @@ new Vue({
 		chage:function(){
 			var _this=this;
 			if(this.newpsd==this.querypsd){
-				axios.get('/client/updatePsd',{params:{oldpsd:_this.oldpsd,newpsd:_this.newpsd}})
+				axios.get('/client/client/updatePsd',{params:{oldpsd:_this.oldpsd,newpsd:_this.newpsd}})
 				.then(function(response){
 					if(response.data.flag){
 						alert("修改成功");

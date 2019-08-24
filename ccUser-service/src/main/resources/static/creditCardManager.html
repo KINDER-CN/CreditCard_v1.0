@@ -340,7 +340,7 @@
 					if(this.oldphone!=""){
 						if(this.newphone!=""){
 							if(this.code=this.scode){
-								axios.get("http://10.1.12.66:8082/client/updateClientPhone",{params:{oldPhone:_this.oldphone,newPhone:_this.newphone}})
+								axios.get("/client/updateClientPhone",{params:{oldPhone:_this.oldphone,newPhone:_this.newphone}})
 								.then(function(response){
 									if(response.data.flag){
 										alert("更换号码成功");
@@ -375,7 +375,7 @@
 		        },
 				callMsg:function(){
 					var _this=this;
-					axios.post("http://10.1.12.66:8082/client/checkphone",_this.oldphone)
+					axios.post("/client/checkphone",_this.oldphone)
 					.then(function(response){
 						if(response.data.flag==true){
 							_this.stop=!this.stop;

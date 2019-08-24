@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../csss/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="../../csss/htmleaf-demo.css">
+		<link rel="stylesheet" href="../../csss/pages.css">
+		<link rel="stylesheet" type="text/css" href="../../csss/th_td.css">
+	</head>
+	<body>
+<center><br><br><br><br><br>
+<div id="queryC">
+		<table class="hovertable">
+		<tr>
+			<th>客户姓名</th>
+			<th>性别</th>
+			<th>民族</th>
+			<th>身份证号</th>
+		</tr>
+		<tr onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+			<td>{{client.clientName}}</td>
+			<td>{{client.clientSex}}</td>
+			<td>{{client.clientNational}}</td>
+			<td>{{client.clientIDcard}}</td>
+		</tr>
+		<tr >
+			<th>出生年月</th>
+			<th>婚姻状况</th>
+			<th>教育程度</th>
+			<th>证件有效日期</th>
+		</tr>
+		<tr onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+			<td>{{client.clientBirthday}}</td>
+			<td>{{client.clientMarriage}}</td>
+			<td>{{client.clientEdu}}</td>
+			<td></td>
+		</tr>
+		<tr>
+			<th>信用分</th>
+			<th>登录密码</th>
+			<th>安全问题</th>
+			<th>安全问题答案</th>
+		</tr>
+		<tr onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+			<td>{{client.creditPoint}}</td>
+			<td>{{client.password}}</td>
+			<td>{{client.questionId}}</td>
+			<td>{{client.clientAnswer}}</td>
+		</tr>
+		<tr>
+			<th>住宅状况</th>
+			<th>现居住地址</th>
+			<th>邮政编码</th>
+			<th>E-mail账单地址</th>
+		</tr>
+		<tr onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+			<td>{{client.clientHousing}}</td>
+			<td>{{client.clientAddress}}</td>
+			<td>{{client.postalcode}}</td>
+			<td>{{client.clientEmail}}</td>
+		</tr>
+		</table>
+</div></center>
+	<script type="text/javascript" src="../../jss/vuejs-2.5.16.js"></script>
+	<script type="text/javascript" src="../../jss/axios-0.18.0.js"></script>
+	<!-- <script type="text/javascript" src="../../js/main.js"></script> -->
+	<script type="text/javascript">
+	new Vue({
+		   el:"#queryC",
+		   data:{
+			   urls:'',
+			   client:
+			   {
+		    	 id:'',
+		    	 clientId:'',
+		    	 clientName:'',
+		    	 clientSex:'',
+		    	 clientNational:'',
+		    	 clientIDcard:'',
+		    	 clientBirthday:'',
+		    	 clientMarriage:'',
+		    	 clientEdu:'',
+		    	 creditPoint:'',
+		    	 password:'',
+		    	 questionId:'',
+		    	 clientAnswer:'',
+		    	 clientHousing:'',
+		    	 clientAddress:'',
+		    	 postalcode:'',
+		    	 clientEmail:'',
+		    	 clientPhone:''
+		     }
+		   },
+		   methods:{
+			   queryClientById:function(){
+		     var _this=this;
+		     var  id= GetQueryString("id")
+		     axios.get("http://10.1.12.66:8086/client/gu/queryClientById",{params:{id:id}})
+		     .then(function(response){
+		      _this.client=response.data.client;
+		      console.log(_this.client);
+		     })
+		    }
+		   },
+		   created:function(){
+		    this.queryClientById();
+		   },
+		 })
+		 function GetQueryString(name){
+		     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		     var r = window.location.search.substr(1).match(reg);
+		     if(r!=null)return  unescape(r[2]); return null;
+		 }
+	</script>
+	</body>
+</html>

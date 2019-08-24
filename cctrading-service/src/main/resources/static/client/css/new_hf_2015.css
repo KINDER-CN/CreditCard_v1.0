@@ -1,0 +1,71 @@
+body, div, h1, h2, h3, h4, h5, h6, hr, p, dl, dt, dd, ul, ol, li, form, button, input, textarea, table, thead, tbody, th, td, i, b, span, em, section, header, footer, aside, nav, menu, article, dialog, figure, hgroup, mark { margin:0; padding:0; }
+section, header, footer, aside, nav, menu, article, dialog, figure, hgroup { display:block; }
+ul, ol, li { list-style:none }
+img { border:0 }
+/*头部样式*/
+.header { width:980px; height:106px; padding-top:26px; position:absolute; top:0px; left:50%; margin-left:-490px; z-index:9999; }
+.header_wrap_2014 {height:132px;background:url(../images_kk/body_bg2.jpg) top repeat-x; min-width:1000px;}
+.header_2014 { width:980px; height:106px; padding-top:26px; margin:0 auto;font-family:"Microsoft Yahei", "Hiragino Sans GB", sans-serif; }
+.top_2014 { height:30px; }
+.top_2014 .logo { float:left; width:190px; height:30px; }
+.top_2014 .line { color:#bbbab9; padding:0px 10px; }
+.top_2014 a { color:#7e7d7d; font-size:13px; text-decoration: none; }
+.top_2014 .right_con { float:right; }
+.top_2014 .login { font-family:"Microsoft Yahei"; color:#626261; }
+.top_2014 .reg { font-family:"Microsoft Yahei"; color:#626261; margin-right:50px; }
+.top_2014 .soso { display:inline-block; width:27px; height:25px; position:relative; right:0px; top:6px; padding-left:20px; background:url(../images_kk/icons.png) no-repeat; background-position:0 0; }
+/*导航*/
+.nav_wrap_2014 { height:56px; margin-top:20px; }
+.main_nav_2014 { height:56px;font-family:"Microsoft Yahei";box-shadow:2px 4px 5px #bbb; background-color:#fff;border-bottom:1px solid #e5e5e5;position:relative;}
+.main_nav_2014 a { text-decoration:none;}
+.main_nav_2014 ul { width:980px;}
+.main_nav_2014 ul li { width:163px; height:56px; float:left;}
+.main_nav_2014 ul li.last_li { width:165px;} 
+.main_nav_2014 ul li .lab_a { display:block; height:56px; text-align:center; line-height:56px;font-weight:bold;border-right:1px solid #e5e5e5;font-size:15px;color:#626261; }
+.main_nav_2014 ul li .focus_a { background-color:#ff2e3c;color:#fff; border-right:1px solid #ff2e3c;}
+.main_nav_2014 ul li.on .lab_a { background-color:#ff2e3c; color:#fff;border-right:1px solid #ff2e3c;}
+.main_nav_2014 .m_nav_con {position:absolute; width:980px; left:0; top:57px; background-color:#fff;}
+.main_nav_2014 .m_nav_con dl { display:block;width:122px;height:150px; padding:20px; float:left;border-bottom:1px solid #e5e5e5; border-right:1px solid #e5e5e5; overflow:hidden;}
+.main_nav_2014 .m_nav_con .dl_last { width:124px;} 
+.main_nav_2014 .m_nav_con dt { font-size:16px; color:#555; margin-bottom:10px; }
+.main_nav_2014 .m_nav_con dt a {color:#555;}
+.main_nav_2014 .m_nav_con dd a { line-height:24px; font-size:14px; color:#858585 }
+.main_nav_2014 .m_nav_con dl a:hover { color:#ff2e3c; }
+.main_nav_2014 .m_nav_con .stag{width:19px; height:9px; position:absolute; background:url(../images_kk/icons.png) no-repeat; background-position:0 -30px; overflow:hidden;}
+.main_nav_2014 .m_nav_con .s_1 { left:72px; top:-1px;}
+.main_nav_2014 .m_nav_con .s_2 { left:235px; top:-1px;}
+.main_nav_2014 .m_nav_con .s_3 {left:398px; top:-1px;}
+.main_nav_2014 .m_nav_con .s_4 {left:561px; top:-1px;}
+.main_nav_2014 .m_nav_con .s_5 {left:724px; top:-1px;}
+.main_nav_2014 .m_nav_con .s_6 {left:887px; top:-1px;}
+.main_nav_2014 .m_nav_con .ad_2 {width:327px; height:190px;float:left;border-bottom:1px solid #e5e5e5; border-right:1px solid #e5e5e5;}
+.main_nav_2014 .m_nav_con .ad_3 {width:490px;height:190px;float:left;border-bottom:1px solid #e5e5e5; border-right:1px solid #e5e5e5;}
+.main_nav_2014 .m_nav_con .ad_5 {width:816px;height:190px;float:left;border-bottom:1px solid #e5e5e5; border-right:1px solid #e5e5e5; }
+.main_nav_2014 .n_box { width:0; height:0; overflow:hidden;}
+/*  底部 */
+.footer_wrap_2014 { height:130px;  background-color:#fff; }
+.footer_2014 { width:980px; margin:0 auto;font-size:12px;font-family:"Microsoft Yahei", "Hiragino Sans GB", sans-serif;  }
+.footer_2014 .left_con { width:680px; float:left; padding:22px 0 0 0; }
+.footer_2014 .p_link { height:30px; line-height:30px; }
+.footer_2014 .p_link a { text-decoration:none; color:#999; }
+.footer_2014 .p_link .s_a { padding-right:15px; background:url(../images_kk/icons.png) no-repeat; background-position:right -274px; }
+.footer_2014 .p_link span { padding: 0 15px; color:#d9d9d9; }
+.footer_2014 .p_right { line-height:30px; color:#999; }
+.footer_2014 .right_con { width:250px; float:right; padding-top:28px; }
+.footer_2014 .ol_service { display:block; width:50px; height:16px; line-height:16px; font-size:12px; text-decoration:none; color:#666; padding:0px 0 0 0px; float:right; background:url(../images_kk/icons.png) no-repeat; background-position:38px -350px; }
+.footer_2014 .service_tel { float:left; height:44px; padding-right:30px; text-align:right; border-right:solid 1px #d6d6d6; }
+.footer_2014 .service_tel .p1 { line-height:18px; color:#666; font-size:12px; }
+.footer_2014 .service_tel .p2 { line-height:22px; margin-top:4px; font-size:20px; color:#666; }
+/*   */
+.footer_2014 .link_area { font-size:14px; color:#d4d4d4; }
+.footer_2014 .link_area a { font-size:14px; color:#999; text-decoration:none; }
+.footer_2014 .link_area span { margin:0px 10px; }
+.footer_2014 .foot_link { margin-left: -12px; height:30px;}
+.footer_2014 .foot_link li { float: left; border-right: 1px solid #ccc; position: relative; }
+.footer_2014 .more_ico { background:url(../images_kk/icons.png) no-repeat; background-position:-37px -276px; width: 8px; height: 16px; vertical-align: middle; display: inline-block; margin-left: 4px; }
+.footer_2014 .foot_link li a { padding: 0 12px; display: block; position: relative; z-index: 999; border-bottom: 1px solid #fbfbfb; }
+.footer_2014 .foot_link li a.active { background: #fff; border-color: #ccc; }
+.footer_2014 .foot_open_box { position:absolute; width: 220px; height: 100px; border:1px solid #ccc; background:#fff; padding:12px 12px 0; bottom:20px; left:-1px; z-index: 998; display:none; }
+.footer_2014 .foot_open_box dl dd { color: #333; font-size: 12px; float: left; margin: 0 0 12px 0; }
+.footer_2014 .foot_open_box dl dd a { font-size: 12px; border: none; }
+

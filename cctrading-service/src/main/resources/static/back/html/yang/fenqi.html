@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Flat Admin V.2 - Free Bootstrap Admin Templates</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- <link rel="stylesheet" type="text/css" href="../css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="../css/htmleaf-demo.css">
+    <link rel="stylesheet" href="../css/pages.css"> -->
+    <link rel="stylesheet" type="text/css" href="../../css/th_td.css">
+    <link rel="stylesheet" href="../../css/input.css">
+</head>
+
+<body>
+	
+    <center>
+  	<div>
+		<div>
+				<h1>用户分期概括信息</h1></br>
+		</div>
+		<div id="a">
+			<div>
+	            <input class="inputText4"  type="text" placeholder="请输入姓名">
+	          	 &nbsp;&nbsp;
+	         	<input class="inputText4" type="text" placeholder="请输入卡号">
+	         	&nbsp;&nbsp; 
+	            <button class="button blue">搜索</button>
+	        </div>
+	        <br/>
+			<div >
+				<table class="hovertable">
+					<tr>
+						<th>编号</th>
+						<th>姓名</th>
+						<th>身份证号</th>
+						<th>卡号</th>
+						<th>分期账单号</th>
+						<th>分期总额</th>
+						<th>分期期数</th>
+						<th>账单生成时间 </th>
+						<th>利率</th>
+						<th>分期还款状态</th>
+						<th>账单结束时间</th>
+						<th>详情</th>
+					</tr>
+					<tr v-for="aa in agingThree" onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+						<td>{{aa.id}}</td>
+						<td>{{aa.clientName}}</td>
+						<td>{{aa.clientIDcard}}</td>
+						<td>{{aa.cardNum}}</td>
+						<td>{{aa.agingNum}}</td>
+						<td>{{aa.agingLines}}</td>
+						<td>{{aa.agingNper}}</td>
+						<td>{{aa.agingTime}}</td>
+						<td>{{aa.agingRate}}</td>
+						<td>{{aa.agingState}}</td>
+						<td>{{aa.agingEndTime}}</td>
+						<th><a :href="'fenqixiangqing.html?id='+aa.id"><button class="button blue">详情</button></a></th>
+					</tr>
+				</table>
+				<!-- <ul>
+					<p>当前 <span>{{pageInfo.pageNum}}</span> 页,总 <span>{{pageInfo.pages}}</span> 页,共 <span>{{pageInfo.total}}</span> 条记录</p>
+				    <a href="" @click="queryAllAgingss">首页</a>
+				    <a href="" @click="queryAllAgingss(pageNum-1)">上一页</a>
+				    <a href="" @click="queryAllAgingss(pageNum+1)">下一页</a>
+				    <a href="" @click="queryAllAgingss">尾页</a>
+				</ul> -->
+				
+				
+				
+				
+			</div>
+		</div>
+		
+		
+		
+	</div>
+	</center>
+	<script type="text/javascript" src="../../js/vuejs-2.5.16.js"></script>
+    <script type="text/javascript" src="../../js/axios-0.18.0.js"></script>
+    <script type="text/javascript" src="../../js/myVue2.js"></script>
+    
+</body>
+	
+</html>

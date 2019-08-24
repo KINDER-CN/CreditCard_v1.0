@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zl.dao.backstage.BillDao">
+	<!-- 查询所有用户账单信息 -->
+	<select id="queryAllBill" resultType="bill">
+		select id id,bill_num billNum,bill_card_id creditCard,bill_money billMoney,bill_hasPay hasPay,
+			bill_srepay_date srepayDate,bill_repay_date repayDate,bill_creat_date billDate,bill_state billState,
+			bill_client_id client
+		from cc_bill
+	</select>
+
+	<!-- 根据id查询用户账单信息 -->
+	<select id="queryBillById" resultType="bill" parameterType="int">
+		select id id,bill_num billNum,bill_card_id creditCard,bill_money billMoney,bill_hasPay hasPay,
+			bill_srepay_date srepayDate,bill_repay_date repayDate,bill_creat_date billDate,bill_state billState,
+			bill_client_id client
+		from cc_bill where bill_client_id=#{client}
+	</select>
+	
+	<!-- 根据条件查询用户账单信息 -->
+	<select id="queryBillByLike" resultType="bill" parameterType="query">
+		select id id,bill_num billNum,bill_card_id creditCard,bill_money billMoney,bill_hasPay hasPay,
+			bill_srepay_date srepayDate,bill_repay_date repayDate,bill_creat_date billDate,bill_state billState,
+			bill_client_id client
+		from cc_bill
+		<where>
+			<if test="query!=null">
+				<if test="qClientName!=null and qClientName!=''">
+					and client_name like concat('%',concat(#{qClientName},'%'))
+				</if>
+				<if test="qClientIDcard!=null and qClientIDcard!=''">
+					and client_idcard like concat('%',concat(#{qClientIDcard},'%'))
+				</if>
+				<if test="qCardNum!=null">
+					and card_num like concat('%',concat(#{qCardNum},'%'))
+				</if>
+			</if>
+		</where>
+	</select>
+	
+	<!-- 查询用户所有账单详情信息 -->
+	<select id="queryBillDetails" resultType="billDetails">
+		select id id,transaction_des transactionDes,transaction_type transactionType,transaction_monry transactionMoney,
+			transaction_time transactionTime,transaction_coin transactionCoin,transaction_pay_time payTime,bill_id billId,
+			card_id creditCard,aging_id aging
+		from cc_bill_details
+	</select>
+	
+	<!-- 根据id查询用户账单详情信息 -->
+	<select id="queryBillDetailsById" resultType="billDetails" parameterType="int">
+		select id id,transaction_des transactionDes,transaction_type transactionType,transaction_monry transactionMoney,
+			transaction_time transactionTime,transaction_coin transactionCoin,transaction_pay_time payTime,bill_id billId,
+			card_id creditCard,aging_id aging
+		from cc_bill_details where bill_id=#{billId}
+	</select>
+</mapper>

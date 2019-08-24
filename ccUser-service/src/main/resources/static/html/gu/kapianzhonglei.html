@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../csss/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="../../csss/htmleaf-demo.css">
+		<link rel="stylesheet" href="../../csss/pages.css">
+		<link rel="stylesheet" type="text/css" href="../../csss/th_td.css">
+		<link rel="stylesheet" href="../../csss/input.css">
+	</head>
+	<body>
+<center>
+	<br /><br /><br /><br /><br /><br />
+	<div id="queryCard">
+		<a href="http://10.1.12.66:8086/client/html/gu/zengjiakapian.html"><button class="button blue">增加卡种</button></a><br><br>
+		<table class="hovertable">
+		<tr>
+			<th>序号</th>
+			<th>类型</th>
+			<th>卡图</th>
+			<th>卡名</th>
+			<th>年费</th>
+			<th>优惠1</th>
+			<th>优惠2</th>
+			<th>优惠3</th>
+			<th>优惠4</th>
+			<th>活动1</th>
+			<th>活动2</th>
+			<th>修改</th>
+			<th>删除</th>
+		</tr>
+		<tr v-for="cardType in cardTypes" onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+			<td>{{cardType.cardNum}}</td>
+			<td>{{cardType.ctype}}</td>
+			<td><img class="lazy" :src="cardType.cardPic"></td>
+			<td>{{cardType.cardName}}</td>
+			<td>{{cardType.cardannual}}</td>
+			<td>{{cardType.anntationa1}}</td>
+			<td>{{cardType.anntationa2}}</td>
+			<td>{{cardType.anntationa3}}</td>
+			<td>{{cardType.anntationa4}}</td>
+			<td>{{cardType.activity1}}</td>
+			<td>{{cardType.activity2}}</td>
+			<td><a :href="'http://10.1.12.66:8086/client/html/gu/xiugaikapian.html?id='+cardType.id"  target="page"><button class="button blue">修改</button></a></td>
+			<td><a @click="deleteCardTypeById(cardType.id)"  target="page"><button class="button blue">删除</button></a></td>
+		</tr>
+		</table>
+		</div>
+	<script type="text/javascript" src="../../jss/vuejs-2.5.16.js"></script>
+	<script type="text/javascript" src="../../jss/axios-0.18.0.js"></script>
+	<script>
+        $(function(){
+            $('img.lazy').lazyload({
+                //container: $('.product-list'),   // 对指定标签对象内的图片实现效果，表示在此标签中滚动时，触发加载（注意：如果容器未设置height和overfload:auto，那么会默认加载所有图片）
+                threshold: 100,                    //当图片顶部距离显示区域还有100像素时，就开始加载
+                placeholder : "../../img/aaa.jpg",      // 图片未加载时，占位
+                effect: "slideDown",               // 图片出现的效果，值有show(直接显示),fadeIn(淡入),slideDown(下拉)
+                effect_speed: 1000,                // 效果出现的时间
+                event: 'scroll',                   // 滚动滚轮时触发，可以是：click、mouseover等
+                data_attribute: 'original',        // img标签中保存url的自定义属性，默认：data-original
+                skip_invisible: true,              // 是否跳过已经隐藏的图片（display:none）
+                failure_limit: 2,                  // 由于延迟加载是根据Dom从上到下执行
+                                                   // 如果遇到Dom位置在上，但是图片定位在下导致看不到，那么会以为之后的图片不在应用延迟加载
+                                                   // 此处的failure_limit用于限制如果出现N个【Dom位置在上，但是图片定位在下】才终止
+                appear: function(){                // 当图片位置刚出现在视图时，触发此事件
+                    $(this).attr('src');
+                },
+                load: function(){                  // 当图片路径加载之后，触发此事件
+                    $(this).attr('src');
+                }
+
+            });
+        })
+    </script>
+	<script type="text/javascript">
+	new Vue({
+		   el:"#queryCard",
+		   data:{
+			   cardTypes:[
+		     {
+		      id:'',
+		      cardNum:'',
+		      ctype:'',
+		      cardPic:'',
+		      cardName:'',
+		      cardannual:'',
+		      anntationa1:'',
+		      anntationa2:'',
+		      anntationa3:'',
+		      anntationa4:'',
+		      activity1:'',
+		      activity2:''
+		     }
+		    ]
+		   },
+		   methods:{
+			 queryAllCardType:function(){
+		     var _this=this;
+		     var re=GetQueryString("re");
+		     axios.get("http://10.1.12.66:8086/client/gu/queryAllCardType")
+		     .then(function(response){
+		    _this.cardTypes=response.data.cardTypes;
+		   /*  if(re!=null){
+		    	window.location.href='kapianzhonglei.html'
+		    } */
+		      console.log(response);
+		     })
+		    },
+		    deleteCardTypeById(id){
+			   	var _this=this;
+			   	var r = confirm("确定删除?")
+				if (r == true) {
+					axios.get("http://10.1.12.66:8086/client/gu/deleteCardTypeById",{params:{id:id}})
+				     .then(function(response){
+				      _this.cardTypes=response.data.cardTypes;
+				      console.log(_this.cardTypes);
+				      window.location.href='http://10.1.12.66:8086/client/html/gu/kapianzhonglei.html'
+				     })
+				} 
+			    }
+		   },
+		   created:function(){
+		    this.queryAllCardType();
+		   },
+		 })
+		function GetQueryString(name){
+		     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		     var r = window.location.search.substr(1).match(reg);
+		     if(r!=null)return  unescape(r[2]); return null;
+		 }
+	</script>
+</center>
+	</body>
+</html>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zl.dao.ClientLinkmanDao">
+	<insert id="insertClientLinkmanInfo" parameterType="clientLinkman">
+		insert into
+		cc_client_linkman (client_link_name, client_link_phone,
+		client_link_address, client_link_relation)
+		values
+		(#{linkName}, #{linkPhone}, #{linkAddress}, #{linkRelation})
+	</insert>
+</mapper>

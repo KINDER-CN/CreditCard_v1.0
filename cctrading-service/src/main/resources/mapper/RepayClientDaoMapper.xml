@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zl.dao.clientdao.RepayClientDao">
+<!-- 添加储蓄卡 --><!-- public RepayCard addRepayCard(RepayCard repayCard);-->
+	<insert id="addRepayCard" parameterType="repayCard" >
+		insert into cc_repayment_card (id,repay_name, repay_card, repay_idcard,
+		repay_phone, repay_bank)
+		values(#{id},#{repayName},#{repayCardNum},#{repayIDcard},#{repayPhone},#{repayBank})
+	</insert>
+	<!--根据客户ID查询信用卡表 --><!-- public List<CreditCard> queryCreditCardByClient(int client); -->
+	<select id="queryCreditCardByClient" parameterType="int" resultType="creditCard" >
+		select id id,card_num cardNum,card_type_id cardType,card_password
+		carPassword,card_validity cardValidity,card_security_code
+		cardSecurityCode,
+		card_limit cardLimit,card_short_limit cardShortLimit,card_cash_limit
+		cardCashLimit,card_state cardState,card_binding
+		cardBinding,card_bankcard_id repayCard,
+		card_client_id client,card_annual cardAnnual,card_balance cardBalance,card_bill_day
+		cardBillday,card_refund_day cardRefundDay,card_point cardpoint
+		from cc_client_card where card_client_id=#{client}
+	</select>
+	<!-- 修改还款余额（扣款） --><!-- public BankCard updateBankBalance(BankCard bankCard); -->
+	<update id="updateBankBalance" parameterType="bankCard">
+		update cc_bank_card set bank_balance=#{bankBalance} where
+		bank_card=#{bankCard}
+	</update>
+	<!-- 修改信用卡可用额度（还款） --><!-- public CreditCard updateCardBalance(CreditCard creditCard); -->
+	<update id="updateCardBalance" parameterType="creditCard">
+		update cc_client_card set card_balance=#{cardBalance} where
+		card_num=#{cardNum}
+	</update>
+	<!-- 添加还款记录到交易详情表 --><!-- public int addRepayToBillDetails(BillDetails billDetails); -->
+	<insert id="addRepayToBillDetails" parameterType="billDetails" >
+		insert into cc_bill_details (id,transaction_des,transaction_type,transaction_monry,transaction_time,transaction_coin,transaction_pay_time,bill_id,card_id,aging_id)
+	values(#{id},#{transactionDes},#{transactionType},#{transactionMoney},#{transactionTime},#{transactionCoin},#{payTime},#{billId},#{creditCard},#{aging})
+	</insert>
+	<!-- 更改客户信用分 --><!-- public Client updateCreditPoint(Client client); -->
+	<update id="updateCreditPoint" parameterType="client">
+		update cc_Client set client_bank_creditPoint=#{creditPoint} where
+		client_id=#{clientId}
+	</update>
+	<select id="queryBankCard" resultType="bankCard">
+	select bank_card bankCard,bank_client_name bankClientName,bank_idcard bankIDcard,bank_client_phone bankPhone,bank_name bankName,bank_balance bankBalance,card_pwd cardPwd
+	  from cc_bank_card where bank_card=#{bankCard}
+	</select>
+	<!-- 查询还款卡 -->
+	<select id="queryRepayCardbyclient" resultType="RepayCard">
+	select id id,repay_card repayCardNum,repay_name repayName,repay_idcard repayIDcard,repay_phone repayPhone, repay_bank repayBank
+	 from cc_repayment_card where repay_idcard=#{repayIDcard}
+	 
+	</select>
+	<!-- 查询信用卡 -->
+	<select id="queryCreditCardById" resultType="creditCard">
+	select id id,card_num cardNum,card_type_id cardType,card_password
+		carPassword,card_validity cardValidity,card_security_code
+		cardSecurityCode,
+		card_limit cardLimit,card_short_limit cardShortLimit,card_cash_limit
+		cardCashLimit,card_state cardState,card_binding
+		cardBinding,card_bankcard_id repayCard,
+		card_client_id client,card_annual cardAnnual,card_balance cardBalance,card_bill_day
+		cardBillday,card_refund_day cardRefundDay,card_point cardpoint
+		from cc_client_card where card_num=#{cardNum}
+	</select>
+	<!-- 更改已还金额 -->
+	<update id="updateHasMoney" parameterType="Bill" >
+	update cc_bill set bill_hasPay=#{hasPay} where
+		bill_card_id=#{creditCard}
+	</update>
+	<select id="queryCardType" resultType="cardType">
+	select id id, card_name cardName from cc_card_Type
+	</select>
+</mapper>

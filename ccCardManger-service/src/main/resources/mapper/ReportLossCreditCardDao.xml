@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zl.dao.ReportLossCreditCardDao">
+	<update id="reportLossCreditCard" parameterType="creditCard">
+		update cc_client_card set card_state=#{cardState} where id=#{id}
+	</update>
+	
+	<update id="creditCardLossUnregister" parameterType="creditCard">
+		update cc_client_card set card_state=#{cardState} where id=#{id}
+	</update>
+</mapper>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>修改个人资料</title>
+<style>
+.container {
+	width: 800px;
+	margin: 0 auto;
+}
+
+.container .address {
+	margin: 20px 0;
+}
+
+.container .address select {
+	width: 150px;
+	height: 28px;
+	margin-right: 50px;
+}
+
+.container .address span {
+	margin-right: 10px;
+}
+</style>
+</head>
+
+<body>
+	<div id="div" style="background-color: lightyellow;">
+		<div align="center" id="container">
+			<table border=5 bordercolor=blue align=center width="800px ;">
+				<tr>
+					<td colspan="4" align="center"><b>个人资料</b></td>
+				</tr>
+				<tr>
+					<td height="20px" colspan="4" bgcolor="darkorange"><b>基本信息</b></td>
+				</tr>
+				<tr>
+					<td>姓名：</td>
+					<td><input type="text" id="clientName"></td>
+					<td>性别：</td>
+					<td><input type="text" id="clientSex"></td>
+				</tr>
+				<tr>
+					<td>教育程度：</td>
+					<td><input type="text" id="clientEdu"></td>
+					<td>民族：</td>
+					<td><input type="text" id="clientNational"></td>
+
+				</tr>
+				<tr>
+					<td>E-mail账单地址：</td>
+					<td><input type="text" id="clientEmail"></td>
+					<td>身份证：</td>
+					<td><input type="text" id=clientIDcard></td>
+
+				</tr>
+				<tr>
+					<td>出生日期：</td>
+					<td><input type="date" id="clientBirthday"></td>
+					<td>移动电话：</td>
+					<td><input type="text" id="clientPhone"></td>
+				</tr>
+				<tr>
+					<td>婚姻状况：</td>
+					<td><input type="text" id="clientMarriage"></td>
+					<td>邮政编码：</td>
+					<td><input type="text" id="postalcode"></td>
+				</tr>
+				<tr>
+					<td colspan="1">住宅状况：</td>
+					<td colspan="3"><input type="text" id="clientHousing"></td>
+				</tr>
+				<tr>
+					<td colspan="1">现住宅地址：</td>
+					<td colspan="3"><input type="text" id="clientAddress"></td>
+				</tr>
+				<tr>
+					<td colspan="1">安全问题：</td>
+					<td colspan="3"><input type="text" id="questionId"></td>
+				</tr>
+				<tr>
+					<td colspan="1">安全问题答案：</td>
+					<td colspan="3"><input type="text" id="clientAnswer"></td>
+				</tr>
+
+				<tr>
+					<td height="20px" colspan="4" bgcolor="darkorange"><b>个人单位信息</b></td>
+				</tr>
+				<tr>
+					<td colspan="1"><b>单位名称</b></td>
+					<td colspan="3"><input type="text" id="companyName"></td>
+				</tr>
+				<tr>
+					<td colspan="1">单位性质：</td>
+					<td colspan="3"><input type="text" id="companyNature"></td>
+				</tr>
+				<tr>
+					<td colspan="1">单位电话：</td>
+					<td colspan="3"><input type="text" id="companyPhone"></td>
+				</tr>
+				<tr>
+					<td colspan="1">发展行业：</td>
+					<td colspan="3"><input type="text" id="companyIndustry"></td>
+				</tr>
+				<tr>
+					<td colspan="1">单位地址：</td>
+					<td colspan="3"><input type="text" id="companyAddress"></td>
+				</tr>
+				<tr>
+					<td colspan="1">担任职务：</td>
+					<td colspan="3"><input type="text" id="companyJob"></td>
+				</tr>
+				<tr>
+					<td colspan="1">从事实业：</td>
+					<td colspan="3"><input type="text" id="annualIncome"></td>
+				</tr>
+				<tr>
+					<td colspan="1">公司邮编：</td>
+					<td colspan="3"><input type="text" id="companyPostalcode"></td>
+				</tr>
+				<tr>
+					<td height="20px" colspan="4" bgcolor="darkorange"><b>联系人信息</b></td>
+				</tr>
+
+				<tr>
+					<td colspan="1"><b>联系人姓名</b></td>
+					<td colspan="3"><input type="text" id="linkName"></td>
+				</tr>
+				<tr>
+					<td colspan="1">联系人电话：</td>
+					<td colspan="3"><input type="text" id="linkPhone"></td>
+				</tr>
+				<tr>
+					<td colspan="1">与主卡申请人的关系：</td>
+					<td colspan="3"><input type="text" id="linkRelation"></td>
+				</tr>
+				<tr>
+					<td colspan="1">联系人地址：</td>
+					<td colspan="3"><input type="text" id="linkAddress"></td>
+				</tr>
+
+			</table>
+			<p align="center">
+
+				<input type="button" id="updateClientCompanyLinkman" value="点击修改">
+				<input type="button" id="goBack" value="点击返回">
+			</p>
+
+		</div>
+
+	</div>
+	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="js/global.js"></script>
+	<script type="text/javascript" src="js/jquery.accordion.js"></script>
+	<script type="text/javascript" src="js/select.js"></script>
+	<script type="text/javascript">
+		/* 解析url带过来的数据 */
+		function GetQueryString(name) {
+			//alert(name);
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+			//alert(reg);
+			var r = window.location.search.substr(1).match(reg);
+			//alert(r);
+			if (r != null)
+				return unescape(r[2]);
+
+			return null;
+		}
+
+		/* 	方法执行 */
+		$(function() {
+			var name = GetQueryString("id");
+			/* 	alert(name); */
+			$.ajax({
+				url : "http://10.1.12.66:8086/cardmanger/mo/queryClientCompanyLinkmanById",
+				type : "get",
+				data : {
+					"id" : name
+				},
+				dataType : "json",
+				success : function(data) {
+					/* 	alert(name); */
+					queryClientCompanyLinkmanById(data);
+				}
+			});
+
+		})
+
+		function queryClientCompanyLinkmanById(data) {
+			/* 	alert(data.client); */
+			$(function() {
+				/* 个人资料 */
+				$("#clientName").val(data.client.clientName);
+				$("#clientSex").val(data.client.clientSex);
+				$("#clientNational").val(data.client.clientNational);
+				$("#clientIDcard").val(data.client.clientIDcard);
+				$("#clientBirthday").val(data.client.clientBirthday);
+				$("#clientMarriage").val(data.client.clientMarriage);
+				$("#clientEdu").val(data.client.clientEdu);
+				$("#questionId").val(data.client.questionId);
+				$("#clientAnswer").val(data.client.clientAnswer);
+				$("#clientHousing").val(data.client.clientHousing);
+				$("#clientAddress").val(data.client.clientAddress);
+				$("#postalcode").val(data.client.postalcode);
+				$("#clientEmail").val(data.client.clientAddress);
+				$("#clientPhone").val(data.client.clientPhone);
+
+				/* 客户单位信息 */
+				$("#companyName").val(data.company.companyName);
+				$("#companyNature").val(data.company.companyNature);
+				$("#companyPhone").val(data.company.companyPhone);
+				$("#companyIndustry").val(data.company.companyIndustry);
+				$("#companyAddress").val(data.company.companyAddress);
+				$("#companyJob").val(data.company.companyJob);
+				$("#annualIncome").val(data.company.annualIncome);
+				$("#companyPostalcode").val(data.company.companyPostalcode);
+
+				/* 联系人信息 */
+				$("#linkName").val(data.linkman.linkName);
+				$("#linkPhone").val(data.linkman.linkPhone);
+				$("#linkAddress").val(data.linkman.linkAddress);
+				$("#linkRelation").val(data.linkman.linkRelation);
+			});
+		};
+
+		/* 	点击返回 */
+		$(function() {
+			$("#goBack").click(function() {
+				var name = GetQueryString("id");
+				/* 	alert(name); */
+				$.ajax({
+					success : function() {
+						/* 	alert("登录成功"); */
+						location.href = "http://10.1.12.66:8086/cardmanger/MoCreditCard.html";
+					}
+				});
+
+			})
+
+		})
+
+		//给修改按钮按按钮绑定点击事件,完成添加
+		$("#updateClientCompanyLinkman").click(function() {
+			var name = GetQueryString("id");
+			$.ajax({
+				url : "mo/updateClientCompanyLinkman",
+				type : "post",
+				data : {
+					"id" : name,
+					"clientName" : $("#clientName").val(),
+					"clientSex" : $("#clientSex").val(),
+					"clientNational" : $("#clientNational").val(),
+					"clientIDcard" : $("#clientIDcard").val(),
+					"clientBirthday" : $("#clientBirthday").val(),
+					"clientMarriage" : $("#clientMarriage").val(),
+					"clientEdu" : $("#clientEdu").val(),
+					"questionId" : $("#questionId").val(),
+					"clientAnswer" : $("#clientAnswer").val(),
+					"clientHousing" : $("#clientHousing").val(),
+					"clientAddress" : $("#clientAddress").val(),
+					"postalcode" : $("#postalcode").val(),
+					"clientEmail" : $("#clientEmail").val(),
+					"clientPhone" : $("#clientPhone").val(),
+
+					/* 客户单位信息 */
+					"companyName" : $("#companyName").val(),
+					"companyNature" : $("#companyNature").val(),
+					"companyPhone" : $("#companyPhone").val(),
+					"companyIndustry" : $("#companyIndustry").val(),
+					"companyAddress" : $("#companyAddress").val(),
+					"companyJob" : $("#companyJob").val(),
+					"annualIncome" : $("#annualIncome").val(),
+					"companyPostalcode" : $("#companyPostalcode").val(),
+
+					/* 联系人信息 */
+					"linkName" : $("#linkName").val(),
+					"linkPhone" : $("#linkPhone").val(),
+					"linkAddress" : $("#linkAddress").val(),
+					"linkRelation" : $("#linkRelation").val()
+				},
+				dataType : "json",
+				success : function() {
+					/* alert("修改成功"); */
+					location.href = "/MocreditCard.html";
+				}
+			});
+
+		});
+	</script>
+</body>
+
+</html>

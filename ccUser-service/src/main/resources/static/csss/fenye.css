@@ -1,0 +1,66 @@
+.pageinfo em{
+			font-style: normal;
+			color:#CA0C16;
+			padding:2px;
+		}
+.pagesumjump .pageSelect{
+	padding:4px;
+	height: 29px;
+	border: none;
+	outline: none;;
+	background-color: #ccc;
+}
+.pagesumjump input{
+	text-align: center;
+	width: 30px;
+	height: 29px;
+	margin-left: 3px;
+}
+.pagesumjump span{
+	margin-left: 5px;
+	padding: 0 6px;
+	background-color: #ccc;
+	border-radius: 3px;
+	cursor:pointer;
+	height: 29px;
+	line-height: 29px;
+	display: inline-block;
+}
+.pagesumjump span:hover{
+	background-color: #CA0C16;
+	color: #fff;
+}
+.disabled{
+	pointer-even:none;
+}
+.actived{
+	background-color: #CA0C16;
+	color:#fff;
+}
+nav{
+	margin-top:10px;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+.pagesumnav{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.pagesumnav li{
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	padding: 4px;
+	margin: 0 2px;
+	cursor: pointer;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none;	
+}
+.pagesumnav li:hover{
+	background-color: #CA0C16;
+	color: #fff;
+}

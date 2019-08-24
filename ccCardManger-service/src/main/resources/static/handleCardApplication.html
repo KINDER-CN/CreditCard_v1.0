@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta http-equiv="Expires" content="0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta http-equiv="Cache-Control"
+	content="no-cache, no-store, must-revalidate">
+<title>网上申请信用卡 CCMS信用卡中心</title>
+<link href="css/first.css" rel="stylesheet">
+<link href="css/input.css" rel="stylesheet">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
+<script src="js/area.js" type="text/javascript"></script>
+</head>
+
+<body>
+	<div class="header_wrap">
+		<div class="header" style="margin-top: 10px;">
+			<img src="img/logo.png" width="230" height="70" />
+		</div>
+	</div>
+
+	<div class="main_wrap" id="applyCard">
+		<div class="main clearfix">
+
+			<div class="left_layout">
+
+				<div class="card_basic_infor" id="selectCard">
+					<p class="c_tit">您选择的信用卡：</p>
+
+					<div class="card_pic">
+						<img v-bind:src="cardType.cardPic" >
+					</div>
+					<p style="font-size: 16px;" class="card_name">{{cardType.cardName}}</p>
+					<p class="card_intro"></p>
+				</div>
+
+				<div class="card_chara">
+					<ul class="chara_list">
+						<li><span class="ch_icon"><img src="img/huankuan.png"
+								width="36" height="36"></span>
+							<div class="ch_text">
+								<p class="pl_1">多渠道无忧还款</p>
+							</div>
+							<div class="c"></div></li>
+						<li><span class="ch_icon"><img src="img/zhangdan.png"
+								width="36" height="36"></span>
+							<div class="ch_text">
+								<p class="pl_1">
+									绿色账单<br>共建环保家园
+								</p>
+							</div>
+							<div class="c"></div></li>
+						<li><span class="ch_icon"><img src="img/rexian.png"
+								width="36" height="36"></span>
+							<div class="ch_text">
+								<p class="pl_1">24小时全球客服热线</p>
+							</div>
+							<div class="c"></div></li>
+						<li><span class="ch_icon"><img src="img/xiaofei.png"
+								width="36" height="36"></span>
+							<div class="ch_text">
+								<p class="pl_1">先消费，后还款</p>
+							</div>
+							<div class="c"></div></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="right_layout">
+				<div class="app_content" v-show="!flag">
+					
+					<div class="col_title" id="selectCardTitle">
+						<div class="g_line"></div>
+						<div class="tit_text">您选择的卡面</div>
+					</div>
+
+					<ul class="form_ul" id="selecCardtWrap">
+						<li>
+							<div class="tit_105 lh_104">卡板：</div>
+							<div class="card_type" id="cardType">
+								<a ref="nofollow" appcardnbr="KPIBJX"
+									index="0" cardproduct="CS0083" class="active"> 
+									<img v-bind:src="cardType.cardPic"></a>
+							</div>
+						</li>
+
+						<li id="yearFeeli">
+
+							<div class="tit_105">年费：</div>
+							<div class="card_cost" id="card_cost">
+								<a class="cost_fee" href="javascript:;"> <span
+									class="cost_span active" flagid="W3 "
+									yearfeedesc="免首年，交易12次免次年，以此类推">{{cardType.cardannual}}/年</span>
+								</a>
+								<div id="yearFeeDesc" class="yearFeeDesc" style="display: block">
+									<img src="img/tips.png" style="width: 25px; margin-right: 5px" />
+									<span>免首年，交易12次免次年，以此类推</span>
+								</div>
+							</div>
+						</li>
+					</ul>
+
+					<div class="col_title">
+						<div class="g_line"></div>
+						<div class="tit_text">
+							填写初审信息<span class="t_span">（<em class="r_em">* </em>为必填项）
+							</span>
+						</div>
+					</div>
+
+					<ul class="form_ul" id="validFrom">
+						<li>
+							<div class="tit_105">
+								<em class="r_em">*</em> 姓名：
+							</div>
+							<div class="f_box w_155">
+								<div class="input_box">
+									<input id="userName" placeholder="不少于两个汉字" name="clientName"
+										type="text" maxlength="15" v-model="client.clientName">
+								</div>
+								<div class="form_tips">
+									<span class="err_span"></span>
+								</div>
+							</div>
+							<div class="succ_tips" style="margin-bottom: 10px;">
+								<span class="succ_span name_error"></span>
+							</div>
+
+							<DIV class="tit_105">
+								<EM class="r_em">*</EM> 性别：
+							</DIV>
+							<DIV class="slect_box cardItem familySel" id="familySel">
+								<input type="radio" v-model="client.clientSex" class="redio" value="男">&nbsp;&nbsp;男
+								<input type="radio" v-model="client.clientSex" class="redio" name="clientSex" value="女">&nbsp;&nbsp;女
+								<DIV class="form_tips">
+									<SPAN class="err_span" style="color: rgb(255, 66, 79);"></SPAN>
+								</DIV>
+							</DIV>
+								<DIV class="form_tips">
+									<SPAN class="err_span"></SPAN>
+								</DIV>
+						</li>
+
+						<LI>
+							<DIV class="tit_105">
+								<EM class="r_em">*</EM> 出生年月：
+							</DIV>
+							<DIV class="f_box1">
+								<DIV class="h_box" id="company_address">
+									<input type="date" v-model="client.clientBirthday"
+										style="border: 1px solid #ADADAD; background-color: white; width: 155px;">
+								</DIV>
+							</DIV>
+							<DIV class="tit_105"
+								style="margin-bottom: 20px; margin-left: 30px">
+								<EM class="r_em">*</EM> 民族：
+							</DIV>
+							<DIV class="f_box">
+								<DIV class="h_box" id="company_address">
+									<DIV class="slect_box">
+										<SELECT name="clientNational" v-model="client.clientNational">
+											<option value="">请选择</option>
+											<option value="汉">汉族</option>
+											<option value="蒙古族">蒙古族</option>
+											<option value="回族">回族</option>
+											<option value="藏族">藏族</option>
+											<option value="维吾尔族">维吾尔族</option>
+											<option value="苗族">苗族</option>
+											<option value="彝族">彝族</option>
+											<option value="壮族">壮族</option>
+											<option value="布依族">布依族</option>
+											<option value="朝鲜族">朝鲜族</option>
+											<option value="满族">满族</option>
+											<option value="侗族">侗族</option>
+											<option value="瑶族">瑶族</option>
+											<option value="白族">白族</option>
+											<option value="土家族">土家族</option>
+											<option value="哈尼族">哈尼族</option>
+											<option value="哈萨克族">哈萨克族</option>
+											<option value="傣族">傣族</option>
+											<option value="黎族">黎族</option>
+											<option value="傈僳族">傈僳族</option>
+											<option value="佤族">佤族</option>
+											<option value="畲族">畲族</option>
+											<option value="高山族">高山族</option>
+											<option value="拉祜族">拉祜族</option>
+											<option value="水族">水族</option>
+											<option value="东乡族">东乡族</option>
+											<option value="纳西族">纳西族</option>
+											<option value="景颇族">景颇族</option>
+											<option value="柯尔克孜族">柯尔克孜族</option>
+											<option value="土族">土族</option>
+											<option value="达斡尔族">达斡尔族</option>
+											<option value="仫佬族">仫佬族</option>
+											<option value="羌族">羌族</option>
+											<option value="布朗族">布朗族</option>
+											<option value="撒拉族">撒拉族</option>
+											<option value="毛南族">毛南族</option>
+											<option value="仡佬族">仡佬族</option>
+											<option value="锡伯族">锡伯族</option>
+											<option value="阿昌族">阿昌族</option>
+											<option value="普米族">普米族</option>
+											<option value="塔吉克族">塔吉克族</option>
+											<option value="怒族">怒族</option>
+											<option value="乌孜别克族">乌孜别克族</option>
+											<option value="俄罗斯族">俄罗斯族</option>
+											<option value="鄂温克族">鄂温克族</option>
+											<option value="德昂族">德昂族</option>
+											<option value="保安族">保安族</option>
+											<option value="裕固族">裕固族</option>
+											<option value="京族">京族</option>
+											<option value="塔塔尔族">塔塔尔族</option>
+											<option value="独龙族">独龙族</option>
+											<option value="鄂伦春族">鄂伦春族</option>
+											<option value="赫哲族">赫哲族</option>
+											<option value="门巴族">门巴族</option>
+											<option value="珞巴族">珞巴族</option>
+											<option value="基诺族">基诺族</option>
+										</SELECT>
+									</DIV>
+									<DIV class="form_tips" style="clear: both;">
+										<SPAN class="err_span corp_error"></SPAN>
+									</DIV>
+								</DIV>
+							</DIV>
+						</LI>
+
+						<li>
+							<div class="tit_105">
+								<em class="r_em">*</em> 身份证号：
+							</div>
+							<div class="f_box">
+								<div class="input_box w_505">
+									<input id="applyIdNbr" placeholder="请填写有效身份证号"
+										name="clientIDcard" v-model="client.clientIDcard" type="text"
+										maxlength="18">
+								</div>
+								<div class="form_tips">
+									<span class="err_span"></span>
+								</div>
+							</div>
+							<div class="succ_tips">
+								<span class="succ_span"></span>
+							</div>
+						</li>
+
+						<li>
+							<div class="tit_105">
+								<em class="r_em">*</em> 手机号码：
+							</div>
+							<div class="f_box">
+								<div class="input_box w_505">
+									<input id="mobile" name="clientPhone" type="text"
+										maxlength="11" v-model="client.clientPhone"
+										placeholder="11数位有效手机号码">
+								</div>
+								<div class="form_tips">
+									<span class="err_span"></span>
+								</div>
+							</div>
+							<div class="succ_tips">
+								<span class="succ_span"></span>
+							</div>
+						</li>
+
+						<li>
+							<div class="tit_105">
+								<em class="r_em">*</em> 短信验证码：
+							</div>
+							<div class="code_btn_box">
+								<a class="code_btn" href="javascript:;" id="getsmscode">免费获取</a>
+								<span class="code_span" id="code_span">60s后重新获取</span>
+							</div>
+							<div class="f_box">
+								<div class="input_box w_385">
+									<input id="code" name="code" type="text" maxlength="6"
+										placeholder="请填写6位数字验证码">
+								</div>
+								<div class="form_tips">
+									<span class="err_span"></span>
+								</div>
+							</div>
+							<div class="succ_tips">
+								<span class="succ_span"></span>
+							</div>
+						</li>
+					</ul>
+
+					<div class="check_agree">
+						<span class="input_span"> <input id="check_submit"
+							type="checkbox" checked="checked">
+						</span> <span class="txt_span" id="txt_span_default">我已阅读并清楚知晓 <a
+							href="javascript:;" ref="nofollow"
+							onclick="window.open('https://creditcard.ecitic.com/yongka/zhishi.shtml#kl_nav4');return false;">《CCMS信用卡（个人卡）领用合约》</a>
+							及该信用卡的相关信息。现金仅用于合理、合规的消费领取，不得进入生产经营及证券市场，股本经营性投资及房地产开发等非消费领域。
+						</span> <span id="txt_span_jdhy" style="display: none;">我已阅读并清楚知晓
+							<a ref="nofollow" href="javascript:;"
+							onclick="window.open('https://creditcard.ecitic.com/yongka/zhishi.shtml#kl_nav4');return false;">《CCMS信用卡（个人卡）领用合约》</a>
+							<a id="jdhy_contract" href="javascript:;"></a>
+							及该信用卡的相关信息。现金仅用于合理、合规的消费领取，不得进入生产经营及证券市场，股本经营性投资及房地产开发等非消费领域。根据相关政策要求，如您已持有我行I类借记账户，您获批的<span
+							id="jdhy_prompt_card_name"></span>借记账户将为Ⅱ类账户。借记账户使用条款以我行对外公示为准。
+						</span> <span id="txt_span_xjb" style="display: none">我已阅读并清楚知晓 <a
+							href="javascript:;" ref="nofollow"
+							onclick="window.open('https://creditcard.ecitic.com/yongka/zhishi.shtml#kl_nav4');return false;">《CCMS信用卡（个人卡）领用合约》</a>及
+							<a href="javascript:;" ref="nofollow"
+							onclick="window.open('https://creditcard.ecitic.com/heyue/xianshangdai/xianjinfenqi.html');return false;">《中信银行信用卡现金分期业务合约》</a>
+							的相关信息。现金分期资金仅限用于消费用途，不得用于任何生产经营、投资等非消费活动领域（包括但不限于购买股票、有价证券、期货、理财产品等金融产品，购房或进行房地产经营等）。
+						</span>
+					</div>
+
+					<div class="form_btn_box" id="submit_btn">
+						<button style="margin-left: 230px;" type="submit"
+							class="btn btn-danger btn-lg" @click="ApplyCardPlanController()">
+							&nbsp;&nbsp;&nbsp;&nbsp;下一步&nbsp;&nbsp;&nbsp;&nbsp;</button>
+					</div>
+				</div>
+				
+				
+				<!-- 。。。。。。。。。。。。。。。。。。。。。。详细信息。。。。。。。。。。。。。。。。。。。。。。。 -->
+				<div v-show="flag">
+					<DIV class="right_layout" id="applyCard">
+						<DIV class="app_content">
+							<DIV class="col_title">
+								<DIV class="g_line"></DIV>
+								<DIV class="tit_text">
+									初审已通过，请填写详细信息 <SPAN class="t_span">（<EM class="r_em">*</EM>为必填项）
+									</SPAN>
+								</DIV>
+							</DIV>
+							<UL class="form_ul" id="validFrom">
+								<LI>
+									<DIV class="tit_105">
+										<EM class="r_em">*</EM> 学历：
+									</DIV>
+									<DIV class="f_box cardItem degreeSel" id="degreeSel">
+										<input type="radio" v-model="client.clientEdu" class="redio" name="clientEdu" value="硕士及以上">&nbsp;&nbsp;硕士及以上
+										<input type="radio" v-model="client.clientEdu" class="redio" name="clientEdu" value="本科">&nbsp;&nbsp;本科
+										<input type="radio" v-model="client.clientEdu" class="redio" name="clientEdu" value="大专">&nbsp;&nbsp;大专
+										<input type="radio" v-model="client.clientEdu" class="redio" name="clientEdu" value="高中/中专">&nbsp;&nbsp;高中/中专
+										<input type="radio" v-model="client.clientEdu" class="redio" name="clientEdu" value="初中/小学">&nbsp;&nbsp;初中/小学
+										<DIV class="form_tips">
+											<SPAN class="err_span"></SPAN>
+										</DIV>
+									</DIV>
+								</LI>
+								<LI>
+									<DIV class="tit_105">
+										<EM class="r_em">*</EM> 婚姻状况：
+									</DIV>
+									<DIV class="f_box cardItem marrySel" id="marrySel">
+										<input type="radio" v-model="client.clientMarriage" class="redio" name="clientMarriage" value="已婚（有子女）">&nbsp;&nbsp;已婚（有子女）
+										<input type="radio" v-model="client.clientMarriage" class="redio" name="clientMarriage" value="已婚（无子女）">&nbsp;&nbsp;已婚（无子女）
+										<input type="radio" v-model="client.clientMarriage" class="redio" name="clientMarriage" value="未婚">&nbsp;&nbsp;未婚
+										<input type="radio" v-model="client.clientMarriage" class="redio" name="clientMarriage" value="其他">&nbsp;&nbsp;其他
+										<DIV class="form_tips">
+											<SPAN class="err_span" style="color: rgb(255, 66, 79);"></SPAN>
+										</DIV>
+									</DIV>
+								</LI>
+								<LI>
+									<DIV class="tit_105">
+										<EM class="r_em">*</EM> 安全问题：
+									</DIV>
+									<DIV class="f_box">
+										<DIV class="h_box" id="company_address">
+											<DIV class="slect_box">
+												<SELECT name="questionId" id="sheng"
+													v-model="client.questionId">
+													<OPTION value="">请选择</OPTION>
+													<OPTION value="1">你母亲的生日？</OPTION>
+													<OPTION value="2">你母亲的名字？</OPTION>
+													<OPTION value="3">你父亲的生日？</OPTION>
+													<OPTION value="4">你父亲的名字？</OPTION>
+													<OPTION value="5">你小学老师的名字？</OPTION>
+												</SELECT>
+											</DIV>
+										</DIV>
+										<DIV class="succ_tips">
+											<SPAN class="succ_span"></SPAN>
+										</DIV>
+									</DIV>
+									<DIV class="tit_105">
+										<EM class="r_em">*</EM> 预留答案：
+									</DIV>
+									<DIV class="f_box w_250">
+										<DIV class="input_box1">
+											<INPUT name="clientAnswer" maxlength="20"
+												style="color: rgb(85, 85, 85);"
+												v-model="client.clientAnswer" type="text"
+												placeholder="请输入安全问题的答案">
+										</DIV>
+										<DIV class="form_tips">
+											<SPAN class="non_immediate_nm_err_span err_span"
+												style="color: rgb(255, 66, 79);"></SPAN>
+										</DIV>
+									</DIV>
+								</LI>
+								<li>
+									<div class="tit_105"><em class="r_em">*</em> 用户住址：</div>
+									<div class="f_box">
+										<div class="input_box w_505">
+											<input id="mobile" v-model="client.clientAddress" type="text" maxlength="50"
+												placeholder="省---/市(县)---/区">
+										</div>
+										<div class="form_tips"><span class="err_span"></span></div>
+									</div>
+									<div class="succ_tips"><span class="succ_span"></span></div>	
+								</li>
+								<LI>
+									<DIV class="tit_105">
+										<EM class="r_em">*</EM> 住宅状况：
+									</DIV>
+									<DIV class="f_box">
+										<DIV class="h_box" id="company_address">
+											<DIV class="slect_box">
+												<SELECT name="clientHousing" id="sheng"
+													v-model="client.clientHousing">
+													<OPTION value="">请选择</OPTION>
+													<OPTION value="有住房（有房贷）">有住房（有房贷）</OPTION>
+													<OPTION value="有住房（无房贷）">有住房（无房贷）</OPTION>
+													<OPTION value="租房">租房</OPTION>
+													<OPTION value="父母同住">父母同住</OPTION>
+													<OPTION value="其他">其他</OPTION>
+												</SELECT>
+											</DIV>
+										</DIV>
+										<DIV class="succ_tips">
+											<SPAN class="succ_span"></SPAN>
+										</DIV>
+									</DIV>
+									<div class="tit_105">
+										<em class="r_em">*</em> 住址邮编：
+									</div>
+									<DIV class="f_box w_250">
+										<DIV class="input_box1">
+											<INPUT name="postalcode" id=""
+												style="color: rgb(85, 85, 85);" v-model="client.postalcode"
+												type="text" maxlength="6" placeholder="6位数有效邮编">
+										</DIV>
+										<DIV class="form_tips">
+											<SPAN class="non_immediate_nm_err_span err_span"
+												style="color: rgb(255, 66, 79);"></SPAN>
+										</DIV>
+									</DIV>
+								</LI>
+								<li>
+									<div class="tit_105">
+										<em class="r_em">*</em> 电子邮箱：
+									</div>
+									<div class="f_box">
+										<div class="input_box w_505">
+											<input id="email" name="email" type="text" maxlength="30"
+												v-model="client.clientEmail" autocomplete="off"
+												placeholder="电子账单会发送至该邮箱地址">
+										</div>
+										<div class="form_tips">
+											<span class="err_span"></span>
+										</div>
+									</div>
+									<div class="succ_tips">
+										<span class="succ_span"></span>
+									</div>
+								</li>
+
+								<LI>
+									<DIV class="tit_105">
+										<EM class="r_em">*</EM> 单位名称：
+									</DIV>
+									<DIV class="f_box w_505 posi-re">
+										<DIV class="input_box">
+											<INPUT name="companyName" id="company" type="text"
+												maxlength="50" v-model="clientCompany.companyName"
+												placeholder="您所在公司的名称">
+										</DIV>
+										<DIV class="form_tips">
+											<SPAN class="err_span" style="color: rgb(255, 66, 79);"></SPAN>
+										</DIV>
+									</DIV>
+									<DIV class="succ_tips">
+										<SPAN class="succ_span"></SPAN>
+									</DIV>
+								</LI>
+								<LI>
+									<DIV class="tit_105">
+										<EM class="r_em"></EM> 单位性质：
+									</DIV>
+									<DIV class="f_box">
+										<DIV class="h_box" id="company_address">
+											<DIV class="slect_box">
+												<SELECT name="companyNature" id="sheng"
+													v-model="clientCompany.companyNature">
+													<OPTION value="">--请选择--</OPTION>
+													<OPTION value="行政机关">行政机关</OPTION>
+													<OPTION value="事业单位">事业单位</OPTION>
+													<OPTION value="社会团体">社会团体</OPTION>
+													<OPTION value="企业">企业</OPTION>
+													<OPTION value="个体工商户">个体工商户</OPTION>
+													<OPTION value="其他">其他</OPTION>
+												</SELECT>
+											</DIV>
+										</DIV>
+										<DIV class="succ_tips">
+											<SPAN class="succ_span"></SPAN>
+										</DIV>
+									</DIV>
+									<DIV class="tit_1051">
+										<EM class="r_em"></EM> 发展行业：
+									</DIV>
+									<DIV class="f_box">
+										<DIV class="h_box" id="company_address">
+											<DIV class="slect_box2">
+												<SELECT name="companyIndustry" id="sheng"
+													v-model="clientCompany.companyIndustry">
+													<OPTION value="">请选择</OPTION>
+													<OPTION value="公共管理与社会组织">公共管理与社会组织</OPTION>
+													<OPTION value="科教文卫">科教文卫</OPTION>
+													<OPTION value="金融电力电信">金融电力电信</OPTION>
+													<OPTION value="邮政交通运输公用">邮政交通运输公用</OPTION>
+													<OPTION value="计算机服务与软件行业">计算机服务与软件行业</OPTION>
+													<OPTION value="体育娱乐">体育娱乐</OPTION>
+													<OPTION value="工商业服务业贸易">工商业服务业贸易</OPTION>
+													<OPTION value="其他">其他</OPTION>
+												</SELECT>
+											</DIV>
+										</DIV>
+										<DIV class="succ_tips">
+											<SPAN class="succ_span"></SPAN>
+										</DIV>
+									</DIV>
+								</LI>
+
+								<LI>
+									<DIV class="tit_105">
+										<EM class="r_em">*</EM> 担任职务：
+									</DIV>
+									<DIV class="f_box">
+										<DIV class="h_box" id="company_address">
+											<DIV class="slect_box">
+												<SELECT name="companyJob"
+													v-model="clientCompany.companyJob">
+													<OPTION value="">请选择</OPTION>
+													<OPTION value="厅局级以上">厅局级以上</OPTION>
+													<OPTION value="处级">处级</OPTION>
+													<OPTION value="科级">科级</OPTION>
+													<OPTION value="一般干部">一般干部</OPTION>
+													<OPTION value="总经理级">总经理级</OPTION>
+													<OPTION value="部门经理级">部门经理级</OPTION>
+													<OPTION value="职员">职员</OPTION>
+													<OPTION value="其他">其他</OPTION>
+												</SELECT>
+											</DIV>
+										</DIV>
+										<DIV class="succ_tips">
+											<SPAN class="succ_span"></SPAN>
+										</DIV>
+									</DIV>
+									<DIV class="tit_1051">
+										<EM class="r_em"></EM> 从事职称：
+									</DIV>
+									<DIV class="f_box">
+										<DIV class="h_box" id="company_address">
+											<DIV class="slect_box2">
+												<SELECT name="annualIncome"
+													v-model="clientCompany.annualIncome">
+													<OPTION value="">请选择</OPTION>
+													<OPTION value="高级职称及以上">高级职称及以上</OPTION>
+													<OPTION value="中级职称">中级职称</OPTION>
+													<OPTION value="初级职称">初级职称</OPTION>
+													<OPTION value="初级及以下">初级及以下</OPTION>
+												</SELECT>
+											</DIV>
+										</DIV>
+										<DIV class="succ_tips">
+											<SPAN class="succ_span"></SPAN>
+										</DIV>
+									</DIV>
+								</LI>
+
+								<LI>
+									<DIV class="tit_105">
+										<EM class="r_em">*</EM> 单位电话：
+									</DIV>
+									<div class="f_box">
+										<div class="input_box2">
+											<input id="companyPhone" name="mobile" type="text"
+												maxlength="11" v-model="clientCompany.companyPhone"
+												placeholder="11位数有效手机号码">
+										</div>
+										<div class="form_tips">
+											<span class="err_span"></span>
+										</div>
+									</div>
+
+									<div class="tit_105">
+										<em class="r_em">*</em> 单位邮编：
+									</div>
+									<DIV class="f_box w_250">
+										<DIV class="input_box2">
+											<INPUT name="companyPostalcode"
+												style="color: rgb(85, 85, 85);"
+												v-model="clientCompany.companyPostalcode" type="text"
+												maxlength="6" placeholder="6位数有效邮编">
+										</DIV>
+									</DIV>
+								</LI>
+
+								<li>
+									<div class="tit_105"><em class="r_em">*</em> 单位地址：</div>
+									<div class="f_box">
+										<div class="input_box w_505">
+											<input id="mobile" name="mobile" type="text" maxlength="50"
+												v-model="clientCompany.companyAddress" placeholder="省---/市(县)---/区">
+										</div>
+										<div class="form_tips"><span class="err_span"></span></div>
+									</div>
+									<div class="succ_tips"><span class="succ_span"></span></div>	
+								</li>
+								
+								<LI>
+								<div style="margin-bottom: 20px;">
+									<SPAN class="title-text">与联系人的关系<span class="t_span">（<em class="r_em">* </em>为必填项）
+										</span></SPAN> 
+									<SPAN class="tit-line"></SPAN>
+								
+								</div>
+									<DIV class="tit_105">
+										<EM class="r_em">*</EM> TA是我的：
+									</DIV>
+									<DIV class="f_box">
+										<DIV class="h_box">
+											<DIV class="slect_box cardItem familySel" id="familySel">
+												<input v-model="clientLinkman.linkRelation" type="radio" class="redio" name="clientSex" value="夫妻">&nbsp;&nbsp;夫妻
+												<input v-model="clientLinkman.linkRelation" type="radio" class="redio" name="clientSex" value="父母">&nbsp;&nbsp;父母
+												<input v-model="clientLinkman.linkRelation" type="radio" class="redio" name="clientSex" value="子女">&nbsp;&nbsp;子女
+												<input v-model="clientLinkman.linkRelation" type="radio" class="redio" name="clientSex" value="朋友、同事">&nbsp;&nbsp;朋友、同事
+												<input v-model="clientLinkman.linkRelation" type="radio" class="redio" name="clientSex" value="其他">&nbsp;&nbsp;其他
+												<DIV class="form_tips">
+													<SPAN class="err_span" style="color: rgb(255, 66, 79);"></SPAN>
+												</DIV>
+											</DIV>
+										</DIV>
+									</DIV>
+								</LI>
+								<LI>
+									<DIV class="tit_105">
+										<EM class="r_em">*</EM> 姓名：
+									</DIV>
+									<DIV class="f_box w_250">
+										<DIV class="input_box3">
+											<INPUT name="linkName" id="immediateFamilyName"
+												v-model="clientLinkman.linkName"
+												style="color: rgb(85, 85, 85); " type="text" maxlength="10"
+												placeholder="联系人的姓名">
+										</DIV>
+										<DIV class="form_tips">
+											<SPAN class="immediate_nm_err_span err_span"
+												style="color: rgb(255, 66, 79);"></SPAN>
+										</DIV>
+									</DIV>
+									<DIV class="tit_105">
+										<EM class="r_em">*</EM> 手机号码：
+									</DIV>
+									<DIV class="f_box w_150" >
+										<DIV class="input_box4">
+											<INPUT name="linkPhone" id="immediateFamilyPhone"
+												v-model="clientLinkman.linkPhone"
+												style="color: rgb(85, 85, 85);" type="text" maxlength="11"
+												placeholder="11位数有效手机号码">
+										</DIV>
+										<DIV class="form_tips">
+											<SPAN class="immediate_ph_err_span err_span"
+												style="color: rgb(255, 66, 79);"></SPAN>
+										</DIV>
+									</DIV>
+									<DIV class="succ_tips">
+										<SPAN class="succ_span"></SPAN>
+									</DIV>
+								</LI>
+
+								<li>
+									<div class="tit_105"><em class="r_em">*</em> 联系人地址：</div>
+									<div class="f_box">
+										<div class="input_box w_505">
+											<input id="mobile" name="mobile" type="text" maxlength="50"
+												v-model="clientLinkman.linkAddress" placeholder="省---/市(县)---/区">
+										</div>
+										<div class="form_tips"><span class="err_span"></span></div>
+									</div>
+									<div class="succ_tips"><span class="succ_span"></span></div>	
+								</li>
+							</UL>
+							<DIV class="get_mode" id="getMode">
+								<P class="tit_p">选择领卡方式</P>
+								<UL class="way_list">
+									<li v-model="clientLinkman.linkAddress" id="netpointsendmail" style="margin-bottom: 10px;;">
+										<input type="radio" checked="checked" name="aa"><span>到ccms信用卡任意网点验证身份，邮寄发卡。</span>
+									</li>
+									<li v-model="clientLinkman.linkAddress" id="netpointactivate">
+										<input type="radio" name="aa"><span>到ccms信用卡任意网点验证身份，持卡激活。</span>
+									</li>
+								</UL>
+							</DIV>
+							<DIV class="form_btn_box" id="submit_btn">
+								<button style="margin-left: 230px;" type="submit"
+									class="btn btn-danger btn-lg"
+									@click="ApplyCardPlanController()">
+									&nbsp;&nbsp;&nbsp;&nbsp;下一步&nbsp;&nbsp;&nbsp;&nbsp;
+								</button>
+							</DIV>
+						</DIV>
+					</DIV>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer_wrap">
+		<div class="footer clearfix">
+			<div class="left_con">
+				<p class="p_right">CCMS信用卡版权所有Copyright @ 2002-2013 CITIC
+					Holdings All rights reserved 京ICP证030779－1号</p>
+			</div>
+			<div class="right_con">
+				<div class="service_tel">
+					<p class="p1">24小时客服热线</p>
+					<p class="p2">40088-95558</p>
+				</div>
+				<a class="ol_service"
+					href="https://im.bank.ecitic.com/credit/navigation.html?channel=712021"
+					target="_blank">在线客服</a>
+			</div>
+			<div class="c"></div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/select.js"></script>
+	<script type="text/javascript" src="js/zxing.js"></script>
+	<script type="text/javascript" src="js/trackevent.js"></script>
+	<script type="text/javascript" src="js/dill.js"></script>
+	<script type="text/javascript" src="js/first.js"></script>
+	<script type="text/javascript" src="js/pk.js"></script>
+	<script type="text/javascript" src="js/data.js"></script>
+	<script type="text/javascript" src="js/input.js"></script>
+	<script type="text/javascript" src="js/second.550e7605.js"></script>
+	<script type="text/javascript" src="js/vuejs-2.5.16.js"></script>
+	<script type="text/javascript" src="js/axios-0.18.0.js"></script>
+	<script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+	<script type="text/javascript" src="js/laydate/laydate.js"></script>
+	<script type="text/javascript">
+		new Vue({
+            el:'#applyCard',
+            data:{
+            	flag:false,
+            	done:false,
+            	client:{
+            		clientName:'',
+            		clientSex:'',
+            		clientNational:'',
+            		clientIDcard:'',
+            		clientBirthday:'',
+            		clientPhone:'',
+           			clientEdu:'',
+            		clientMarriage:'',
+            		questionId:'',
+            		clientAnswer:'',
+            		clientHousing:'',
+            		clientAddress:'',
+            		clientEmail:''
+                },
+                clientCompany:{
+            		companyName:'',
+            		companyNature:'',
+            		companyPhone:'',
+            		companyIndustry:'',
+            		companyAddress:'',
+            		companyJob:'',
+            		annualIncome:'',
+            		companyPostalcode:''
+                },
+                clientLinkman:{
+                	linkName:'',
+                	linkPhone:'',
+                	linkAddress:'',
+                	linkRelation:''
+                },
+                cardType: {
+	 				  id:'',
+	 				  cardNum:'',
+	 				  ctype:'',
+	 				  cardPic:'',
+	 				  cardName:'',
+	 				  cardannual:'',
+	 				  anntationa1:'',
+	 				  anntationa2:'',
+	 				  anntationa3:'',
+	 				  anntationa4:'',
+	 				  activity1:'',
+	 				  activity2:''
+	 		     }
+            },
+            methods:{
+            	selectCardTypeById: function(){
+            		var _this=this;
+            		var idc= GetQueryString("id")
+            		var id=_this.cardType.id;
+            		axios.get('http://10.1.12.66:8086/cardmanger/selectCardTypeById',{params:{id:idc}})
+            		.then(function (response) {
+            			 _this.cardType = response.data.ct;
+                        console.log(response);
+                      })
+            	},
+            	ApplyCardPlanController(){
+            		var idc= GetQueryString("id")
+            		var _this=this;
+            		var name = /^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/;
+            		var num = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+            		var tex = /^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;
+            		var email = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+            		var zip=/^\d{6}$/;
+            		var reg = /.+?(省|市|自治区|自治州|县|区)/g;
+            		if(_this.client.clientName==""){
+						alert("用户姓名不能为空！")
+            			return false
+            		}
+            		if(!name.test(_this.client.clientName)){
+            			alert("用户姓名格式错误！")
+            			return false
+            		}
+            		if(_this.client.clientSex==""){
+						alert("请选择性别！")
+            			return false
+            		}
+            		if(_this.client.clientBirthday==""){
+						alert("出生年月不能为空！")
+            			return false
+            		}
+            		if(_this.client.clientNational==""){
+						alert("请选择名族！")
+            			return false
+            		}
+            		if(_this.client.clientIDcard==""){
+            			alert("身份证号码不能为空！")
+            			return false
+            		}
+            		if(!num.test(_this.client.clientIDcard)){
+            			alert("身份证号码格式错误！")
+            			return false
+            		}
+            		if(_this.client.clientPhone==""){
+            			alert("手机号码不能为空！")
+            			return false
+            		}
+            		if(!tex.test(_this.client.clientPhone)){
+            			alert("手机号码格式错误！")
+            			return false
+            		}
+					 
+					this.flag=true;
+					
+					if(_this.client.clientEdu==""){
+            			return false
+            		}
+					if(_this.client.clientEdu==""){
+						alert("请选择学历！")
+            			return false
+            		}
+					if(_this.client.clientMarriage==""){
+						alert("请选择婚姻状况！")
+            			return false
+            		}
+					if(_this.client.questionId==""){
+						alert("请选择安全问题！")
+            			return false
+            		}
+					if(_this.client.clientAnswer==""){
+            			alert("预留答案不能为空！")
+            			return false
+            		}
+					if(!name.test(_this.client.clientAnswer)){
+            			alert("预留答案格式错误！")
+            			return false
+            		}
+					if(_this.client.clientAddress==""){
+            			alert("用户住址不能为空！")
+            			return false
+            		}
+					if(!reg.test(_this.client.clientAddress)){
+            			alert("用户住址格式错误！")
+            			return false
+            		}
+					if(_this.client.clientHousing==""){
+						alert("请选择住宅情况！")
+            			return false
+					}
+					if(_this.client.postalcode==""){
+            			alert("住址邮编不能为空！")
+            			return false
+            		}
+					if(!zip.test(_this.client.postalcode)){
+            			alert("住址邮编格式错误！")
+            			return false
+            		}
+					if(_this.client.clientEmail==""){
+            			alert("电子邮箱不能为空！")
+            			return false
+            		}
+					if(!email.test(_this.client.clientEmail)){
+            			alert("电子邮箱格式错误！")
+            			return false
+            		}
+					if(_this.clientCompany.companyName==""){
+						alert("单位名称不能为空！")
+            			return false
+					}
+					if(!name.test(_this.clientCompany.companyName)){
+						alert("单位名称格式错误！")
+            			return false
+					}
+					if(_this.clientCompany.companyJob==""){
+						alert("请选择担任职务！")
+            			return false
+					}
+					if(_this.clientCompany.companyPhone==""){
+            			alert("单位电话不能为空！")
+            			return false
+            		}
+					if(!tex.test(_this.clientCompany.companyPhone)){
+            			alert("单位电话格式错误！")
+            			return false
+            		}
+					if(_this.clientCompany.companyPostalcode==""){
+            			alert("单位邮编格式错误！")
+            			return false
+            		}
+					if(!zip.test(_this.clientCompany.companyPostalcode)){
+            			alert("单位邮编格式错误！")
+            			return false
+            		}
+					if(_this.clientCompany.companyAddress==""){
+            			alert("单位地址不能为空！")
+            			return false
+            		}
+					if(!reg.test(_this.clientCompany.companyAddress)){
+            			alert("单位地址格式错误！")
+            			return false
+            		}
+					if(_this.clientLinkman.linkRelation==""){
+						alert("请选择与联系人的关系！")
+            			return false
+					}
+					if(_this.clientLinkman.linkName==""){
+            			alert("联系人姓名不能为空！")
+            			return false
+            		}
+					if(!name.test(_this.clientLinkman.linkName)){
+            			alert("联系人姓名格式错误！")
+            			return false
+            		}
+					if(_this.clientLinkman.linkPhone==""){
+            			alert("联系人手机号码不能为空！")
+            			return false
+            		}
+					if(!tex.test(_this.clientLinkman.linkPhone)){
+            			alert("联系人手机号码格式错误！")
+            			return false
+            		}
+					if(_this.clientLinkman.linkAddress==""){
+            			alert("联系人地址不能为空！")
+            			return false
+            		} 
+					if(!reg.test(_this.clientLinkman.linkAddress)){
+            			alert("联系人地址格式错误！")
+            			return false
+            		}
+            		axios.get('http://10.1.12.66:8086/cardmanger/handleCreditCard', {'params':{
+            			'id': idc,
+            			'clientName':_this.client.clientName,
+            			'clientSex':_this.client.clientSex,
+            			'clientNational':_this.client.clientNational,
+            			'clientIDcard':_this.client.clientIDcard,
+            			'clientBirthday':_this.client.clientBirthday,
+            			'clientPhone':_this.client.clientPhone,
+            			'clientEdu':_this.client.clientEdu,
+            			'clientMarriage':_this.client.clientMarriage,
+            			'questionId':_this.client.questionId,
+            			'clientAnswer':_this.client.clientAnswer,
+            			'clientHousing':_this.client.clientHousing,
+            			'clientAddress':_this.client.clientAddress,
+            			'clientEmail':_this.client.clientEmail,
+            			
+            			'companyName':_this.clientCompany.companyName,
+            			'companyNature':_this.clientCompany.companyNature,
+            			'companyPhone':_this.clientCompany.companyPhone,
+            			'companyIndustry':_this.clientCompany.companyIndustry,
+            			'companyAddress':_this.clientCompany.companyAddress,
+            			'companyJob':_this.clientCompany.companyJob,
+            			'annualIncome':_this.clientCompany.annualIncome,
+            			'companyPostalcode':_this.clientCompany.companyPostalcode,
+            			
+            			'linkName':_this.clientLinkman.linkName,
+            			'linkPhone':_this.clientLinkman.linkPhone,
+            			'linkAddress':_this.clientLinkman.linkAddress,
+            			'linkRelation':_this.clientLinkman.linkRelation
+            			}
+                      })
+                      .then(
+           					window.location.href='http://10.1.12.66:8086/cardmanger/handleCardApplicationTwo.html'
+           				)
+                      .catch(function (error) {
+                        console.log(error);
+                      })
+                },
+            },
+            created:function(){
+            	this.selectCardTypeById();
+            	console.log(this.cardType.id)
+            },
+        });
+		function GetQueryString(name){
+		     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		     var r = window.location.search.substr(1).match(reg);
+		     if(r!=null)return  unescape(r[2]); return null;
+		}
+	</script>
+</body>
+
+</html>

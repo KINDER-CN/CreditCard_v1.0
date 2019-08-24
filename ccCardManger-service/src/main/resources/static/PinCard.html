@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>销卡</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="/css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="/css/htmleaf-demo.css">
+<link rel="stylesheet" href="/css/pages.css">
+<link rel="stylesheet" type="text/css" href="/css/th_td.css">
+<style type="text/css">
+body {
+	background-color: white;
+}
+
+#a {
+	align: center;
+}
+</style>
+</head>
+
+<body>
+
+	<div>
+		<div>
+			<h1></h1>
+
+		</div>
+
+		<div></div>
+		<div align="center">
+			<P>
+			<P>
+			<P>
+			<P>
+			<table class="hovertable">
+				<tr>
+					<th>姓名</th>
+					<th>卡号</th>
+					<th style="width: 120px">身份证</th>
+					<th style="width: 120px">手机号</th>
+					<th>卡状态</th>
+					<th style="width: 120px">年费</th>
+				</tr>
+				<!-- <tbody> -->
+				<tr>
+					<td id="clientName"></td>
+					<td id="cardNum"></td>
+					<td id="clientIDcard"></td>
+					<td id="clientPhone"></td>
+					<td id="cardState"></td>
+					<td id="cardAnnual"></td>
+				</tr>
+
+				<!-- 	</tbody> -->
+
+			</table>
+			<div align="center">
+				<p>
+					<span id="flag"></span>
+				</p>
+				<p>
+					<span><button id="PinCard">点击销卡</button></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="UpdatePinCard.html">返回</a>
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="js/global.js"></script>
+	<script type="text/javascript" src="js/jquery.accordion.js"></script>
+	<script type="text/javascript" src="js/select.js"></script>
+	<script type="text/javascript">
+		/* 解析url带过来的数据 */
+		function GetQueryString(name) {
+			//alert(name);
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+			//alert(reg);
+			var r = window.location.search.substr(1).match(reg);
+			//alert(r);
+			if (r != null)
+				return unescape(r[2]);
+			return null;
+		}
+		/* 	方法执行 */
+		$(function() {
+			var name = GetQueryString("id");
+			/* 	alert(name); */
+			$.ajax({
+				url : "http://10.1.12.66:8086/cardmanger/mo/queryCreditCardById",
+				type : "get",
+				data : {
+					"id" : name
+				},
+				dataType : "json",
+				success : function(data) {
+					/*alert(name); */
+					queryClientCard(data);
+				}
+			});
+
+		})
+
+		function queryClientCard(data) {
+			/* 		alert(data.applyCard.applyTime); */
+			$(function() {
+				var clientName = data.client.clientName;
+				$("#clientName").append(clientName);
+				var clientIDcard = data.client.clientIDcard;
+				$("#clientIDcard").append(clientIDcard);
+				var clientPhone = data.client.clientPhone;
+				$("#clientPhone").append(clientPhone);
+				var cardState = data.creditCard.cardState;
+				$("#cardState").append(cardState);
+				var cardAnnual = data.creditCard.cardAnnual;
+				$("#cardAnnual").append(cardAnnual);
+				var cardNum = data.creditCard.cardNum;
+				$("#cardNum").append(cardNum);
+				var flag = data.creditCard.flag;
+				$("#flag").append(flag);
+			});
+		};
+
+		/* 	给销卡按钮添加销卡事件 */
+		$(function() {
+			$("#PinCard").click(function() {
+				var name = GetQueryString("id");
+				/* 	alert(name); */
+				$.ajax({
+					url : "http://10.1.12.66:8086/cardmanger/mo/updateCreditCardPinCardById",
+					type : "get",
+					data : {
+						"id" : name
+					},
+					dataType : "json",
+					success : function(data) {
+						alert("销卡成功");
+						location.href = "http://10.1.12.66:8086/cardmanger/PinCard.html?id=" + name;
+						/* queryClientCard(data); */
+					}
+				});
+
+			})
+
+		})
+	</script>
+</body>
+
+</html>

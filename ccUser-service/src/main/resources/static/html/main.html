@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CCMS信用卡管理系统后台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+    <!-- CSS Libs -->
+    <link rel="stylesheet" type="text/css" href="../lib/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../lib/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../lib/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="../lib/css/bootstrap-switch.min.css">
+    <link rel="stylesheet" type="text/css" href="../lib/css/checkbox3.min.css">
+    <link rel="stylesheet" type="text/css" href="../lib/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../lib/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../lib/css/select2.min.css">
+    <!-- CSS App -->
+    <link rel="stylesheet" type="text/css" href="../csss/style.css">
+    <link rel="stylesheet" type="text/css" href="../csss/license.css">
+    <link rel="stylesheet" type="text/css" href="../csss/themes/flat-blue.css">
+    
+</head>
+
+<body class="flat-blue">
+    <div class="app-container">
+        <div class="row content-container">
+            <nav class="navbar navbar-default navbar-fixed-top navbar-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-expand-toggle">
+                            <i class="fa fa-bars icon"></i>
+                        </button>
+                        <ol class="breadcrumb navbar-breadcrumb">
+                            <li class="active">Licence</li>
+                        </ol>
+                        <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-th icon"></i>
+                        </button>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-times icon"></i>
+                        </button>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-comments-o"></i></a>
+                            <ul class="dropdown-menu animated fadeInDown">
+                                <li class="title">
+                                    Notification <span class="badge pull-right">0</span>
+                                </li>
+                                <li class="message">
+                                    No new notification
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown danger">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-star-half-o"></i> 4</a>
+                            <ul class="dropdown-menu danger  animated fadeInDown">
+                                <li class="title">
+                                    Notification <span class="badge pull-right">4</span>
+                                </li>
+                                <li>
+                                    <ul class="list-group notifications">
+                                        <a href="#">
+                                            <li class="list-group-item">
+                                                <span class="badge">1</span> <i class="fa fa-exclamation-circle icon"></i> new registration
+                                            </li>
+                                        </a>
+                                        <a href="#">
+                                            <li class="list-group-item">
+                                                <span class="badge success">1</span> <i class="fa fa-check icon"></i> new orders
+                                            </li>
+                                        </a>
+                                        <a href="#">
+                                            <li class="list-group-item">
+                                                <span class="badge danger">2</span> <i class="fa fa-comments icon"></i> customers messages
+                                            </li>
+                                        </a>
+                                        <a href="#">
+                                            <li class="list-group-item message">
+                                                view all
+                                            </li>
+                                        </a>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown profile">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Emily Hart <span class="caret"></span></a>
+                            <ul class="dropdown-menu animated fadeInDown">
+                                <li class="profile-img">
+                                    <img src="../img/profile/picjumbo.com_HNCK4153_resize.jpg" class="profile-img">
+                                </li>
+                                <li>
+                                    <div class="profile-info">
+                                        <h4 class="username">Emily Hart</h4>
+                                        <p>emily_hart@email.com</p>
+                                        <div class="btn-group margin-bottom-2x" role="group">
+                                            <button type="button" class="btn btn-default"><i class="fa fa-user"></i> Profile</button>
+                                            <button type="button" class="btn btn-default"><i class="fa fa-sign-out"></i> Logout</button>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="side-menu sidebar-inverse">
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="side-menu-container">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="#">
+                                <div class="icon fa fa-paper-plane"></div>
+                                <div class="title">后台管理系统</div>
+                            </a>
+                            <button type="button" class="navbar-expand-toggle pull-right visible-xs">
+                                <i class="fa fa-times icon"></i>
+                            </button>
+                        </div>
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="minMain.html" target="page">
+                                    <span class="icon fa fa-tachometer"></span><span class="title">首页</span>
+                                </a>
+                            </li>
+                            <li class="panel panel-default dropdown">
+                                <a data-toggle="collapse" href="#dropdown-element">
+                                    <span class="icon fa fa-desktop"></span><span class="title">账户管理</span>
+                                </a>
+                                <!-- Dropdown level 1 -->
+                                <div id="dropdown-element" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="nav navbar-nav">
+                                        	<div id="zhanghuguanli">
+                                            <li><a v-on:click="queryAllClient" href=" http://10.1.12.66:8086/client/html/gu/yonghuxingxi.html" target="page">账户首页管理</a>
+                                            </li>
+                                            </div>
+                                            <li><a href=" http://10.1.12.66:8086/client/html/gu/jiaoyixinxi.html" target="page">账户交易历史</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            
+                            <li class="panel panel-default dropdown">
+                                <a data-toggle="collapse" href="#dropdown-table">
+                                    <span class="icon fa fa-table"></span><span class="title">业务管理</span>
+                                </a>
+                                <!-- Dropdown level 1 -->
+                                <div id="dropdown-table" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="nav navbar-nav">
+                                       
+                                            <li><a href="http://10.1.12.66:8086/cardmanger/xiugaimima.html"  target="page">修改密码</a>
+                                            </li>
+                                            <li><a href="http://10.1.12.66:8086/cardmanger/UpdateLoss.html"  target="page">挂失处理</a>
+                                            </li>
+                                            <li><a href="http://10.1.12.66:8086/cardmanger/UpdateFreeze.html" target="page">账户冻结</a>
+                                            </li>
+                                            <li><a href="http://10.1.12.66:8086/cardmanger/UpdatePinCard.html" target="page">销卡管理</a>
+                                            </li>
+                                            <li><a href="http://10.1.12.66:8086/cardmanger/UpdateCreditCardActivation.html" target="page">激活</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="panel panel-default dropdown">
+                                <a data-toggle="collapse" href="#dropdown-form">
+                                    <span class="icon fa fa-file-text-o"></span><span class="title">动态反馈</span>
+                                </a>
+                                <!-- Dropdown level 1 -->
+                                <div id="dropdown-form" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="nav navbar-nav">
+                                            <li><a href="http://10.1.12.66:8086/cardmanger/ApplicationDetails.html"  target="page">信用卡申请处理</a>
+                                            </li>
+                                            <li><a href="http://10.1.12.66:8086/cardmanger/eduguanli.html" target="page">用户额度处理</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Dropdown-->
+                            <li class="panel panel-default dropdown">
+                                <a data-toggle="collapse" href="#component-example">
+                                    <span class="icon fa fa-cubes"></span><span class="title">分期管理</span>
+                                </a>
+                                <!-- Dropdown level 1 -->
+                                <div id="component-example" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="nav navbar-nav">
+                                            <li><a href="http://10.1.12.66:8086/trading/back/html/yang/fenqi.html"  target="page">分期管理</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Dropdown-->
+                            <li class="panel panel-default dropdown">
+                                <a data-toggle="collapse" href="#dropdown-example">
+                                    <span class="icon fa fa-slack"></span><span class="title">管理员管理</span>
+                                </a>
+                                <!-- Dropdown level 1 -->
+                                <div id="dropdown-example" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="nav navbar-nav">
+                                            <li><a href="http://10.1.12.66:8086/client/html/gu/guanlirenyuan.html"  target="page">管理员管理</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Dropdown-->
+                            <li class="panel panel-default dropdown">
+                                <a data-toggle="collapse" href="#dropdown-icon">
+                                    <span class="icon fa fa-archive"></span><span class="title">卡种管理</span>
+                                </a>
+                                <!-- Dropdown level 1 -->
+                                <div id="dropdown-icon" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="nav navbar-nav">
+                                            <li><a href="http://10.1.12.66:8086/client/html/gu/kapianzhonglei.html" target="page">卡种管理</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <ul class="nav1">
+							  <li><a  href="#dropdown-icon">
+                                    <span class="icon fa fa-archive"></span><span class="title">还款管理</span>
+                                </a>
+							    <ul class="nav navbar-nav">
+							      <li><a href="http://10.1.12.66:8086/trading/back/html/yang/huankuan.html" target="page">还款管理</a></li>
+							    </ul>
+							  </li>
+							  <li><a  href="#dropdown-icon">
+                                    <span class="icon fa fa-archive"></span><span class="title">逾期管理</span>
+                                </a>
+							    <ul class="nav navbar-nav">
+							      <li><a href="http://10.1.12.66:8086/trading/back/html/yang/yuqi.html" target="page">逾期管理</a></li>
+							    </ul>
+							  </li>
+							 </ul>
+                            <li class="active">
+                                <a href="main.html">
+                                    <span class="icon fa fa-thumbs-o-up"></span><span class="title">菜单</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </nav>
+            </div>
+            <!-- Main Content -->
+          <div id="all">
+          	<iframe name="page"  frameborder="0" width="1520px" height="650px" src="http://10.1.12.66:8086/client/html/minMain.html">
+			</iframe>
+			<div id="bottom">
+				<div id="footer">CCMS信用卡后台管理系统</div>
+			</div>
+		</div>
+            <!-- Javascript Libs -->
+            <script type="text/javascript" src="../lib/js/jquery.min.js"></script>
+            <script type="text/javascript" src="../lib/js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="../lib/js/Chart.min.js"></script>
+            <script type="text/javascript" src="../lib/js/bootstrap-switch.min.js"></script>
+            <script type="text/javascript" src="../lib/js/jquery.matchHeight-min.js"></script>
+            <script type="text/javascript" src="../lib/js/jquery.dataTables.min.js"></script>
+            <script type="text/javascript" src="../lib/js/dataTables.bootstrap.min.js"></script>
+            <script type="text/javascript" src="../lib/js/select2.full.min.js"></script>
+            <script type="text/javascript" src="../lib/js/ace/ace.js"></script>
+            <script type="text/javascript" src="../lib/js/ace/mode-html.js"></script>
+            <script type="text/javascript" src="../lib/js/ace/theme-github.js"></script>
+            <!-- Javascript -->
+            <script type="text/javascript" src="../jss/app.js"></script>
+            <script type="text/javascript" src="../jss/index.js"></script>
+            <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+            <script type="text/javascript" src="../jss/vuejs-2.5.16.js"></script>
+			<script type="text/javascript" src="../jss/axios-0.18.0.js"></script>
+			<!-- <script type="text/javascript" src="../js/main.js"></script> -->
+		  <style>
+		    *{margin: 0;padding: 0}
+		    .nav1>li>ul{
+		      display: none}
+		    .nav1>li{color: red}
+		    .nav1>li>ul>li{color: black!important;}
+		  </style>
+		  <script>
+	  $(function () {
+	    var $ali=$(".nav1 li")
+	    for(var i=0;i<$ali.length;i++){
+	      $ali.eq(i).click(function () {
+	        if($(this).find("ul").is(':hidden')){
+	          $(this).find("ul").show()
+	        }else{
+	          $(this).find("ul").hide()
+	        }
+	      })
+	    }
+	  })
+	</script>
+</body>
+
+</html>

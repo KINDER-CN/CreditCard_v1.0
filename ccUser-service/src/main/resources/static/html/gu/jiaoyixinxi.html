@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html >
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../csss/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="../../csss/htmleaf-demo.css">
+		<link rel="stylesheet" href="../../csss/pages.css">
+		<link rel="stylesheet" type="text/css" href="../../csss/th_td.css">
+		<link rel="stylesheet" href="../../csss/input.css">
+	</head>
+	<body>
+<center>
+	<br /><br /><br /><br /><br /><br />
+	<div id="queryCli">
+	<input class="inputText4" type="text" id="Validate" name="Validate" v-model="clientIdcard" placeholder="请输入身份证号"  />&nbsp;&nbsp;&nbsp;
+	<a @click="submit()"><button class="button blue">搜索</button></a><br /><br />
+	<!-- <a :href="'jiaoyixinxi.html?clientIDcard='+encodeURI(encodeURI(clientBill.clientIDcard))"><button>搜索</button></a><br /><br /> -->
+	<table class="hovertable">
+	<tr>
+	<th>序号</th>
+	<th>卡号</th>
+	<th>姓名</th>
+	<th>身份证号</th>
+	<th>账单编号</th>
+	<th>账单金额</th>
+	<th>已还款金额</th>
+	<th>还款时间</th>
+	<th>详情</th>
+</tr>
+<tr v-for="clientBill in clientBills" onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+	<td>{{clientBill.id}}</td>
+	<td>{{clientBill.clientId}}</td>
+	<td>{{clientBill.clientName}}</td>
+	<td>{{clientBill.clientIDcard}}</td>
+	<td>{{clientBill.billNum}}</td>
+	<td>{{clientBill.billMoney}}</td>
+	<td>{{clientBill.hasPay}}</td>
+	<td>{{clientBill.repayDate}}</td>
+	<td><a :href="'http://10.1.12.66:8086/client/html/gu/jiaoyixiangqing.html?clientName='+encodeURI(encodeURI(clientBill.clientName))"  target="page"><button>详情</button></a></td>
+</tr>
+</table>
+</div>
+<div class="black"><span class="disabled"> < </span><span class="current">1</span><a href="#?page=2">2</a><a href="#?page=3">3</a><a href="#?page=4">4</a><a href="#?page=5">5</a><a href="#?page=6">6</a><a href="#?page=7">7</a>...<a href="#?page=199">199</a><a href="#?page=200">200</a><a href="#?page=2"> > </a></div></p>
+	<script type="text/javascript" src="../../jss/vuejs-2.5.16.js"></script>
+	<script type="text/javascript" src="../../jss/axios-0.18.0.js"></script>
+	<!-- <script type="text/javascript" src="../../js/main.js"></script> -->
+	<script type="text/javascript">
+	new Vue({
+		   el:"#queryCli",
+		   data:{
+		clientBill:
+		         {
+		      id:'',
+		      clientId:'',
+		      clientName:'',
+		      clientIDcard:'',
+		      billNum:'',
+		      billMoney:'',
+		      hasPay:'',
+		      repayDate:''
+		     },
+		    clientIdcard:'',
+		    clientBills:[],
+		   },
+		   methods:{
+		    submit: function() {
+			     var _this=this;
+			       axios.get('http://10.1.12.66:8086/client/gu/queryBillDetailsByLike',{params:{clientIdcard:_this.clientIdcard}})
+			       .then(function(response){
+			     _this.clientBills=response.data.clientBills;
+			     		console.log(_this.clientBills);
+		       })
+			        .catch(function (error) {
+			                    console.log(error);
+			              })
+			    } 
+		   },
+		   created:function(){
+			   this.submit();
+		   }
+		 })
+		function GetQueryString(name){
+	     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+	     var r = window.location.search.substr(1).match(reg);
+	     if(r!=null)return  unescape(r[2]); return null;
+	 }
+	</script>
+	</center></body>
+</html>

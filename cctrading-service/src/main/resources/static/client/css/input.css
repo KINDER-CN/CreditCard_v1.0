@@ -1,0 +1,21 @@
+input[type='radio']{
+	width: 20px;
+	height: 20px;
+	vertical-align:middle;
+	opacity: 0;
+
+}
+.input_style{
+	background: url(../img/green.png) no-repeat;
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+}
+.radio_bg{
+	background-position: -118px 0 ;
+}
+
+.radio_bg_check{
+	background-position: -166px 0 ;
+}
+

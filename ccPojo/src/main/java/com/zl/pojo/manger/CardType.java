@@ -4,7 +4,7 @@ package com.zl.pojo.manger;
  */
 public class CardType {
 	private int id;								//主键id
-	private int cardNum;						//卡种编号			card_num
+	private String cardNum;						//卡种编号			card_num
 	private int ctype;							//卡类型id			card_type
 	private String cardPic;						//卡种图片			card_pic
 	private String cardName;					//卡种名称			card_name
@@ -21,10 +21,10 @@ public class CardType {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getCardNum() {
+	public String getCardNum() {
 		return cardNum;
 	}
-	public void setCardNum(int cardNum) {
+	public void setCardNum(String cardNum) {
 		this.cardNum = cardNum;
 	}
 	

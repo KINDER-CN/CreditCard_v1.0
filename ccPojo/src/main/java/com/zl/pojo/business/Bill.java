@@ -28,6 +28,20 @@ public class Bill {
 	private Date billDate;				//账单生成时间		bill_creat_date
 	private String billState;			//状态			bill_state
 	private int client;				//用户id			bill_client_id
+	private BigDecimal minRepay; //最低还款
+	private BigDecimal residueRepay; //仍需还款
+	public BigDecimal getMinRepay() {
+		return minRepay;
+	}
+	public void setMinRepay(BigDecimal minRepay) {
+		this.minRepay = minRepay;
+	}
+	public BigDecimal getResidueRepay() {
+		return residueRepay;
+	}
+	public void setResidueRepay(BigDecimal residueRepay) {
+		this.residueRepay = residueRepay;
+	}
 	public int getId() {
 		return id;
 	}
@@ -92,7 +106,8 @@ public class Bill {
 	public String toString() {
 		return "Bill [id=" + id + ", billNum=" + billNum + ", creditCard=" + creditCard + ", billMoney=" + billMoney
 				+ ", hasPay=" + hasPay + ", srepayDate=" + srepayDate + ", repayDate=" + repayDate + ", billDate="
-				+ billDate + ", billState=" + billState + ", client=" + client + "]";
+				+ billDate + ", billState=" + billState + ", client=" + client + ", minRepay=" + minRepay
+				+ ", residueRepay=" + residueRepay + "]";
 	}
 	
 }

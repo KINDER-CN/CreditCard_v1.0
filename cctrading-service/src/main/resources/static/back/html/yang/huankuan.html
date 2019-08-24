@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Flat Admin V.2 - Free Bootstrap Admin Templates</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   		<link rel="stylesheet" type="text/css" href="../css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="../css/htmleaf-demo.css">
+		<link rel="stylesheet" href="../css/pages.css">
+		<link rel="stylesheet" type="text/css" href="../../css/th_td.css">
+		<link rel="stylesheet" href="../../css/input.css">
+</head>
+
+<body>
+<center>
+  	<div>
+		<div>
+				<h1>用户还款账单信息</h1></br>
+		</div>
+		
+		<div id="a">
+			<div>
+	            <input class="inputText4" type="text" placeholder="请输入姓名"> &nbsp;&nbsp;
+	            <input class="inputText4" class="tl-price-input" type="text" placeholder="请输入卡号"> &nbsp;&nbsp;
+	            <button class="button blue">搜索</button>
+	        </div>
+			<div>
+				<table class="hovertable">
+					<tr>
+						<th>姓名</th>
+						<th>卡号</th>
+						<th>身份证号</th>
+						<th>账单编号</th>
+						<th>账单金额</th>
+						<th>应还款时间</th>
+						<th>已还款金额</th>
+						<th>还款时间</th>
+						<th>账单生成时间</th>
+						<th>状态</th>
+						<th>详情</th>
+						<th>操作</th>
+					</tr>
+					
+					<tr v-for="aa in agingThree" onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+						<td>{{aa.id}}</td>
+						<td>{{aa.clientName}}</td>
+						<td>{{aa.clientIDcard}}</td>
+						<td>{{aa.billNum}}</td>
+						<td>{{aa.billMoney}}</td>
+						<td>{{aa.srepayDate}}</td>
+						<td>{{aa.hasPay}}</td>
+						<td>{{aa.repayDate}}</td>
+						<td>{{aa.billDate}}</td>
+						<td>{{aa.billState}}</td>
+						<td><a :href="'jiaoyijiluxiangqing.html?id='+aa.id" target="page"><button class="button blue">交易详情</button></a></td>
+						<td><a href="###"><button class="button blue">发送短信</button></a></td>
+					</tr>
+				</table>
+				<br/>
+			</div>
+		</div>
+		<div><a href="jiaoyijilu.html" target="page"><button class="button blue">交易详情</button></a></div>
+	</div>
+</center>
+	<script type="text/javascript" src="../../js/vuejs-2.5.16.js"></script>
+    <script type="text/javascript" src="../../js/axios-0.18.0.js"></script>
+    <script type="text/javascript" src="../../js/bills.js"></script>
+</body>
+
+</html>

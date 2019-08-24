@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Flat Admin V.2 - Free Bootstrap Admin Templates</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    	<link rel="stylesheet" type="text/css" href="../css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="../css/htmleaf-demo.css">
+		<link rel="stylesheet" href="../css/pages.css">
+		<link rel="stylesheet" type="text/css" href="../../css/th_td.css">
+		<link rel="stylesheet" href="../../css/input.css">
+</head>
+
+<body>
+<center>
+  	<div>
+		<div>
+			<div>
+				<h1>本月分期详情信息</h1></br>
+			</div>
+		</div>
+		<div>
+			<div id="agingMonth">
+				<table class="hovertable">
+					<tr>
+						<th>分期金额</th>
+						<th>当前期数</th>
+						<th>利息</th>
+						<th>分期利率</th>
+						<th>分期还款状态</th>
+						<th>已还分期金额</th>
+						<th>未还分期金额</th>
+						<th>分期方式</th>
+						<th>分期类型</th>
+					</tr>
+					
+					<tr v-for="am in agingMonths" onmouseover="this.style.backgroundColor='#3875D7';" onmouseout="this.style.backgroundColor='#122B40';">
+						 <td>{{am.monthMoney}}</td>
+					     <td>{{am.monthNper}}</td>
+					     <td>{{am.monthInterest}}</td>
+						 <td>{{am.agingRate}}</td>
+						 <td>{{am.agingRefund}}</td>
+						 <td>{{am.returnMoney}}</td>
+						 <td>{{am.notReturnMoney}}</td>
+						 <td>{{am.installments}}</td>
+						 <td>{{am.agingType}}</td>
+					</tr>
+				</table>
+				<br/>
+				<div class="text-center">
+					<button class="button blue"><a href="fenqi.html">返回</a></button>
+					<button class="button blue"><a href="huankuan.html" target="page">还款管理</a></button>
+					<button class="button blue"><a href="yuqi.html" target="page">逾期管理</a></button>
+				</div>
+			</div>
+		</div>
+	</div>
+</center>
+	<script type="text/javascript" src="../../js/vuejs-2.5.16.js"></script>
+    <script type="text/javascript" src="../../js/axios-0.18.0.js"></script>
+    <script type="text/javascript" src="../../js/yuefenqi.js"></script>
+    <script type="text/javascript" src="../../js/jquery-3.4.1.min.js"></script>
+</body>
+
+</html>

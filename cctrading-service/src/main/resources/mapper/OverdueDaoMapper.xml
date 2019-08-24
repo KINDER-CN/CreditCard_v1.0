@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zl.dao.backstage.OverdueDao">
+	<!-- 查询所有用户逾期信息 -->
+	<select id="queryAllOverdue" resultType="overdue">
+		select id id,overdue_num overdueNum,overdue_money overMoney,overdue_date overDate,
+			overdue_sreturn_date overSPayDate,overdue_state overState,overdue_return_date overReturnDate,
+			overdue_sreturn_money overSPayMoney,overdue_client_id clientId,overdue_card_id creditCard 
+		from cc_overdue
+	</select>
+	
+	<!-- 根据id查询用户逾期信息 -->
+	<select id="queryOverdueById" resultType="overdue" parameterType="int">
+		select id id,overdue_num overdueNum,overdue_money overMoney,overdue_date overDate,
+			overdue_sreturn_date overSPayDate,overdue_state overState,overdue_return_date overReturnDate,
+			overdue_sreturn_money overSPayMoney,overdue_client_id clientId,overdue_card_id creditCard 
+		from cc_overdue where id=#{id}
+	</select>
+	
+	<!-- 修改用户逾期信息 -->
+	<update id="updateOverdue" parameterType="overdue">
+		update cc_overdue set overdue_money=#{overMoney},overdue_state=#{overState},
+			overdue_return_date=#{overReturnDate} where overdue_client_id=#{clientId}
+			
+	</update>
+	
+	<!-- 添加用户逾期信息 -->
+	<insert id="addOverdue" parameterType="overdue">
+		insert into cc_overdue(overdue_num,overdue_money,overdue_date,overdue_sreturn_date,overdue_state,overdue_return_date,overdue_sreturn_money,overdue_client_id,overdue_card_id) 
+			values(#{overdueNum},#{overMoney},#{overMoney},#{overSPayDate},#{overState},#{overReturnDate},#{overSPayMoney},#{clientId},#{creditCard})
+	</insert>
+	
+	<!-- 根据条件查询用户逾期信息 -->
+	<select id="queryOverdueByLike" resultType="overdue" parameterType="query">
+		select id id,overdue_num overdueNum,overdue_money overMoney,overdue_date overDate,
+			overdue_sreturn_date overSPayDate,overdue_state overState,overdue_return_date overReturnDate,
+			overdue_sreturn_money overSPayMoney,overdue_client_id clientId,overdue_card_id creditCard 
+		from cc_overdue
+		<where>
+			<if test="query!=null">
+				<if test="qClientName!=null and qClientName!=''">
+					and client_name like concat('%',concat(#{qClientName},'%'))
+				</if>
+				<if test="qClientIDcard!=null and qClientIDcard!=''">
+					and client_idcard like concat('%',concat(#{qClientIDcard},'%'))
+				</if>
+				<if test="qCardNum!=null">
+					and card_num like concat('%',concat(#{qCardNum},'%'))
+				</if>
+			</if>
+		</where>
+	</select>
+</mapper>

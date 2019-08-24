@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zl.dao.gu.kazhongguanliDao">
+	<select id="queryAllCardType" resultType="CardType">
+		select id id,card_num cardNum,card_type ctype,card_pic cardPic,card_name cardName,card_annual cardAnnual,card_anntation1 anntationa1,card_anntation2 anntationa2,card_anntation3 anntationa3,card_anntation4 anntationa4,card_activity1 activity1,card_activity2 activity2 from cc_card_type
+	</select>
+	<select id="queryCardTypeById" resultType="CardType" parameterType="int">
+	select id id,card_num cardNum,card_type ctype,card_pic cardPic,card_name cardName,card_annual cardannual,card_anntation1 anntationa1,card_anntation2 anntationa2,card_anntation3 anntationa3,card_anntation4 anntationa4,card_activity1 activity1,card_activity2 activity2 from cc_card_type where id=#{id}
+	</select>
+	<update id="updateCardType" parameterType="cardType" >
+		UPDATE cc_card_type SET card_num=#{cardNum},card_type=#{ctype},card_pic=#{cardPic},card_name=#{cardName},card_annual=#{cardannual},card_anntation1=#{anntationa1},card_anntation2=#{anntationa2},card_anntation3=#{anntationa3},card_anntation4=#{anntationa4},card_activity1=#{activity1},card_activity2=#{activity2} WHERE id=#{id};
+	</update>
+	<insert id="insertCardType" parameterType="cardType">
+		INSERT INTO cc_card_type(card_num,card_type,card_pic,card_name,card_annual,card_anntation1,card_anntation2,card_anntation3,card_anntation4,card_activity1,card_activity2) VALUES (#{cardNum},#{ctype},#{cardPic},#{cardName},#{cardannual},#{anntationa1},#{anntationa2},#{anntationa3},#{anntationa4},#{activity1},#{activity2});
+	</insert>
+	<delete id="deleteCardTypeById" parameterType="int">
+	DELETE FROM cc_card_type WHERE id=#{id};
+	</delete>
+</mapper>

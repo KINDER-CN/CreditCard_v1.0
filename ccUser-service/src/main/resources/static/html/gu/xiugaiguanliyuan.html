@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../csss/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="../../csss/htmleaf-demo.css">
+		<link rel="stylesheet" href="../../csss/pages.css">
+		<link rel="stylesheet" type="text/css" href="../../csss/th_td.css">
+		<link rel="stylesheet" href="../../csss/input.css">
+	</head>
+	<body><center>
+	<div id="updateM"><br><br><br><br><br><br><br><br><br>
+	<form @submit.prevent="submit" method="post">
+		员工编号: <input class="inputText4" type="text" name="mangerId" v-model="manger.mangerId"><p>
+		员工姓名: <input class="inputText4" type="text" name="mangerName" v-model="manger.mangerName" ><p>
+		登录密码: <input class="inputText4" type="text" name="mPassword" v-model="manger.mPassword" ><p>
+		练习电话: <input class="inputText4" type="text" name="mPhone" v-model="manger.mPhone" ><p>
+		员工角色: <input class="inputText4" type="text" name="role" v-model="manger.role" ><p>
+		<input class="button blue" type="submit" value="修改"></input><br>
+	</form>
+	</div>
+	<script type="text/javascript" src="../../jss/vuejs-2.5.16.js"></script>
+	<script type="text/javascript" src="../../jss/axios-0.18.0.js"></script>
+	<script type="text/javascript">
+	new Vue({
+		   el:"#updateM",
+		   data:{
+			   manger:
+			   {
+				   id:'',
+				   mangerId:'',
+				   mangerName:'',
+				   mPassword:'',
+				   mPhone:'',
+				   role:''
+		     }
+		   },
+		   methods:{
+			   queryMangerById:function(){
+		     var _this=this;
+		     var  id= GetQueryString("id")
+		     axios.get("http://10.1.12.66:8086/client/gu/queryMangerById",{params:{id:id}})
+		     .then(function(response){
+		      _this.manger=response.data.manger;
+		      console.log(_this.manger);
+		     })
+		    },
+		   submit: function() {
+			     var _this=this;
+			       axios.post('http://10.1.12.66:8086/client/gu/updateMangerById',_this.manger)
+			       .then(
+			         window.location.href='http://10.1.12.66:8086/client/html/gu/guanlirenyuan.html'
+			         )
+			        .catch(function (error) {
+			                    console.log(error);
+			})
+			   },
+		   },
+		   
+		   created:function(){
+		    this.queryMangerById();
+		   },
+		 })
+		 function GetQueryString(name){
+		     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		     var r = window.location.search.substr(1).match(reg);
+		     if(r!=null)return  unescape(r[2]); return null;
+		 }
+	</script>
+	<!-- <script type="text/javascript">
+	new Vue({
+		   el: '#updateM',
+		   data: {
+			   manger:{
+				   mangerId:"",
+				   mangerName:"",
+				   mPassword:"",
+				   mPhone:"",
+				   role:""
+		    },
+		   }, 
+		   methods: {
+		    submit: function() {
+		     var _this=this;
+		       axios.post('http://localhost:8082/gu/updateManger',_this.manger)
+		       .then(
+		         window.location.href='guanlirenyuan.html'
+		         )
+		        .catch(function (error) {
+		                    console.log(error);
+		              })
+		    } 
+		   }
+		 })
+	</script> -->
+	</center></body>
+</html>

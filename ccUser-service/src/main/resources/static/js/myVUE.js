@@ -42,7 +42,7 @@
     				var _this = this;
     				if(_this.code!=""){
     					if(/*_this.code == _this.scode*/true){
-        					axios.post("/client/clientLogin",this.clientPhone)
+        					axios.post("/client/client/clientLogin",this.clientPhone)
         					.then(function(response){
         						if(response.data.flag){
         							window.location.href='loginIndex.html';

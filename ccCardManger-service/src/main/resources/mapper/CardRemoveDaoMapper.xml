@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zl.dao.CardRemoveDao">
+	<insert id="cancelCreditCard" parameterType="cardRemove">
+		insert into
+		cc_client_card_remove (remove_apply_num, remove_card_id,
+		remove_apply_time, remove_time, remove_client_id)
+		values
+		(#{removeApplyNum}, #{removeCardId}, #{removeApplyDate},
+		#{removeTime}, #{clientId})
+	</insert>
+</mapper>
