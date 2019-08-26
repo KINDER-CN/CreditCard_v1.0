@@ -38,7 +38,7 @@
 				</tr>
 				<tr>
 					<td>姓名：</td>
-					<td><input type="text" id="clientName"></td>
+					<td><input type="text" id="clientName" readonly="readonly"></td>
 					<td>性别：</td>
 					<td><input type="text" id="clientSex"></td>
 				</tr>
@@ -53,20 +53,20 @@
 					<td>E-mail账单地址：</td>
 					<td><input type="text" id="clientEmail"></td>
 					<td>身份证：</td>
-					<td><input type="text" id=clientIDcard></td>
+					<td><input type="text" id=clientIDcard onkeyup="value=value.replace(/[^\d]/g,'')" readonly="readonly"></td>
 
 				</tr>
 				<tr>
 					<td>出生日期：</td>
 					<td><input type="date" id="clientBirthday"></td>
 					<td>移动电话：</td>
-					<td><input type="text" id="clientPhone"></td>
+					<td><input type="text" id="clientPhone" onkeyup="value=value.replace(/[^\d]/g,'')" maxlength="11"></td>
 				</tr>
 				<tr>
 					<td>婚姻状况：</td>
 					<td><input type="text" id="clientMarriage"></td>
 					<td>邮政编码：</td>
-					<td><input type="text" id="postalcode"></td>
+					<td><input type="text" id="postalcode" maxlength="6" onkeyup="value=value.replace(/[^\d]/g,'')"></td>
 				</tr>
 				<tr>
 					<td colspan="1">住宅状况：</td>
@@ -98,7 +98,7 @@
 				</tr>
 				<tr>
 					<td colspan="1">单位电话：</td>
-					<td colspan="3"><input type="text" id="companyPhone"></td>
+					<td colspan="3"><input type="text" id="companyPhone" onkeyup="value=value.replace(/[^\d]/g,'')" maxlength="11"></td>
 				</tr>
 				<tr>
 					<td colspan="1">发展行业：</td>
@@ -118,7 +118,7 @@
 				</tr>
 				<tr>
 					<td colspan="1">公司邮编：</td>
-					<td colspan="3"><input type="text" id="companyPostalcode"></td>
+					<td colspan="3"><input type="text" id="companyPostalcode" onkeyup="value=value.replace(/[^\d]/g,'')" maxlength="6"></td>
 				</tr>
 				<tr>
 					<td height="20px" colspan="4" bgcolor="darkorange"><b>联系人信息</b></td>
@@ -130,7 +130,7 @@
 				</tr>
 				<tr>
 					<td colspan="1">联系人电话：</td>
-					<td colspan="3"><input type="text" id="linkPhone"></td>
+					<td colspan="3"><input type="text" id="linkPhone" onkeyup="value=value.replace(/[^\d]/g,'')" maxlength="11"></td>
 				</tr>
 				<tr>
 					<td colspan="1">与主卡申请人的关系：</td>
@@ -233,7 +233,7 @@
 				$.ajax({
 					success : function() {
 						/* 	alert("登录成功"); */
-						location.href = "http://10.1.12.66:8086/cardmanger/MoCreditCard.html";
+						location.href = "http://10.1.12.66:8086/cardmanger/updatePersonalDataFenYe.html";
 					}
 				});
 
@@ -245,7 +245,7 @@
 		$("#updateClientCompanyLinkman").click(function() {
 			var name = GetQueryString("id");
 			$.ajax({
-				url : "mo/updateClientCompanyLinkman",
+				url : "http://10.1.12.66:8086/cardmanger/mo/updateClientCompanyLinkman",
 				type : "post",
 				data : {
 					"id" : name,
@@ -282,8 +282,8 @@
 				},
 				dataType : "json",
 				success : function() {
-					/* alert("修改成功"); */
-					location.href = "/MocreditCard.html";
+					alert("修改成功");
+					location.href = "http://10.1.12.66:8086/cardmanger/updatePersonalDataFenYe.html";
 				}
 			});
 

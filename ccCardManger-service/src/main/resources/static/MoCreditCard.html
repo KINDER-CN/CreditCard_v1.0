@@ -5,10 +5,10 @@
 <title>修改个人资料页面</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" type="text/css" href="/css/normalize.css" />
-<link rel="stylesheet" type="text/css" href="/css/htmleaf-demo.css">
-<link rel="stylesheet" href="/css/pages.css">
-<link rel="stylesheet" type="text/css" href="/css/th_td.css">
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
+<link rel="stylesheet" href="css/pages.css">
+<link rel="stylesheet" type="text/css" href="css/th_td.css">
 <style type="text/css">
 body {
 	background-color: white;
@@ -78,7 +78,7 @@ body {
 	<script type="text/javascript">
 		$(function() {
 			$.ajax({
-				url : "http://10.1.12.66:8086/cardmanger/mo/queryAllCreditCard",
+				url : "http://10.1.12.66:8086/cardmanger//mo/queryAllCreditCard",
 				type : "get",
 				dataType : "json",
 				success : function(data) {
@@ -127,7 +127,7 @@ body {
 		$(function() {
 			//页面初始化
 			$("#ns tr:gt(0)").remove();
-			$.get("/mo/queryAllCreditCard", {
+			$.get("http://10.1.12.66:8086/cardmanger/mo/queryAllCreditCard", {
 				"queryCreditCard.clientName" : $("#clientName").val(),
 				"queryCreditCard.clientIdcard" : $("#clientIdcard").val(),
 				"queryCreditCard.cardNum" : $("#cardNum").val(),
@@ -139,7 +139,7 @@ body {
 			//给搜索按钮绑定点击事件,完成搜索
 			$("#search").click(function() {
 				$("#ns tr:gt(0)").remove();
-				$.get("/mo/queryAllCreditCard", {
+				$.get("http://10.1.12.66:8086/cardmanger/mo/queryAllCreditCard", {
 					"queryCreditCard.clientName" : $("#clientName").val(),
 					"queryCreditCard.clientIdcard" : $("#clientIdcard").val(),
 					"queryCreditCard.cardNum" : $("#cardNum").val(),

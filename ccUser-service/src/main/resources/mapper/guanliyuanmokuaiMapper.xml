@@ -25,4 +25,17 @@
 	<update id="updateManger" parameterType="int">
 		UPDATE cc_manger SET manger_role_id=0 WHERE id=#{id};
 	</update>
+	<select id="queryMangerByLike" resultType="MangerRole" parameterType="String">
+		select * from manger_role
+	</select>
+	<select id="fenYeMangerRole" resultType="MangerRole" parameterType="fenYe">
+		select * from manger_role 
+		<if test="mangerName!=null and mangerName!=''">
+			where mangerName like concat('%',concat(#{mangerName},'%'))
+		</if>
+		limit #{startRows},#{rows}
+	</select>
+	<select id="fenYeAllMangerRole" resultType="int">
+		select count(*) from manger_role 
+	</select>
 </mapper>

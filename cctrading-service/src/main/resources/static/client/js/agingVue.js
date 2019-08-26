@@ -60,7 +60,6 @@ methods: {
 				 _this.aging.creditCard=this.cid;
 			    	axios.post('http://10.1.12.66:8086/trading/addAging',_this.aging)
 			    	.then(
-						alert(_this.aging.creditCard),
 						window.location.href='aging_bill.html'
 			    		)
 			    		.catch(function (error) {

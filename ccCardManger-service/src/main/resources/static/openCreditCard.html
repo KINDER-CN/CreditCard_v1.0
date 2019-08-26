@@ -20,6 +20,11 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <title>CCMS信用卡开卡中心</title>
+<style type="text/css">
+	.spa{
+		color: red;
+	}
+</style>
 </head>
 
 <body>
@@ -51,7 +56,8 @@
 							<td class="text-right"><span class="text">身份证号码： </span> <span
 								class="span">*&nbsp;</span></td>
 							<td><input name="clientIDcard" type="text" id="clientIDcard" maxlength="18"
-								v-model="cardActiveLog.clientIDcard" placeholder="18位数的身份证号码" />
+								v-model="cardActiveLog.clientIDcard" placeholder="18位数的身份证号码" @blur="blur1" />
+								<span class="spa">{{a}}</span>
 								<span v-text="msgs.msg1" class="spa spa4"></span>
 							</td>
 						</tr>
@@ -59,8 +65,9 @@
 							<td class="text-right"><span class="text">有效期：</span> <span
 								class="span">*&nbsp;</span></td>
 							<td>
-								<input type="date" class="demo-input" placeholder="yyyy-MM-dd"
+								<input type="date" class="demo-input" placeholder="yyyy-MM-dd" @blur="blur2"
 								v-model="cardActiveLog.cardValidity" id="cardValidity" style="width: 183px;">
+								<span class="spa">{{b}}</span>
 								<span v-text="msgs.msg2" class="spa spa4"></span>
 							</td>
 						</tr>
@@ -69,7 +76,8 @@
 							</span> <span class="span">*&nbsp;</span></td>
 							<td><input name="cardSecurityCode" type="text" id="cardSecurityCode"
 								v-model="cardActiveLog.cardSecurityCode" maxlength="3"
-								placeholder="3位数字的安全码" />
+								placeholder="3位数字的安全码" @blur="blur3" />
+								<span class="spa">{{c}}</span>
 								<span v-text="msgs.msg3" class="spa spa4"></span>
 							</td>
 						</tr>
@@ -78,7 +86,8 @@
 								class="span">*&nbsp;</span></td>
 							<td><input name="clientPhone" type="text" id="clientPhone"
 								v-model="cardActiveLog.clientPhone" maxlength="11"
-								placeholder="11位数字的手机号码" />
+								placeholder="11位数字的手机号码" @blur="blur4" />
+								<span class="spa">{{d}}</span>
 								<span v-text="msgs.msg4" class="spa spa4"></span>
 						</tr>
 						<tr>
@@ -192,6 +201,11 @@
             		cardSecurityCode:'',
             		clientPhone:''
                 },
+                a:'',
+				b:'',
+				c:'',
+				d:'',
+				names: "@blur_61",
                 msgs:{}
             },
             methods:{
@@ -206,41 +220,91 @@
                         	console.log(response.data.cc);
                       })
             	},
-            	
-            	activateCreditCard(){
+            	blur1(){
             		var _this=this;
             		var num=/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
-            		var tex=/^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;
-            		var code=/^\d{3}$/;
-            		if(_this.cardActiveLog.clientIDcard==""){
-            			alert("身份证号码不能为空！")
+					if(_this.cardActiveLog.clientIDcard==""){
+            			this.a="*身份证号码不能为空！";
             			return false
             		}
             		if(!num.test(_this.cardActiveLog.clientIDcard)){
-            			alert("身份证号码格式错误！")
+            			this.a="*身份证号码格式错误！";
             			return false
             		}
-            		if(_this.cardActiveLog.cardValidity==""){
-            			alert("有效期不能为空！")
+            		if(_this.cardActiveLog.clientIDcard!=""){
+            			this.a="";
+            		}
+            		if(num.test(_this.cardActiveLog.clientIDcard)){
+            			this.a="";
+            		}
+            	},
+				blur2(){
+            		var _this=this;
+					if(_this.cardActiveLog.cardValidity==""){
+            			this.b="*有效期不能为空！";
             			return false
             		}
-            		if(_this.cardActiveLog.cardSecurityCode==""){
-            			alert("安全码不能为空！")
+            		if(_this.cardActiveLog.cardValidity!=""){
+            			this.b="";
+            		}
+            	},
+				blur3(){
+            		var _this=this;
+            		var code=/^\d{3}$/;
+					if(_this.cardActiveLog.cardSecurityCode==""){
+            			this.c="*安全码不能为空！";
             			return false
             		}
             		if(!code.test(_this.cardActiveLog.cardSecurityCode)){
-            			alert("安全码格式错误！")
+            			this.c="*安全码格式错误！";
             			return false
             		}
-            		if(_this.cardActiveLog.clientPhone==""){
-            			alert("手机号码不能为空！")
+            		if(_this.cardActiveLog.cardSecurityCode!=""){
+            			this.c="";
+            		}
+            		if(code.test(_this.cardActiveLog.cardSecurityCode)){
+            			this.c="";
+            		}
+            	},
+				blur4(){
+            		var _this=this;
+					var tex=/^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;
+					if(_this.cardActiveLog.clientPhone==""){
+            			this.d="手机号码不能为空！";
             			return false
             		}
             		if(!tex.test(_this.cardActiveLog.clientPhone)){
-            			alert("手机号码格式错误！")
+            			this.d="手机号码格式错误！";
             			return false
             		}
-            		axios.get('http://10.1.12.66:8086/cardmanger/activateCreditCard', {'params':{'id':_this.cardActiveLog.id,
+            		if(_this.cardActiveLog.clientPhone!=""){
+            			this.d="";
+            		}
+            		if(tex.test(_this.cardActiveLog.clientPhone)){
+            			this.d="";
+            		}
+            	},
+            	activateCreditCard(){
+            		var _this=this;
+            		if(_this.cardActiveLog.clientIDcard=="" ||
+						_this.cardActiveLog.cardValidity=="" ||
+						_this.cardActiveLog.cardSecurityCode=="" ||
+						_this.cardActiveLog.clientPhone==""){
+						if(_this.cardActiveLog.clientIDcard==""){
+            				this.a="*身份证号码不能为空！";
+	            		}
+						if(_this.cardActiveLog.cardValidity==""){
+							this.b="*有效期不能为空！";
+            			}
+						if(_this.cardActiveLog.cardSecurityCode==""){
+	            			this.c="*安全码不能为空！";
+	            		}
+						if(_this.cardActiveLog.clientPhone==""){
+	            			this.d="手机号码不能为空！";
+	            		}
+						alert("请先填写完信息，再提交！")
+					}else{
+						axios.get('http://10.1.12.66:8086/cardmanger/activateCreditCard', {'params':{'id':_this.cardActiveLog.id,
             			'clientIDcard':_this.cardActiveLog.clientIDcard,
             			'activCardNum':_this.cardActiveLog.activCardNum,
             			'cardValidity':_this.cardActiveLog.cardValidity,
@@ -258,8 +322,10 @@
 				    	    }
 				    	})
                       .catch(function (error) {
-                        console.log(error);
-                    })
+                        	console.log(error);
+                    	})
+					}
+            		
                 },
             },
             created:function(){

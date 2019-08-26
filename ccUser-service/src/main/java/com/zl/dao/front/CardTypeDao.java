@@ -13,5 +13,9 @@ public interface CardTypeDao {
 /**
  * 查找所有的卡种
  */
-	public List<CardType> queryAllProduce();
+	public List<CardType> queryAllProduce(int pageNum);
+	/**
+	 * 查询总条数
+	 */
+	public int queryCountProduce();
 }

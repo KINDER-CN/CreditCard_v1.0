@@ -10,7 +10,7 @@
 		clientIdcard,client_birthday clientBirthday,client_marriage
 		clientMarriage,client_edu clientEdu,client_bank_creditPoint
 		clientBankCreditPoint,client_password
-		clientPassword,client_question_id clientQuestionId,
+		clientPassword,client_question_id questionId,
 		client_answer
 		clientAnswer,client_housing clientHousing,client_address
 		clientAddress,client_postalcode clientPostalcode,client_email
@@ -49,7 +49,8 @@
 	<!-- 4.根据客户id修改用户资料信息 -->
 	<update id="updateClientById" parameterType="client">
 		update cc_client
-		set(client_id,client_name,client_sex,client_national,client_idcard,client_birthday,client_marriage,client_edu,client_question_id,client_housing,client_address,client_postalcode,client_email,client_phone)VALUES(#{clientId},#{clientName},#{clientSex},#{clientNational},#{clientIDcard},#{clientBirthday},#{clientMarriage},#{clientEdu},#{questionId},#{clientAnswer},#{clientHousing},#{clientAddress},#{postalcode},#{clientEmail},#{clientPhone})
+		set
+		client_name=#{clientName},client_sex=#{clientSex},client_national=#{clientNational},client_idcard=#{clientIDcard},client_birthday=#{clientBirthday},client_marriage=#{clientMarriage},client_edu=#{clientEdu},client_question_id=#{questionId},client_answer=#{clientAnswer},client_housing=#{clientHousing},client_address=#{clientAddress},client_postalcode=#{postalcode},client_email=#{clientEmail},client_phone=#{clientPhone}
 		where id=#{id}
 	</update>
 
@@ -57,7 +58,8 @@
 	<update id="updateClientCompanyById" parameterType="clientCompany">
 		update
 		cc_client_company
-		set(company_name,company_nature,company_phone,company_industry,company_address,company_job,company_annual_income,company_postalcode)VALUES(companyName,companyNature,companyPhone,companyIndustry,companyAddress,companyJob,companyAnnualIncome,companyPostalcode)
+		set
+		company_name=#{companyName},company_nature=#{companyNature},company_phone=#{companyPhone},company_industry=#{companyIndustry},company_address=#{companyAddress},company_job=#{companyJob},company_annual_income=#{annualIncome},company_postalcode=#{companyPostalcode}
 		where company_client_id=#{client}
 	</update>
 
@@ -65,9 +67,9 @@
 	<update id="updateClientLinkmanById" parameterType="clientLinkman">
 		update
 		cc_client_linkman
-		set(client_link_name,client_link_phone,client_l
-		ink_relation,client_link_address)VALUES(clientLinkName,clientLinkPhone,clientLinkRelation,clientLinkAddress)
-		where client_link_client_id={id}
+		set
+		client_link_name=#{linkName},client_link_phone=#{linkPhone},client_link_relation=#{linkRelation},client_link_address=#{linkAddress}
+		where client_link_client_id=#{id}
 	</update>
 
 
@@ -138,7 +140,8 @@
 	<!-- 10.根据条件进行查询信用卡符合要求的记录 -->
 	<select id="queryAllClientCardByFenYe" parameterType="pagingCreditCard"
 		resultType="creditCard">
-		select cd.card_client_id client, cd.card_num cardNum,cd.card_type_id
+		select cd.id id, cd.card_client_id client, cd.card_num
+		cardNum,cd.card_type_id
 		cardType,cd.card_state
 		cardState,cd.card_binding
 		cardBinding,cd.card_point
@@ -209,10 +212,11 @@
 	</update>
 
 	<!-- 15.根据身份证进行修改密码 -->
-	<update id="updateClientApplyCardPlanId" parameterType="applyCardPlan">
+	<update id="updateCreditCardByClientIdcard" parameterType="creditCard">
 		update
-		cc_client_card cd,cc_client ct set cd.card_password=1 where
-		ct.client_idcard={clientIdcard} and ct.client_id=cd.card_client_id
+		cc_client_card cd set
+		cd.card_password=#{carPassword} where
+		cd.card_num=#{cardNum}
 	</update>
 
 	<!-- 16.根据卡号查看信用卡 -->
@@ -226,7 +230,8 @@
 		cardpoint,cd.card_phone
 		cardPhone,cd.card_bill_day
 		cardBillday,cd.card_refund_day cardRefundDay,cd.card_limit
-		cardLimit,cd.card_balance cardBalance
+		cardLimit,cd.card_short_limit cardShortLimit,cd.card_cash_limit
+		cardCashLimit,cd.card_balance cardBalance
 
 		from cc_client_card cd
 		where
@@ -252,9 +257,10 @@
 		applyCardnum,apply_client_id client from cc_client_apply_card where
 		apply_client_id=#{id}
 	</select>
-
+	<!-- 19.根据客户卡号修改信用卡额度 -->
 	<update id="udpateCreditCardLimit" parameterType="creditCard">
-		update cc_client_card c set
+		update
+		cc_client_card c set
 		c.card_limit=#{cardLimit},c.card_short_limit=#{cardShortLimit},c.card_cash_limit=#{cardCashLimit}
 		where c.card_num=#{cardNum}
 	</update>

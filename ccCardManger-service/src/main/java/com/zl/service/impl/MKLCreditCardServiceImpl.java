@@ -141,11 +141,7 @@ public class MKLCreditCardServiceImpl implements MKLCreditCardService {
 		return updateCreditCardRepair;
 	}
 
-	@Override
-	public int updateCreditCardRepairByCardId(CreditCard creditCard) {
-		int updateCreditCardRepairCardId = mccd.updateCreditCardRepairByCardId(creditCard);
-		return updateCreditCardRepairCardId;
-	}
+
 
 	// @Override
 	// public int updateCreditCardRepairByClientId(int id) {
@@ -172,10 +168,17 @@ public class MKLCreditCardServiceImpl implements MKLCreditCardService {
 		return creditCard;
 	}
 
-	/*@Override
+	@Override
 	public int udpateCreditCardLimit(CreditCard creditCard) {
 		int resut=mccd.udpateCreditCardLimit(creditCard);
 		return resut;
-	}*/
+	}
+
+	@Override
+	public int updateCreditCardByClientIdcard(CreditCard creditCard) {
+		int updateCreditCardRepairCardId = mccd.updateCreditCardByClientIdcard(creditCard);
+		return updateCreditCardRepairCardId;
+	
+	}
 
 }

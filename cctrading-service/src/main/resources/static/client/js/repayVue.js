@@ -142,7 +142,7 @@ methods: {
 		 var pay=confirm("请确认信息，是否确认还款");
 	 };
 	 if(pay==true){
-		 axios.post('/repay',_this.RepayMoneyAndPwd)
+		 axios.post('http://10.1.12.66:8086/trading/repay',_this.RepayMoneyAndPwd)
 	    	.then(function(response){
 			_this.result=response.data.result;
 			_this.resultBank=response.data.resultBank;

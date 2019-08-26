@@ -8,5 +8,5 @@ public interface CardTypeService {
 	/**
 	 * 查找所有卡种
 	 */
-	public List<CardType> queryAllProduce();
+	public List<CardType> queryAllProduce(int pageNum);
 }

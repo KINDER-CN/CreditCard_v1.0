@@ -9,6 +9,7 @@ import com.zl.dao.gu.jiaoyilishiDao;
 import com.zl.pojo.business.BillDetails;
 import com.zl.pojo.client.ClientBill;
 import com.zl.pojo.client.ClientBillDetails;
+import com.zl.pojo.htfenye.FenYe;
 import com.zl.service.gu.jiaoyilishiService;
 @Service
 public class jiaoyilishiServiceImpl implements jiaoyilishiService {
@@ -27,6 +28,17 @@ public class jiaoyilishiServiceImpl implements jiaoyilishiService {
 	@Override
 	public List<ClientBill> queryBillDetailsByLike(String clientIdcard) {
 		return jd.queryBillDetailsByLike(clientIdcard);
+	}
+
+	@Override
+	public List<ClientBill> fenYeClientBill(FenYe fenYe) {
+		return jd.fenYeClientBill(fenYe);
+	}
+
+	@Override
+	public int fenYeAllClientBill(FenYe fenYe) {
+		int i=jd.fenYeAllClientBill(fenYe);
+		return i;
 	}
 
 }

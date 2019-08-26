@@ -17,7 +17,7 @@
 	<br /><br /><br /><br /><br /><br />
 	<div id="queryOp">
 	<div>
-		<input class="inputText4"  type="text" name="clientName" v-model="clientName" placeholder="客户姓名" />&nbsp;&nbsp;&nbsp;
+		<input class="inputText4"  type="text" name="clientName" v-model="fenYe.clientName" placeholder="客户姓名" />&nbsp;&nbsp;&nbsp;
 		<a @click="submit()"><button class="button blue">搜索</button></a><br /><br />
 	</div>
 	<table class="hovertable" >
@@ -36,6 +36,7 @@
 			<td><a :href="'yonghuxiangxi.html?id='+client.id"  target="page"><button style="background-color: black;color: white;">详情</button></a></td>
 		</tr>
 	</table>
+	<button class="button blue" @click="submit(fenYe.page-1)">上一页</button>&nbsp;当前第{{fenYe.page}}页<button class="button blue" @click="submit(fenYe.page+1)">下一页</button>&nbsp;总共{{i}}页
 	</div>
 </center>
 	<script type="text/javascript" src="../../jss/vuejs-2.5.16.js"></script>
@@ -46,6 +47,7 @@
 	 new Vue({
 		   el:"#queryOp",
 		   data:{
+			   i:'',
 			 client:
 		     {
 		      id:'',
@@ -53,14 +55,30 @@
 		      clientIDcard:'',
 		      clientPhone:''
 		     },
-		    clientName:'',
+		     fenYe:
+		     {
+		    	 page:1,
+		    	 clientName:'',
+		     },
 		    clients:[],
 		   },
 		   methods:{
-			   submit: function() {
+			   submit: function(event) {
 				     var _this=this;
-				       axios.get('http://10.1.12.66:8086/client/gu/queryClientByLike',{params:{clientName:_this.clientName}})
+				     if(event<=1){
+				    	 this.fenYe.page=1;
+				     }
+				     if(event>1){
+				    	 this.fenYe.page=event;
+				     }
+				     if(event>=this.i){
+				    	 this.fenYe.page=this.i;
+				     }
+				       axios.post('http://10.1.12.66:8086/client/gu/queryClientByLike',_this.fenYe)
 				       .then(function(response){
+				    	   if(_this.fenYe.page==1){
+				    		   _this.i=response.data.i;
+				    	   }
 				     _this.clients=response.data.clients;
 				     		console.log(_this.clients);
 			       })

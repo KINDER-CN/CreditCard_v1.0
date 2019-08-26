@@ -11,16 +11,16 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ShiroConfiguration {
-	// cas server地址
-    public static final String casServerUrlPrefix = "http://127.0.0.1";
-    // Cas登录页面地址
-    public static final String casLoginUrl = casServerUrlPrefix + "/login";
-    // Cas登出页面地址
-    public static final String casLogoutUrl = casServerUrlPrefix + "/logout";
-    // 当前工程对外提供的服务地址
-    public static final String shiroServerUrlPrefix = "http://127.0.1.28:8080";
-    // casFilter UrlPattern
-    public static final String casFilterUrlPattern = "/index";
+//	// cas server地址
+//    public static final String casServerUrlPrefix = "http://127.0.0.1";
+//    // Cas登录页面地址
+//    public static final String casLoginUrl = casServerUrlPrefix + "/login";
+//    // Cas登出页面地址
+//    public static final String casLogoutUrl = casServerUrlPrefix + "/logout";
+//    // 当前工程对外提供的服务地址
+//    public static final String shiroServerUrlPrefix = "http://127.0.1.28:8080";
+//    // casFilter UrlPattern
+//    public static final String casFilterUrlPattern = "/index";
     /**
 	  * 创建ShiroFilterFactoryBean
 	  */

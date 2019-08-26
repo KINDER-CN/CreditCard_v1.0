@@ -33,14 +33,14 @@ public class BillController {
 		System.out.println("queryAllBill......................");
 		Map<String,Object> map = new HashMap<String, Object>();
 		List<Bill> bills=bs.queryAllBill();
-		System.out.println(bills+"bills");
+		//System.out.println(bills+"bills");
 		
 		List<Client> client = acs.queryClient();
 		List<CreditCard> creditCards= acs.queryCreditCard();
-		System.out.println(client+"client");
-		System.out.println(creditCards+"creditCards");
+		//System.out.println(client+"client");
+		//System.out.println(creditCards+"creditCards");
 		List<AgingThree> agingThree=new ArrayList<AgingThree>();
-		System.out.println(agingThree+"agingThree");
+		//System.out.println(agingThree+"agingThree");
 		for(int i=0;i<client.size();i++) {
 			for(int y=0;y<creditCards.size();y++) {
 				if(creditCards.get(y).getClient()==client.get(i).getId()) {
@@ -64,7 +64,7 @@ public class BillController {
 				}
 			}
 		}
-		System.out.println(agingThree);
+		//System.out.println(agingThree);
 		map.put("agingThree", agingThree);
 		return map;
 	}
@@ -111,10 +111,10 @@ public class BillController {
 		for(int i=0;i<client.size();i++) {
 			for(int y=0;y<creditCards.size();y++) {
 				if(creditCards.get(y).getClient()==client.get(i).getId()) {
-					System.out.println(1111);
+					//System.out.println(1111);
 					for(int z=0;z<billDetails.size();z++) {
 						AgingThree at=new AgingThree();
-						System.out.println(billDetails.get(z).getCreditCard()+""+creditCards.get(y).getId());
+						//System.out.println(billDetails.get(z).getCreditCard()+""+creditCards.get(y).getId());
 						if(billDetails.get(z).getCreditCard()==creditCards.get(y).getId()) {
 							at.setId(billDetails.get(z).getId());
 							at.setClientName(client.get(i).getClientName());
@@ -128,13 +128,13 @@ public class BillController {
 							at.setPayTime(billDetails.get(z).getPayTime());
 							at.setBillId(billDetails.get(z).getBillId());
 							agingThree.add(at);
-							System.out.println(at+""+i);
+							//System.out.println(at+""+i);
 						}
 					}
 				}
 			}
 		}
-		System.out.println(agingThree);
+		//System.out.println(agingThree);
 		map.put("agingThree", agingThree);
 		return map;
 	}
@@ -147,8 +147,8 @@ public class BillController {
 		Map<String,Object> map = new HashMap<String, Object>();
 		List<BillDetails> billDetailsId=bs.queryBillDetailsById(id);
 		map.put("billDetailsId", billDetailsId);
-		System.out.println(billDetailsId);
-		System.out.println(id);
+//		System.out.println(billDetailsId);
+//		System.out.println(id);
 		return map;
 	}
 }

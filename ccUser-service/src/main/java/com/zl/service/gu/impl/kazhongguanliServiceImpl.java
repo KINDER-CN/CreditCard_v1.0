@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zl.dao.gu.kazhongguanliDao;
+import com.zl.pojo.htfenye.FenYe;
 import com.zl.pojo.manger.CardType;
 import com.zl.service.gu.kazhongguanliService;
 @Service
@@ -37,6 +38,22 @@ public class kazhongguanliServiceImpl implements kazhongguanliService {
 	@Override
 	public List<CardType> queryAllCardType() {
 		return kd.queryAllCardType();
+	}
+
+	@Override
+	public List<CardType> fenYeCardType(FenYe fenYe) {
+		return kd.fenYeCardType(fenYe);
+	}
+
+	@Override
+	public int fenYeAllCardType(FenYe fenYe) {
+		int i=kd.fenYeAllCardType(fenYe);
+		return i;
+	}
+
+	@Override
+	public List<CardType> queryCardTypeByLike(String cardName) {
+		return kd.queryCardTypeByLike(cardName);
 	}
 
 }

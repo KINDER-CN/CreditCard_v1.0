@@ -14,4 +14,14 @@ where client_name like concat('%',concat(#{clientName},'%'));
 	<select id="queryClientById" resultType="client" parameterType="int">
 		select id id,client_id clientId,client_name clientName,client_sex clientSex,client_national clientNational,client_idcard clientIDcard,client_birthday clientBirthday,client_marriage clientMarriage,client_edu clientEdu,client_bank_creditPoint creditPoint,client_password password,client_question_id questionId,client_answer clientAnswer,client_housing clientHousing,client_address clientAddress,client_postalcode postalcode,client_email clientEmail,client_phone clientPhone from cc_client where id=#{id}
 	</select>
+	<select id="fenYeClient" resultType="client" parameterType="fenYe">
+		select id id,client_name clientName,client_idcard clientIdcard,client_phone clientPhone from cc_client
+		<if test="clientName!=null and clientName!=''">
+where client_name like concat('%',concat(#{clientName},'%'))
+		</if>
+limit #{startRows},#{rows}
+	</select>
+	<select id="fenYeAllClient" resultType="int">
+		select count(*) from cc_client 
+	</select>
 </mapper>

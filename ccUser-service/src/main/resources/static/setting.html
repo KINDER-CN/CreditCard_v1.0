@@ -86,7 +86,8 @@
 											<div class="modal-body">
 												<div class="input-group">
 										            <span >信用卡号:</span>
-										            <input @blur="findCard()"  v-model="credit.cardNum" placeholder="输入信用卡号" type="text" class="form-control" style="float: left;">
+										            <input @blur="findCard()"  v-model="credit.cardNum" placeholder="输入信用卡号" type="text" class="form-control" style="float: left;" maxlength="18">
+										            <span style="color: red;" v-show="!flag">{{mess}}</span>
 										        </div>
 										        <div class="input-group">
 										            <span >卡片类型:</span>
@@ -95,22 +96,27 @@
 										        <div class="input-group">
 										            <span >持卡人姓名:</span>
 										            <input v-model="name" placeholder="请输入持卡人姓名" type="text" class="form-control" style="float: left;" >
+										        	<span style="color: red;" v-show="!flag3">{{mess3}}</span>
 										        </div>
 										        <div class="input-group">
 										            <span >身份证件号:</span>
-										           <input v-model="IDcard" placeholder="请输入持卡人证件号码" type="text" class="form-control" style="float: left;">
+										           <input @blur="checkIDcard" v-model="IDcard" placeholder="请输入持卡人证件号码" type="text" class="form-control" style="float: left;" maxlength="18">
+										        	<span style="color: red;" v-show="!flag2">{{mess2}}</span>
 										        </div>
 										        <div class="input-group">
 										            <span >有效期:</span>
 										            <input v-model="credit.cardValidity" placeholder="输入信用卡有效期" type="date" class="form-control" style="float: left;">
+										        	<span style="color: red;" v-show="!flag4">{{mess4}}</span>
 										        </div>
 										        <div class="input-group">
 										            <span >卡背末三位:</span>
-										            <input v-model="credit.cardSecurityCode" placeholder="请输入信用卡背末3位" type="text" class="form-control" style="float: left;">
+										            <input v-model="credit.cardSecurityCode" placeholder="请输入信用卡背末3位" type="text" class="form-control" style="float: left;" maxlength="3">
+										        	<span style="color: red;" v-show="!flag5">{{mess5}}</span>
 										        </div>
 										        <div class="input-group">
 										            <span >手机号码:</span>
-										            <input v-model="credit.cardPhone" placeholder="输入银行预留手机号" type="text" class="form-control" style="float: left;" >
+										            <input v-model="credit.cardPhone" placeholder="输入银行预留手机号" type="text" class="form-control" style="float: left;" maxlength="11">
+										        	<span style="color: red;" v-show="!flag6">{{mess6}}</span>
 										        </div>
 										        <div class="input-group">
 										            <span >验证码:</span>

@@ -14,4 +14,14 @@
 		where clientIDcard like concat('%',concat(#{clientIDcard},'%'));
 		</if>
 	</select>
+	<select id="fenYeClientBill" resultType="ClientBill" parameterType="fenYe">
+		select * from client_bill
+		<if test="clientIDcard!=null and clientIDcard!=''">
+			where clientIDcard like concat('%',concat(#{clientIDcard},'%'))
+		</if>
+		limit #{startRows},#{rows}
+	</select>
+	<select id="fenYeAllClientBill" resultType="int">
+		select count(*) from client_bill 
+	</select>
 </mapper>

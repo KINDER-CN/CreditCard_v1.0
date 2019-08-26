@@ -1,8 +1,11 @@
 package com.zl.pojo.manger;
+
+import java.io.Serializable;
+
 /**
  *管理员表实体类
  */
-public class Manger {
+public class Manger implements Serializable{
 	private int id;				//主键id
 	private String mangerId;	//员工编号			manger_id
 	private String mangerName;	//员工姓名			manger_name

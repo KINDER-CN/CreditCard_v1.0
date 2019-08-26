@@ -38,7 +38,7 @@
 	</select>
 	<!-- 根据信用卡id查询账单 -->
 	<select id="queryBillByCardId" parameterType="int" resultType="showClientCard">
-		select bill_money-bill_haspay billMoney, bill_srepay_date repayDay from cc_bill where bill_card_id = #{id} order by id DESC
+		select bill_money-bill_haspay billMoney, bill_srepay_date repayDay from cc_bill where bill_card_id = #{id} order by id ASC limit 1
 	</select>
 	<!-- 校验原密码 -->
 	<select id="queryClientByPsdAndId" parameterType="client" resultType="client">

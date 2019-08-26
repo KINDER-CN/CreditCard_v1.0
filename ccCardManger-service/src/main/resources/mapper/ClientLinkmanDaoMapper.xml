@@ -5,8 +5,8 @@
 	<insert id="insertClientLinkmanInfo" parameterType="clientLinkman">
 		insert into
 		cc_client_linkman (client_link_name, client_link_phone,
-		client_link_address, client_link_relation)
+		client_link_address, client_link_relation, client_link_client_id)
 		values
-		(#{linkName}, #{linkPhone}, #{linkAddress}, #{linkRelation})
+		(#{linkName}, #{linkPhone}, #{linkAddress}, #{linkRelation}, #{client})
 	</insert>
 </mapper>

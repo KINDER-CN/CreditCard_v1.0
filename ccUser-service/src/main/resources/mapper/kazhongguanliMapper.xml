@@ -17,4 +17,20 @@
 	<delete id="deleteCardTypeById" parameterType="int">
 	DELETE FROM cc_card_type WHERE id=#{id};
 	</delete>
+	<select id="queryCardTypeByLike" resultType="CardType" parameterType="String">
+		select id id,card_num cardNum,card_type ctype,card_pic cardPic,card_name cardName,card_annual cardAnnual,card_anntation1 anntationa1,card_anntation2 anntationa2,card_anntation3 anntationa3,card_anntation4 anntationa4,card_activity1 activity1,card_activity2 activity2 from cc_card_type
+		<if test="cardName!=null and cardName!=''">
+		where card_name like concat('%',concat(#{cardName},'%'));
+		</if>
+	</select>
+	<select id="fenYeCardType" resultType="CardType" parameterType="fenYe">
+		select id id,card_num cardNum,card_type ctype,card_pic cardPic,card_name cardName,card_annual cardAnnual,card_anntation1 anntationa1,card_anntation2 anntationa2,card_anntation3 anntationa3,card_anntation4 anntationa4,card_activity1 activity1,card_activity2 activity2 from cc_card_type
+		<if test="cardName!=null and cardName!=''">
+		where card_name like concat('%',concat(#{cardName},'%'))
+		</if>
+		 limit #{startRows},#{rows}
+	</select>
+	<select id="fenYeAllCardType" resultType="int" >
+		select count(*) from cc_card_type 
+	</select>
 </mapper>

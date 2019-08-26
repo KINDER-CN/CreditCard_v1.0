@@ -65,12 +65,12 @@
                                 <ul id="registerlogin">
                                   <li id="newphonetext">手机号码</li>
                                   <li>
-                                      <input type="text" id="phoneNbr"  v-model="clientPhone" placeholder="请输入手机号码" maxlength="11" style="ime-mode:disabled">
+                                      <input @blur="checkPhone()" type="text" id="phoneNbr"  v-model="clientPhone" placeholder="请输入手机号码" maxlength="11" style="ime-mode:disabled" >
                                       <i class="phone"></i>
                                   </li>
 								  <li id="sms_code_text">短信验证码</li>
                                  <li>
-                                    <input type="text" v-model="code" placeholder="6位数字验证码" id="valicode" maxlength="6" style="width:53%;height:36px;text-indent: 14px;margin-right: 20px;">
+                                    <input @blur="checkCode()" type="text" v-model="code" placeholder="6位数字验证码" id="valicode" maxlength="6" style="width:53%;height:36px;text-indent: 14px;margin-right: 20px;">
 										<button class="btn btn-primary btn-sm" @click="callMsg" v-bind:disabled="!stop">
 										    <span v-if="stop">获取验证码</span>
 										    <span v-else>{{timer}}秒后重试</span>
@@ -78,14 +78,15 @@
 									</li>                                                             
                                   
                                   <!-- 错误提示码 -->                                
-                                  <li class="error-area rel">
-                                      <span class="error_area rel none" id="reg_phone_error" style="display: inline;"></span>                                  
+                                  <li>
+                                      <!--<span class="error_area rel none" id="reg_phone_error" style="display: inline;"></span> -->
+                                      <span v-show="flag" style="color: red;">{{mess}}</span>
                                   </li>							 
                                    <div class="button-box">
 									  
 									  <input type="button" class="next-btn" id="checkcode" value="登录" @click="login"/>
 								  </div>
-                                  <div class="protocol"><label></label><p class="agree" style="font-size:8px;">注册即为同意<a href="https://creditcard.ecitic.com/citiccard/ucweb/protocol.html" target="_blank">《中信银行用户体系用户服务条款》</a></p></div>
+                                  <div class="protocol"><label></label><p class="agree" style="font-size:8px;">登录即为同意<a href="https://creditcard.ecitic.com/citiccard/ucweb/protocol.html" target="_blank">《中信银行用户体系用户服务条款》</a></p></div>
 								</ul>                 
                   </div>
               </div>
@@ -159,44 +160,5 @@
     }) */
     </script> -->
     <!-- <script src="js/userAnalysis.js"></script> -->
-    <!-- vue实例 -->
-   <!-- <script type="text/javascript">
-    	new Vue({
-    		el:'#reg_login',
-    		data:{
-    			clientPhone:'',
-    			code:'',
-    			flag:false,
-    			timer:60,
-                stop:true,
-                Interval:null
-    		},
-    		methods:{
-    			update () {
-                    if(this.timer <= 0)
-                    {
-                        this.stop = !this.stop;
-                        clearInterval(this.Interval);
-                        this.timer=60;
-                    }
-                    else{
-                        this.timer--;
-                    }
-                },
-                startTimer :function() {
-                    this.Interval = setInterval(this.update, 1000);
-                    console.log(this.Interval);
-                },
-    			callMsg:function(clientPhone){
-    				var _this=this;
-    				axios.post("/client/checkphone",_this.clientPhone)
-    				.then(function(response){
-    					if(response.data.flag==true){
-    						
-    					}
-    				}
-    			}
-    		}
-    	})
-    </script> -->
+	
 </body></html>

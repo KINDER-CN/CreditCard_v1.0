@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zl.dao.gu.guanliyuanmokuaiDao;
+import com.zl.pojo.htfenye.FenYe;
 import com.zl.pojo.manger.Manger;
 import com.zl.pojo.manger.MangerRole;
 import com.zl.service.gu.guanliyuanmokuaiService;
@@ -42,6 +43,22 @@ public class guanliyuanmokuaiServiceImpl implements guanliyuanmokuaiService {
 	@Override
 	public Manger queryMangerById(int id) {
 		return gd.queryMangerById(id);
+	}
+
+	@Override
+	public List<MangerRole> fenYeMangerRole(FenYe fenYe) {
+		return gd.fenYeMangerRole(fenYe);
+	}
+
+	@Override
+	public int fenYeAllMangerRole(FenYe fenYe) {
+		int i=gd.fenYeAllMangerRole(fenYe);
+		return i;
+	}
+
+	@Override
+	public List<MangerRole> queryMangerByLike(String mangerName) {
+		return gd.queryMangerByLike(mangerName);
 	}
 
 

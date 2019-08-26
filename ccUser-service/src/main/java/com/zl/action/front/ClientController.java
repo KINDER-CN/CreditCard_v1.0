@@ -96,6 +96,7 @@ public class ClientController {
 	@ResponseBody
 	public Map<String,Object> register(@RequestBody Client client){
 		Map<String,Object> result=new HashMap<String,Object>();
+		System.out.println(client);
 		if(client!=null) {
 			int line = cs.clientRegister(client);
 			if(line>0) {

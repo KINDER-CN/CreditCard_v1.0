@@ -29,7 +29,7 @@ zuul:
     behind-proxy: true #表示代理之后
 #网关的超时
   host:
-    connect-timeout-millis: 10000 #HTTP连接超时要比Hystrix的大
+    connect-timeout-millis: 15000 #HTTP连接超时要比Hystrix的大
     socket-timeout-millis: 50000   #socket超时
 ribbon:
   ReadTimeout: 5000
@@ -43,6 +43,6 @@ hystrix:
           enabled: true
         isolation: 
           thread: 
-            timeoutInMilliseconds: 5000    
+            timeoutInMilliseconds: 10000    
 #http://localhost:8085/product-service/queryAllProduct
 #http://localhost:8085/gateway/product/queryAllProduct

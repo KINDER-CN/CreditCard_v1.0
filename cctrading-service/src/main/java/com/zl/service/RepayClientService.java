@@ -57,8 +57,8 @@ public interface RepayClientService {
 	 * @param cardId
 	 * @return
 	 */
-	public BankCard queryBankCard(int cardId);
-	public CreditCard queryCreditCardById(int cardId);
+	public BankCard queryBankCard(long cardId);
+	public CreditCard queryCreditCardById(long cardId);
 	public List<RepayCard> queryRepayCardbyclient(String id);
 	public int updateHasMoney(Bill bl);
 	public List<CardType> queryCardType();

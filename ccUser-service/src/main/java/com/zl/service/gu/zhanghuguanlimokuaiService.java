@@ -3,6 +3,7 @@ package com.zl.service.gu;
 import java.util.List;
 
 import com.zl.pojo.client.Client;
+import com.zl.pojo.htfenye.FenYe;
 /**
  * 账户管理模块
  */
@@ -19,4 +20,12 @@ public interface zhanghuguanlimokuaiService {
 	 * 查询该用户
 	 */
 	public Client queryClientById(int id);
+	/**
+	 * 分页
+	 */
+	public List<Client> fenYeClient(FenYe fenYe);
+	/**
+	 * 分页总数
+	 */
+	public int fenYeAllClient(FenYe fenYe);
 }

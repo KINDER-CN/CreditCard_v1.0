@@ -150,7 +150,7 @@ body {
 										.ajax({
 
 											success : function() {
-												location.href = "http://10.1.12.66:8086/cardmanger/CreditCard.html?id="
+												location.href = "/CreditCard.html?id="
 														+ name;
 											}
 										});
@@ -171,7 +171,7 @@ body {
 											
 											success : function() {
 
-												location.href = "http://10.1.12.66:8086/cardmanger/personalData.html?id="
+												location.href = "/personalData.html?id="
 														+ name;
 											}
 										});
@@ -189,7 +189,7 @@ body {
 								/* 	alert(name); */
 								$
 										.ajax({
-											url : "http://10.1.12.66:8086/cardmanger/mo/updatePlanStaterefuse",
+											url : "mo/updatePlanStaterefuse",
 											type : "get",
 											data : {
 												"id" : name
@@ -197,7 +197,7 @@ body {
 											dataType : "json",
 											success : function() {
 												/* 	alert("登录成功"); */
-												location.href = "http://10.1.12.66:8086/cardmanger/dynamicState.html?id="
+												location.href = "/dynamicState.html?id="
 														+ name;
 											}
 										});
@@ -215,7 +215,7 @@ body {
 								/* 	alert(name); */
 								$
 										.ajax({
-											url : "http://10.1.12.66:8086/cardmanger/mo/updateCheckState",
+											url : "mo/updateCheckState",
 											type : "get",
 											data : {
 												"id" : name
@@ -223,7 +223,7 @@ body {
 											dataType : "json",
 											success : function() {
 												/* 	alert("登录成功"); */
-												location.href = "http://10.1.12.66:8086/cardmanger/dynamicState.html?id="
+												location.href = "/dynamicState.html?id="
 														+ name;
 											}
 										});

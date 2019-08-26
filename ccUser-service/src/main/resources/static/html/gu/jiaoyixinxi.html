@@ -14,8 +14,8 @@
 <center>
 	<br /><br /><br /><br /><br /><br />
 	<div id="queryCli">
-	<input class="inputText4" type="text" id="Validate" name="Validate" v-model="clientIdcard" placeholder="请输入身份证号"  />&nbsp;&nbsp;&nbsp;
-	<a @click="submit()"><button class="button blue">搜索</button></a><br /><br />
+	<input class="inputText4" type="text" id="Validate" name="Validate" v-model="fenYe.clientIDcard" placeholder="请输入身份证号"  />&nbsp;&nbsp;&nbsp;
+	<a @click="queryAllMangerByLike()"><button class="button blue">搜索</button></a><br /><br />
 	<!-- <a :href="'jiaoyixinxi.html?clientIDcard='+encodeURI(encodeURI(clientBill.clientIDcard))"><button>搜索</button></a><br /><br /> -->
 	<table class="hovertable">
 	<tr>
@@ -41,8 +41,9 @@
 	<td><a :href="'http://10.1.12.66:8086/client/html/gu/jiaoyixiangqing.html?clientName='+encodeURI(encodeURI(clientBill.clientName))"  target="page"><button>详情</button></a></td>
 </tr>
 </table>
+<button class="button blue" @click="submit(fenYe.page-1)">上一页</button>&nbsp;当前第{{fenYe.page}}页<button class="button blue" @click="submit(fenYe.page+1)">下一页</button>&nbsp;总共{{i}}页
 </div>
-<div class="black"><span class="disabled"> < </span><span class="current">1</span><a href="#?page=2">2</a><a href="#?page=3">3</a><a href="#?page=4">4</a><a href="#?page=5">5</a><a href="#?page=6">6</a><a href="#?page=7">7</a>...<a href="#?page=199">199</a><a href="#?page=200">200</a><a href="#?page=2"> > </a></div></p>
+
 	<script type="text/javascript" src="../../jss/vuejs-2.5.16.js"></script>
 	<script type="text/javascript" src="../../jss/axios-0.18.0.js"></script>
 	<!-- <script type="text/javascript" src="../../js/main.js"></script> -->
@@ -50,6 +51,7 @@
 	new Vue({
 		   el:"#queryCli",
 		   data:{
+			   i:'',
 		clientBill:
 		         {
 		      id:'',
@@ -61,14 +63,30 @@
 		      hasPay:'',
 		      repayDate:''
 		     },
-		    clientIdcard:'',
+		     fenYe:
+		     {
+		    	 page:1,
+		    	 clientIDcard:'',
+		     },
 		    clientBills:[],
 		   },
 		   methods:{
-		    submit: function() {
+		    submit: function(event) {
 			     var _this=this;
-			       axios.get('http://10.1.12.66:8086/client/gu/queryBillDetailsByLike',{params:{clientIdcard:_this.clientIdcard}})
+			     if(event<=1){
+			    	 this.fenYe.page=1;
+			     }
+			     if(event>1){
+			    	 this.fenYe.page=event;
+			     }
+			     if(event>=this.i){
+			    	 this.fenYe.page=this.i;
+			     }
+			       axios.post('http://10.1.12.66:8086/client/gu/queryBillDetailsByLike',_this.fenYe)
 			       .then(function(response){
+			    	   if(_this.fenYe.page==1){
+			    		   _this.i=response.data.i;
+			    	   }
 			     _this.clientBills=response.data.clientBills;
 			     		console.log(_this.clientBills);
 		       })

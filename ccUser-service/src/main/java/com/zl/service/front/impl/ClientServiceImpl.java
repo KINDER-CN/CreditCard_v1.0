@@ -60,6 +60,7 @@ public class ClientServiceImpl implements ClientService{
 		System.out.println(clientId);
 		List<ShowClientCard> list =cd.queryClientCard(clientId);
 		for(int i=0;i<list.size();i++) {
+			System.out.println(list.get(i).getId());
 			if(cd.queryBillByCardId(list.get(i).getId())!=null) {
 				ShowClientCard s=cd.queryBillByCardId(list.get(i).getId());
 				list.get(i).setBillMoney(s.getBillMoney());

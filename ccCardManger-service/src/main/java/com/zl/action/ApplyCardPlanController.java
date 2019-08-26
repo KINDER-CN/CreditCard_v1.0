@@ -50,18 +50,20 @@ public class ApplyCardPlanController {
 	@ResponseBody
 	@RequestMapping("/handleCreditCard")
 	public Map<String, Object> handleCreditCard(int id, ApplyCardPlan acp, ClientLinkman clientLinkman,
-			ClientCompany clientCompany, HttpSession session) {
+			ClientCompany clientCompany, Client client, HttpSession session) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		// 从session中获取用户信息
 		Client cl = (Client) session.getAttribute("client");
 		System.out.println("进入办卡申请..........................."+id);
 		System.out.println(acp);
 		System.out.println(cl);
+		System.out.println(client);
 		System.out.println(clientLinkman);
 		System.out.println(clientCompany);
 		CardType ct = acps.selectCardTypeById(id);
 		/*String src=ct.getCardPic().substring(7,ct.getCardPic().length());
 		ct.setCardPic("http://10.1.12.66:8086/client/img/kapian/"+src);*/
+		acp.setCardType(ct.getId()+"");
 		acp.setPlanIDcard(cl.getClientIDcard());
 		acp.setApplyTime(new Date());
 		acp.setPlanState("待审核");
@@ -78,6 +80,7 @@ public class ApplyCardPlanController {
 		System.out.println("办卡申请成功...........................");
 		System.out.println(acp);
 		System.out.println(cl);
+		System.out.println(ct);
 		System.out.println(clientLinkman);
 		System.out.println(clientCompany);
 		map.put("ct", ct);

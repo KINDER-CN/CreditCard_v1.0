@@ -94,12 +94,13 @@ public class MoApplyCardControl {
 		return resut;
 	}
 
-	@RequestMapping("/updateClientCompanyLinkman")
+	@RequestMapping(value = "/updateClientCompanyLinkman",method=RequestMethod.POST)
 	// 5.根据客户id修改个人信息表，用户单位表和用户联系人表
 	@ResponseBody
 	public Map<String, Object> updateClientCompanyMan(String id, Client client, ClientCompany clientCompany,
 			ClientLinkman clientLinkman) {
 		Map<String, Object> resut = new HashMap<String, Object>();
+		System.out.println("来到根据id修改个人资料表");
 		client.setId(new Integer(id));
 		mccs.updateClientById(client);
 		clientCompany.setClient(new Integer(id));

@@ -3,11 +3,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>中信银行信用卡快速申请_中信银行信用卡_中信银行信用卡办理-中信银行信用卡中心</title>
+<title>CCMS信用卡快速申请_中信银行信用卡_中信银行信用卡办理-中信银行信用卡中心</title>
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <link href="css/foot.css" type="text/css" rel="stylesheet">
 <!-- <script type="text/javascript" async="" defer="defer" src="js/pk.js"></script><script src="%E4%B8%AD%E4%BF%A1%E9%93%B6%E8%A1%8C%E4%BF%A1%E7%94%A8%E5%8D%A1%E5%BF%AB%E9%80%9F%E7%94%B3%E8%AF%B7_%E4%B8%AD%E4%BF%A1%E9%93%B6%E8%A1%8C%E4%BF%A1%E7%94%A8%E5%8D%A1_%E4%B8%AD%E4%BF%A1%E9%93%B6%E8%A1%8C%E4%BF%A1%E7%94%A8%E5%8D%A1%E5%8A%9E%E7%90%86-%E4%B8%AD%E4%BF%A1%E9%93%B6%E8%A1%8C%E4%BF%A1%E7%94%A8%E5%8D%A1%E4%B8%AD%E5%BF%83_files/hm.js"></script> -->
 <script type="text/javascript" src="js/zxing.js"></script><script type="text/javascript" src="js/corejs.json"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -113,7 +116,18 @@
                 <a :href="'http://10.1.12.66:8086/cardmanger/handleCardApplication.html?id='+pro.id" id="PCHOMEPAGE060" class="gcon01_link">立即申请</a>
             </li>
         </ul>
-        
+        <div style="margin-left: 350px">
+        	<button id="fat-btn" class="btn btn-primary" data-loading-text="Loading..." 
+		    type="button" style="width: 300px; color: black ; background-color: white; border-color: white; "
+		    	@click="queryAllPro('a')" v-show="flag"> 
+		    	加载更多..
+			</button>
+			<span id="fat-btn" class="btn btn-primary" data-loading-text="Loading..." 
+		     style="width: 300px; color: black ; background-color: white; border-color: white; "
+		    	v-show="!flag"> 
+		    	没有更多加载了。。
+			</span>
+        </div>
     </div>
     <div class="gcon02 w100">
     	<ul>
@@ -181,13 +195,13 @@
             
         </div>
     </div>
-    <div class="dkkj_app">
+    <!-- <div class="dkkj_app">
       <div class="dkkj_app_open hide" style="background-image: url(2017_images/dkkj_app_open.png); width: 1px; display: none; background-position: initial initial; background-repeat: no-repeat no-repeat; "></div>
       <div class="dkkj_app_pop" style="display: block; width: 100%; "> <span class="app_pop_close"></span> </div>
       <div class="dkkj_app_pop_box" style="display: block; width: 940px; ">
         <a href="https://creditcard.ecitic.com/youhui/181023/index.shtml" target="_blank"><div class="app_pop_box_pic" style="background: url(2017_images/20181102.png) no-repeat"></div></a>
       </div>
-    </div>
+    </div> -->
     <div class="footer_link_wrap">
       <div class="w100">
         <div class="footer_link">
@@ -360,14 +374,26 @@ var _hmt = _hmt || [];
 	new Vue({
 		el:"#app",
 		data:{
+			flag:true,
+			num:'',
+			pageNum:1,
 			products:[],
 		},
 		methods:{
-			queryAllPro: function(){
+			queryAllPro: function(page){
 				var _this=this;
-				axios.get("/client/product/product")
+				if(page!=null){
+					this.pageNum=this.pageNum+1
+				}
+				axios.get("/client/product/product",{params:{pageNum:_this.pageNum}})
 				.then(function(response){
     					_this.products=response.data.product;
+    					if(response.data.num!=null){
+    						_this.num=response.data.num
+    					}
+    					if(_this.products.length==_this.num){
+    						_this.flag=false;
+    					}
     				})
 			}
 		},

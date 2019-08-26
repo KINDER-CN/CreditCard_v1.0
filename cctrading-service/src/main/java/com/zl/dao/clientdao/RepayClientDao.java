@@ -57,13 +57,13 @@ public interface RepayClientDao {
 	 * @param cardId
 	 * @return
 	 */
-	public BankCard queryBankCard(int cardId);
+	public BankCard queryBankCard(long cardId);
 	/**
 	 * 根据客户ID查询信用卡表
 	 * @param client
 	 * @return
 	 */
-	public CreditCard queryCreditCardById(int cardId);
+	public CreditCard queryCreditCardById(long cardId);
 	/**
 	 * 查询还款卡by客户id
 	 * @param cardId

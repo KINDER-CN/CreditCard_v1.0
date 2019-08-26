@@ -22,7 +22,7 @@ spring:
     password: root
   #配置redis相关的连接信息
   redis:
-    host: 10.1.12.66
+    host: 127.0.0.1
     port: 6379
   #mybatis相关配置
 mybatis:

@@ -5,10 +5,10 @@
 <title>申请详情分页查询</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" type="text/css" href="/css/normalize.css" />
-<link rel="stylesheet" type="text/css" href="/css/htmleaf-demo.css">
-<link rel="stylesheet" href="/css/pages.css">
-<link rel="stylesheet" type="text/css" href="/css/th_td.css">
+<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="css/htmleaf-demo.css">
+<link rel="stylesheet" href="css/pages.css">
+<link rel="stylesheet" type="text/css" href="css/th_td.css">
 <style type="text/css">
 body {
 	background-color: white;
@@ -108,7 +108,7 @@ body {
 		$(function() {
 			//页面初始化
 			$("#ns tr:gt(0)").remove();
-			$.get("mo/queryAllApplyCard", {
+			$.get("http://10.1.12.66:8086/cardmanger/mo/queryAllApplyCard", {
 				"queryClientApplyCard.applyIdcard" : $("#applyIdcard").val(),
 				"queryClientApplyCard.applyCheckState" : $("#applyCheckState")
 						.val(),

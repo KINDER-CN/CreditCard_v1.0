@@ -61,13 +61,13 @@ public class RepayClientServiceImpl implements RepayClientService{
 	}
 
 	@Override
-	public  BankCard queryBankCard(int cardId) {
+	public  BankCard queryBankCard(long cardId) {
 		// TODO Auto-generated method stub
 		return rcd.queryBankCard(cardId);
 	}
 
 	@Override
-	public CreditCard queryCreditCardById(int cardId) {
+	public CreditCard queryCreditCardById(long cardId) {
 		// TODO Auto-generated method stub
 		return rcd.queryCreditCardById(cardId);
 	}

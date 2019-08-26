@@ -34,15 +34,16 @@
                 <ul class="register_info">
                     <li>
                         <label>手机号码：</label>
-                        <input v-model="client.clientPhone" type="text" onpaste="return false" placeholder="请输入手机号码" class="wid260 h28" id="phoneNbr" maxlength="11">
+                        <input @blur="checkPhone()" v-model="client.clientPhone" type="text" onpaste="return false" placeholder="请输入手机号码" class="wid260 h28" id="phoneNbr" maxlength="11">
                     </li>
                     <li>
-                        <label></label>
-                        <span class="error" id="phone_emsg" data-flag="tel" style="display:none;"></span>
+                    	<label></label>
+                    	<span style="color: red;" v-show="!flag1">{{mess1}}</span>
                     </li>
+                    
                     <li>
                         <label class="h32">短信验证码：</label>
-                      	<input type="text" v-model="code" placeholder="6位数字验证码" id="valicode" maxlength="6" >
+                      	<input  type="text" v-model="code" placeholder="6位数字验证码" id="valicode" maxlength="6" >
 										<button class="btn btn-primary btn-sm" @click="callMsg" v-bind:disabled="!stop">
 										    <span v-if="stop">获取验证码</span>
 										    <span v-else>{{timer}}秒后重试</span>
@@ -51,6 +52,7 @@
                     <li>
                         <label></label>
                         <span class="error" id="sms_emsg" data-flag="code" style="display:none;"></span>
+                        <span v-show="!flag2" style="color: red;">{{mess2}}</span>
                     </li>
                     <li>
                         <label></label>
@@ -66,19 +68,20 @@
                 <ul class="register_info">
                     <li>
                         <label>设置登录密码：</label>
-                        <input v-model="client.passWord" type="text" onpaste="return false" placeholder="请输入手机号码" class="wid260 h28" id="phoneNbr" maxlength="11">
+                        <input v-model="client.password" type="text" onpaste="return false" placeholder="请设置密码" class="wid260 h28" id="phoneNbr" maxlength="18">
                     </li>
                     <li>
                         <label></label>
-                        <span class="error" id="phone_emsg" data-flag="tel" style="display:none;"></span>
+                        <!--<span class="error" id="phone_emsg" data-flag="tel" style="display:none;"></span>-->
                     </li>
                     <li>
                         <label>确认登录密码：</label>
-                        <input v-model="rpassword" type="text" onpaste="return false" placeholder="请输入手机号码" class="wid260 h28" id="phoneNbr" maxlength="11">
+                        <input v-model="rpassword" type="text" onpaste="return false" placeholder="请重新输入密码" class="wid260 h28" id="phoneNbr" maxlength="18">
                     </li>
                     <li>
                         <label></label>
-                        <span class="error" id="sms_emsg" data-flag="code" style="display:none;"></span>
+                       <!-- <span class="error" id="sms_emsg" data-flag="code" style="display:none;"></span>-->
+                       <span style="color: red;" v-show="!flag2">{{mess2}}</span>
                     </li>
                     <li>
                         <label></label>
@@ -120,16 +123,20 @@
 	new Vue({
 		el:'#app',
 		data:{
+			flag1:true,
 			flag:true,
+			flag2:true,
 			code:'',
 			scode:'',
 			timer:60,
             stop:true,
             Interval:null,
             rpassword:'',
+            mess1:'',
+            mess2:'',
             client:{
             	clientPhone:'',
-            	passWord:'',
+            	password:'',
             }
 		},
 		methods:{
@@ -151,13 +158,13 @@
             },
 			callMsg:function(){
 				var _this=this;
-				axios.post("/client/checkphone",_this.client.clientPhone)
+				axios.post("/client/client/checkphone",_this.client.clientPhone)
 				.then(function(response){
 					if(response.data.flag==true){
 						_this.stop=!this.stop;
 	                    _this.startTimer();
 	                    _this.scode=response.data.scode;
-	                    alert(response.data.scode);
+	                    
 					}
 				})
 			},
@@ -166,10 +173,11 @@
 				var _this=this;
 				if(_this.client.clientPhone!="" && _this.client.clientPhone!=null){
 					if(_this.code==_this.scode){
-						axios.post("/client/clientLogin",_this.client.clientPhone)
+						axios.post("/client/client/clientLogin",_this.client.clientPhone)
 						.then(function(response){
     						if(response.data.flag){
-    							alert("该手机号已存在");
+    							_this.mess2="该账号已存在";
+    							_this.flag2=false;
     						}else{
     							_this.flag=false;
     						}
@@ -181,8 +189,10 @@
 			//注册
 			register :function(){
 				var _this = this;
-				if(this.rpassword==this.client.passWord){
-					axios.post("/client/register",_this.client)
+				if(this.rpassword==this.client.password){
+					_this.mess2="";
+    				_this.flag2=true;
+					axios.post("/client/client/register",_this.client)
 					.then(function(response){
     						if(response.data.flag){
     							alert("注册成功");
@@ -192,9 +202,43 @@
     						}
 					})
 				}else{
-					alert("两次密码输入不一致");
+					_this.mess2="两次密码输入不一致";
+    				_this.flag2=false;
 				}
-			}
+			},
+			//验证手机号
+			checkPhone :function(){
+    				//手机验证正则
+    				var phone=/^1[3,5,7,8]\d{9}$/;
+    				if(this.client.clientPhone==""){
+    					this.mess1="请输入手机号";
+    					this.flag1=false;
+    				}else if(this.client.clientPhone.match(phone)){
+    					this.mess2="";
+    					this.flag2=true;
+    					this.mess1="";
+    					this.flag1=true;
+    					
+    				}else{
+    					this.mess1="请输入正确的手机格式";
+    					this.flag1=false;
+    				}
+    			},
+    			//校验验证码
+    		/*	checkCode:function(){
+    				//验证码 正则
+    				var c=/^[0-9]{6}$/
+    				//校验验证码
+    					if(this.code=!""){
+    						if(this.code.match(c)){
+    						this.mess="";
+    						this.flag=false;
+    					}else{
+    						this.mess="请输入6位数字验证码";
+    						this.flag=true;
+    					}
+    				}
+    			}*/
 		},
 	})
 	</script>

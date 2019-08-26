@@ -66,7 +66,7 @@ public class BillClientController {
 		
 		 
 		 //剩余还款
-		 if(bill.getBillMoney().compareTo(bill.getHasPay())==-1) {
+		 if(bill.getBillMoney().compareTo(bill.getHasPay())==-1||bill.getBillMoney().compareTo(bill.getHasPay())==0) {
 			 bill.setResidueRepay(new BigDecimal(0));
 			 bill.setMinRepay(new BigDecimal(0));
 		 }else {

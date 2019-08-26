@@ -22,6 +22,7 @@ import com.zl.pojo.business.Bill;
 import com.zl.pojo.client.Client;
 import com.zl.service.AgingClientService;
 import com.zl.service.BillClientService;
+import com.zl.service.RepayClientService;
 
 @Controller
 public class AgingClientController {
@@ -29,6 +30,8 @@ public class AgingClientController {
 	private AgingClientService acs;
 	@Autowired
 	private BillClientService bcs;
+	@Autowired
+	private RepayClientService rcs;
 	/**
 	 * 填写分期表单
 	 * @param aging
@@ -37,10 +40,15 @@ public class AgingClientController {
 	@RequestMapping("/addAging")
 	@ResponseBody
 	public Map<String,Object> addAging(@RequestBody Aging aging){
-		System.out.println("到达控制层><<><??><><<"+aging);
+		Bill bl =new Bill();
 		Map<String,Object> map =new HashMap<String, Object>();
-		
 		int result=acs.addAging(aging);
+		SimpleDateFormat sdf =new SimpleDateFormat("yyyyMM");
+		 bl.setBillNum(sdf.format(new Date()));
+		 bl.setCreditCard(aging.getCreditCard());
+		 bl=bcs.queryBillByCardIdAndDate(bl);
+		 bl.setHasPay(bl.getHasPay().add(aging.getAgingLines()));
+		 rcs.updateHasMoney(bl);
 		map.put("结果", result);
 		return map;
 	}

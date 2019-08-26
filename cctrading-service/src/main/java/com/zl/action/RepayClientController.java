@@ -102,11 +102,14 @@ public class RepayClientController {
 	@RequestMapping("/repay")
 	@ResponseBody
 	// 还款方法
-	public Map<String, Object> repay(@RequestBody RepayMoneyAndPwd rmp, BankCard bc, BillDetails bds) {
+	public Map<String, Object> repay(@RequestBody RepayMoneyAndPwd rmp, BankCard bc, BillDetails bds,HttpSession s) {
 		Map<String, Object> map = new HashMap<String, Object>();
+		System.out.println("获取到的值"+rmp);
+		Client client=new Client();
+		client =(Client) s.getAttribute("client");
 		Bill bl = new Bill();
-		CreditCard cc = rcs.queryCreditCardById((int) rmp.getCardNum());
-		System.out.println(rmp + ">>>>>>>>>>>>>>>>>>>>>.");
+		CreditCard cc = rcs.queryCreditCardById(rmp.getCardNum());
+		System.out.println("用户信用卡"+cc + ">>>>>>>>>>>>>>>>>>>>>.");
 		// 添加到交易记录
 		bds.setTransactionMoney(rmp.getMoney().multiply(new BigDecimal("-1")));
 		bds.setPayTime(new Date());
@@ -116,23 +119,23 @@ public class RepayClientController {
 		bds.setTransactionDes("还款");
 		bds.setCreditCard(cc.getId());
 		bc.setCardPwd(rmp.getPwd());
-		BankCard bc1 = rcs.queryBankCard((int) rmp.getBankNum());
+		//查询银行卡
+		BankCard bc1 = rcs.queryBankCard(rmp.getBankNum());
 		System.out.println(bc1 + "bc1" + bds.getTransactionTime());
-		Client ct = acs.queryCreditPointByClientId(3);
 		// 更改信用分
-		ct.setClientId("1");
-		ct.setCreditPoint(ct.getCreditPoint() + 10);
-		System.out.println(ct);
+		client.setCreditPoint(client.getCreditPoint() + 10);
+		//System.out.println("修改信用分之后的用户"+client);
 		// 更改已还金额
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
 		bl.setBillNum(sdf.format(new Date()));
-		bl.setCreditCard(1);
+		bl.setCreditCard(cc.getId());
 		bl = bcs.queryBillByCardIdAndDate(bl);
-		System.out.println("账单》》》》》" + bl);
-		bl.setHasPay(bl.getHasPay().subtract(rmp.getMoney()));
+		//System.out.println("账单》》》》》" + bl);
+		bl.setHasPay(bl.getHasPay().add(rmp.getMoney()));
+		//System.out.println("还款之后的已还金额"+bl.getHasPay());
 		rcs.updateHasMoney(bl);
 		int i = rmp.getMoney().compareTo(bc1.getBankBalance());
-		System.out.println("比较大小》》》" + i + "<>>>>" + rmp.getMoney() + ">>>>" + bc1.getBankBalance());
+		//System.out.println("比较大小》》》" + i + "<>>>>" + rmp.getMoney() + ">>>>" + bc1.getBankBalance());
 		if (!(bc1.getCardPwd() == bc.getCardPwd())) {
 			map.put("result", 0);
 			
@@ -140,20 +143,18 @@ public class RepayClientController {
 			
 			if (!((rmp.getMoney().compareTo(bc1.getBankBalance())) == 1)) {
 				// 还款运算
-				System.out.println(">>>>>>>>>>>>>>>" + ct);
 				bc1.setBankBalance(bc1.getBankBalance().subtract(rmp.getMoney()));
 				// 扣款运算
-				System.out.println(
-						cc.getCardBalance() + "cc.getCardBalance()" + bds.getTransactionMoney() + "rmp.getMoney()");
+				//System.out.println(cc.getCardBalance() + "cc.getCardBalance()" + bds.getTransactionMoney() + "rmp.getMoney()");
 				cc.setCardBalance(cc.getCardBalance().add(rmp.getMoney()));
 				rcs.addRepayToBillDetails(bds);
 				int resultBank = rcs.updateBankBalance(bc1);
 				int resultCard = rcs.updateCardBalance(cc);
-				int resultpoint = rcs.updateCreditPoint(ct);
+				int resultpoint = rcs.updateCreditPoint(client);
 				map.put("result", 1);
 				map.put("resultBank", resultBank);
 				map.put("resultCard", resultCard);
-				System.out.println(resultBank + "resultBank" + "resultCard" + resultCard);
+				//System.out.println(resultBank + "resultBank" + "resultCard" + resultCard);
 			} else {
 				map.put("resultbalance", 2);
 			};

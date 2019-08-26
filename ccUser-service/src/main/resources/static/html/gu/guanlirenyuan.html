@@ -16,7 +16,8 @@
 <center>
 	<br /><br /><br /><br /><br /><br />
 	<div id="queryMa">
-	<input class="inputText4" type="text"  id="Validate" name="Validate" />&nbsp;&nbsp;<button class="button blue">搜索</button><br /><br />	
+	<input class="inputText4" type="text" id="Validate" name="Validate" v-model="fenYe.mangerName" placeholder="请输入管理员名称"  />&nbsp;&nbsp;&nbsp;
+	<a @click="queryAllMangerByLike()"><button class="button blue">搜索</button></a><br /><br />
 	<a href="http://10.1.12.66:8086/client/html/gu/zengjiaguanliyuan.html"><button class="button blue">增加管理员</button></a>	<br><br>
 <!-- Table goes in the document BODY -->
 		<table class="hovertable">
@@ -37,6 +38,7 @@
 			<td><a @click="updateManger(mangerRole.id)"  target="page"><button class="button blue">删除</button></a></td>
 		</tr>
 		</table>
+		<button class="button blue" @click="queryAllMangerByLike(fenYe.page-1)">上一页</button>&nbsp;当前第{{fenYe.page}}页<button class="button blue" @click="queryAllMangerByLike(fenYe.page+1)">下一页</button>&nbsp;总共{{i}}页
 	</div>
 <center>
 	<script type="text/javascript" src="../../jss/vuejs-2.5.16.js"></script>
@@ -46,6 +48,7 @@
 	new Vue({
 		   el:"#queryMa",
 		   data:{
+			   i:'',
 			   mangerRoles:[
 		     {
 		    	 id:'',
@@ -54,13 +57,30 @@
 		    	 mPhone:'',
 		    	 role:''
 		     }
-		    ]
+		    ],
+		    fenYe:
+		     {
+		    	 page:1,
+		    	 mangerName:'',
+		     }
 		   },
 		   methods:{
-			   queryAllManger:function(){
+			   queryAllMangerByLike:function(event){
 		     var _this=this;
-		     axios.get("http://10.1.12.66:8086/client/gu/queryAllManger")
+		     if(event<=1){
+		    	 this.fenYe.page=1;
+		     }
+		     if(event>1){
+		    	 this.fenYe.page=event;
+		     }
+		     if(event>=this.i){
+		    	 this.fenYe.page=this.i;
+		     }
+		     axios.post("http://10.1.12.66:8086/client/gu/queryAllMangerByLike",_this.fenYe)
 		     .then(function(response){
+		    	 if(_this.fenYe.page==1){
+		    		   _this.i=response.data.i;
+		    	   }
 		      _this.mangerRoles=response.data.mangerRoles;
 		      console.log(response);
 		     })
@@ -81,7 +101,7 @@
 			    }
 		   },
 		   created:function(){
-		    this.queryAllManger();
+		    this.queryAllMangerByLike();
 		   },
 		 })
 		function GetQueryString(name){

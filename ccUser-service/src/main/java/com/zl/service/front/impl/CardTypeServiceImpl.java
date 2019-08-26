@@ -20,10 +20,10 @@ public class CardTypeServiceImpl implements CardTypeService {
 	@Autowired
 	private StringRedisTemplate rt;
 	@Override
-	public List<CardType> queryAllProduce() {
-		
+	public List<CardType> queryAllProduce(int pageNum) {
+		int pageRow=8;
 		List<CardType> product= null;
-		product=ctd.queryAllProduce();
+		product=ctd.queryAllProduce(pageRow*pageNum);
 		/*//json主要类，它提供一些功能将转换成Java对象匹配JSON结构,反之亦然。
 		ObjectMapper om=new ObjectMapper();
 		String json=rt.opsForValue().get("products");

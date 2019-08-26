@@ -232,13 +232,14 @@ public class MoCreditCardControl {
 		Client client = mccs.queryClientById(creditCard.getClient());
 		map.put("creditCard", creditCard);
 		map.put("client", client);
+		System.out.println(creditCard+"---"+client);
 		return map;
 	}
 	
 	
 	
-	/*@RequestMapping("/queryCreditCardById")
-	*//**11.根据客户卡号修改信用卡额度*//*
+	@RequestMapping("/updateCardByLimit")
+	/**11.根据客户卡号修改信用卡额度*/
 	@ResponseBody
 	public Map<String, Object> updateCardByLimit(CreditCard creditCard) {
 		Map<String, Object> map = new HashMap<>();
@@ -253,5 +254,24 @@ public class MoCreditCardControl {
 		}
 		
 		return map;
-	}*/
+	}
+	
+	
+	@RequestMapping("/updateCreditCardByClientIdcard")
+	/**11.根据客户卡号修改支付密码*/
+	@ResponseBody
+	public Map<String, Object> updateCreditCardByClientIdcard(CreditCard creditCard) {
+		Map<String, Object> map = new HashMap<>();
+		System.out.println("来到根据身份证修改密码");	
+		int resut=mccs.updateCreditCardByClientIdcard(creditCard);
+		if(resut>0) {
+			System.out.println("修改成功");
+			map.put("flag", "修改成功");
+		}else {
+			System.out.println("修改失败");
+			map.put("flag", "修改失败");
+		}
+		
+		return map;
+	}
 }

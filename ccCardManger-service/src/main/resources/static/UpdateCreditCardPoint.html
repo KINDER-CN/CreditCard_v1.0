@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<title>冻结</title>
+<title>额度管理</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" type="text/css" href="css/normalize.css" />
@@ -101,9 +101,9 @@ body {
 								+ this.cardBillday + "</td>" + "<td>"
 								+ this.cardRefundDay + "</td>" + "<td>"
 								+ this.cardPhone + "</td>" + "<td>"
-								+ this.cardpoint + "</td>" + "<td>"
-								+ "<a class=btn04 href=http://10.1.12.66:8086/cardmanger/freeze.html?id="
-								+ this.cardNum + ">冻结</a>" + "</td>" + "</tr>";
+								+ this.cardpoint + "</td>" + "<td>"							
+								+ "<a class=btn04 href=http://10.1.12.66:8086/cardmanger/updatePoint.html?id="
+								+ this.cardNum + ">额度管理</a>" + "</td>" + "</tr>";
 						$("#ns").append(b);
 					});
 		};

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.zl.dao.gu.zhanghuguanlimokuaiDao;
 import com.zl.pojo.client.Client;
+import com.zl.pojo.htfenye.FenYe;
 import com.zl.service.gu.zhanghuguanlimokuaiService;
 @Service
 public class zhanghuguanlimokuaiServiceImpl implements zhanghuguanlimokuaiService {
@@ -25,6 +26,17 @@ public class zhanghuguanlimokuaiServiceImpl implements zhanghuguanlimokuaiServic
 	@Override
 	public Client queryClientById(int id) {
 		return zd.queryClientById(id);
+	}
+
+	@Override
+	public List<Client> fenYeClient(FenYe fenYe) {
+		return zd.fenYeClient(fenYe);
+	}
+
+	@Override
+	public int fenYeAllClient(FenYe fenYe) {
+		int i=zd.fenYeAllClient(fenYe);
+		return i;
 	}
 
 }

@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,7 @@ import com.zl.pojo.business.BillDetails;
 import com.zl.pojo.client.Client;
 import com.zl.pojo.client.ClientBill;
 import com.zl.pojo.client.ClientBillDetails;
+import com.zl.pojo.htfenye.FenYe;
 import com.zl.pojo.manger.CardType;
 import com.zl.pojo.manger.Manger;
 import com.zl.pojo.manger.MangerRole;
@@ -37,6 +39,7 @@ import com.zl.service.gu.jiaoyilishiService;
 import com.zl.service.gu.kazhongguanliService;
 import com.zl.service.gu.zhanghuguanlimokuaiService;
 import com.zl.util.Base64Util;
+import com.zl.util.MD5Util;
 @Controller
 @RequestMapping("/gu")
 public class guController<R> {
@@ -52,60 +55,49 @@ public class guController<R> {
    private zhanghuguanlimokuaiService zs;
    
    /**
-    * 图片上传
-    *//*
-   @RequestMapping("/upload")
-	@ResponseBody
-	public Map<String,Object> upload(String name,@RequestParam("imgFile") CommonsMultipartFile imgFile){
-		Map<String,Object> map=new HashMap<>();
-		if(imgFile.getSize()>0) {
-			//获取原始文件名称
-			String oldFileName=imgFile.getOriginalFilename();//aaa.jpg
-			//创建新文件名称
-			String newFileName=UUID.randomUUID().toString()+oldFileName.substring(oldFileName.lastIndexOf("."));
-			//创建新文件
-			File newFile=new File("D:/apache-tomcat-8.0.50/webapps/img/"+newFileName);
-			//如果文件不存在我们手动创建出来
-			if(!newFile.exists()) {
-				newFile.mkdir();
-			}
-			//把旧文件中的数据写新文件中
-			try {
-				imgFile.transferTo(newFile);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			map.put("flag", true);
-			map.put("url", "../img/"+newFileName);
-			System.out.println(newFileName+";;;;;;;;;;;;;;;;;;");
-		}
-		return map;
-	}*/
-   /**
     * 管理员管理模块
     */
    //登录
    @RequestMapping("/login")
    @ResponseBody
-   public Map<String,Object> login(@RequestBody Manger manger){
+   public Map<String,Object> login(@RequestBody Manger manger,HttpSession session){
 	   Map<String,Object> result=new HashMap<String,Object>();
+	   manger.setmPassword(MD5Util.getMD5(manger.getmPassword()));
 	   manger=gs.login(manger);
 	   if(manger!=null){
 		   result.put("manger", manger);
 		   System.out.println("11111111111");
+		   session.setAttribute("manger", manger);
 	   }else {
 		   result.put("code", 401);
 	   }
 	return result;
    }
    //查询所有管理员
-   @RequestMapping("/queryAllManger")
+   /*@RequestMapping("/queryAllManger")
    @ResponseBody
    public Map<String,Object> queryAllManger(Integer pageNum,Integer pageSize){
 	   Map<String,Object> result=new HashMap<String,Object>();
 	   List<MangerRole> mangerRoles= gs.queryAllManger();
 	   result.put("mangerRoles", mangerRoles);
 	   System.out.println(mangerRoles);
+	return result;
+   }*/
+ //查询所有管理员
+   @RequestMapping("/queryAllMangerByLike")
+   @ResponseBody
+   public Map<String,Object> queryAllManger(@RequestBody FenYe fenYe){
+	   Map<String,Object> result=new HashMap<String,Object>();
+	   List<MangerRole> mangerRoles= gs.fenYeMangerRole(fenYe);
+	   System.out.println(mangerRoles);
+	   int i =gs.fenYeAllMangerRole(fenYe);
+	   if(i%fenYe.getRows()>0) {
+		   i=(i/fenYe.getRows())+1;
+	   }else {
+		   i=i/fenYe.getRows();
+	   }
+	   result.put("mangerRoles", mangerRoles);
+	   result.put("i",i);
 	return result;
    }
    //查询单个管理员
@@ -179,12 +171,20 @@ public class guController<R> {
    //模糊查询
    @RequestMapping("/queryClientByLike")
    @ResponseBody
-   public Map<String,Object> queryClientByLike(String clientName) {
+   public Map<String,Object> queryClientByLike(@RequestBody FenYe fenYe) {
 	   System.out.println(1);
+	   System.out.println(fenYe);
 	   Map<String,Object> result=new HashMap<String,Object>();
-	   List<Client> clients=zs.queryClientByLike(clientName);
+	   List<Client> clients=zs.fenYeClient(fenYe);
+	   int i =zs.fenYeAllClient(fenYe);
+	   if(i%fenYe.getRows()>0) {
+		   i=(i/fenYe.getRows())+1;
+	   }else {
+		   i=i/fenYe.getRows();
+	   }
 	   System.out.println(clients);
 	   result.put("clients", clients);
+	   result.put("i",i);
 	return result;
 	   
    }
@@ -223,12 +223,18 @@ public class guController<R> {
    //模糊查询账单表
    @RequestMapping("/queryBillDetailsByLike")
    @ResponseBody
-   public Map<String,Object> queryBillDetailsByLike(String clientIdcard){
-	   System.out.println(clientIdcard);
+   public Map<String,Object> queryBillDetailsByLike(@RequestBody FenYe fenYe){
 	   Map<String,Object> result=new HashMap<String,Object>();
-	   List<ClientBill> clientBills=js.queryBillDetailsByLike(clientIdcard);
+	   List<ClientBill> clientBills=js.fenYeClientBill(fenYe);
+	   int i=js.fenYeAllClientBill(fenYe);
+	   if(i%fenYe.getRows()>0) {
+		   i=(i/fenYe.getRows())+1;
+	   }else {
+		   i=i/fenYe.getRows();
+	   }
 	   System.out.println(clientBills);
 	   result.put("clientBills", clientBills);
+	   result.put("i", i);
 	return result;
 	   
    }
@@ -255,10 +261,13 @@ public class guController<R> {
    //查询最后五条日志
    @RequestMapping("/queryAllOperateLog")
    @ResponseBody
-   public Map<String,Object> queryAllOperateLog(){
+   public Map<String,Object> queryAllOperateLog(HttpSession session){
 	   Map<String,Object> result=new HashMap<String,Object>();
+	   Manger manger=new Manger();
+	   manger=(Manger) session.getAttribute("manger");
 	   List<OperateLog> operateLogs=cs.queryAllOperateLog();
 	   result.put("operateLogs", operateLogs);
+	   result.put("name", manger.getMangerName());
 	return result;
 	   
    }
@@ -266,13 +275,21 @@ public class guController<R> {
     * 卡种管理模块
     */
  //查询卡种表所有信息
-   @RequestMapping("/queryAllCardType")
+   @RequestMapping("/queryAllCardTypeByLike")
    @ResponseBody
-   public Map<String,Object> queryAllCardType(){
+   public Map<String,Object> queryAllCardType(@RequestBody FenYe fenYe){
+	   System.out.println(fenYe);
 	   Map<String,Object> result=new HashMap<String,Object>();
-	   List<CardType> cardTypes=ks.queryAllCardType();
-	   result.put("cardTypes", cardTypes);
+	   List<CardType> cardTypes=ks.fenYeCardType(fenYe);
+	   int i=ks.fenYeAllCardType(fenYe);
+	   if(i%fenYe.getRows()>0) {
+		   i=(i/fenYe.getRows())+1;
+	   }else {
+		   i=i/fenYe.getRows();
+	   }
 	   System.out.println(cardTypes);
+	   result.put("cardTypes", cardTypes);
+	   result.put("i", i);
 	return result;
    }
    //查询单个卡片

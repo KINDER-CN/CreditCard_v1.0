@@ -65,8 +65,8 @@ public interface MklCreditCardDao {
 	/** 14.根据原密码进行修改密码 */
 	public int updateCreditCardRepairById(CreditCard creditCard);
 
-	/* 15.根据身份证或者原密码进行修改密码 */
-	public int updateCreditCardRepairByCardId(CreditCard creditCard);
+	/* 15.根据身份证进行修改密码 */
+	public int updateCreditCardByClientIdcard(CreditCard creditCard);
 
 	/* 16.根据id查看信用卡 */
 	public CreditCard queryCreditCardById(Long id);
@@ -77,7 +77,7 @@ public interface MklCreditCardDao {
 	/** 18.根据客户id查看详情表 */
 	public ApplyCard queryClientApplyCardById(int id);
 	
-/*	*//**19.根据客户卡号修改信用卡额度*//*
-	public int udpateCreditCardLimit(CreditCard creditCard);*/
+	/**19.根据客户卡号修改信用卡额度*/
+	public int udpateCreditCardLimit(CreditCard creditCard);
 
 }

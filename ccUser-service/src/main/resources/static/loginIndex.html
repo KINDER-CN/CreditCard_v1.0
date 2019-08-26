@@ -349,6 +349,18 @@
 				            </li>    
 				        </ul>
 					</div>
+					<div style="margin-left: 200px">
+			        	<button id="fat-btn" class="btn btn-primary" data-loading-text="Loading..." 
+					    type="button" style="width: 300px; color: black ; background-color: white; border-color: white; "
+					    	@click="chage3('a')" v-show="flag6"> 
+					    	加载更多..
+						</button>
+						<span id="fat-btn" class="btn btn-primary" data-loading-text="Loading..." 
+					     style="width: 300px; color: black ; background-color: white; border-color: white; "
+					    	v-show="!flag6"> 
+					    	没有更多加载了。。
+						</span>
+			        </div>
 				</div>
 			</div>
 		</div>
@@ -460,6 +472,9 @@
 	new Vue({
 		el: "#app",
 		data:{
+			flag6:true,
+			num:'',
+			pageNum:1,
 			flag:true,
 			flag1:false,
 			flag2:false,
@@ -497,6 +512,7 @@
 		methods:{
 			queryCard:function(){
 				var _this=this;
+				
 				axios.get("/client/client/queryClientCard")
 				.then(function(response){
 						if(response.data.flag==true){
@@ -526,7 +542,7 @@
 				this.flag4=false;
 				this.flag5=true;
 			},
-			chage3:function(){
+			chage3:function(page){
 				this.flag=false;
 				this.flag1=false;
 				this.flag2=false;
@@ -534,11 +550,20 @@
 				this.flag4=true;
 				this.flag5=false;
 				var _this=this;
-				axios.get("/client/product/product")
+				if(page!=null){
+					this.pageNum=this.pageNum+1
+				}
+				axios.get("/client/product/product",{params:{pageNum:_this.pageNum}})
 				.then(function(response){
+					_this.products=response.data.product;
 					if(response.data.product!=null){
-						_this.products=response.data.product
-						console.log(response.data.product);
+    					if(response.data.num!=null){
+    						_this.num=response.data.num
+    					}
+    					if(_this.products.length==_this.num){
+    						_this.flag6=false;
+    					}
+						
 					}
 				})
 			},

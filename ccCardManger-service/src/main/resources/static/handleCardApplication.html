@@ -18,6 +18,16 @@
 	rel="stylesheet">
 <script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
 <script src="js/area.js" type="text/javascript"></script>
+<style type="text/css">
+.spa{
+	color: red;
+	line-height: 20px;
+}
+.input_box{
+	margin-bottom: 5px;
+}
+</style>
+
 </head>
 
 <body>
@@ -124,29 +134,22 @@
 							<div class="f_box w_155">
 								<div class="input_box">
 									<input id="userName" placeholder="不少于两个汉字" name="clientName"
-										type="text" maxlength="15" v-model="client.clientName">
+										@blur="blur1" type="text" maxlength="15" v-model="client.clientName">
 								</div>
-								<div class="form_tips">
-									<span class="err_span"></span>
+								<div style="height: 20px;">
+									<span class="spa">{{a}}</span>
 								</div>
 							</div>
-							<div class="succ_tips" style="margin-bottom: 10px;">
-								<span class="succ_span name_error"></span>
-							</div>
-
-							<DIV class="tit_105">
+							<DIV class="tit_105" style="margin-left: 30px;">
 								<EM class="r_em">*</EM> 性别：
 							</DIV>
 							<DIV class="slect_box cardItem familySel" id="familySel">
-								<input type="radio" v-model="client.clientSex" class="redio" value="男">&nbsp;&nbsp;男
-								<input type="radio" v-model="client.clientSex" class="redio" name="clientSex" value="女">&nbsp;&nbsp;女
-								<DIV class="form_tips">
-									<SPAN class="err_span" style="color: rgb(255, 66, 79);"></SPAN>
-								</DIV>
+								<input @blur="blur2" type="radio" v-model="client.clientSex" class="redio" value="男">&nbsp;&nbsp;男
+								<input @blur="blur2" type="radio" v-model="client.clientSex" class="redio" name="clientSex" value="女">&nbsp;&nbsp;女
+								<div style="height: 20px;">
+									<span class="spa">{{b}}</span>
+								</div>
 							</DIV>
-								<DIV class="form_tips">
-									<SPAN class="err_span"></SPAN>
-								</DIV>
 						</li>
 
 						<LI>
@@ -155,9 +158,12 @@
 							</DIV>
 							<DIV class="f_box1">
 								<DIV class="h_box" id="company_address">
-									<input type="date" v-model="client.clientBirthday"
+									<input type="date" v-model="client.clientBirthday" @blur="blur3"
 										style="border: 1px solid #ADADAD; background-color: white; width: 155px;">
 								</DIV>
+								<div style="height: 20px;">
+									<span class="spa">{{c}}</span>
+								</div>
 							</DIV>
 							<DIV class="tit_105"
 								style="margin-bottom: 20px; margin-left: 30px">
@@ -165,10 +171,10 @@
 							</DIV>
 							<DIV class="f_box">
 								<DIV class="h_box" id="company_address">
-									<DIV class="slect_box">
-										<SELECT name="clientNational" v-model="client.clientNational">
+									<DIV class="slect_box" style="margin-top: -2px;">
+										<SELECT name="clientNational" @blur="blur4" v-model="client.clientNational">
 											<option value="">请选择</option>
-											<option value="汉">汉族</option>
+											<option value="汉族">汉族</option>
 											<option value="蒙古族">蒙古族</option>
 											<option value="回族">回族</option>
 											<option value="藏族">藏族</option>
@@ -226,9 +232,10 @@
 											<option value="基诺族">基诺族</option>
 										</SELECT>
 									</DIV>
-									<DIV class="form_tips" style="clear: both;">
-										<SPAN class="err_span corp_error"></SPAN>
-									</DIV>
+									<br>
+									<div style="height: 20px;">
+										<span class="spa">{{d}}</span>
+									</div>
 								</DIV>
 							</DIV>
 						</LI>
@@ -239,16 +246,13 @@
 							</div>
 							<div class="f_box">
 								<div class="input_box w_505">
-									<input id="applyIdNbr" placeholder="请填写有效身份证号"
+									<input id="applyIdNbr" placeholder="请填写有效身份证号" @blur="blur5"
 										name="clientIDcard" v-model="client.clientIDcard" type="text"
 										maxlength="18">
 								</div>
-								<div class="form_tips">
-									<span class="err_span"></span>
+								<div style="height: 20px;">
+									<span class="spa">{{e}}</span>
 								</div>
-							</div>
-							<div class="succ_tips">
-								<span class="succ_span"></span>
 							</div>
 						</li>
 
@@ -260,14 +264,11 @@
 								<div class="input_box w_505">
 									<input id="mobile" name="clientPhone" type="text"
 										maxlength="11" v-model="client.clientPhone"
-										placeholder="11数位有效手机号码">
+										placeholder="11数位有效手机号码" @blur="blur6">
 								</div>
-								<div class="form_tips">
-									<span class="err_span"></span>
+								<div style="height: 20px;">
+									<span class="spa">{{f}}</span>
 								</div>
-							</div>
-							<div class="succ_tips">
-								<span class="succ_span"></span>
 							</div>
 						</li>
 
@@ -341,14 +342,19 @@
 										<EM class="r_em">*</EM> 学历：
 									</DIV>
 									<DIV class="f_box cardItem degreeSel" id="degreeSel">
-										<input type="radio" v-model="client.clientEdu" class="redio" name="clientEdu" value="硕士及以上">&nbsp;&nbsp;硕士及以上
-										<input type="radio" v-model="client.clientEdu" class="redio" name="clientEdu" value="本科">&nbsp;&nbsp;本科
-										<input type="radio" v-model="client.clientEdu" class="redio" name="clientEdu" value="大专">&nbsp;&nbsp;大专
-										<input type="radio" v-model="client.clientEdu" class="redio" name="clientEdu" value="高中/中专">&nbsp;&nbsp;高中/中专
-										<input type="radio" v-model="client.clientEdu" class="redio" name="clientEdu" value="初中/小学">&nbsp;&nbsp;初中/小学
-										<DIV class="form_tips">
-											<SPAN class="err_span"></SPAN>
-										</DIV>
+										<input type="radio" v-model="client.clientEdu" class="redio"
+											name="clientEdu" @blur="blur7" value="硕士及以上">&nbsp;&nbsp;硕士及以上
+										<input type="radio" v-model="client.clientEdu" class="redio"
+											name="clientEdu" @blur="blur7" value="本科">&nbsp;&nbsp;本科
+										<input type="radio" v-model="client.clientEdu" class="redio"
+											name="clientEdu" @blur="blur7" value="大专">&nbsp;&nbsp;大专
+										<input type="radio" v-model="client.clientEdu" class="redio"
+											name="clientEdu" @blur="blur7" value="高中/中专">&nbsp;&nbsp;高中/中专
+										<input type="radio" v-model="client.clientEdu" class="redio"
+											name="clientEdu" @blur="blur7" value="初中/小学">&nbsp;&nbsp;初中/小学
+										<div style="height: 20px;">
+											<span class="spa" v-show="flags">{{g}}</span>
+										</div>									
 									</DIV>
 								</LI>
 								<LI>
@@ -356,13 +362,17 @@
 										<EM class="r_em">*</EM> 婚姻状况：
 									</DIV>
 									<DIV class="f_box cardItem marrySel" id="marrySel">
-										<input type="radio" v-model="client.clientMarriage" class="redio" name="clientMarriage" value="已婚（有子女）">&nbsp;&nbsp;已婚（有子女）
-										<input type="radio" v-model="client.clientMarriage" class="redio" name="clientMarriage" value="已婚（无子女）">&nbsp;&nbsp;已婚（无子女）
-										<input type="radio" v-model="client.clientMarriage" class="redio" name="clientMarriage" value="未婚">&nbsp;&nbsp;未婚
-										<input type="radio" v-model="client.clientMarriage" class="redio" name="clientMarriage" value="其他">&nbsp;&nbsp;其他
-										<DIV class="form_tips">
-											<SPAN class="err_span" style="color: rgb(255, 66, 79);"></SPAN>
-										</DIV>
+										<input type="radio" v-model="client.clientMarriage" @blur="blur8"
+											class="redio" name="clientMarriage" value="已婚（有子女）">&nbsp;&nbsp;已婚（有子女）
+										<input type="radio" v-model="client.clientMarriage" @blur="blur8"
+											class="redio" name="clientMarriage" value="已婚（无子女）">&nbsp;&nbsp;已婚（无子女）
+										<input type="radio" v-model="client.clientMarriage" @blur="blur8"
+											class="redio" name="clientMarriage" value="未婚">&nbsp;&nbsp;未婚
+										<input type="radio" v-model="client.clientMarriage" @blur="blur8"
+											class="redio" name="clientMarriage" value="其他">&nbsp;&nbsp;其他
+										<div style="height: 20px;">
+											<span class="spa" v-show="flags">{{h}}</span>
+										</div>
 									</DIV>
 								</LI>
 								<LI>
@@ -373,7 +383,7 @@
 										<DIV class="h_box" id="company_address">
 											<DIV class="slect_box">
 												<SELECT name="questionId" id="sheng"
-													v-model="client.questionId">
+													v-model="client.questionId"  @blur="blur9">
 													<OPTION value="">请选择</OPTION>
 													<OPTION value="1">你母亲的生日？</OPTION>
 													<OPTION value="2">你母亲的名字？</OPTION>
@@ -383,9 +393,9 @@
 												</SELECT>
 											</DIV>
 										</DIV>
-										<DIV class="succ_tips">
-											<SPAN class="succ_span"></SPAN>
-										</DIV>
+										<div style="height: 20px;">
+											<span class="spa" v-show="flags">{{j}}</span>
+										</div>
 									</DIV>
 									<DIV class="tit_105">
 										<EM class="r_em">*</EM> 预留答案：
@@ -393,14 +403,13 @@
 									<DIV class="f_box w_250">
 										<DIV class="input_box1">
 											<INPUT name="clientAnswer" maxlength="20"
-												style="color: rgb(85, 85, 85);"
+												style="color: rgb(85, 85, 85);"  @blur="blur10"
 												v-model="client.clientAnswer" type="text"
 												placeholder="请输入安全问题的答案">
 										</DIV>
-										<DIV class="form_tips">
-											<SPAN class="non_immediate_nm_err_span err_span"
-												style="color: rgb(255, 66, 79);"></SPAN>
-										</DIV>
+										<div style="height: 20px;">
+											<span class="spa" v-show="flags">{{k}}</span>
+										</div>
 									</DIV>
 								</LI>
 								<li>
@@ -408,11 +417,12 @@
 									<div class="f_box">
 										<div class="input_box w_505">
 											<input id="mobile" v-model="client.clientAddress" type="text" maxlength="50"
-												placeholder="省---/市(县)---/区">
+												placeholder="省---/市(县)---/区"  @blur="blur11">
 										</div>
-										<div class="form_tips"><span class="err_span"></span></div>
+										<div style="height: 20px;">
+											<span class="spa" v-show="flags">{{i}}</span>
+										</div>
 									</div>
-									<div class="succ_tips"><span class="succ_span"></span></div>	
 								</li>
 								<LI>
 									<DIV class="tit_105">
@@ -422,7 +432,7 @@
 										<DIV class="h_box" id="company_address">
 											<DIV class="slect_box">
 												<SELECT name="clientHousing" id="sheng"
-													v-model="client.clientHousing">
+													v-model="client.clientHousing" @blur="blur12">
 													<OPTION value="">请选择</OPTION>
 													<OPTION value="有住房（有房贷）">有住房（有房贷）</OPTION>
 													<OPTION value="有住房（无房贷）">有住房（无房贷）</OPTION>
@@ -432,23 +442,21 @@
 												</SELECT>
 											</DIV>
 										</DIV>
-										<DIV class="succ_tips">
-											<SPAN class="succ_span"></SPAN>
-										</DIV>
+										<div style="height: 20px;">
+											<span class="spa" v-show="flags">{{l}}</span>
+										</div>
 									</DIV>
 									<div class="tit_105">
 										<em class="r_em">*</em> 住址邮编：
 									</div>
 									<DIV class="f_box w_250">
 										<DIV class="input_box1">
-											<INPUT name="postalcode" id=""
-												style="color: rgb(85, 85, 85);" v-model="client.postalcode"
+											<INPUT name="postalcode" @blur="blur13" v-model="client.postalcode"
 												type="text" maxlength="6" placeholder="6位数有效邮编">
 										</DIV>
-										<DIV class="form_tips">
-											<SPAN class="non_immediate_nm_err_span err_span"
-												style="color: rgb(255, 66, 79);"></SPAN>
-										</DIV>
+										<div style="height: 20px;">
+											<span class="spa" v-show="flags">{{m}}</span>
+										</div>
 									</DIV>
 								</LI>
 								<li>
@@ -459,14 +467,11 @@
 										<div class="input_box w_505">
 											<input id="email" name="email" type="text" maxlength="30"
 												v-model="client.clientEmail" autocomplete="off"
-												placeholder="电子账单会发送至该邮箱地址">
+												placeholder="电子账单会发送至该邮箱地址"  @blur="blur14">
 										</div>
-										<div class="form_tips">
-											<span class="err_span"></span>
+										<div style="height: 20px;">
+											<span class="spa" v-show="flags">{{n}}</span>
 										</div>
-									</div>
-									<div class="succ_tips">
-										<span class="succ_span"></span>
 									</div>
 								</li>
 
@@ -478,11 +483,11 @@
 										<DIV class="input_box">
 											<INPUT name="companyName" id="company" type="text"
 												maxlength="50" v-model="clientCompany.companyName"
-												placeholder="您所在公司的名称">
+												placeholder="您所在公司的名称"  @blur="blur15">
 										</DIV>
-										<DIV class="form_tips">
-											<SPAN class="err_span" style="color: rgb(255, 66, 79);"></SPAN>
-										</DIV>
+										<div style="height: 20px;">
+											<span class="spa" v-show="flags">{{o}}</span>
+										</div>
 									</DIV>
 									<DIV class="succ_tips">
 										<SPAN class="succ_span"></SPAN>
@@ -544,7 +549,7 @@
 									<DIV class="f_box">
 										<DIV class="h_box" id="company_address">
 											<DIV class="slect_box">
-												<SELECT name="companyJob"
+												<SELECT name="companyJob"  @blur="blur16"
 													v-model="clientCompany.companyJob">
 													<OPTION value="">请选择</OPTION>
 													<OPTION value="厅局级以上">厅局级以上</OPTION>
@@ -558,9 +563,9 @@
 												</SELECT>
 											</DIV>
 										</DIV>
-										<DIV class="succ_tips">
-											<SPAN class="succ_span"></SPAN>
-										</DIV>
+										<div style="height: 20px;">
+											<span class="spa" v-show="flags">{{p}}</span>
+										</div>
 									</DIV>
 									<DIV class="tit_1051">
 										<EM class="r_em"></EM> 从事职称：
@@ -592,10 +597,10 @@
 										<div class="input_box2">
 											<input id="companyPhone" name="mobile" type="text"
 												maxlength="11" v-model="clientCompany.companyPhone"
-												placeholder="11位数有效手机号码">
+												placeholder="11位数有效手机号码" @blur="blur17">
 										</div>
-										<div class="form_tips">
-											<span class="err_span"></span>
+										<div style="height: 20px;">
+											<span class="spa" v-show="flags">{{q}}</span>
 										</div>
 									</div>
 
@@ -605,10 +610,13 @@
 									<DIV class="f_box w_250">
 										<DIV class="input_box2">
 											<INPUT name="companyPostalcode"
-												style="color: rgb(85, 85, 85);"
+												style="color: rgb(85, 85, 85);" @blur="blur18"
 												v-model="clientCompany.companyPostalcode" type="text"
 												maxlength="6" placeholder="6位数有效邮编">
 										</DIV>
+										<div style="height: 20px;">
+											<span class="spa" v-show="flags">{{z}}</span>
+										</div>
 									</DIV>
 								</LI>
 
@@ -616,12 +624,13 @@
 									<div class="tit_105"><em class="r_em">*</em> 单位地址：</div>
 									<div class="f_box">
 										<div class="input_box w_505">
-											<input id="mobile" name="mobile" type="text" maxlength="50"
+											<input id="mobile" name="mobile" type="text" maxlength="50" @blur="blur19"
 												v-model="clientCompany.companyAddress" placeholder="省---/市(县)---/区">
 										</div>
-										<div class="form_tips"><span class="err_span"></span></div>
+									<div style="height: 20px;">
+										<span class="spa" v-show="flags">{{s}}</span>
 									</div>
-									<div class="succ_tips"><span class="succ_span"></span></div>	
+									</div>
 								</li>
 								
 								<LI>
@@ -637,14 +646,19 @@
 									<DIV class="f_box">
 										<DIV class="h_box">
 											<DIV class="slect_box cardItem familySel" id="familySel">
-												<input v-model="clientLinkman.linkRelation" type="radio" class="redio" name="clientSex" value="夫妻">&nbsp;&nbsp;夫妻
-												<input v-model="clientLinkman.linkRelation" type="radio" class="redio" name="clientSex" value="父母">&nbsp;&nbsp;父母
-												<input v-model="clientLinkman.linkRelation" type="radio" class="redio" name="clientSex" value="子女">&nbsp;&nbsp;子女
-												<input v-model="clientLinkman.linkRelation" type="radio" class="redio" name="clientSex" value="朋友、同事">&nbsp;&nbsp;朋友、同事
-												<input v-model="clientLinkman.linkRelation" type="radio" class="redio" name="clientSex" value="其他">&nbsp;&nbsp;其他
-												<DIV class="form_tips">
-													<SPAN class="err_span" style="color: rgb(255, 66, 79);"></SPAN>
-												</DIV>
+												<input v-model="clientLinkman.linkRelation" type="radio" class="redio"	
+													name="clientSex" value="夫妻" @blur="blur20">&nbsp;&nbsp;夫妻
+												<input v-model="clientLinkman.linkRelation" type="radio" class="redio"
+													name="clientSex" value="父母" @blur="blur20">&nbsp;&nbsp;父母
+												<input v-model="clientLinkman.linkRelation" type="radio" class="redio"
+													name="clientSex" value="子女" @blur="blur20">&nbsp;&nbsp;子女
+												<input v-model="clientLinkman.linkRelation" type="radio" class="redio"
+													name="clientSex" value="朋友、同事" @blur="blur20">&nbsp;&nbsp;朋友、同事
+												<input v-model="clientLinkman.linkRelation" type="radio" class="redio"
+													name="clientSex" value="其他" @blur="blur20">&nbsp;&nbsp;其他
+												<div style="height: 20px;">
+													<span class="spa" v-show="flags">{{t}}</span>
+												</div>
 											</DIV>
 										</DIV>
 									</DIV>
@@ -656,14 +670,13 @@
 									<DIV class="f_box w_250">
 										<DIV class="input_box3">
 											<INPUT name="linkName" id="immediateFamilyName"
-												v-model="clientLinkman.linkName"
+												v-model="clientLinkman.linkName" @blur="blur21"
 												style="color: rgb(85, 85, 85); " type="text" maxlength="10"
 												placeholder="联系人的姓名">
 										</DIV>
-										<DIV class="form_tips">
-											<SPAN class="immediate_nm_err_span err_span"
-												style="color: rgb(255, 66, 79);"></SPAN>
-										</DIV>
+										<div style="height: 20px;">
+											<span class="spa" v-show="flags">{{u}}</span>
+										</div>
 									</DIV>
 									<DIV class="tit_105">
 										<EM class="r_em">*</EM> 手机号码：
@@ -671,17 +684,13 @@
 									<DIV class="f_box w_150" >
 										<DIV class="input_box4">
 											<INPUT name="linkPhone" id="immediateFamilyPhone"
-												v-model="clientLinkman.linkPhone"
+												v-model="clientLinkman.linkPhone" @blur="blur22"
 												style="color: rgb(85, 85, 85);" type="text" maxlength="11"
 												placeholder="11位数有效手机号码">
 										</DIV>
-										<DIV class="form_tips">
-											<SPAN class="immediate_ph_err_span err_span"
-												style="color: rgb(255, 66, 79);"></SPAN>
-										</DIV>
-									</DIV>
-									<DIV class="succ_tips">
-										<SPAN class="succ_span"></SPAN>
+										<div style="height: 20px;">
+											<span class="spa" v-show="flags">{{v}}</span>
+										</div>
 									</DIV>
 								</LI>
 
@@ -689,12 +698,13 @@
 									<div class="tit_105"><em class="r_em">*</em> 联系人地址：</div>
 									<div class="f_box">
 										<div class="input_box w_505">
-											<input id="mobile" name="mobile" type="text" maxlength="50"
+											<input id="mobile" name="mobile" type="text" maxlength="50" @blur="blur23"
 												v-model="clientLinkman.linkAddress" placeholder="省---/市(县)---/区">
 										</div>
-										<div class="form_tips"><span class="err_span"></span></div>
+										<div style="height: 20px;">
+											<span class="spa" v-show="flags">{{w}}</span>
+										</div>
 									</div>
-									<div class="succ_tips"><span class="succ_span"></span></div>	
 								</li>
 							</UL>
 							<DIV class="get_mode" id="getMode">
@@ -711,7 +721,7 @@
 							<DIV class="form_btn_box" id="submit_btn">
 								<button style="margin-left: 230px;" type="submit"
 									class="btn btn-danger btn-lg"
-									@click="ApplyCardPlanController()">
+									@click="ApplyCardPlanControllerTwo()">
 									&nbsp;&nbsp;&nbsp;&nbsp;下一步&nbsp;&nbsp;&nbsp;&nbsp;
 								</button>
 							</DIV>
@@ -756,6 +766,7 @@
 		new Vue({
             el:'#applyCard',
             data:{
+            	flags:false,
             	flag:false,
             	done:false,
             	client:{
@@ -771,6 +782,7 @@
             		clientAnswer:'',
             		clientHousing:'',
             		clientAddress:'',
+            		postalcode:'',
             		clientEmail:''
                 },
                 clientCompany:{
@@ -802,9 +814,361 @@
 	 				  anntationa4:'',
 	 				  activity1:'',
 	 				  activity2:''
-	 		     }
+	 		     },
+                a:'',
+				b:'',
+				c:'',
+				d:'',
+				e:'',
+				f:'',
+				g:'',
+				h:'',
+				j:'',
+				k:'',
+				i:'',
+				l:'',
+				m:'',
+				n:'',
+				o:'',
+				p:'',
+				q:'',
+				z:'',
+				s:'',
+				t:'',
+				u:'',
+				v:'',
+				w:'',
+				names: "@blur_61",
             },
             methods:{
+            	 blur1(){
+ 					var _this=this;
+ 	            	var name = /^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/;
+ 	            	if(_this.client.clientName==""){
+ 	        			this.a="*用户姓名不能为空！";
+ 	        			return false
+ 	        		}
+ 	        		if(!name.test(_this.client.clientName)){
+ 	        			this.a="*用户姓名格式错误！";
+ 	        			return false
+ 	        		}
+ 	        		if(_this.client.clientName!=""){
+ 	        			this.a="";
+ 	        		}
+ 	        		if(name.test(_this.client.clientName)){
+ 	        			this.a="";
+ 	        		}
+ 	             },
+ 	             blur2(){
+ 	            	var _this=this;
+ 	            	if(_this.client.clientSex==""){
+ 	        			this.b="*请选择性别！";
+ 	        			return false
+ 	        		}
+ 	        		if(_this.client.clientSex!=""){
+ 	        			this.b="";
+ 	        		}
+ 	             },
+ 	             blur3(){
+ 	            	var _this=this;
+ 	        		if(_this.client.clientBirthday==""){
+ 	        			this.c="*出生年月不能为空！";
+ 	        			return false
+ 	        		}
+ 	        		if(_this.client.clientBirthday!=""){
+ 	        			this.c="";
+ 	        		}
+ 	             },
+ 	             blur4(){
+ 	            	var _this=this;
+ 	            	if(_this.client.clientNational==""){
+ 	        			this.d="*请选择民族！";
+ 	        			return false
+ 	        		}
+ 	        		if(_this.client.clientNational!=""){
+ 	        			this.d="";
+ 	        		}
+ 	             },
+ 	             blur5(){
+ 	            	var _this=this;
+ 	            	var num = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+ 	            	if(_this.client.clientIDcard==""){
+             			this.e="*身份证号码不能为空！";
+             			return false
+             		}
+             		if(!num.test(_this.client.clientIDcard)){
+             			this.e="*身份证号码格式错误！";
+             			return false
+             		}
+             		if(_this.client.clientIDcard!=""){
+             			this.e="";
+             		}
+             		if(num.test(_this.client.clientIDcard)){
+             			this.e="";
+             		}
+ 	             },
+ 	             blur6(){
+ 	            	var _this=this;
+ 	            	var tel = /^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;
+ 	            	if(_this.client.clientPhone==""){
+             			this.f="*手机号码不能为空！";
+             			return false
+             		}
+             		if(!tel.test(_this.client.clientPhone)){
+             			this.f="*手机号码格式错误！";
+             			return false
+             		}
+             		if(_this.client.clientPhone!=""){
+             			this.f="";
+             		}
+             		if(tel.test(_this.client.clientPhone)){
+             			this.f="";
+             		}
+ 	             },
+ 	             blur7(){
+ 	            	var _this=this;
+ 					if(_this.client.clientEdu==""){
+ 						this.g="*请选择学历！";
+             			return false
+             		}
+ 					if(_this.client.clientEdu!=""){
+ 						this.g="";
+             		}
+ 	             },
+ 	             blur8(){
+ 	            	var _this=this;
+ 	            	if(_this.client.clientMarriage==""){
+ 							this.h="*请选择婚姻状况！";
+             			return false
+             		}
+ 					if(_this.client.clientMarriage!=""){
+ 						this.h="";
+             		}
+ 	             },
+ 	             blur9(){
+ 		            var _this=this;
+ 		            if(_this.client.questionId==""){
+ 						this.j="*请选择安全问题！";
+             			return false
+             		}
+ 					if(_this.client.questionId!=""){
+ 						this.j="";
+             		}
+ 	             },
+ 	             blur10(){
+ 	            	 var _this=this;
+ 	            	if(_this.client.clientAnswer==""){
+ 						this.k="*预留答案不能为空！";
+             			return false
+             		}
+ 					if(_this.client.clientAnswer!=""){
+ 						this.k="";
+             		}
+ 	             },
+ 	             blur11(){
+ 	            	 var _this=this;
+ 	            	 var reg = /.+?(省|市|自治区|自治州|县|区)/g;
+ 	            	 if(_this.client.clientAddress==""){
+ 						this.i="*用户住址不能为空！";
+             			return false
+             		}
+ 					if(!reg.test(_this.client.clientAddress)){
+ 						this.i="*用户住址格式错误！";
+             			return false
+             		}
+ 					if(_this.client.clientAddress!=""){
+ 						this.i="";
+             		}
+ 					if(reg.test(_this.client.clientAddress)){
+ 						this.i="";
+             		}
+ 	             },
+ 	             blur12(){
+ 	            	 var _this=this;
+ 	            	 if(_this.client.clientHousing==""){
+ 						this.l="*请选择住宅情况！";
+             			return false
+ 					}
+ 					if(_this.client.clientHousing!=""){
+ 						this.l="";
+ 					}
+ 	             },
+ 	             blur13(){
+ 	            	 var _this=this;	
+ 	            	 var zip=/^\d{6}$/;
+ 	            	 if(_this.client.postalcode==""){
+							this.m="*住址邮编不能为空！";
+	            			return false
+	            		}
+						if(!zip.test(_this.client.postalcode)){
+							this.m="*住址邮编格式错误！";
+	            			return false
+	            		}
+						if(_this.client.postalcode!=""){
+							this.m="";
+	            		}
+						if(zip.test(_this.client.postalcode)){
+							this.m="";
+	            		}
+ 	             },
+ 	             blur14(){
+ 	            	 var _this=this;	
+ 	            	 var email = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+ 	            	 if(_this.client.clientEmail==""){
+ 							this.n="*电子邮箱不能为空！";
+ 	            			return false
+             		}
+ 					if(!email.test(_this.client.clientEmail)){
+ 						this.n="*电子邮箱格式错误！";
+             			return false
+             		}
+ 					if(_this.client.clientEmail!=""){
+ 						this.n="";
+             		}
+ 					if(email.test(_this.client.clientEmail)){
+ 						this.n="";
+             		}
+ 	             },
+ 	             blur15(){
+ 	            	 var _this=this;
+ 	            	 if(_this.clientCompany.companyName==""){
+ 						this.o="*单位名称不能为空！";
+             			return false
+ 					}
+ 					if(_this.clientCompany.companyName!=""){
+ 						this.o="";
+ 					}
+ 					
+ 	             },
+ 	             blur16(){
+ 	            	 var _this=this;	
+ 	            	 if(_this.clientCompany.companyJob==""){
+ 						this.p="*请选择职务！";
+             			return false
+ 					}
+ 					if(_this.clientCompany.companyJob!=""){
+ 						this.p="";
+ 					}
+ 	             },
+ 	             blur17(){
+ 	            	 var _this=this;
+ 	            	 var tel = /^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;
+ 	            	 if(_this.clientCompany.companyPhone==""){
+ 						this.q="*单位电话不能为空！";
+             			return false
+             		}
+ 					if(!tel.test(_this.clientCompany.companyPhone)){
+ 						this.q="*单位电话格式错误！";
+             			return false
+             		}
+ 					if(_this.clientCompany.companyPhone!=""){
+ 						this.q="";
+             			return false
+             		}
+ 					if(tel.test(_this.clientCompany.companyPhone)){
+ 						this.q="";
+             		}
+ 	             },
+ 	             blur18(){
+ 	            	 var _this=this;
+ 	            	 var zip=/^\d{6}$/;
+ 	            	 if(_this.clientCompany.companyPostalcode==""){
+ 						this.z="*单位邮编不能为空！";
+             			return false
+             		}
+ 					if(!zip.test(_this.clientCompany.companyPostalcode)){
+ 						this.z="*单位邮编格式错误！";
+             			return false
+             		}
+ 					if(_this.clientCompany.companyPostalcode!=""){
+ 						this.z="";
+             		}
+ 					if(zip.test(_this.clientCompany.companyPostalcode)){
+ 						this.z="";
+             		}
+ 	             },
+ 	             blur19(){
+ 	            	 var _this=this;
+ 	            	 var reg = /.+?(省|市|自治区|自治州|县|区)/g;
+ 	            	 if(_this.clientCompany.companyAddress==""){
+ 						this.s="*单位地址不能为空！";
+             			return false
+             		}
+ 					if(!reg.test(_this.clientCompany.companyAddress)){
+ 						this.s="*单位地址格式错误！";
+             			return false
+             		}
+ 					if(_this.clientCompany.companyAddress!=""){
+ 						this.s="";
+             		}
+ 					if(reg.test(_this.clientCompany.companyAddress)){
+ 						this.s="";
+             		}
+ 	             },
+ 	             blur20(){
+ 	            	 var _this=this;
+ 	            	 if(_this.clientLinkman.linkRelation==""){
+ 						this.t="*请选择与联系人的关系！";
+             			return false
+ 					}
+ 					if(_this.clientLinkman.linkRelation!=""){
+ 						this.t="";
+ 					}
+ 	             },
+ 	             blur21(){
+ 	            	 var _this=this;
+ 	            	 var name = /^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/;
+ 	            	 if(_this.clientLinkman.linkName==""){
+ 						this.u="*联系人姓名不能为空！";
+             			return false
+             		}
+ 					if(!name.test(_this.clientLinkman.linkName)){
+ 						this.u="*联系人姓名格式错误！";
+             			return false
+             		}
+ 					if(_this.clientLinkman.linkName!=""){
+ 						this.u="";
+             		}
+ 					if(name.test(_this.clientLinkman.linkName)){
+ 						this.u="";
+             		}
+ 	             },
+ 	             blur22(){
+ 	            	 var _this=this;
+ 	            	 var tel = /^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;
+ 	            	 if(_this.clientLinkman.linkPhone==""){
+ 						this.v="*联系人手机号码不能为空！";
+             			return false
+             		}
+ 					if(!tel.test(_this.clientLinkman.linkPhone)){
+ 						this.v="*联系人手机号码格式错误！";
+             			return false
+             		}
+ 					if(_this.clientLinkman.linkPhone!=""){
+ 						this.v="";
+             		}
+ 					if(tel.test(_this.clientLinkman.linkPhone)){
+ 						this.v="";
+             		}
+ 	             },
+ 	             blur23(){
+ 	            	var _this=this;
+ 	            	var reg = /.+?(省|市|自治区|自治州|县|区)/g;
+ 					if(_this.clientLinkman.linkAddress==""){
+ 						this.w="*联系人地址不能为空！";
+             			return false
+             		} 
+ 					if(!reg.test(_this.clientLinkman.linkAddress)){
+ 						this.w="*联系人地址格式错误！";
+             			return false
+             		}
+ 					if(_this.clientLinkman.linkAddress!=""){
+ 						this.w="";
+             		} 
+ 					if(reg.test(_this.clientLinkman.linkAddress)){
+ 						this.w="";
+             		}
+ 	             },
             	selectCardTypeById: function(){
             		var _this=this;
             		var idc= GetQueryString("id")
@@ -816,206 +1180,140 @@
                       })
             	},
             	ApplyCardPlanController(){
-            		var idc= GetQueryString("id")
             		var _this=this;
-            		var name = /^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/;
-            		var num = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
-            		var tex = /^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;
-            		var email = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-            		var zip=/^\d{6}$/;
-            		var reg = /.+?(省|市|自治区|自治州|县|区)/g;
-            		if(_this.client.clientName==""){
-						alert("用户姓名不能为空！")
+            		if(_this.client.clientName=="" || _this.client.clientSex=="" ||
+            				_this.client.clientBirthday=="" || _this.client.clientNational=="" ||
+            				_this.client.clientIDcard=="" || _this.client.clientPhone==""){
+            			if(_this.client.clientName==""){
+    	        			this.a="*用户姓名不能为空！";
+    	        		}
+            			if(_this.client.clientSex==""){
+    	        			this.b="*请选择性别！";
+    	        		}
+            			if(_this.client.clientBirthday==""){
+    	        			this.c="*出生年月不能为空！";
+    	        		}
+            			if(_this.client.clientNational==""){
+    	        			this.d="*请选择民族！";
+    	        		}
+            			if(_this.client.clientIDcard==""){
+                			this.e="*身份证号码不能为空！";
+                		}
+            			if(_this.client.clientPhone==""){
+                			this.f="*手机号码不能为空！";
+                		}
+            			alert("请先填写完信息，再提交！")
             			return false
+            		}else{
+            			this.flag=true;
             		}
-            		if(!name.test(_this.client.clientName)){
-            			alert("用户姓名格式错误！")
-            			return false
-            		}
-            		if(_this.client.clientSex==""){
-						alert("请选择性别！")
-            			return false
-            		}
-            		if(_this.client.clientBirthday==""){
-						alert("出生年月不能为空！")
-            			return false
-            		}
-            		if(_this.client.clientNational==""){
-						alert("请选择名族！")
-            			return false
-            		}
-            		if(_this.client.clientIDcard==""){
-            			alert("身份证号码不能为空！")
-            			return false
-            		}
-            		if(!num.test(_this.client.clientIDcard)){
-            			alert("身份证号码格式错误！")
-            			return false
-            		}
-            		if(_this.client.clientPhone==""){
-            			alert("手机号码不能为空！")
-            			return false
-            		}
-            		if(!tex.test(_this.client.clientPhone)){
-            			alert("手机号码格式错误！")
-            			return false
-            		}
-					 
-					this.flag=true;
-					
-					if(_this.client.clientEdu==""){
-            			return false
-            		}
-					if(_this.client.clientEdu==""){
-						alert("请选择学历！")
-            			return false
-            		}
-					if(_this.client.clientMarriage==""){
-						alert("请选择婚姻状况！")
-            			return false
-            		}
-					if(_this.client.questionId==""){
-						alert("请选择安全问题！")
-            			return false
-            		}
-					if(_this.client.clientAnswer==""){
-            			alert("预留答案不能为空！")
-            			return false
-            		}
-					if(!name.test(_this.client.clientAnswer)){
-            			alert("预留答案格式错误！")
-            			return false
-            		}
-					if(_this.client.clientAddress==""){
-            			alert("用户住址不能为空！")
-            			return false
-            		}
-					if(!reg.test(_this.client.clientAddress)){
-            			alert("用户住址格式错误！")
-            			return false
-            		}
-					if(_this.client.clientHousing==""){
-						alert("请选择住宅情况！")
-            			return false
-					}
-					if(_this.client.postalcode==""){
-            			alert("住址邮编不能为空！")
-            			return false
-            		}
-					if(!zip.test(_this.client.postalcode)){
-            			alert("住址邮编格式错误！")
-            			return false
-            		}
-					if(_this.client.clientEmail==""){
-            			alert("电子邮箱不能为空！")
-            			return false
-            		}
-					if(!email.test(_this.client.clientEmail)){
-            			alert("电子邮箱格式错误！")
-            			return false
-            		}
-					if(_this.clientCompany.companyName==""){
-						alert("单位名称不能为空！")
-            			return false
-					}
-					if(!name.test(_this.clientCompany.companyName)){
-						alert("单位名称格式错误！")
-            			return false
-					}
-					if(_this.clientCompany.companyJob==""){
-						alert("请选择担任职务！")
-            			return false
-					}
-					if(_this.clientCompany.companyPhone==""){
-            			alert("单位电话不能为空！")
-            			return false
-            		}
-					if(!tex.test(_this.clientCompany.companyPhone)){
-            			alert("单位电话格式错误！")
-            			return false
-            		}
-					if(_this.clientCompany.companyPostalcode==""){
-            			alert("单位邮编格式错误！")
-            			return false
-            		}
-					if(!zip.test(_this.clientCompany.companyPostalcode)){
-            			alert("单位邮编格式错误！")
-            			return false
-            		}
-					if(_this.clientCompany.companyAddress==""){
-            			alert("单位地址不能为空！")
-            			return false
-            		}
-					if(!reg.test(_this.clientCompany.companyAddress)){
-            			alert("单位地址格式错误！")
-            			return false
-            		}
-					if(_this.clientLinkman.linkRelation==""){
-						alert("请选择与联系人的关系！")
-            			return false
-					}
-					if(_this.clientLinkman.linkName==""){
-            			alert("联系人姓名不能为空！")
-            			return false
-            		}
-					if(!name.test(_this.clientLinkman.linkName)){
-            			alert("联系人姓名格式错误！")
-            			return false
-            		}
-					if(_this.clientLinkman.linkPhone==""){
-            			alert("联系人手机号码不能为空！")
-            			return false
-            		}
-					if(!tex.test(_this.clientLinkman.linkPhone)){
-            			alert("联系人手机号码格式错误！")
-            			return false
-            		}
-					if(_this.clientLinkman.linkAddress==""){
-            			alert("联系人地址不能为空！")
-            			return false
-            		} 
-					if(!reg.test(_this.clientLinkman.linkAddress)){
-            			alert("联系人地址格式错误！")
-            			return false
-            		}
-            		axios.get('http://10.1.12.66:8086/cardmanger/handleCreditCard', {'params':{
-            			'id': idc,
-            			'clientName':_this.client.clientName,
-            			'clientSex':_this.client.clientSex,
-            			'clientNational':_this.client.clientNational,
-            			'clientIDcard':_this.client.clientIDcard,
-            			'clientBirthday':_this.client.clientBirthday,
-            			'clientPhone':_this.client.clientPhone,
-            			'clientEdu':_this.client.clientEdu,
-            			'clientMarriage':_this.client.clientMarriage,
-            			'questionId':_this.client.questionId,
-            			'clientAnswer':_this.client.clientAnswer,
-            			'clientHousing':_this.client.clientHousing,
-            			'clientAddress':_this.client.clientAddress,
-            			'clientEmail':_this.client.clientEmail,
-            			
-            			'companyName':_this.clientCompany.companyName,
-            			'companyNature':_this.clientCompany.companyNature,
-            			'companyPhone':_this.clientCompany.companyPhone,
-            			'companyIndustry':_this.clientCompany.companyIndustry,
-            			'companyAddress':_this.clientCompany.companyAddress,
-            			'companyJob':_this.clientCompany.companyJob,
-            			'annualIncome':_this.clientCompany.annualIncome,
-            			'companyPostalcode':_this.clientCompany.companyPostalcode,
-            			
-            			'linkName':_this.clientLinkman.linkName,
-            			'linkPhone':_this.clientLinkman.linkPhone,
-            			'linkAddress':_this.clientLinkman.linkAddress,
-            			'linkRelation':_this.clientLinkman.linkRelation
-            			}
-                      })
-                      .then(
-           					window.location.href='http://10.1.12.66:8086/cardmanger/handleCardApplicationTwo.html'
-           				)
-                      .catch(function (error) {
-                        console.log(error);
-                      })
                 },
+                ApplyCardPlanControllerTwo(){
+                	var idc= GetQueryString("id")
+                	this.flags=true;
+        			var _this=this;
+        			if(_this.client.clientEdu=="" || _this.client.clientMarriage=="" ||
+               				_this.client.questionId=="" || _this.client.clientAnswer=="" ||
+               				_this.client.clientAddress=="" || _this.client.clientHousing=="" ||
+               				_this.client.postalcode=="" || _this.client.clientEmail=="" ||
+               				_this.clientCompany.companyName=="" || _this.clientCompany.companyJob==""||
+               				_this.clientCompany.companyPhone=="" || _this.clientCompany.companyPostalcode==""||
+               				_this.clientCompany.companyAddress=="" || _this.clientLinkman.linkRelation=="" ||
+               				_this.clientLinkman.linkName=="" || _this.clientLinkman.linkPhone=="" ||
+               				_this.clientLinkman.linkAddress==""){
+               			if(_this.client.clientEdu==""){
+        						this.g="*请选择学历！";
+                    		}
+               			if(_this.client.clientMarriage==""){
+    							this.h="*请选择婚姻状况！";
+                			}
+               			 if(_this.client.questionId==""){
+         						this.j="*请选择安全问题！";
+                     		}
+               			 if(_this.client.clientAnswer==""){
+         						this.k="*预留答案不能为空！";
+                     		}
+               			 if(_this.client.clientAddress==""){
+         						this.i="*用户住址不能为空！";
+                     		}
+               			 if(_this.client.clientHousing==""){
+         						this.l="*请选择住宅情况！";
+         					}
+               			 if(_this.client.postalcode==""){
+     							this.m="*住址邮编不能为空！";
+     	            		}
+               			 if(_this.client.clientEmail==""){
+     							this.n="*电子邮箱不能为空！";
+                 			}
+               			 if(_this.clientCompany.companyName==""){
+         						this.o="*单位名称不能为空！";
+         					}
+               			 if(_this.clientCompany.companyJob==""){
+         						this.p="*请选择职务！";
+         					}
+               			 if(_this.clientCompany.companyPhone==""){
+         						this.q="*单位电话不能为空！";
+                     		}
+               			 if(_this.clientCompany.companyPostalcode==""){
+         						this.z="*单位邮编不能为空！";
+                     		}
+               			 if(_this.clientCompany.companyAddress==""){
+         						this.s="*单位地址不能为空！";
+                     		}
+               			 if(_this.clientLinkman.linkRelation==""){
+         						this.t="*请选择与联系人的关系！";
+         					}
+               			 if(_this.clientLinkman.linkName==""){
+         						this.u="*联系人姓名不能为空！";
+                     		}
+               			 if(_this.clientLinkman.linkPhone==""){
+         						this.v="*联系人手机号码不能为空！";
+                     		}
+               			 if(_this.clientLinkman.linkAddress==""){
+         						this.w="*联系人地址不能为空！";
+                     		} 
+               			alert("请先填写完信息，再提交！")
+               		}else{
+               			axios.get('http://10.1.12.66:8086/cardmanger/handleCreditCard', {'params':{
+               				'id': idc,
+                   			'clientName':_this.client.clientName,
+                   			'clientSex':_this.client.clientSex,
+                   			'clientNational':_this.client.clientNational,
+                   			'clientIDcard':_this.client.clientIDcard,
+                   			'clientBirthday':_this.client.clientBirthday,
+                   			'clientPhone':_this.client.clientPhone,
+                   			'clientEdu':_this.client.clientEdu,
+                   			'clientMarriage':_this.client.clientMarriage,
+                   			'questionId':_this.client.questionId,
+                   			'clientAnswer':_this.client.clientAnswer,
+                   			'clientHousing':_this.client.clientHousing,
+                   			'clientAddress':_this.client.clientAddress,
+                   			'postalcode':_this.client.postalcode,
+                   			'clientEmail':_this.client.clientEmail,
+                   			
+                   			'companyName':_this.clientCompany.companyName,
+                   			'companyNature':_this.clientCompany.companyNature,
+                   			'companyPhone':_this.clientCompany.companyPhone,
+                   			'companyIndustry':_this.clientCompany.companyIndustry,
+                   			'companyAddress':_this.clientCompany.companyAddress,
+                   			'companyJob':_this.clientCompany.companyJob,
+                   			'annualIncome':_this.clientCompany.annualIncome,
+                   			'companyPostalcode':_this.clientCompany.companyPostalcode,
+                   			
+                   			'linkName':_this.clientLinkman.linkName,
+                   			'linkPhone':_this.clientLinkman.linkPhone,
+                   			'linkAddress':_this.clientLinkman.linkAddress,
+                   			'linkRelation':_this.clientLinkman.linkRelation
+                  			}
+                        })
+                        .then(
+             					window.location.href='http://10.1.12.66:8086/cardmanger/handleCardApplicationTwo.html'
+             				)
+                        .catch(function (error) {
+                          console.log(error);
+                        })
+               		}
+        		},
             },
             created:function(){
             	this.selectCardTypeById();

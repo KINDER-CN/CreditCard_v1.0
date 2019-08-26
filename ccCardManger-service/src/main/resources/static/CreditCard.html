@@ -19,14 +19,14 @@
 					readonly="readonly"></td>
 				<td>卡号：</td>
 				<td><input type="text" class="form-control" id="cardNum"
-					placeholder="请输入十六位数卡号"></td>
+					placeholder="请输入十六位数卡号" maxlength="16" onkeyup="value=value.replace(/[^\d]/g,'')"></td>
 			</tr>
 			<tr>
 				<td>卡种：</td>
 				<td><input type="text" id="cardType" readonly="readonly"></td>
 				<td>交易密码：</td>
 				<td><input type="password" id="carPassword"
-					class="form-control" placeholder="请输入六位数密码"></td>
+					class="form-control" placeholder="请输入六位数密码" maxlength="6" onkeyup="value=value.replace(/[^\d]/g,'')"></td>
 			</tr>
 			<tr>
 				<td>有效期：</td>
@@ -40,15 +40,15 @@
 			<tr>
 				<td>信用卡额度：</td>
 				<td><input type="text" class="form-control" id="cardLimit"
-					placeholder="请输入额度"></td>
+					placeholder="请输入额度" maxlength="8" onkeyup="value=value.replace(/[^\d]/g,'')"></td>
 				<td>临时额度：</td>
 				<td><input type="text" class="form-control" id="cardShortLimit"
-					placeholder="请输入临时额度"></td>
+					placeholder="请输入临时额度" maxlength="8" onkeyup="value=value.replace(/[^\d]/g,'')"></td>
 			</tr>
 			<tr>
 				<td>取现额度：</td>
 				<td><input type="text" class="form-control" id="cardCashLimit"
-					placeholder="请输入取现额度"></td>
+					placeholder="请输入取现额度" maxlength="8" onkeyup="value=value.replace(/[^\d]/g,'')"></td>
 				<td>卡状态：</td>
 				<td><input type="text" id="cardState" name="cardState"
 					readonly="readonly"></td>
@@ -59,12 +59,12 @@
 					class="form-control" readonly="readonly"></td>
 				<td>余额：</td>
 				<td><input type="text" class="form-control" id="cardBalance"
-					name="cardBalance" readonly="readonly"></td>
+					name="cardBalance" readonly="readonly" onkeyup="value=value.replace(/[^\d]/g,'')"></td>
 			</tr>
 			<tr>
 				<td>年费：</td>
 				<td><input type="text" class="form-control" id="cardAnnual"
-					name="cardAnnual"></td>
+					name="cardAnnual" maxlength="4" onkeyup="value=value.replace(/[^\d]/g,'')"></td>
 				<td>积分：</td>
 				<td><input type="text" id="cardpoint" name="cardpoint"
 					class="form-control" readonly="readonly"></td>
@@ -80,7 +80,7 @@
 			<tr>
 				<td>手机号码：</td>
 				<td colspan="3"><input type="text" class="form-control"
-					id="cardPhone" name="cardPhone" readonly="readonly"></td>
+					id="cardPhone" name="cardPhone" readonly="readonly" ></td>
 
 			</tr>
 		</table>
@@ -113,7 +113,7 @@
 			var name = GetQueryString("id");
 			/* 	alert(name); */
 			$.ajax({
-				url : "mo/addCreditCardByApplyCard",
+				url : "http://10.1.12.66:8086/cardmanger/mo/addCreditCardByApplyCard",
 				type : "get",
 				data : {
 					"id" : name
@@ -155,7 +155,7 @@
 		$("#addCreditCard").click(function() {
 			var name = GetQueryString("id");
 			$.ajax({
-				url : "mo/addCreditCard",
+				url : "http://10.1.12.66:8086/cardmanger/mo/addCreditCard",
 				type : "post",
 				data : {
 					"cardNum" : $("#cardNum").val(),
